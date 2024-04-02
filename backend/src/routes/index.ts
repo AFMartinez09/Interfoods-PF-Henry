@@ -7,7 +7,6 @@ const router = Router();
 
 router.use("/food", foodRouter);
 router.use("/register", registerRouter);
-
-
+router.use("/payments");
 
 export default router;
