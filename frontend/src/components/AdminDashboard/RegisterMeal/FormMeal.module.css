@@ -1,0 +1,95 @@
+.formContainer {
+  max-width: 600px;
+  margin: 100px auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+
+.inputField {
+  position: initial;
+  flex: 1;
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.addButton {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 7px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  min-width: 100px;
+  margin-right: -111px;
+  margin-left: 10px; 
+}
+
+.addButton:hover {
+  background-color: #0056b3;
+}
+
+.error {
+  color: red;
+  margin-top: 5px;
+}
+
+.ingredientList {
+  margin-top: 10px;
+  list-style-type: none;
+  padding: 0;
+}
+
+.ingredientListItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px; 
+}
+
+.deleteButton {
+  background-color: #c21707;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 5px 15px;
+  cursor: pointer;
+  margin-left: 9px;
+  margin-right: 50px;
+}
+
+.deleteButton:hover {
+  background-color: #db2615;
+}
+
+.textArea{
+  width: 100%;
+}
+
+.submitButton {
+  padding: 10px 20px;
+  margin-top: -15px;
+  border: none;
+  border-radius: 10px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  cursor: pointer;
+}
+
+.submitButton:disabled {
+  background-color: #474747;
+  cursor: no-drop;
+}

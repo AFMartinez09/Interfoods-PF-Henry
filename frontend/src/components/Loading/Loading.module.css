@@ -1,0 +1,20 @@
+/* Estilo para ocultar el scrollbar solo en el componente de carga */
+.loadingContainer {
+  overflow: hidden; /* Evita que haya scroll en el contenedor */
+}
+
+.errorContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh; /* Ajusta la altura según tus necesidades */
+}
+
+.errorContainer img {
+  max-width: 100%; /* La imagen se ajustará automáticamente a su contenedor */
+  max-height: 45vh; /* Limita la altura máxima de la imagen para evitar que sea demasiado grande */
+  scrollbar-width: none; /* Oculta el scrollbar en navegadores que lo soportan */
+  -ms-overflow-style: none; /* Oculta el scrollbar en Internet Explorer */
+}
+
+

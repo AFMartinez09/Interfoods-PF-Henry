@@ -1,0 +1,175 @@
+.pageCart {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+.cart {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background-color: #fbfdfd;
+  padding: 20px;
+  border: 1px solid #ffffff00;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color: #0e0d0d;
+  overflow-y: auto;
+  width: 35%;
+  height: 98%;
+}
+
+.cartTitle {
+  margin-top: 0;
+  font-size: 40px;
+  margin-block-end: 10px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 15px;
+  right: 30px;
+  background-color: transparent;
+  font-size: 35px;
+  border: none;
+  cursor: pointer;
+  color: rgb(202, 0, 0);
+  transition: all 0.3s ease; 
+}
+
+.closeButton:hover {
+  color: #ab6464; 
+}
+
+.itemsContainer {
+  max-height: calc(75%); 
+  overflow-y: auto;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  min-height: 680px;
+}
+
+.cartItem {
+  display: flex;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  background-color: rgba(196, 192, 192, 0.336);
+  border-radius: 15px;
+}
+
+.itemImage {
+  width: 250px;
+  height: 170px;
+  border-radius: 15px;
+}
+
+.containerInfo {
+  flex: 1;
+  background-color: #FF9933;
+}
+
+.info{
+  display: flex;
+}
+
+.totalContainer {
+  display: grid;
+  align-items: center;
+}
+
+.totalAmount {
+  font-weight: bold;
+  font-size: 30px;
+  align-items: center;
+}
+
+.checkoutButton {
+  background-color: #FF9933;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: 600;
+  float: right;
+  transition: all 0.3s ease;
+  height: fit-content;
+  transition: all 0.3s ease; 
+}
+
+.checkoutButton:hover {
+  background-color: #ffb469;
+  border: none;
+  color: #212121;
+}
+
+.btnCant {
+  display: flex;
+  height: 30px;
+  width: 40px;
+  align-items: center;
+  justify-content: center;
+  background-color: #FF9933;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 800;
+  border: none;
+  color: white;
+  transition: all 0.3s ease;
+  border-radius: 20px;
+  cursor: pointer;
+  gap: 10%;
+}
+
+.btnCant:hover {
+  background-color: #ffb469;
+  border: none;
+  color: rgb(33, 33, 33);
+}
+
+.name{
+  font-size: 22px;
+  width: 300px;
+  font-weight: bold;
+  margin-top: 30px;
+  min-height: 52px;
+}
+
+.precio{
+  font-size: 20px;
+  display: flex;
+  top: 300px;
+  margin-right: 40px;
+  margin-top: 0px;
+}
+
+.infoprecio{
+  margin-left: 10px;
+  display: inline;
+  max-height: 170px;
+}
+.botonprecio{
+  display: flex;
+  height: 20px;
+  margin-top: 15px;
+}
+
+
+.infobotonyprecio{
+  margin-left: 10px;
+  display: inline;
+}
+
+.cant{
+  color: black;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 5% 10%;
+  height: 20px;
+}

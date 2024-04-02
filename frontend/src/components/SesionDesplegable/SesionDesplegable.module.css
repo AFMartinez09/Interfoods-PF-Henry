@@ -1,0 +1,78 @@
+.pageDesplegable {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  display: flex;
+  justify-content: flex-end; 
+  align-items: flex-start; 
+}
+ 
+.container {
+  background-color: #2F695C;
+  padding: 20px;
+  border-radius: 5px;
+  color: #000000;
+  width: 300px;
+  max-width: 80%;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.item:hover {
+  background-color: #a9a9a9; 
+}
+
+.btnPerfil,
+.btnCerrarSesion {
+  background-color: transparent;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px 0;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  font-size: 16px;
+  display: flex;
+  align-items: center; 
+  
+}
+
+.sesionImg {
+  width: 24px; 
+  height: 24px; 
+  margin-right: 10px; 
+
+}
+
+.btnCerrarX {
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 280px;
+}
+
+.btnCerrarX:hover {
+  color: #d32f2f;
+}
+
+
+
+
+
+
+
+
+
+
+

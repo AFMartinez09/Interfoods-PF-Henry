@@ -1,0 +1,35 @@
+/* error.module.css */
+
+.errorContainer {
+  text-align: center;
+  margin-top: 10vh; /* Ajusta el margen superior según sea necesario */
+  background-color: gainsboro;
+  width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+  height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.errorTitle {
+  font-size: 2.5rem;
+  color: #2F695C
+}
+
+.errorMessage {
+  font-size: 1.2rem;
+  margin-top: -10px;
+}
+
+.errorLink {
+  color: #007bff; /* Azul */
+  text-decoration: underline;
+  margin-top: 20px;
+  display: inline-block;
+}
+
+.errorImage {
+  width: 150px;
+  margin-top: 30px;
+}

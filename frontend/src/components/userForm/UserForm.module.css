@@ -1,0 +1,48 @@
+.container{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 500px;
+  margin: auto;
+}
+
+.form{
+  margin: 100px 0px 20px 0px;
+  border: 2px solid #2f695c;
+  padding: 10px 20px 20px 15px;
+  border-radius: 15px;
+  background-color: #dbe9e9;
+  width: 80%;
+}
+
+.send {
+  background-color: #ff9500;
+  color:white;
+  margin: 5px;
+  width: 150px;
+  border-radius: 10px;
+  height: 35px;
+}
+
+.send:disabled{
+  background-color: gray;
+  color: #dbe9e9;
+}
+
+button:hover{
+  cursor: pointer;
+}
+
+.field{
+  width: 250px;
+  margin: 5px;
+  box-sizing: border-box;
+  border-radius: 15px;
+  height: 25px;
+}
+
+.error {
+  color:#ff0000;
+}

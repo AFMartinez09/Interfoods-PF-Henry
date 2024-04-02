@@ -1,0 +1,86 @@
+.funcionaContainer {
+  margin: 90px;
+  text-align: center;
+  padding: 20px;
+  font-size: 20px;
+}
+
+.funcionaContainer h1 {
+  color: #000;
+}
+
+.funcionaContainer h3 {
+  color: #000;
+  font-size: 25px;
+  font-weight: lighter;
+}
+
+.funcionaContainer p {
+  color: #000;
+}
+
+.imagesContainer {
+  display: flex;
+  align-items: flex-start; 
+  margin-top: 20px;
+}
+
+.imageWrapper {
+  max-width: 45%; 
+  margin-right: 20px; 
+}
+
+.textWrapper {
+  flex: 1; 
+  text-align: left; 
+  margin-top: 90px;
+  margin-left: 40px; 
+}
+
+.imagesContainer img {
+  width: 100%;
+}
+
+.sectionContainer {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.textContainer {
+  margin-bottom: 20px;
+}
+
+.textContainer h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.textContainer p {
+  font-size: 18px;
+}
+
+.grisPastel {
+  background-color: #f0f0f0ef;
+  padding: 50px;
+  height: 150px;
+  border-radius: 50px;
+  justify-content: center;
+}
+
+.buttonOrange {
+  background-color: #f87d18e1; 
+  color: rgb(0, 0, 0);
+  padding: 10px 10px;
+  border-radius: 15px;
+  cursor: pointer;
+  border: none;
+}
+
+.buttonOrange {
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+}
+
+.buttonOrange > a {
+  color: #fff; /* Texto blanco */
+}

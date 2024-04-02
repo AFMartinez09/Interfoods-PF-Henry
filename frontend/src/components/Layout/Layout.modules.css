@@ -1,0 +1,12 @@
+.layout {
+  background-color: rgb(255, 255, 255);
+  color: #0A283E;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+/* El contenido esté a la izquierda */
+.container {
+  width: 1200px;
+}

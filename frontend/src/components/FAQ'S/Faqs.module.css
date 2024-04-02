@@ -1,0 +1,78 @@
+.faqContainer {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.faqTitle {
+  color: #343a40;
+  font-size: 50px;
+  margin-bottom: 20px;
+  margin-top: 100px;
+  margin-left: 400px;
+  justify-content: center;
+}
+
+.faqList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.faqItem {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ced4da;
+  padding-bottom: 20px;
+}
+
+.faqHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faqQuestion {
+  color: #343a40;
+  font-size: 20px;
+}
+
+.faqToggle {
+  color: black;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.sectionContainer {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.textContainer {
+  text-align: center;
+  text-decoration: none;
+  
+}
+
+.grisPastel {
+  background-color: #f0f0f0; 
+}
+
+.buttonOrange {
+background-color: #f87d18e1; 
+  color: rgb(255, 255, 255);
+  padding: 10px 10px;
+  border-radius: 15px;
+  cursor: pointer;
+
+}
+
+.buttonOrange:hover {
+  background-color: darkorange;
+}
+
+.buttonOrange > a {
+  color: white;
+  text-decoration: none; 
+}

@@ -1,0 +1,94 @@
+.carouselContainer {
+    position: relative;
+    width: 40%;
+    height: 700px; /* Ajusta la altura según tus necesidades */
+    margin-left: 36rem;
+    border-radius: 50px;
+  }
+  
+  .slide {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta el tamaño de la imagen para que cubra completamente el contenedor */
+    border-radius: 50px;
+  }
+
+  .pagination {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 30px;
+  }
+  
+  .paginationDot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #fcebeb;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  .paginationDotActive {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #121312f1;
+    margin: 0 5px;
+    cursor: pointer;
+    border: 0.1px solid white;
+  }
+
+ 
+
+  .prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.986);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.prev {
+  left: 10px; /* Ajusta el espacio entre el botón de anterior y el borde del carrusel */
+}
+
+.next {
+  right: 10px; /* Ajusta el espacio entre el botón de siguiente y el borde del carrusel */
+}
+
+
+.imageContainer {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta el tamaño de la imagen para que cubra completamente el contenedor */
+    
+    border-radius: 50px;
+  }
+  
+  .slide2 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0); /* Color de fondo para hacer el texto más legible */
+    color: white; /* Color del texto */
+    padding: 5px; /* Espaciado alrededor del texto */
+    font-size: xx-large;
+    margin-bottom: 4rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: 900;
+    text-align: center;
+    width: 100%;
+  }

@@ -1,0 +1,146 @@
+.loginPageContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.699);
+  }
+  
+  .loginContainer {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 40px 50px;
+    border-radius: 60px; 
+    background-color: #dbe9e9; 
+  }
+  .loginPageContainer::before{
+    content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-image: url('https://images6.alphacoders.com/130/1308741.jpg');
+  z-index: -1;
+  filter: blur(1px);
+  }
+  
+  
+  .inputContainer {
+    margin-bottom: 15px;
+  }
+  
+  .inputError {
+    color: #ff0000;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  
+  .inputContainer input[type="email"],
+  .inputContainer input[type="password"] {
+    border: 1px solid #ccc;
+    border-radius: 15px; 
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  .submitButton {
+    background-color: #ff9500;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 20px;
+    transition: all 0.3s ease; 
+  }
+
+  .submitButtonGoogle {
+    background-color: #0062ff;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-bottom:  20px;
+    transition: all 0.3s ease; 
+  }
+
+  .submitButtonGoogle:hover{
+    background-color: #3c5b8d;
+  }
+  
+  .buttonSub{
+      display: flex;
+      justify-content: center;
+  }
+  
+  .submitButton:hover {
+    background-color: #d67d00; 
+  }
+  
+  .loginHeading {
+    text-align: center;
+    margin: 30px 0; 
+    font-size: 35px;
+    color: #2f695c; 
+    font-family: Lobster, cursive;
+    font-weight: bold; 
+  }
+  
+  .introText {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 15px;
+    color: #2f695c; 
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold; 
+  }
+  
+  .forgetandcreate a{
+   text-decoration: none;
+  color:  #2f695c;
+  }
+  
+  .forgetandcreates{
+   
+  text-align: center;
+  }
+  .forgetandcreates a{
+   text-decoration: none;
+  color:  #2f695c;
+  text-align: center;
+  }
+
+  .thirdLogin {
+    padding: 15px 10px;
+    background-color: none;
+  }
+
+  .google{
+    border: none;
+    border-radius: 50%;
+    background-color: #dbe9e9;
+  }
+  .facebook{
+    border: none;
+    border-radius: 50%;
+    background-color: #dbe9e9;
+  }
+  .github{
+    border-radius: 50%;
+    border: none;
+    height: 52px;
+    background-color: #dbe9e9;
+  }
+
+  .github, .google, .facebook:hover {
+    cursor: pointer;
+  }
