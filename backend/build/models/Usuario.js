@@ -36,10 +36,7 @@ __decorate([
     __metadata("design:type", String)
 ], Usuario.prototype, "email", void 0);
 __decorate([
-    (0, sequelize_typescript_1.Column)({
-        type: sequelize_typescript_1.DataType.STRING(1000),
-        allowNull: false,
-    }),
+    (0, sequelize_typescript_1.Column)(sequelize_typescript_1.DataType.STRING(1000)),
     __metadata("design:type", String)
 ], Usuario.prototype, "foto", void 0);
 __decorate([
