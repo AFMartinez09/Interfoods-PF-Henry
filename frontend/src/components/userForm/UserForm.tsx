@@ -56,103 +56,135 @@ const UserForm: React.FC = () => {
     console.error("Error al iniciar sesión:", error);
   }
 };
-  return (
-    <div className={styles.container}>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validateUser}
-        onSubmit={handleSubmit}
-        >
-        {({ setFieldValue, isValid, dirty }) => (
-          <Form className={styles.form}>
-            <h1>Crear cuenta de interfood</h1>
-            <div>
-              <label htmlFor="firstName">Nombre*:</label>
-              <br />
-              <Field type="text" id="firstName" name="firstName" className={styles.field} />
-              <br />
-              <p className={styles.error}><ErrorMessage name="firstName" /></p>
-            </div>
+return (
+  <div className={styles.container}>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validateUser}
+      onSubmit={handleSubmit}
+    >
+      {({ setFieldValue, isValid, dirty }) => (
+        <Form className={styles.form}>
+          <h1>Crear cuenta</h1>
+          <div>
+            <Field
+              type="text"
+              id="firstName"
+              name="firstName"
+              className={styles.field}
+              placeholder="Nombre"
+            />
+            <br />
+            <p className={styles.error}><ErrorMessage name="firstName" /></p>
+          </div>
 
-            <div>
-              <label htmlFor="lastName">Apellido*:</label>
-              <br />
-              <Field type="text" id="lastName" name="lastName" className={styles.field} />
-              <br />
-              <p className={styles.error}><ErrorMessage name="lastName" /></p>
-            </div>
+          <div>
+            <Field
+              type="text"
+              id="lastName"
+              name="lastName"
+              className={styles.field}
+              placeholder="Apellido"
+            />
+            <br />
+            <p className={styles.error}><ErrorMessage name="lastName" /></p>
+          </div>
 
-            <div>
-              <label htmlFor="email">Email*:</label>
-              <br />
-              <Field type="email" id="email" name="email" className={styles.field} />
-              <br />
-              <p className={styles.error}><ErrorMessage name="email" /></p>
-            </div>
+          <div>
+            <Field
+              type="email"
+              id="email"
+              name="email"
+              className={styles.field}
+              placeholder="Email"
+            />
+            <br />
+            <p className={styles.error}><ErrorMessage name="email" /></p>
+          </div>
 
-            <div>
-              <label htmlFor="password">Contraseña*:</label>
-              <br />
-              <Field type="password" id="password" name="password" className={styles.field} />
-              <br />
-              <p className={styles.error}><ErrorMessage name="password" /></p>
-            </div>
+          <div>
+            <Field
+              type="password"
+              id="password"
+              name="password"
+              className={styles.field}
+              placeholder="Contraseña"
+            />
+            <br />
+            <p className={styles.error}><ErrorMessage name="password" /></p>
+          </div>
 
-            <div>
-              <label htmlFor="confirmPassword">Confirma contraseña*:</label>
-              <br />
-              <Field type="password" id="confirmPassword" name="confirmPassword" className={styles.field} />
-              <br />
-              <p className={styles.error}><ErrorMessage name="confirmPassword" /></p>
-            </div>
+          <div>
+            <Field
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              className={styles.field}
+              placeholder="Confirma contraseña"
+            />
+            <br />
+            <p className={styles.error}><ErrorMessage name="confirmPassword" /></p>
+          </div>
 
-            <div>
-              <label htmlFor="profilePicture">Foto de perfil: (formatos en .jpg, .jpeg ó .png)</label>
-              <br />
-              <input
-                className={styles.field}
-                type="file"
-                id="profilePicture"
-                name="profilePicture"
-                accept="image/png, image/jpeg, image/jpg"
-                onChange={(event) =>
+          <div>
+            <label htmlFor="profilePicture">Foto de perfil: (formatos en .jpg, .jpeg ó .png)</label>
+            <br />
+            <input
+              className={styles.field}
+              type="file"
+              id="profilePicture"
+              name="profilePicture"
+              accept="image/png, image/jpeg, image/jpg"
+              onChange={(event) =>
                 setFieldValue('profilePicture', event.currentTarget.files?.[0])
-                }
-              />
-              <br />
-              <p className={styles.error}><ErrorMessage name="profilePicture" /></p>
-            </div>
+              }
+            />
+            <br />
+            <p className={styles.error}><ErrorMessage name="profilePicture" /></p>
+          </div>
 
-            <div>
-              <label htmlFor="country">País*:</label>
-              <br />
-              <Field type="text" id="country" name="country" className={styles.field} />
-              <br />
-              <p className={styles.error}><ErrorMessage name="country" /></p>
-            </div>
+          <div>
+            <Field
+              type="text"
+              id="country"
+              name="country"
+              className={styles.field}
+              placeholder="País"
+            />
+            <br />
+            <p className={styles.error}><ErrorMessage name="country" /></p>
+          </div>
 
-            <div>
-              <label htmlFor="city">Ciudad*:</label>
-              <br />
-              <Field type="text" id="city" name="city" className={styles.field} />
-              <br />
-              <p className={styles.error}><ErrorMessage name="city" /></p>
-            </div>
+          <div>
+            <Field
+              type="text"
+              id="city"
+              name="city"
+              className={styles.field}
+              placeholder="Ciudad"
+            />
+            <br />
+            <p className={styles.error}><ErrorMessage name="city" /></p>
+          </div>
 
-            <div>
-              <label htmlFor="address">Direccion*:</label>
-              <br />
-              <Field type="text" id="address" name="address" className={styles.field} />
-              <br />
-              <p className={styles.error}><ErrorMessage name="address" /></p>
-            </div>
+          <div>
+            <Field
+              type="text"
+              id="address"
+              name="address"
+              className={styles.field}
+              placeholder="Direccion"
+            />
+            <br />
+            <p className={styles.error}><ErrorMessage name="address" /></p>
+          </div>
 
-            <button type="submit" className={styles.send} disabled={!isValid || !dirty}>REGISTRARME</button>
-          </Form>
-        )}
-      </Formik>
-    </div>
-  );
-};
+          <button type="submit" className={styles.send} disabled={!isValid || !dirty}>REGISTRARME</button>
+        </Form>
+      )}
+    </Formik>
+  </div>
+);
+}
 
 export default UserForm;
