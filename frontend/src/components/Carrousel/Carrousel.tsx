@@ -8,7 +8,7 @@ interface CarouselProps {
     nombres: string[];
   }
   
-  const Carousel: React.FC<CarouselProps> = ({ images, nombres }) => {
+  const Carousel: React.FC <CarouselProps> = ({ images, nombres }) => {
     const [activeIndex, setActiveIndex] = useState<number>(0);
    console.log(activeIndex);
    

@@ -6,7 +6,7 @@ import Carousel from '../Carrousel/Carrousel';
 interface QuienesSomosProps {}
 
 const QuienesSomos: React.FC<QuienesSomosProps> = () => {
-  const images : any = [
+  const images : Array <string>  = [
     'https://avatars.githubusercontent.com/u/116928445?v=4',
     'https://avatars.githubusercontent.com/u/102487252?v=4',
     'https://avatars.githubusercontent.com/u/123500246?v=4',
@@ -14,7 +14,7 @@ const QuienesSomos: React.FC<QuienesSomosProps> = () => {
     'https://avatars.githubusercontent.com/u/108027704?v=4',
     'https://avatars.githubusercontent.com/u/122408865?v=4',
   ];
-  const nombres : any = [
+  const nombres : Array <string> = [
     'Gaston Vergagni',
     'Luis Defago',
     'Andrez Martinez',
