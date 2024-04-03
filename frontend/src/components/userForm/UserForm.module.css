@@ -3,7 +3,7 @@
   justify-content: center;
   width: 100%;
   align-items: center;
-  height: 110vh;
+  height: 120vh;
   background-color: rgba(0, 0, 0, 0.699);
 }
 
@@ -15,7 +15,7 @@ left: 0;
 right: 0;
 bottom: 0;
 background-size: cover;
-height: 110vh;
+height: 120vh;
 background-image: url('https://images6.alphacoders.com/130/1308741.jpg');
 z-index: -1;
 filter: blur(1px);
