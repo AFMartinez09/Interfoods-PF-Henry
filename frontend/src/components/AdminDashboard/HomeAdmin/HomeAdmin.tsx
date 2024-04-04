@@ -1,14 +1,27 @@
 import { NavLink } from 'react-router-dom'
 import styles from './HomeAdmin.module.css'
+import FormMeal from '../RegisterMeal/FormMeal'
 
 const HomeAdmin = () => {
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Dashboard Admin</h2>
-      <NavLink to='/createmeal' className={styles.options}>Crear platos</NavLink>
-      <NavLink to='/editmeal' className={styles.options}>Editar platos</NavLink>
-      <NavLink to='/deletemeal' className={styles.options}>Borrar platos</NavLink>
-      <NavLink to='/' className={styles.options}>Cerrar sesión</NavLink>
+      <span>
+        <div className={styles.containerMenu}>
+          <h2 className={styles.title}>Admin dashboard</h2>
+          <hr />
+          <NavLink to='/admindashboard' className={styles.options}>Crear plato</NavLink>
+          <hr />
+          <NavLink to='/admindashboard/editar' className={styles.options}>Editar</NavLink>
+          <hr />
+          <NavLink to='/admindasboard/eliminar' className={styles.options}>Eliminar</NavLink>
+          <hr />
+          <NavLink to='/' className={styles.close}>Cerrar sesión</NavLink>
+          <hr />
+        </div>
+      </span>
+      <span className={styles.meal}>
+        <FormMeal  />
+      </span>
     </div>
   )
 }
