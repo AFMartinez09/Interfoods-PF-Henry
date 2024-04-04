@@ -5,6 +5,8 @@ import validateUser from './UserValidate';
 import { useNavigate } from 'react-router-dom';
 import { signUpNewUser } from '../../redux/actions/Actions';
 import { useDispatch } from 'react-redux';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 interface FormValues {
   profilePictureName: string;
@@ -48,12 +50,23 @@ const UserForm: React.FC = () => {
  const signUp = async (values: FormValues, dispatch: any) => {
   try {
     console.log(values.email, values.password, values.firstName, values.lastName, values.profilePicture?.name, values.city, values.country, values.address, false, true );
-    
-    
     await dispatch(signUpNewUser(values.email, values.password, values.firstName, values.lastName, values.profilePictureName, values.city, values.country, values.address, false, true )); 
-    console.log("Cuenta creada");
+    Swal.fire({
+      title: 'Cuenta creada',
+      text: 'Tu cuenta ha sido creada exitosamente, Revisa tu Email para mas info',
+      icon: 'success',
+      confirmButtonText: 'Entendido'
+    });
+    console.log("mandar email al back");
+    await axios.post('/send-email', values.email) //manda el email al back
   } catch (error) {
     console.error("Error al iniciar sesión:", error);
+    Swal.fire({
+      title: 'Error al crear cuenta',
+      text: 'Hubo un problema al intentar crear tu cuenta. Por favor, inténtalo de nuevo más tarde.',
+      icon: 'error',
+      confirmButtonText: 'Entendido'
+    });
   }
 };
 return (

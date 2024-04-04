@@ -109,6 +109,7 @@
 import { ChangeEventHandler, FocusEventHandler, MouseEventHandler, useState } from 'react';
 import Input from './Input';
 import Button from './Button';
+import Swal from 'sweetalert2';
 import Validation, { ValidationErrors } from './Validation';
 import styles from './Login.module.css';
 import { GoogleAuthProvider, getAuth, signInWithEmailAndPassword, signInWithRedirect } from '@firebase/auth';
@@ -159,10 +160,22 @@ const Login = () => {
   const signIn = async () => {
     try {
       await signInWithEmailAndPassword(auth, login.email, login.password); 
-      console.log("Inicio de sesión exitoso");
-      window.location.href = "/";
+      Swal.fire({
+        title: 'Inicio de sesión exitoso',
+        text: '¡Bienvenido de nuevo!',
+        icon: 'success',
+        confirmButtonText: 'Entendido'
+      }).then(() => {
+        window.location.href = "/";
+      });
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
+      Swal.fire({
+        title: 'Error al iniciar sesión',
+        text: 'Hubo un problema al intentar iniciar sesión. Por favor, verifica tus credenciales e inténtalo de nuevo.',
+        icon: 'error',
+        confirmButtonText: 'Entendido'
+      });
     }
   };
   
