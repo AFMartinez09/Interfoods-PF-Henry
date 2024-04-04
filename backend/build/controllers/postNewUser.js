@@ -32,7 +32,7 @@ const registerNewUser = (email, password, nombre, apellido, foto, pais, ciudad, 
             admin,
             habilitado,
         });
-        const response = yield (0, node_fetch_1.default)('http://127.0.0.1:3000/api/register/signupDb', {
+        const response = yield (0, node_fetch_1.default)('https://pf-henry-jmnh.onrender.com/api/register/signupDb', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
