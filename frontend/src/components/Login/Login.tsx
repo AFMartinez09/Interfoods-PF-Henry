@@ -115,6 +115,7 @@ import styles from './Login.module.css';
 import { GoogleAuthProvider, getAuth, signInWithEmailAndPassword, signInWithRedirect } from '@firebase/auth';
 import { app} from "../../Auth/firebaseConfig";
 import { NavLink } from 'react-router-dom';
+import { getUser } from '../../redux/actions/Actions';
 
 type UserLoginState = {
   email: string;
@@ -146,37 +147,43 @@ const Login = () => {
     setErrors(validateErrors);
   };
 
-  const handleClick: MouseEventHandler<HTMLButtonElement> = (e) => {
+  const handleClick: MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault();
     const validateErrors = Validation(login);
     setErrors(validateErrors);
   
     if (Object.keys(validateErrors).length === 0) {
-      signIn(); 
-      setLogin(InitialValue);
-    }
-  };
+      try {
+        // Iniciar sesión con Firebase
+        const userCredential = await signInWithEmailAndPassword(auth, login.email, login.password);
+        const userEmail = userCredential.user?.email;
 
-  
-  const signIn = async () => {
-    try {
-      await signInWithEmailAndPassword(auth, login.email, login.password); 
-      Swal.fire({
-        title: 'Inicio de sesión exitoso',
-        text: '¡Bienvenido de nuevo!',
-        icon: 'success',
-        confirmButtonText: 'Entendido'
-      }).then(() => {
-        window.location.href = "/";
-      });
-    } catch (error) {
-      console.error("Error al iniciar sesión:", error);
-      Swal.fire({
-        title: 'Error al iniciar sesión',
-        text: 'Hubo un problema al intentar iniciar sesión. Por favor, verifica tus credenciales e inténtalo de nuevo.',
-        icon: 'error',
-        confirmButtonText: 'Entendido'
-      });
+        // Llamar a la función registerUser pasando el correo electrónico
+        if (userEmail) {
+          const userData = await getUser(userEmail);
+          console.log(userData);
+          
+        }
+
+        // Mostrar mensaje de éxito
+        Swal.fire({
+          title: 'Inicio de sesión exitoso',
+          text: '¡Bienvenido de nuevo!',
+          icon: 'success',
+          confirmButtonText: 'Entendido'
+        }).then(() => {
+          window.location.href = "/";
+        });
+      } catch (error) {
+        console.error("Error al iniciar sesión:", error);
+        // Mostrar mensaje de error
+        Swal.fire({
+          title: 'Error al iniciar sesión',
+          text: 'Hubo un problema al intentar iniciar sesión. Por favor, verifica tus credenciales e inténtalo de nuevo.',
+          icon: 'error',
+          confirmButtonText: 'Entendido'
+        });
+      }
     }
   };
   

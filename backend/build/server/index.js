@@ -13,11 +13,21 @@ server.use((0, cors_1.default)());
 server.use(express_1.default.json());
 server.use((req, res, next) => {
     const { method, originalUrl } = req;
-    res.header("Access-Control-Allow-Origin", "http://localhost:5173"); // Permitir acceso desde http://localhost:5173
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS"); // Permitir los métodos HTTP especificados
-    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization"); // Permitir los encabezados especificados
-    console.log(`${method} ${originalUrl}`);
-    next();
+    const allowedOrigins = ["http://localhost:5173", "https://interfoods.netlify.app"];
+    const origin = req.headers.origin;
+    if (origin && allowedOrigins.includes(origin)) {
+        res.header("Access-Control-Allow-Origin", origin);
+    }
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    // Handle preflight requests
+    if (req.method === 'OPTIONS') {
+        res.sendStatus(200);
+    }
+    else {
+        console.log(`${method} ${originalUrl}`);
+        next();
+    }
 });
 server.use("/api/", routes_1.default);
 exports.default = server;

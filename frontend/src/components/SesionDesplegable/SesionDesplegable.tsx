@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { getAuth, signOut } from '@firebase/auth';
 import Style from './SesionDesplegable.module.css';
 import { app } from "../../Auth/firebaseConfig";
@@ -31,6 +31,8 @@ const SesionDesplegable: React.FC<SesionDesplegableProps> = ({ toggleMenu }) => 
 
   const handleCerrarSesionClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation(); // Evita que el evento llegue al contenedor
+    localStorage.removeItem('user');
+    localStorage.removeItem('cart');
     cerrarSesion();
   }
 
@@ -40,7 +42,7 @@ const SesionDesplegable: React.FC<SesionDesplegableProps> = ({ toggleMenu }) => 
         <button className={Style.btnCerrarX} onClick={toggleMenu}>X</button>
         <div className={Style.item}>
           <img src='https://cdn-icons-png.flaticon.com/512/32/32438.png' className={Style.sesionImg}></img>
-          <button className={Style.btnPerfil}>Mi perfil</button>
+          <NavLink to={'/MiPerfil'} className={Style.btnPerfil}>Mi perfil</NavLink>
         </div>
         <hr />
         <div className={Style.item}>

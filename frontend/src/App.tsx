@@ -22,6 +22,7 @@ import UserForm from './components/userForm/UserForm.tsx';
 import HomeAdmin from './components/AdminDashboard/HomeAdmin/HomeAdmin.tsx';
 import HomeUser from './components/profileUser/HomeUser.tsx';
 import FormMeal from './components/AdminDashboard/RegisterMeal/FormMeal.tsx';
+import MiPerfil from './components/PerfilUser/MiPerfil.tsx';
 
 function App() {
     const auth = getAuth(app);
@@ -94,6 +95,7 @@ function App() {
                   <Route path="/useraccount" element={<HomeUser/>}/>
                   <Route path="/createMeal" element={<FormMeal/>}/>
                   <Route path="useraccount/editarperfil" element={<UserForm/>}/>
+                  <Route path="/MiPerfil" element={<MiPerfil/>}/>
                   <Route path="*" />
               </Routes>
               <Footer/>

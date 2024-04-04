@@ -1,0 +1,75 @@
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  height: 115vh;
+  background-color: rgba(0, 0, 0, 0.699);
+}
+
+.container::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  height: 115vh;
+  background-image: url('https://images6.alphacoders.com/130/1308741.jpg');
+  z-index: -1;
+  filter: blur(1px);
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 30px 50px 50px;
+  min-width: 40%;
+  border-radius: 60px;
+  background-color: #dbe9e9;
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+  margin: 30px 0;
+  font-size: 45px;
+  color: #2f695c;
+  font-family: Lobster, cursive;
+  font-weight: bold;
+}
+
+.userImage {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.userData {
+  margin-top: 20px;
+}
+
+.containerDato {
+  margin-bottom: 10px;
+}
+
+.dataType {
+  font-weight: bold;
+  margin-right: 10px;
+  font-size: 24px;
+}
+
+.dataValue {
+  font-weight: normal;
+  font-size: 24px;
+}
+
+.userDetail {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
