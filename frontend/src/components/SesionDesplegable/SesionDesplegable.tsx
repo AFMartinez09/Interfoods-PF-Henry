@@ -31,6 +31,7 @@ const SesionDesplegable: React.FC<SesionDesplegableProps> = ({ toggleMenu }) => 
 
   const handleCerrarSesionClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation(); // Evita que el evento llegue al contenedor
+    localStorage.removeItem('user');
     cerrarSesion();
   }
 

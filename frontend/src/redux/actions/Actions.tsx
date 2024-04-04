@@ -53,9 +53,46 @@ export const getFood = (comida : any) => ({
     }
   };
 
+  // ----------------------------------------------------------------------------
+
   export const getFiltro = (payload: any) => (
     console.log(payload),
     {
     type: GET_FILTRO,
     payload: payload,
   })
+
+  // ---------------------------------------------------------------------------- 
+
+  interface UserData {
+    id: number;
+    nombre: string;
+    apellido: string;
+    email: string;
+    foto: string;
+    pais: string;
+    ciudad: string;
+    direccion: string;
+    admin: boolean;
+    habilitado: boolean;
+  }
+
+  export const getUser = async (email: string): Promise<UserData> => {
+    try {
+      // Realizar la llamada a la API con Axios
+      const response = await axios.get<{ user: UserData }>(`http://127.0.0.1:3000/api/register/usuario/${email}`);
+  
+      // Obtener el usuario devuelto en la respuesta
+      const userData = response.data.user;
+  
+      // Guardar el usuario en el localStorage
+      localStorage.setItem('user', JSON.stringify(userData));
+  
+      // Devolver el usuario obtenido
+      return userData;
+    } catch (error) {
+      // Manejar errores de la llamada a la API
+      console.error('Error al registrar al usuario:', error);
+      throw new Error('Error al registrar al usuario');
+    }
+  };
