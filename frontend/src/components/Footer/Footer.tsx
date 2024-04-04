@@ -22,27 +22,23 @@
 // export default Footer
 
 import React from 'react';
-import Style from './Footer.module.css';
+import { Link } from 'react-router-dom'; // Importa Link de React Router
+import styles from './Footer.module.css'; // Usa estilos directamente
 
 const Footer: React.FC = () => {
-
-  const handleLinkClick = (url: string) => {
-    window.location.href = url;
-  };
-
   return (
-    <footer className={Style.footer}>
-      <div className={Style.container}>
-        <h3 className={Style.title} onClick={() => handleLinkClick('/')}>INTERFOODS!</h3>
-        <div className={Style.containerList}>
+    <footer className={styles.footer}>
+      <div className={styles.container}>
+        <h3 className={styles.title}><Link to="/">INTERFOODS!</Link></h3>
+        <div className={styles.containerList}>
           <hr></hr>
-          <h3 className={Style.links} onClick={() => handleLinkClick('/NuestrosPlatos')}>Nuestros platos</h3>
-          <h3 className={Style.links} onClick={() => handleLinkClick('/Comofunciona')}>Cómo funciona</h3>
-          <h3 className={Style.links} onClick={() => handleLinkClick('/QuienesSomos')}>¿Quiénes somos?</h3>
-          <h3 className={Style.links} onClick={() => handleLinkClick('/Faqs')}>FAQ'S</h3>
+          <h3 className={styles.links}><Link to="/NuestrosPlatos">Nuestros platos</Link></h3>
+          <h3 className={styles.links}><Link to="/Comofunciona">Cómo funciona</Link></h3>
+          <h3 className={styles.links}><Link to="/QuienesSomos">¿Quiénes somos?</Link></h3>
+          <h3 className={styles.links}><Link to="/Faqs">FAQ'S</Link></h3>
         </div>
-        <div className={Style.containerList}>
-          <h3 className={Style.links} onClick={() => handleLinkClick('/cart')}>Mis compras</h3>
+        <div className={styles.containerList}>
+          <h3 className={styles.links}><Link to="/cart">Mis compras</Link></h3>
         </div>
       </div>
     </footer>
