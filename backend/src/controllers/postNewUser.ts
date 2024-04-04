@@ -30,7 +30,7 @@ export const registerNewUser = async (
       habilitado,
     });
 
-    const response = await fetch('http://127.0.0.1:3000/api/register/signupDb', {
+    const response = await fetch('https://pf-henry-jmnh.onrender.com/api/register/signupDb', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
