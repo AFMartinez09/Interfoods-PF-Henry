@@ -19,6 +19,8 @@ import { getAuth, onAuthStateChanged } from '@firebase/auth';
 import {app} from './Auth/firebaseConfig.ts'
 import Error404 from './components/Error/error.tsx';
 import UserForm from './components/userForm/UserForm.tsx';
+import HomeAdmin from './components/profileUser/HomeUser.tsx';
+import MiPerfil from './components/PerfilUser/MiPerfil.tsx';
 
 function App() {
     const auth = getAuth(app);
@@ -87,6 +89,7 @@ function App() {
                   <Route path="/Faqs" element={<Faqs/>}/>
                   <Route path="/Login" element={<Login/>}/>
                   <Route path="/Register" element={<UserForm/>}/>
+                  <Route path="/MiPerfil" element={<MiPerfil/>}/>
                   <Route path="*" />
               </Routes>
               <Footer/>

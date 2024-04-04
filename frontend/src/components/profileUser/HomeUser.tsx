@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import styles from './HomeAdmin.module.css'
+import styles from './HomeUser.module.css'
 
 const HomeAdmin = () => {
   return (
