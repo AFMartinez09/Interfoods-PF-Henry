@@ -25,8 +25,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.auth = void 0;
 const admin = __importStar(require("firebase-admin"));
-const dotenv = __importStar(require("dotenv"));
-dotenv.config();
 if (!process.env.TYPE ||
     !process.env.PROJECT_ID ||
     !process.env.PRIVATE_KEY_ID ||
