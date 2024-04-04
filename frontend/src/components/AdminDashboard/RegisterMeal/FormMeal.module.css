@@ -1,4 +1,12 @@
-.formContainer {
+.formContainerL {
+  max-width: 600px;
+  margin: 100px auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.formContainerR {
   max-width: 600px;
   margin: 100px auto;
   display: flex;
