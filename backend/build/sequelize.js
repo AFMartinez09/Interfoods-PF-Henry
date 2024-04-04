@@ -14,7 +14,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 const path_1 = __importDefault(require("path"));
-const sequelize = new sequelize_typescript_1.Sequelize('postgres://interfood_user:LwlWCns7JcQE47RZurM2j2oEIgO6S1Ou@dpg-co42socf7o1s738nng90-a.oregon-postgres.render.com/interfood', {
+const { URL } = process.env;
+if (!URL) {
+    throw new Error('La variable de entorno URL no está definida en el archivo .env');
+}
+const sequelize = new sequelize_typescript_1.Sequelize(URL, {
     dialect: 'postgres',
     models: [path_1.default.join(__dirname, 'models')],
     dialectOptions: {

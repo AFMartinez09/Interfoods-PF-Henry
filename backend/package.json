@@ -2,12 +2,13 @@
   "name": "express-typescript",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
     "dev": "ts-node-dev src/index.ts",
     "lint": "ts-standard",
     "start": "node build/index.js",
     "tsc": "tsc",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -20,6 +21,7 @@
     "@types/node-fetch": "^2.6.11",
     "@types/pg": "^8.11.4",
     "@types/sequelize": "^4.28.20",
+    "dotenv": "^16.4.5",
     "ts-node-dev": "^2.0.0",
     "ts-standard": "^12.0.2",
     "typescript": "5.4.2"

@@ -1,7 +1,13 @@
 import { Sequelize } from 'sequelize-typescript';
 import path from 'path';
 
-const sequelize = new Sequelize('postgres://interfood_user:LwlWCns7JcQE47RZurM2j2oEIgO6S1Ou@dpg-co42socf7o1s738nng90-a.oregon-postgres.render.com/interfood', {
+const { URL } = process.env;
+
+if (!URL) {
+  throw new Error('La variable de entorno URL no está definida en el archivo .env');
+}
+
+const sequelize = new Sequelize(URL, {
   dialect: 'postgres',
   models: [path.join(__dirname, 'models')],
   dialectOptions: {
