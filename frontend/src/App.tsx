@@ -48,7 +48,7 @@ function App() {
     useEffect(() => {
         const fetchData2 = async () => {
             try {
-                const { data } = await axios.get(`http://127.0.0.1:3000/api/food/`);
+                const { data } = await axios.get(`https://pf-henry-jmnh.onrender.com/api/food/`);
                 if (data) {
                     dispatch(getFood(data));
                 } else {

@@ -30,7 +30,7 @@ export const getFood = (comida : any) => ({
     habilitado: boolean) => async (dispatch: any) => {
     try {  
   
-      await axios.post("http://127.0.0.1:3000/api/register/signup", {       
+      await axios.post("https://pf-henry-jmnh.onrender.com/api/register/signup", {       
       email,
       password,
       nombre,

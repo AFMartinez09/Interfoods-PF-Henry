@@ -225,7 +225,7 @@ const Login = () => {
           </button>
         </div>
         <div className={styles.forgetandcreates}>
-          <a href="/register">Crear cuenta</a>
+          <a href="/Register">Crear cuenta</a>
         </div>
       </div>
     </div>

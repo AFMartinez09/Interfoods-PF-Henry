@@ -22,7 +22,8 @@ const SearchBar: React.FC = () => {
                 tipo: event.currentTarget.value,
             });
             // Realizar una solicitud GET con axios y pasar los parámetros a través de la URL
-            const response = await axios.get(`http://localhost:3000/api/food/filtro?${params}`);
+            // const response = await axios.get(`http://localhost:3000/api/food/filtro?${params}`);
+            const response = await axios.get(`https://pf-henry-jmnh.onrender.com/api/food/filtro?${params}`);
 
             // Verificar la respuesta si es necesario
             // Actualizar el estado con los datos recibidos del servidor
@@ -40,7 +41,8 @@ const SearchBar: React.FC = () => {
             });
 
             // Realizar una solicitud GET con axios y pasar los parámetros a través de la URL
-            const response = await axios.get(`http://localhost:3000/api/food/filtro?${params}`);
+            // const response = await axios.get(`http://localhost:3000/api/food/filtro?${params}`);
+            const response = await axios.get(`https://pf-henry-jmnh.onrender.com/api/food/filtro?${params}`);
 
             // Verificar la respuesta si es necesario
 
