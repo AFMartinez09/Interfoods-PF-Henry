@@ -114,6 +114,7 @@ import Validation, { ValidationErrors } from './Validation';
 import styles from './Login.module.css';
 import { GoogleAuthProvider, getAuth, signInWithEmailAndPassword, signInWithRedirect } from '@firebase/auth';
 import { app} from "../../Auth/firebaseConfig";
+import { NavLink } from 'react-router-dom';
 
 type UserLoginState = {
   email: string;
@@ -225,7 +226,7 @@ const Login = () => {
           </button>
         </div>
         <div className={styles.forgetandcreates}>
-          <a href="/Register">Crear cuenta</a>
+          <NavLink to="/Register">Crear cuenta</NavLink>
         </div>
       </div>
     </div>

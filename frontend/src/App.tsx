@@ -79,6 +79,7 @@ function App() {
               <Routes>
                   <Route path="*"  element={<Error404/>}/>
                   <Route path="/" element={<Home/>}/>
+                  <Route path="/form" />
                   <Route path="/detail/:id" element={<Detail/>}/>
                   <Route path="/NuestrosPlatos" element={<NuestrosPlatos/>}/>
                   <Route path="/Comofunciona" element={<Funciona/>}/>
