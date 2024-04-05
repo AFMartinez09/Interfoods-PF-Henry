@@ -1,9 +1,9 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Style from '../../../Card/Card.module.css'
 import styled from './CardAdmin.module.css';
 import React from 'react';
 import { useDispatch } from "react-redux";
-import { getFood } from "../../../../redux/actions/Actions";
+import { deleteMeal } from "../../../../redux/actions/Actions";
 
 
 interface CardProps {
@@ -21,11 +21,16 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ name, img, weight, price, id, kilocalorias, carbohidratos, stock, tipo}) => {
   
   const dispatch = useDispatch();
+  const history = useNavigate()
   //! Esto esta malo simplemente lo hice para TS me dejara hacer commit
   // Elimina el id cuando se dé click en X
-  const handleDelete = (id:number) => {
-    dispatch(getFood(id))  
-    console.log(id)
+  const handleDelete = async(id:number) => {
+    try {
+      await dispatch(deleteMeal(id))
+      history('/admindashboard')
+    } catch (error) {
+      
+    }
   }
 // Style => viene de Card
 // styled => es de CardAdmin

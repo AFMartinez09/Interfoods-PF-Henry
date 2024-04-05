@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_FILTRO, GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL} from '../actions/ActionsTypes';
+import { GET_FILTRO, GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL, DELETE_MEAL, POST_MEAL, PUT_MEAL} from '../actions/ActionsTypes';
 
 // ----------------------------------------------------------------------------
 
@@ -96,3 +96,97 @@ export const getFood = (comida : any) => ({
       throw new Error('Error al registrar al usuario');
     }
   };
+
+
+  export const createMeal =  (
+    nombre: string,
+    origen: string,
+    ingredientes: string[],
+    carbohidratos: number,
+    grasas: number,
+    peso: number,
+    precio: number,
+    tipo: string,
+    imagen: File | null,
+    descripcion: string,
+    stock: number,
+  ) => async( dispatch:any ) => {
+    try {
+      
+      await axios.post('https://pf-henry-jmnh.onrender.com/api/admindashboard/crearplato/postFood', {
+        nombre,
+        origen,
+        ingredientes,
+        carbohidratos,
+        grasas,
+        peso,
+        precio,
+        tipo,
+        imagen,
+        descripcion,
+        stock,
+
+      })
+      return dispatch({
+        type: POST_MEAL,
+      });
+  
+    } catch (error: any) {
+      console.error("Error al crear un nuevo plato:", error);
+      window.alert("¡Error al crear un nuevo plato!");
+      throw new Error(error);
+    }
+  };
+
+  export const upgradeMeal =  (
+    id: number,
+    nombre: string,
+    origen: string,
+    ingredientes: string[],
+    carbohidratos: number,
+    grasas: number,
+    peso: number,
+    precio: number,
+    tipo: string,
+    imagen: File | null,
+    descripcion: string,
+    stock: number,
+  ) => async( dispatch:any ) => {
+    try {
+      
+      await axios.post(`https://pf-henry-jmnh.onrender.com/api/admindashboard/editar-eliminar/${id}`, {
+        nombre,
+        origen,
+        ingredientes,
+        carbohidratos,
+        grasas,
+        peso,
+        precio,
+        tipo,
+        imagen,
+        descripcion,
+        stock,
+
+      })
+      return dispatch({
+        type: PUT_MEAL,
+      });
+  
+    } catch (error: any) {
+      console.error("Error al actualizar plato:", error);
+      window.alert("¡Error al actualizar plato!");
+      throw new Error(error);
+    }
+  };
+
+  export const deleteMeal = (id: number) => async( dispatch:any ) => {
+    try {
+      await axios.delete(`https://pf-henry-jmnh.onrender.com/api/admindashboard/editar-eliminar/${id}`)
+      return dispatch({
+        type: DELETE_MEAL,
+      });
+    } catch (error) {
+      console.error("Error al actualizar plato:", error);
+      window.alert("¡Error al actualizar plato!");
+    }
+  }

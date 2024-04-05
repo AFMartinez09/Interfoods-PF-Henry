@@ -93,11 +93,11 @@ function App() {
                   <Route path="/Faqs" element={<Faqs/>}/>
                   <Route path="/Login" element={<Login/>}/>
                   <Route path="/Register" element={<UserForm/>}/>
-                  <Route path="/admindashboard" element={<HomeAdmin/>}/>
                   <Route path="/useraccount" element={<HomeUser/>}/>
-                  <Route path="/createMeal" element={<FormMeal/>}/>
                   <Route path="useraccount/editarperfil" element={<UserForm/>}/>
                   <Route path="/MiPerfil" element={<MiPerfil/>}/>
+                  <Route path="/admindashboard" element={<HomeAdmin/>}/>
+                  <Route path="/admindashboard/crearplato" element={<FormMeal/>}/>
                   <Route path="/admindashboard/editar-eliminar" element={<EditDeleteFood />}/>
                   <Route path="/admindasboard/editar-eliminar/editarComida/" element={<UpdateMeal />}/>
                   <Route path="*" />

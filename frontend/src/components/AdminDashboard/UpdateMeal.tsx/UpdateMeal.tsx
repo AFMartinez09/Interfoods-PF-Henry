@@ -2,41 +2,67 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import styles from '../CreateMeal/FormMeal.module.css';
 import ValidationSchema from '../CreateMeal/ValidationSchema';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { upgradeMeal } from '../../../redux/actions/Actions';
 
 interface PropsCreateMeal {
+  id: number;
   nombre: string;
   origen: string;
   ingredientes: string[];
-  carbohidratos: number | null;
-  grasas: number | null;
-  peso: number | null;
-  precio: number | null;
+  carbohidratos: number;
+  grasas: number;
+  peso: number;
+  precio: number;
   tipo: string;
   imagen: File | null;
-  descripcion: string | null;
-  stock: number | null;
+  descripcion: string;
+  stock: string;
   ingrediente: string;
 }
 
-const UpdateMeal: React.FC = () => {
-  const initialValues: PropsCreateMeal = {
-    nombre: '',
-    origen: '',
-    ingredientes: [],
-    carbohidratos: null,
-    grasas: null,
-    peso: null,
-    precio: null,
-    tipo: '',
-    imagen: null,
-    descripcion: '',
-    stock: null,
-    ingrediente: ''
-  };
+const initialValues: PropsCreateMeal = {
+  id: 0,
+  nombre: '',
+  origen: '',
+  ingredientes: [],
+  carbohidratos: 0,
+  grasas: 0,
+  peso: 0,
+  precio: 0,
+  tipo: '',
+  imagen: null,
+  descripcion: '',
+  stock: '',
+  ingrediente: ''
+};
 
-  const handleSubmit = (values: PropsCreateMeal) => {
-    console.log(values);
-  };
+const UpdateMeal: React.FC = () => {
+  const dispatch = useDispatch();
+  const history = useNavigate();
+
+  const handleSubmit = async(values: PropsCreateMeal) => {
+    try {
+      await dispatch(upgradeMeal(
+        values.id,
+        values.nombre, 
+        values.origen,
+        values.ingredientes,
+        values.grasas,
+        values.peso,
+        values.precio,
+        values.tipo,
+        values.imagen,
+        values.descripcion,
+        values.stock,
+        values.ingrediente,
+      ))
+      history('/admindashboard')
+    } catch (error) {
+      console.error(error)    
+    }
+  }
 
   return (
     <Formik
@@ -98,20 +124,20 @@ const UpdateMeal: React.FC = () => {
               )}
 
               <label htmlFor='carbohidratos' className={styles.label}>Carbohidratos (gr):</label>
-              <Field placeholder='Carbohidratos' type='text' name='carbohidratos' className={styles.inputField} />
+              <Field placeholder='Carbohidratos' type='number' name='carbohidratos' className={styles.inputField} />
               <p className={styles.error}><ErrorMessage name='carbohidratos' /></p>
 
               <label htmlFor='grasas' className={styles.label}>Grasas (gr):</label>
-              <Field placeholder='Grasas' type='text' name='grasas' className={styles.inputField} />
+              <Field placeholder='Grasas' type='number' name='grasas' className={styles.inputField} />
               <p className={styles.error}><ErrorMessage name='grasas' /></p>
             </div>
             <div className={styles.formContainerR}>
               <label htmlFor='peso' className={styles.label}>Peso (gr):</label>
-              <Field placeholder='Peso' type='text' name='peso' className={styles.inputField} />
+              <Field placeholder='Peso' type='number' name='peso' className={styles.inputField} />
               <p className={styles.error}><ErrorMessage name='peso' /></p>
 
               <label htmlFor='precio' className={styles.label}>Precio (USD):</label>
-              <Field placeholder='Precio' type='text' name='precio' className={styles.inputField} />
+              <Field placeholder='Precio' type='number' name='precio' className={styles.inputField} />
               <p className={styles.error}><ErrorMessage name='precio' /></p>
 
               <label htmlFor='tipo' className={styles.label}>Tipo:</label>

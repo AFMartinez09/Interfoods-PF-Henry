@@ -8,6 +8,7 @@
     import Style from '../../Cards/Cards.module.css'
     import SearchBar from "../../SearchBar/SearchBar";
     import Styled from './Edit-Delete.module.css'
+    import HomeAdmin from "../HomeAdmin/HomeAdmin";
     
     
     interface Food {
@@ -42,6 +43,8 @@
 // Style => viene de Cards
 // styled => es de Edit-DeleteFood
       return (
+        <div className={Styled.home}>
+          <HomeAdmin />
         <div className={Styled.container}>
           <span >
             <SearchBar />
@@ -64,10 +67,11 @@
                   id={food.id}
                   kilocalorias={food.kilocalorias}
                   carbohidratos={food.carbohidratos}
-                />
-              ))}
+                  />
+                ))}
             </div>
           )}
+          </div>
         </div>
       );
     };
