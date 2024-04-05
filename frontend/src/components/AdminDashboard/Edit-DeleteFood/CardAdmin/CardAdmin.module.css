@@ -1,0 +1,48 @@
+.card {
+  background-color: #e3eae8;
+  width: 22vw;
+  color: black;
+  padding: 20px;
+  border-radius: 25px;
+  margin: 0;
+  border: solid rgba(0, 0, 0, 0.062) 1px;
+  height: fit-content;
+  transition: transform 0.3s ease;
+}
+
+.deleteContainer {
+  display: flex;
+  width: 99%;
+  justify-content: right;
+}
+
+.delete {
+  padding: 10px;
+  font-weight: bold;
+  border: none;
+  margin-bottom: 5px;
+  background-color: transparent;
+  font-size: 20px;
+}
+
+.delete:hover{
+  transition: 0.5s ease;
+  background-color: rgba(222, 11, 11, 0.742);;
+  color: whitesmoke;
+  border-radius: 50%;
+}
+
+.editar {
+  padding: 20px;
+  font-size: 20px;
+  background-color: rgba(15, 141, 11, 0.941);
+  color: whitesmoke;
+  text-decoration: none;
+  border-radius: 15px;
+}
+
+.editar:hover{
+  transition: 0.5s ease;
+  background-color: rgba(18, 222, 11, 0.742);
+  color: whitesmoke;
+}
