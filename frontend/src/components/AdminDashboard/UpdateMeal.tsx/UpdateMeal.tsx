@@ -11,6 +11,7 @@ interface PropsCreateMeal {
   nombre: string;
   origen: string;
   ingredientes: string[];
+  kilocalorias: number,
   carbohidratos: number;
   grasas: number;
   peso: number;
@@ -27,6 +28,7 @@ const initialValues: PropsCreateMeal = {
   nombre: '',
   origen: '',
   ingredientes: [],
+  kilocalorias: 0, 
   carbohidratos: 0,
   grasas: 0,
   peso: 0,
@@ -35,28 +37,30 @@ const initialValues: PropsCreateMeal = {
   imagen: null,
   descripcion: '',
   stock: '',
-  ingrediente: ''
+  ingrediente: '',
 };
 
 const UpdateMeal: React.FC = () => {
   const dispatch = useDispatch();
   const history = useNavigate();
-
+  
   const handleSubmit = async(values: PropsCreateMeal) => {
     try {
       await dispatch(upgradeMeal(
-        values.id,
-        values.nombre, 
-        values.origen,
-        values.ingredientes,
-        values.grasas,
-        values.peso,
-        values.precio,
-        values.tipo,
-        values.imagen,
-        values.descripcion,
-        values.stock,
-        values.ingrediente,
+      values.id,
+      values.nombre, 
+      values.origen,
+      values.ingredientes,
+      values.kilocalorias,
+      values.carbohidratos,
+      values.grasas,
+      values.peso,
+      values.precio,
+      values.tipo,
+      values.imagen,
+      values.descripcion,
+      values.stock,
+      values.ingrediente,
       ))
       history('/admindashboard')
     } catch (error) {
@@ -122,6 +126,10 @@ const UpdateMeal: React.FC = () => {
                   ))}
                 </ul>
               )}
+
+              <label htmlFor='kilocalorias' className={styles.label}>Kilocalorias:</label>
+              <Field placeholder='Kilocalorias' type='number' name='kilocalorias' className={styles.inputField} />
+              <p className={styles.error}><ErrorMessage name='kilocalorias' /></p>
 
               <label htmlFor='carbohidratos' className={styles.label}>Carbohidratos (gr):</label>
               <Field placeholder='Carbohidratos' type='number' name='carbohidratos' className={styles.inputField} />

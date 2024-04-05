@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { GET_FILTRO, GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL, DELETE_MEAL, POST_MEAL, PUT_MEAL} from '../actions/ActionsTypes';
+import { AnyAction } from 'redux';
 
 // ----------------------------------------------------------------------------
 
@@ -102,6 +103,7 @@ export const getFood = (comida : any) => ({
     nombre: string,
     origen: string,
     ingredientes: string[],
+    kilocalorias: number,
     carbohidratos: number,
     grasas: number,
     peso: number,
@@ -109,14 +111,15 @@ export const getFood = (comida : any) => ({
     tipo: string,
     imagen: File | null,
     descripcion: string,
-    stock: number,
-  ) => async( dispatch:any ) => {
+    stock: string,
+  ) => async( dispatch: (action:AnyAction) => void ) => {
     try {
       
       await axios.post('https://pf-henry-jmnh.onrender.com/api/admindashboard/crearplato/postFood', {
         nombre,
         origen,
         ingredientes,
+        kilocalorias,
         carbohidratos,
         grasas,
         peso,
@@ -129,6 +132,20 @@ export const getFood = (comida : any) => ({
       })
       return dispatch({
         type: POST_MEAL,
+        payload: { 
+           nombre,
+           origen,
+           ingredientes,
+           kilocalorias,
+           carbohidratos,
+           grasas,
+           peso,
+           precio,
+           tipo,
+           imagen,
+           descripcion,
+           stock,
+          },
       });
   
     } catch (error: any) {
@@ -143,6 +160,7 @@ export const getFood = (comida : any) => ({
     nombre: string,
     origen: string,
     ingredientes: string[],
+    kilocalorias: number,
     carbohidratos: number,
     grasas: number,
     peso: number,
@@ -150,14 +168,17 @@ export const getFood = (comida : any) => ({
     tipo: string,
     imagen: File | null,
     descripcion: string,
-    stock: number,
-  ) => async( dispatch:any ) => {
+    stock: string,
+    ingrediente: string,
+  ) => async(dispatch: (action:AnyAction) => void ) => {
     try {
       
       await axios.post(`https://pf-henry-jmnh.onrender.com/api/admindashboard/editar-eliminar/${id}`, {
+        id,
         nombre,
         origen,
         ingredientes,
+        kilocalorias,
         carbohidratos,
         grasas,
         peso,
@@ -166,10 +187,26 @@ export const getFood = (comida : any) => ({
         imagen,
         descripcion,
         stock,
-
+        ingrediente,
       })
       return dispatch({
         type: PUT_MEAL,
+        payload: { 
+          id,
+           nombre,
+           origen,
+           ingredientes,
+           kilocalorias,
+           carbohidratos,
+           grasas,
+           peso,
+           precio,
+           tipo,
+           imagen,
+           descripcion,
+           stock,
+           ingrediente, 
+          },
       });
   
     } catch (error: any) {

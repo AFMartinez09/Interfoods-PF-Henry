@@ -12,6 +12,7 @@ interface PropsCreateMeal {
   nombre: string;
   origen: string;
   ingredientes: string[];
+  kilocalorias: number,
   carbohidratos: number;
   grasas: number;
   peso: number;
@@ -19,7 +20,7 @@ interface PropsCreateMeal {
   tipo: string;
   imagen: File | null;
   descripcion: string;
-  stock: number;
+  stock: string;
   ingrediente: string;
 }
 
@@ -28,6 +29,7 @@ const initialValues: PropsCreateMeal = {
   nombre: '',
   origen: '',
   ingredientes: [],
+  kilocalorias: 0,
   carbohidratos: 0,
   grasas: 0,
   peso: 0,
@@ -35,20 +37,21 @@ const initialValues: PropsCreateMeal = {
   tipo: '',
   imagen: null,
   descripcion: '',
-  stock: 0,
+  stock: '',
   ingrediente: ''
 };
 
-const FormMeal: React.FC = () => {
+const CreateMeal: React.FC = () => {
   const dispatch = useDispatch();
   const history = useNavigate()
   const handleSubmit = async(values: PropsCreateMeal) => {
     try {
       await dispatch(createMeal(
-        values.id,
         values.nombre, 
         values.origen,
         values.ingredientes,
+        values.kilocalorias,
+        values.carbohidratos,
         values.grasas,
         values.peso,
         values.precio,
@@ -56,8 +59,8 @@ const FormMeal: React.FC = () => {
         values.imagen,
         values.descripcion,
         values.stock,
-        values.ingrediente,
        ))
+       console.log(dispatch)
       history('/admindasboard');
     } catch (error) {
       console.error(error)
@@ -127,6 +130,10 @@ const FormMeal: React.FC = () => {
                 </ul>
               )}
 
+              <label htmlFor='kilocalorias' className={styles.label}>Kilocalorias:</label>
+              <Field placeholder='Kilocalorias' type='number' name='kilocalorias' className={styles.inputField} />
+              <p className={styles.error}><ErrorMessage name='kilocalorias' /></p>
+
               <label htmlFor='carbohidratos' className={styles.label}>Carbohidratos (gr):</label>
               <Field placeholder='Carbohidratos' type='number' name='carbohidratos' className={styles.inputField} />
               <p className={styles.error}><ErrorMessage name='carbohidratos' /></p>
@@ -173,7 +180,7 @@ const FormMeal: React.FC = () => {
               <p className={styles.error}><ErrorMessage name='descripcion' /></p>
 
               <label htmlFor='cantidad' className={styles.label}>Cantidad (unidades):</label>
-              <Field placeholder='Cantidad' type='number' name='stock' className={styles.inputField} />
+              <Field placeholder='Cantidad' type='text' name='stock' className={styles.inputField} />
               <p className={styles.error}><ErrorMessage name='stock' /></p>
 
               <button type='submit' className={styles.submitButton} disabled={!isValid || !dirty}>Enviar</button>
@@ -186,5 +193,5 @@ const FormMeal: React.FC = () => {
   );
 };
 
-export default FormMeal;
+export default CreateMeal;
 

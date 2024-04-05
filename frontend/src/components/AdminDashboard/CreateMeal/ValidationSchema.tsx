@@ -9,6 +9,7 @@ import * as Yup from 'yup';
     ingredientes: Yup.array()
       .of(Yup.string().required('Un ingrediente es requerido'))
       .required('Debes ingresar al menos un ingrediente'),
+      kilocalorias: Yup.number().required('Kilocalorias es requerido'),
     carbohidratos: Yup.number().required('Carbohidratos es requerido'),
     grasas: Yup.number().required('Grasas es requerido'),
     peso: Yup.number().min(1,'La cantidad mínima es de 1').required('Peso es requerido'),
@@ -23,7 +24,7 @@ import * as Yup from 'yup';
     const supportedFormats = ['image/jpeg', 'image/png', 'image/jpg'];
     return supportedFormats.includes(file.type);
   }).required('Imagen del plato es requerida'),
-    stock: Yup.number().min(1,'La cantidad mínima es de 1').required('Cantidad es requerida'),
+    stock: Yup.string().required('Cantidad es requerida'),
     descripcion: Yup.string()
       .min(10, 'La descripción debe tener al menos 10 caracteres')
       .max(1000, 'La descripción no puede exceder los 1000 caracteres')

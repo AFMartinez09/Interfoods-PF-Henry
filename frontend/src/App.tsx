@@ -21,7 +21,7 @@ import Error404 from './components/Error/error.tsx';
 import UserForm from './components/userForm/UserForm.tsx';
 import HomeAdmin from './components/AdminDashboard/HomeAdmin/HomeAdmin.tsx';
 import HomeUser from './components/profileUser/HomeUser.tsx';
-import FormMeal from './components/AdminDashboard/CreateMeal/FormMeal.tsx';
+import FormMeal from './components/AdminDashboard/CreateMeal/CreateMeal.tsx';
 import MiPerfil from './components/PerfilUser/MiPerfil.tsx';
 import EditDeleteFood from './components/AdminDashboard/Edit-DeleteFood/Edit-DeleteFood.tsx';
 import UpdateMeal from './components/AdminDashboard/UpdateMeal.tsx/UpdateMeal.tsx';
