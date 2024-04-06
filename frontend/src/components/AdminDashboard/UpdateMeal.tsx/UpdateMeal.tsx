@@ -78,16 +78,16 @@ const UpdateMeal: React.FC = () => {
         <Form>
           <div className={styles.container}>
             <div className={styles.formContainerL}>
-              <label htmlFor='nombre' className={styles.label}>Nombre del plato:</label>
+              <label htmlFor='nombre' className={styles.label}>Nombre del plato*:</label>
               <Field placeholder='Nombre del plato' type='text' name='nombre' className={styles.inputField} />
               <p className={styles.error}><ErrorMessage name='nombre' /></p>
 
-              <label htmlFor='origen' className={styles.label}>País del plato:</label>
+              <label htmlFor='origen' className={styles.label}>País del plato*:</label>
               <Field placeholder='País del plato' type='text' name='origen' className={styles.inputField} />
               <p className={styles.error}><ErrorMessage name='origen' /></p>
 
               <div>
-                <label htmlFor='ingredientes' className={styles.label}>Ingredientes:</label>
+                <label htmlFor='ingredientes' className={styles.label}>Ingredientes*:</label>
                 <br />
                 <Field placeholder='ingredientes' name='ingrediente' className={styles.inputField} />
                 <button
@@ -127,28 +127,28 @@ const UpdateMeal: React.FC = () => {
                 </ul>
               )}
 
-              <label htmlFor='kilocalorias' className={styles.label}>Kilocalorias:</label>
+              <label htmlFor='kilocalorias' className={styles.label}>Kilocalorias*:</label>
               <Field placeholder='Kilocalorias' type='number' name='kilocalorias' className={styles.inputField} />
               <p className={styles.error}><ErrorMessage name='kilocalorias' /></p>
 
-              <label htmlFor='carbohidratos' className={styles.label}>Carbohidratos (gr):</label>
+              <label htmlFor='carbohidratos' className={styles.label}>Carbohidratos (gr)*:</label>
               <Field placeholder='Carbohidratos' type='number' name='carbohidratos' className={styles.inputField} />
               <p className={styles.error}><ErrorMessage name='carbohidratos' /></p>
 
-              <label htmlFor='grasas' className={styles.label}>Grasas (gr):</label>
+              <label htmlFor='grasas' className={styles.label}>Grasas (gr)*:</label>
               <Field placeholder='Grasas' type='number' name='grasas' className={styles.inputField} />
               <p className={styles.error}><ErrorMessage name='grasas' /></p>
             </div>
             <div className={styles.formContainerR}>
-              <label htmlFor='peso' className={styles.label}>Peso (gr):</label>
+              <label htmlFor='peso' className={styles.label}>Peso (gr)*:</label>
               <Field placeholder='Peso' type='number' name='peso' className={styles.inputField} />
               <p className={styles.error}><ErrorMessage name='peso' /></p>
 
-              <label htmlFor='precio' className={styles.label}>Precio (USD):</label>
+              <label htmlFor='precio' className={styles.label}>Precio (USD)*:</label>
               <Field placeholder='Precio' type='number' name='precio' className={styles.inputField} />
               <p className={styles.error}><ErrorMessage name='precio' /></p>
 
-              <label htmlFor='tipo' className={styles.label}>Tipo:</label>
+              <label htmlFor='tipo' className={styles.label}>Tipo*:</label>
               <Field as='select' id='tipo' name='tipo' className={styles.inputField}>
                 <option value=''>Seleccione un tipo</option>
                 <option value='plato fuerte'>Plato fuerte</option>
@@ -157,7 +157,7 @@ const UpdateMeal: React.FC = () => {
               </Field>
               <p className={styles.error}><ErrorMessage name='tipo' /></p>
 
-              <label htmlFor='image' className={styles.label}>Foto del plato: (formatos en .jpg, .jpeg ó .png)</label>
+              <label htmlFor='image' className={styles.label}>Foto del plato*: (formatos en .jpg, .jpeg ó .png)</label>
               <br />
               <input
                 className={styles.inputField}
@@ -171,12 +171,12 @@ const UpdateMeal: React.FC = () => {
               />
               <p className={styles.error}><ErrorMessage name='image' /></p>
 
-              <label htmlFor='descripcion' className={styles.label}>Decripción:</label>
+              <label htmlFor='descripcion' className={styles.label}>Decripción*:</label>
               <Field placeholder='Descripcion' as='textarea' name='descripcion' 
               className={styles.textArea} />
               <p className={styles.error}><ErrorMessage name='descripcion' /></p>
 
-              <label htmlFor='cantidad' className={styles.label}>Cantidad (unidades):</label>
+              <label htmlFor='cantidad' className={styles.label}>Cantidad (unidades)*:</label>
               <Field placeholder='Cantidad' type='text' name='stock' className={styles.inputField} />
               <p className={styles.error}><ErrorMessage name='stock' /></p>
 
