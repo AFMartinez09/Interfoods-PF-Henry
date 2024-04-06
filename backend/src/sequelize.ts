@@ -1,5 +1,8 @@
 import { Sequelize } from 'sequelize-typescript';
 import path from 'path';
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 const { URL } = process.env;
 

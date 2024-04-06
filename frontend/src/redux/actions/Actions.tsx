@@ -115,7 +115,7 @@ export const getFood = (comida : any) => ({
   ) => async( dispatch: (action:AnyAction) => void ) => {
     try {
       
-      await axios.post('https://pf-henry-jmnh.onrender.com/api/admindashboard/crearplato/postFood', {
+      await axios.post('http://127.0.0.1:3000/api/food/postFood', {
         nombre,
         origen,
         ingredientes,
@@ -133,18 +133,18 @@ export const getFood = (comida : any) => ({
       return dispatch({
         type: POST_MEAL,
         payload: { 
-           nombre,
-           origen,
-           ingredientes,
-           kilocalorias,
-           carbohidratos,
-           grasas,
-           peso,
-           precio,
-           tipo,
-           imagen,
-           descripcion,
-           stock,
+          nombre,
+          origen,
+          ingredientes,
+          kilocalorias,
+          carbohidratos,
+          grasas,
+          peso,
+          precio,
+          tipo,
+          imagen,
+          descripcion,
+          stock,
           },
       });
   
@@ -169,12 +169,10 @@ export const getFood = (comida : any) => ({
     imagen: File | null,
     descripcion: string,
     stock: string,
-    ingrediente: string,
   ) => async(dispatch: (action:AnyAction) => void ) => {
     try {
       
-      await axios.post(`https://pf-henry-jmnh.onrender.com/api/admindashboard/editar-eliminar/${id}`, {
-        id,
+      await axios.post(`http://127.0.0.1:3000/api/food/${id}`, {
         nombre,
         origen,
         ingredientes,
@@ -187,25 +185,22 @@ export const getFood = (comida : any) => ({
         imagen,
         descripcion,
         stock,
-        ingrediente,
       })
       return dispatch({
         type: PUT_MEAL,
         payload: { 
-          id,
-           nombre,
-           origen,
-           ingredientes,
-           kilocalorias,
-           carbohidratos,
-           grasas,
-           peso,
-           precio,
-           tipo,
-           imagen,
-           descripcion,
-           stock,
-           ingrediente, 
+          nombre,
+          origen,
+          ingredientes,
+          kilocalorias,
+          carbohidratos,
+          grasas,
+          peso,
+          precio,
+          tipo,
+          imagen,
+          descripcion,
+          stock, 
           },
       });
   
@@ -218,7 +213,7 @@ export const getFood = (comida : any) => ({
 
   export const deleteMeal = (id: number) => async( dispatch:any ) => {
     try {
-      await axios.delete(`https://pf-henry-jmnh.onrender.com/api/admindashboard/editar-eliminar/${id}`)
+      await axios.delete(`http://127.0.0.1:3000/api/food/${id}`)
       return dispatch({
         type: DELETE_MEAL,
       });

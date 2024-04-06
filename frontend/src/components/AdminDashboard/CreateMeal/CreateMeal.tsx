@@ -8,24 +8,22 @@ import { useNavigate } from 'react-router-dom';
 import HomeAdmin from '../HomeAdmin/HomeAdmin';
 
 interface PropsCreateMeal {
-  id: number;
-  nombre: string;
-  origen: string;
-  ingredientes: string[];
+  nombre: string,
+  origen: string,
+  ingredientes: string[],
   kilocalorias: number,
-  carbohidratos: number;
-  grasas: number;
-  peso: number;
-  precio: number;
-  tipo: string;
-  imagen: File | null;
-  descripcion: string;
-  stock: string;
-  ingrediente: string;
+  carbohidratos: number,
+  grasas: number,
+  peso: number,
+  precio: number,
+  tipo: string,
+  imagen: File | null,
+  descripcion: string,
+  stock: string,
+  ingrediente: string
 }
 
 const initialValues: PropsCreateMeal = {
-  id: 0,
   nombre: '',
   origen: '',
   ingredientes: [],
@@ -38,7 +36,7 @@ const initialValues: PropsCreateMeal = {
   imagen: null,
   descripcion: '',
   stock: '',
-  ingrediente: ''
+  ingrediente: '',
 };
 
 const CreateMeal: React.FC = () => {
