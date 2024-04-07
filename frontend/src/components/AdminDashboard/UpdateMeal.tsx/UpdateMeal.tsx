@@ -180,7 +180,7 @@ const UpdateMeal: React.FC = () => {
               <Field placeholder='Cantidad' type='text' name='stock' className={styles.inputField} />
               <p className={styles.error}><ErrorMessage name='stock' /></p>
 
-              <button type='submit' className={styles.submitButton} disabled={!isValid || !dirty}>Enviar</button>
+              <button type='submit' className={styles.submitButton} disabled={!isValid || !dirty}>Actualizar</button>
             </div>
           </div>
         </Form>
@@ -190,3 +190,4 @@ const UpdateMeal: React.FC = () => {
 };
 
 export default UpdateMeal;
+

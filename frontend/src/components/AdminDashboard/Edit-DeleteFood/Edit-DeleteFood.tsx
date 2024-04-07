@@ -46,9 +46,9 @@
         <div className={Styled.home}>
           <HomeAdmin />
         <div className={Styled.container}>
-          <span >
+          <div className={Styled.filter} >
             <SearchBar />
-           </span>
+           </div>
           {loading ? (
             <div className="containerLoading">
               <Loading/>
