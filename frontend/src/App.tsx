@@ -107,7 +107,7 @@ function App() {
                   <Route path="/MiPerfil" element={<MiPerfil/>}/>
                   <Route path="/Recuperarcontraseña" element={<Recuperar/>}/>
                   <Route path="*" />
-                  <Route path="/payments/success" element={<Comprajoel/>}/>
+                  <Route path="/api/payments/success" element={<Comprajoel/>}/>
               </Routes>
               <Footer/>
           </div>
