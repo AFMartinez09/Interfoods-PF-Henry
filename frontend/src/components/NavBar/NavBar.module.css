@@ -42,10 +42,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: fit-content;
 }
 
-.containerAdminOpen {
-  height: auto; 
+.containerAdminOpen{
+  margin-top: 78px;
+  width: fit-content;
 }
 
 .adminSubMenu {
@@ -57,9 +59,14 @@
 }
 
 .navLinkAdm {
-  padding: 10px 20px;
+  padding: 10px;
   color: #ffffff;
+  text-align: center;
   text-decoration: none;
+}
+
+.navLinkAdm:hover{
+  background-color: #21433b;
 }
 
 .navLogo {

@@ -82,7 +82,7 @@ const NavBar: React.FC<NavBarProps> = ({ onItemClick, toggleMenu, showMenu, auth
         )}
       </div>
       <div>
-      {auth ? (
+        {auth ? (
           <button onClick={toggleMenuAuth} className={styles.navbtn}>
             <img src="https://monestir.org/wp-content/uploads/2020/06/usuario.png" alt="Logo 2" className={styles.navUser} />
           </button>

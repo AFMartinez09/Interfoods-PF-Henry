@@ -26,8 +26,8 @@ import MiPerfil from './components/PerfilUser/MiPerfil.tsx';
 import EditDeleteFood from './components/AdminDashboard/Edit-DeleteFood/Edit-DeleteFood.tsx';
 import UpdateMeal from './components/AdminDashboard/UpdateMeal.tsx/UpdateMeal.tsx';
 import StatusPayment from './components/AdminDashboard/Graphics/StatusPayment/SatusPayment.tsx';
-import Stock from './components/AdminDashboard/Graphics/Stock/Stock.tsx';
-import Income from './components/AdminDashboard/Graphics/Income/Income.tsx';
+// import Stock from './components/AdminDashboard/Graphics/Stock/Stock.tsx';
+// import Income from './components/AdminDashboard/Graphics/Income/Income.tsx';
 
 function App() {
     const auth = getAuth(app);
@@ -57,7 +57,7 @@ function App() {
     useEffect(() => {
         const fetchData2 = async () => {
             try {
-                const { data } = await axios.get(`https://pf-henry-jmnh.onrender.com/api/food/`);
+                const { data } = await axios.get(`http://127.0.0.1:3000/api/food/`);
                 if (data) {
                     dispatch(getFood(data));
                 } else {
@@ -101,8 +101,8 @@ function App() {
                   <Route path="/MiPerfil" element={<MiPerfil/>}/>
                   <Route path="/admindashboard" element={<HomeAdmin/>}/>
                   <Route path="/admindashboard/statuspayment" element={<StatusPayment/>}/>
-                  <Route path="/admindashboard/stock" element={<Stock/>}/>
-                  <Route path="/admindashboard/income" element={<Income/>}/>
+                  {/* <Route path="/admindashboard/stock" element={<Stock/>}/>
+                  <Route path="/admindashboard/income" element={<Income/>}/> */}
                   <Route path="/admindashboard/crearplato" element={<FormMeal/>}/>
                   <Route path="/admindashboard/editar-eliminar" element={<EditDeleteFood />}/>
                   <Route path="/admindasboard/editar-eliminar/editarComida/" element={<UpdateMeal />}/>
