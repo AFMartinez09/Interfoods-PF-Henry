@@ -98,6 +98,19 @@ export const getFood = (comida : any) => ({
     }
   };
 
+  export const putUser = async (email: string, data: object): Promise<UserData> => {
+    try {
+      const response = await axios.put<{ user: UserData }>(`http://127.0.0.1:3000/api/register/usuario/update/${email}`, data);
+      const userData = response.data.user;
+  
+      getUser(email)
+  
+      return userData;
+    } catch (error) {
+      console.error('Error al editar datos del usuario:', error);
+      throw new Error('Error al editar datos del usuario');
+    }
+  };
 
   export const createMeal =  (
     nombre: string,
