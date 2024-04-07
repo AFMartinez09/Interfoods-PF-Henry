@@ -81,7 +81,7 @@ export const getFood = (comida : any) => ({
   export const getUser = async (email: string): Promise<UserData> => {
     try {
       // Realizar la llamada a la API con Axios
-      const response = await axios.get<{ user: UserData }>(`https://pf-henry-jmnh.onrender.com/api/register/usuario/${email}`);
+      const response = await axios.get<{ user: UserData }>(`http://localhost:3000/api/register/usuario/${email}`);
   
       // Obtener el usuario devuelto en la respuesta
       const userData = response.data.user;
@@ -98,6 +98,19 @@ export const getFood = (comida : any) => ({
     }
   };
 
+  export const putUser = async (email: string, data: object): Promise<UserData> => {
+    try {
+      const response = await axios.put<{ user: UserData }>(`http://127.0.0.1:3000/api/register/usuario/update/${email}`, data);
+      const userData = response.data.user;
+  
+      getUser(email)
+  
+      return userData;
+    } catch (error) {
+      console.error('Error al editar datos del usuario:', error);
+      throw new Error('Error al editar datos del usuario');
+    }
+  };
 
   export const createMeal =  (
     nombre: string,

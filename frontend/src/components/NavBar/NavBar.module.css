@@ -15,10 +15,20 @@
   align-items: center;
 }
 
+.navList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navListItem {
+  margin-right: 10px;
+}
+
 .navLink {
   background-color: transparent;
   border: none;
- 
   cursor: pointer;
   padding: 10px 20px; 
   font-size: 20px;
@@ -28,47 +38,28 @@
   position: relative;
 }
 
-.navLink2 {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 10px 20px; 
-  color: #000000;
+.containerAdmin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.containerAdminOpen {
+  height: auto; 
+}
+
+.adminSubMenu {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  background-color: #2F695C;
+  z-index: 999;
+}
+
+.navLinkAdm {
+  padding: 10px 20px;
+  color: #ffffff;
   text-decoration: none;
-  position: relative;
-}
-
-.parrafo{
-text-decoration: none;
-font-size: 35px;
-color: rgb(255, 251, 251);
-font-family: "DM Serif Display", serif;
-}
-
-.navLink::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background-color: white;
-  transition: width 0.3s ease, left 0.3s ease; 
-}
-
-.navLink:hover::before {
-  width: 100%;
-  left: 0;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-li {
-  margin-right: 10px;
 }
 
 .navLogo {
@@ -79,7 +70,7 @@ li {
   filter:invert(10)
 }
 .navLogo:hover{
-filter: invert(0);
+  filter: invert(0);
 }
 
 .navUser {
@@ -90,7 +81,7 @@ filter: invert(0);
   filter: invert(10);
 }
 .navUser:hover{
-filter: invert(0);
+  filter: invert(0);
 }
 
 .navbtn{
@@ -127,4 +118,27 @@ filter: invert(0);
   100% {
     transform: rotate(360deg);
   }
+}
+
+.parrafo{
+  text-decoration: none;
+  font-size: 35px;
+  color: rgb(255, 251, 251);
+  font-family: "DM Serif Display", serif;
+}
+
+.navLink::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s ease, left 0.3s ease; 
+}
+
+.navLink:hover::before {
+  width: 100%;
+  left: 0;
 }

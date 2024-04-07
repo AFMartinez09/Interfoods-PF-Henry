@@ -44,7 +44,7 @@
 // styled => es de Edit-DeleteFood
       return (
         <div className={Styled.home}>
-          <HomeAdmin />
+          {/* <HomeAdmin /> */}
         <div className={Styled.container}>
           <div className={Styled.filter} >
             <SearchBar />

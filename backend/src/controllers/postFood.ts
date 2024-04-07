@@ -13,3 +13,4 @@ export const createFood = async (req: Request, res: Response) => {
     res.status(400).json({ error: "Error creating new food entry." });
   }
 };
+

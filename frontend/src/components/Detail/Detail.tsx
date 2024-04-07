@@ -22,15 +22,23 @@ const Detail: React.FC = () =>{
   const toggleMostrarIngredientes = () => {
     setMostrarIngredientes(!mostrarIngredientes);
 }
-
-  const numeroEntero: number = (parseInt(idComida, 10) - 1);
+  const numeroEntero: number = (parseInt(idComida, 10));
+  console.log(numeroEntero);
+  
   const foodState = useSelector((state: StoreState) => state.platos);
-  let id2 = foodState[numeroEntero]?.id
-  let name = foodState[numeroEntero]?.nombre
-  let img = foodState[numeroEntero]?.imagen
-  let weight = foodState[numeroEntero]?.peso
-  let price = foodState[numeroEntero]?.precio
-  let stock = foodState[numeroEntero]?.stock
+ 
+  
+  
+  let selectedItem = foodState.find(item => item.id === numeroEntero);
+  console.log(selectedItem);
+  
+  
+  let id2 = selectedItem?.id
+  let name = selectedItem?.nombre
+  let img = selectedItem?.imagen
+  let weight = selectedItem?.peso
+  let price = selectedItem?.precio
+  let stock = selectedItem?.stock
   const [cant, setCant] = useState<number>(0);
   useEffect(() => {
     const existingCart = localStorage.getItem('cart');
@@ -95,11 +103,11 @@ const Detail: React.FC = () =>{
                             <NavLink to='/NuestrosPlatos'><img className={styles.flechita} src={'https://marketplace.canva.com/mJzgw/MAEkLfmJzgw/1/tl/canva-MAEkLfmJzgw.png'}></img><span className={styles.atras}>Atras</span></NavLink>
                         </div>
                         <div className={styles.container1}>
-                          <img className={styles.imagen2} src={foodState[numeroEntero]?.imagen}/>
+                          <img className={styles.imagen2} src={img}/>
                             <div className={styles.container2}>
-                             <h2 className={styles.name}>{foodState[numeroEntero]?.nombre}<p className={styles.peso}>({foodState[numeroEntero]?.peso}g)</p></h2>
-                             <h2 className={styles.descripcion}>{foodState[numeroEntero]?.descripcion}</h2>
-                             <div className={styles.calorias}> <p className={styles.caloriastexto}>{foodState[numeroEntero]?.kilocalorias} kilocalorias  |  {foodState[numeroEntero]?.grasas}g grasas  |  {foodState[numeroEntero]?.carbohidratos}g carbohidratos</p></div>
+                             <h2 className={styles.name}>{name}<p className={styles.peso}>({weight}g)</p></h2>
+                             <h2 className={styles.descripcion}>{selectedItem?.descripcion}</h2>
+                             <div className={styles.calorias}> <p className={styles.caloriastexto}>{selectedItem?.kilocalorias} kilocalorias  |  {selectedItem?.grasas}g grasas  |  {selectedItem?.carbohidratos}g carbohidratos</p></div>
                              <div className={styles.botoncarro}>
                              {stock !== 'Agotado' ? (
                                    <>
@@ -120,7 +128,7 @@ const Detail: React.FC = () =>{
                              <div className={styles.ingredientes}>
                                   <button onClick={toggleMostrarIngredientes} className={styles.ingredientesboton}>{mostrarIngredientes ? <h1 className={styles.ingretitulo}>ingredientes&nbsp;-</h1> : <h1 className={styles.ingretitulo}>ingredientes&nbsp;+</h1>}</button>
                                    {mostrarIngredientes &&
-                                   <h2 className={styles.ingretexto}>{foodState[numeroEntero]?.ingredientes.join(', ')}</h2>
+                                   <h2 className={styles.ingretexto}>{selectedItem?.ingredientes.join(', ')}</h2>
                                    }
                              </div>
                            </div>

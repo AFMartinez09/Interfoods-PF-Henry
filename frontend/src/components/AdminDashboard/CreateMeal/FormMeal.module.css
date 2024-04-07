@@ -11,6 +11,13 @@
   flex-direction: column;
 }
 
+.pageForm{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
 .formContainerR {
   max-width: 300px;
   padding: 130px;

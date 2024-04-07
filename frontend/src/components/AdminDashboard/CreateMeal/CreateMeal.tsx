@@ -43,6 +43,7 @@ const CreateMeal: React.FC = () => {
   const dispatch = useDispatch();
   const history = useNavigate()
   const handleSubmit = async(values: PropsCreateMeal) => {
+    console.log(values);
     try {
       await dispatch(createMeal(
         values.nombre, 
@@ -66,10 +67,10 @@ const CreateMeal: React.FC = () => {
   };
 
   return (
-    <div>
-      <div>
+    <div className='pageForm'>
+      {/* <div>
         <HomeAdmin />
-      </div>
+      </div> */}
     <Formik
       initialValues={initialValues}
       validationSchema={ValidationSchema}
