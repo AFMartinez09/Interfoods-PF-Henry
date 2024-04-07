@@ -6,11 +6,11 @@ interface InputProps {
   name: string,
   placeholder: string,
   handleChange: ChangeEventHandler<HTMLInputElement>,
-  onBlur?: FocusEventHandler<HTMLInputElement>,
   required: boolean
+  onFocus?: FocusEventHandler<HTMLInputElement>,
 }
 
-const Input = ({type, value,  name, placeholder, handleChange, onBlur, required }: InputProps) => {
+const Input = ({type, value,  name, placeholder, handleChange, onFocus, required }: InputProps) => {
   return (
     <input
       type={type}
@@ -18,7 +18,7 @@ const Input = ({type, value,  name, placeholder, handleChange, onBlur, required 
       name={name}
       placeholder={placeholder}
       onChange={handleChange}
-      onBlur={onBlur} 
+      onFocus={onFocus}
       required={required}
       />
   )

@@ -106,16 +106,18 @@
 
 // export default Login
 
-import { ChangeEventHandler, FocusEventHandler, MouseEventHandler, useState } from 'react';
+import { ChangeEventHandler, FocusEventHandler, MouseEventHandler, useState, useEffect } from 'react';
 import Input from './Input';
 import Button from './Button';
 import Swal from 'sweetalert2';
 import Validation, { ValidationErrors } from './Validation';
 import styles from './Login.module.css';
-import { GoogleAuthProvider, getAuth, signInWithEmailAndPassword, signInWithRedirect } from '@firebase/auth';
+import { GoogleAuthProvider, getAuth, signInWithEmailAndPassword, signInWithRedirect, onAuthStateChanged } from '@firebase/auth';
 import { app} from "../../Auth/firebaseConfig";
 import { NavLink } from 'react-router-dom';
 import { getUser } from '../../redux/actions/Actions';
+import { useNavigate } from 'react-router-dom';
+
 
 type UserLoginState = {
   email: string;
@@ -127,7 +129,8 @@ const InitialValue: UserLoginState = {
   password: '',
 };
 
-const Login = () => {
+export const Login = () => {
+  const navigate = useNavigate();
   const [login, setLogin] = useState(InitialValue);
   const [errors, setErrors] = useState<ValidationErrors>({});
   const auth = getAuth(app);
@@ -135,6 +138,8 @@ const Login = () => {
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const name = e.target.name as keyof UserLoginState;
+    const validateErrors = Validation({ ...login, [name]: e.target.value });
+    setErrors(validateErrors);
     setLogin((state) => ({
       ...state,
       [name]: e.target.value,
@@ -186,6 +191,27 @@ const Login = () => {
       }
     }
   };
+  const handleGoogleSignIn = () => {
+       const auth = getAuth();
+       signInWithRedirect(auth, googleProvider);
+  };
+
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        navigate('/');
+      } else {
+      }
+    });
+    // Limpia el listener cuando el componente se desmonta
+    return () => unsubscribe();
+  }, []);
+
+ 
+ 
+  
+
   
 
   return (
@@ -203,7 +229,7 @@ const Login = () => {
             name="email"
             placeholder="Email"
             handleChange={handleChange}
-            onBlur={handleBlur}
+            onFocus={handleBlur}
             required
           />
         </div>
@@ -215,12 +241,12 @@ const Login = () => {
             name="password"
             placeholder="Password"
             handleChange={handleChange}
-            onBlur={handleBlur}
+            onFocus={handleBlur}
             required
           />
         </div>
         <div className={styles.forgetandcreate}>
-          <a href="/forgot-password">¿Olvidaste la contraseña?</a>
+          <a href="/Recuperarcontraseña">¿Olvidaste la contraseña?</a>
         </div>
         <div className={styles.buttonSub}>
           <Button className={styles.submitButton} handleClick={handleClick}>
@@ -228,7 +254,7 @@ const Login = () => {
           </Button>
         </div>
         <div className={styles.buttonSub}>
-          <button  className={styles.submitButtonGoogle} onClick={() => signInWithRedirect(auth, googleProvider)}>
+          <button  className={styles.submitButtonGoogle} onClick={handleGoogleSignIn}>
             INICIAR SESION CON GOOGLE
           </button>
         </div>

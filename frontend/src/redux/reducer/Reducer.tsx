@@ -42,11 +42,21 @@ const initialState: StoreState = {
 const Reducer = (state: StoreState = initialState, action: Action): StoreState => {
   switch (action.type) {
     case GET_FILTRO:
+      action.payload.sort((a : any, b :any) => {
+        // Convertir los nombres a minúsculas para un ordenamiento sin distinción de mayúsculas/minúsculas
+        const nombreA = a.nombre.toLowerCase();
+        const nombreB = b.nombre.toLowerCase();
+        // Comparar los nombres y devolver el resultado de la comparación
+        if (nombreA < nombreB) return -1;
+        if (nombreA > nombreB) return 1;
+        return 0;
+    });
       return{
         ...state, 
         filtros: action.payload
       };
     case GET_FOOD:
+      
       return{
         ...state, 
         platos: action.payload,

@@ -4,7 +4,7 @@ import { useDispatch, useSelector} from 'react-redux';
 import { getFiltro} from '../../redux/actions/Actions';
 import { StoreState } from '../../redux/reducer/Reducer';
 import axios from 'axios';
-
+import {URL} from '../../App'
 
 const SearchBar: React.FC = () => {
     const dispatch = useDispatch();
@@ -12,9 +12,31 @@ const SearchBar: React.FC = () => {
     const pais = useSelector((state: StoreState) => state.pais);
     const [selectedType, setSelectedType] = useState<string>(tipo);
     const [selectedCountry, setSelectedCountry] = useState<string>(pais);
+    console.log(URL);
     
 
     const handleButtonClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
+        if(event.currentTarget.value === selectedType){
+            setSelectedType('Todosa');
+            try {
+                const params = new URLSearchParams({
+                    pais: selectedCountry,
+                    tipo: 'Todosa',
+                });
+    
+                // Realizar una solicitud GET con axios y pasar los parámetros a través de la URL
+                // const response = await axios.get(`http://localhost:3000/api/food/filtro?${params}`);
+                const response = await axios.get(`${URL}/api/food/filtro?${params}`);
+    
+                // Verificar la respuesta si es necesario
+    
+                // Actualizar el estado con los datos recibidos del servidor
+                dispatch(getFiltro(response.data)) 
+            } catch (error) {
+                console.error('Error:', error);
+            }
+
+        } else {
         setSelectedType(event.currentTarget.value);
         try {
             const params = new URLSearchParams({
@@ -23,7 +45,7 @@ const SearchBar: React.FC = () => {
             });
             // Realizar una solicitud GET con axios y pasar los parámetros a través de la URL
             // const response = await axios.get(`http://localhost:3000/api/food/filtro?${params}`);
-            const response = await axios.get(`https://pf-henry-jmnh.onrender.com/api/food/filtro?${params}`);
+            const response = await axios.get(`${URL}/api/food/filtro?${params}`);
 
             // Verificar la respuesta si es necesario
             // Actualizar el estado con los datos recibidos del servidor
@@ -31,32 +53,58 @@ const SearchBar: React.FC = () => {
         } catch (error) {
             console.error('Error:', error);
         }
+       }
     };
+
+
+  
     const handleButtonClickcountry = async (event: React.MouseEvent<HTMLButtonElement>) => {
+        if(event.currentTarget.value === selectedCountry){
+            setSelectedCountry('Todos');
+            try {
+                const params = new URLSearchParams({
+                    pais: 'Todos',
+                    tipo: selectedType,
+                });
+    
+                // Realizar una solicitud GET con axios y pasar los parámetros a través de la URL
+                // const response = await axios.get(`http://localhost:3000/api/food/filtro?${params}`);
+                const response = await axios.get(`${URL}/api/food/filtro?${params}`);
+    
+                // Verificar la respuesta si es necesario
+    
+                // Actualizar el estado con los datos recibidos del servidor
+                dispatch(getFiltro(response.data)) 
+            } catch (error) {
+                console.error('Error:', error);
+            }
+
+        } else {
         setSelectedCountry(event.currentTarget.value);
         try {
             const params = new URLSearchParams({
                 pais: event.currentTarget.value,
                 tipo: selectedType,
             });
-
             // Realizar una solicitud GET con axios y pasar los parámetros a través de la URL
             // const response = await axios.get(`http://localhost:3000/api/food/filtro?${params}`);
-            const response = await axios.get(`https://pf-henry-jmnh.onrender.com/api/food/filtro?${params}`);
+            const response = await axios.get(`${URL}/api/food/filtro?${params}`);
 
             // Verificar la respuesta si es necesario
-
             // Actualizar el estado con los datos recibidos del servidor
             dispatch(getFiltro(response.data)) 
         } catch (error) {
             console.error('Error:', error);
         }
+       }
     };
+
+ 
 
 
     return (
         <div className={Styles.container}>
-        <div>
+        <div className={Styles.todo}>
         <div className={Styles.comida}> 
             <span>
                 <button value="Todosa" onClick={handleButtonClick} className={selectedType === 'Todosa' ? Styles.botoncomida2 : Styles.botoncomida}>Todos</button>
@@ -74,13 +122,6 @@ const SearchBar: React.FC = () => {
                 <button value="Ecuador" onClick={handleButtonClickcountry} className={selectedCountry === 'Ecuador' ? Styles.botoncomida2 : Styles.botoncomida}>Ecuador</button>
             </span>
         </div>
-        </div>
-        <div className={Styles.searchbar}>
-          {/* <input 
-                  type="text"
-                  placeholder="Busca la comida..."
-               />
-              <button type="submit" >Search</button> */}
         </div>
         </div>
         

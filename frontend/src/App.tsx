@@ -23,6 +23,12 @@ import HomeAdmin from './components/AdminDashboard/HomeAdmin/HomeAdmin.tsx';
 import HomeUser from './components/profileUser/HomeUser.tsx';
 import FormMeal from './components/AdminDashboard/RegisterMeal/FormMeal.tsx';
 import MiPerfil from './components/PerfilUser/MiPerfil.tsx';
+import Recuperar from './components/Recuperar/Recuperar.tsx';
+
+
+// comentar y descomentar para deploy
+// export const URL = "https://pf-henry-jmnh.onrender.com"
+export const URL = "http://localhost:3000"
 
 function App() {
     const auth = getAuth(app);
@@ -52,7 +58,9 @@ function App() {
     useEffect(() => {
         const fetchData2 = async () => {
             try {
-                const { data } = await axios.get(`https://pf-henry-jmnh.onrender.com/api/food/`);
+                const { data } = await axios.get(`${URL}/api/food/`);
+                console.log(URL);
+                
                 if (data) {
                     dispatch(getFood(data));
                 } else {
@@ -96,6 +104,7 @@ function App() {
                   <Route path="/createMeal" element={<FormMeal/>}/>
                   <Route path="useraccount/editarperfil" element={<UserForm/>}/>
                   <Route path="/MiPerfil" element={<MiPerfil/>}/>
+                  <Route path="/Recuperarcontraseña" element={<Recuperar/>}/>
                   <Route path="*" />
               </Routes>
               <Footer/>

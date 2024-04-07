@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { GET_FILTRO, GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL} from '../actions/ActionsTypes';
+import {URL} from '../../App'
 
 // ----------------------------------------------------------------------------
 
@@ -30,7 +31,7 @@ export const getFood = (comida : any) => ({
     habilitado: boolean) => async (dispatch: any) => {
     try {  
   
-      await axios.post("https://pf-henry-jmnh.onrender.com/api/register/signup", {       
+      await axios.post(`${URL}/api/register/signup`, {            
       email,
       password,
       nombre,
@@ -80,7 +81,7 @@ export const getFood = (comida : any) => ({
   export const getUser = async (email: string): Promise<UserData> => {
     try {
       // Realizar la llamada a la API con Axios
-      const response = await axios.get<{ user: UserData }>(`https://pf-henry-jmnh.onrender.com/api/register/usuario/${email}`);
+      const response = await axios.get<{ user: UserData }>(`${URL}/api/register/usuario/${email}`);
   
       // Obtener el usuario devuelto en la respuesta
       const userData = response.data.user;

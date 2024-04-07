@@ -8,6 +8,7 @@
 
 .comida{
     margin-bottom: 30px;
+    align-items: center;
 }
 .botoncomida {
     border: 1px solid rgba(0, 0, 0, 0.466);
@@ -32,21 +33,18 @@
 }
 
 .botoncomida:hover{
-    border: 1px solid black;
-    background-color: #070707;
-    color: #ffffff;
+    border: 2px solid black;
+    background-color: #fcfcfc;
+    color: #000000;
     font-weight: bolder;
     height: 40px;
     width: 100px;
-
     margin-left: 20px;
     border-radius: 30px;
 }
-.searchbar{
-    margin-top: 40px;
-    margin-left: 800px;
-    margin-bottom: 120px;
+
+
+.todo{
+    width: 100%;
 }
-
-
 
