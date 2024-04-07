@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import styles from './UserForm.module.css';
 import validateUser from './UserValidate';
 import { useNavigate } from 'react-router-dom';
-import { signUpNewUser } from '../../redux/actions/Actions';
+import { imageUpload, signUpNewUser } from '../../redux/actions/Actions';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
 import axios from 'axios';
@@ -51,32 +51,15 @@ const UserForm: React.FC = () => {
 
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.currentTarget.files?.[0];
-    
-    if (!selectedFile) return;
-    
-    try {
-      const formData = new FormData();
-      formData.append('file', selectedFile);
-      formData.append('api_key', '223822472855186');
-      formData.append('upload_preset', 'ml_default');
-      
-      // Utilizar la URL directamente en la función
-      const response = await axios.post<{ secure_url: string }>(
-        'https://api.cloudinary.com/v1_1/dypkygqy7/image/upload',
-        formData,
-      );
-  
-      const imageUrl = response.data.secure_url;
-      setProfilePictureUrl(imageUrl);
-    } catch (error) {
-      console.error('Error al cargar la imagen a Cloudinary:', error);
-    }
+    setProfilePictureUrl(selectedFile)
   };
+
   
   const signUp = async (values: FormValues, dispatch: any) => {
     try {
-      console.log(values.email, values.password, values.firstName, values.lastName, profilePictureUrl, values.city, values.country, values.address, false, true);
-      await dispatch(signUpNewUser(values.email, values.password, values.firstName, values.lastName, profilePictureUrl, values.city, values.country, values.address, false, true ));
+      const urlImage = await imageUpload(profilePictureUrl)
+      console.log(values.email, values.password, values.firstName, values.lastName, urlImage, values.city, values.country, values.address, false, true);
+      await dispatch(signUpNewUser(values.email, values.password, values.firstName, values.lastName, urlImage, values.city, values.country, values.address, false, true )); 
       
       Swal.fire({
         title: 'Cuenta creada',
@@ -84,9 +67,7 @@ const UserForm: React.FC = () => {
         icon: 'success',
         confirmButtonText: 'Entendido'
       });
-      
-      console.log("mandar email al back");
-      await axios.post('/send-email', values.email) //manda el email al back
+
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
       Swal.fire({

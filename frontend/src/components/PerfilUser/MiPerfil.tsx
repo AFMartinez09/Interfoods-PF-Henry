@@ -66,8 +66,7 @@ const MiPerfil = () => {
       {userData ? (
         <div className={styles.userInfo}>
           <h2 className={styles.title}>Mi Perfil</h2>
-          {/* <img src={userData.foto} alt={`${userData.nombre} ${userData.apellido}`} className={styles.userImage} /> */}
-          <img src={'https://th.bing.com/th/id/OIP.8TfLK_Efr8ssRY1JXr24pgHaFj?w=235&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7'} alt={`${userData.nombre} ${userData.apellido}`} className={styles.userImage} />
+          <img src={userData.foto} alt={`${userData.nombre} ${userData.apellido}`} className={styles.userImage} />
           {isEditing ? (
             <div className={styles.userData}>
               <div className={styles.containerDato}>

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { GET_FILTRO, GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL, DELETE_MEAL, POST_MEAL, PUT_MEAL} from '../actions/ActionsTypes';
-import { AnyAction } from 'redux';
+import { AnyAction, Dispatch } from 'redux';
+
 
 // ----------------------------------------------------------------------------
 
@@ -19,19 +20,20 @@ export const getFood = (comida : any) => ({
 
 // ----------------------------------------------------------------------------
 
-  export const signUpNewUser = (  email: string, 
-    password:string, 
-    nombre: string,
-    apellido: string,
-    foto: string,
-    pais: string,
-    ciudad: string,
-    direccion: string,
-    admin: boolean,
-    habilitado: boolean) => async (dispatch: any) => {
-    try {  
-  
-      await axios.post("https://pf-henry-jmnh.onrender.com/api/register/signup", {       
+export const signUpNewUser = (
+  email: string, 
+  password: string, 
+  nombre: string,
+  apellido: string,
+  foto: string,
+  pais: string,
+  ciudad: string,
+  direccion: string,
+  admin: boolean,
+  habilitado: boolean
+) => async (dispatch: Dispatch) => {
+  try {  
+    console.log(      
       email,
       password,
       nombre,
@@ -41,18 +43,31 @@ export const getFood = (comida : any) => ({
       ciudad,
       direccion,
       admin,
-      habilitado });
-  
-      return dispatch({
-        type: SIGNUP_USER_EMAIL,
-      });
-  
-    } catch (error: any) {
-      console.error("Error al registrar nuevo usuario:", error);
-      window.alert("¡Error al registrar nuevo usuario!");
-      throw new Error(error);
-    }
-  };
+      habilitado);
+    
+    await axios.post("http://127.0.0.1:3000/api/register/signup", {       
+      email,
+      password,
+      nombre,
+      apellido,
+      foto,
+      pais,
+      ciudad,
+      direccion,
+      admin,
+      habilitado
+    });
+
+    dispatch({
+      type: SIGNUP_USER_EMAIL,
+    });
+
+  } catch (error: any) {
+    console.error("Error al registrar nuevo usuario:", error);
+    window.alert("¡Error al registrar nuevo usuario!");
+    throw new Error(error);
+  }
+};
 
   // ----------------------------------------------------------------------------
 
@@ -81,7 +96,7 @@ export const getFood = (comida : any) => ({
   export const getUser = async (email: string): Promise<UserData> => {
     try {
       // Realizar la llamada a la API con Axios
-      const response = await axios.get<{ user: UserData }>(`http://localhost:3000/api/register/usuario/${email}`);
+      const response = await axios.get<{ user: UserData }>(`http://127.0.0.1:3000/api/register/usuario/${email}`);
   
       // Obtener el usuario devuelto en la respuesta
       const userData = response.data.user;
@@ -233,5 +248,23 @@ export const getFood = (comida : any) => ({
     } catch (error) {
       console.error("Error al actualizar plato:", error);
       window.alert("¡Error al actualizar plato!");
+    }
+  }
+
+  export const imageUpload = async (file: File) => {
+
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', 'jdiimohm');
+
+    try {
+      const response = await axios.post<any>(
+        'https://api.cloudinary.com/v1_1/dbqekrcf4/image/upload',
+        formData
+      );
+
+      return response.data.secure_url;
+    } catch (error) {
+      console.error('Error al subir imagen:', error);
     }
   }
