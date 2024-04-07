@@ -172,12 +172,12 @@ a{
   width: 30%;
   color: rgb(255, 254, 254);
   background-color: rgba(0, 0, 0, 0.788); /* Fondo semitransparente para que el texto sea legible */
-  height: 14px;
+  height: auto;
   padding: 5px;
   border-radius: 5px;
   position: absolute;
-  top: 350px; /* Ajusta la posición vertical del texto "stock" */
-  left: 0px; /* Ajusta la posición horizontal del texto "stock" */
+  top: 320px; /* Ajusta la posición vertical del texto "stock" */
+  left: -10px; /* Ajusta la posición horizontal del texto "stock" */
   z-index: 9999;
   display: flex;
   align-items: center;

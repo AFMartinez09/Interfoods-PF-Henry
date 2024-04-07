@@ -28,3 +28,16 @@
   height: 400px;
   width: 400px;
 }
+
+
+@media (max-width: 1500px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr); /* Cuando el ancho del viewport es 800px o menos, cambia a 2 columnas */
+  }
+}
+
+@media (max-width: 1100px) {
+  .cards {
+    grid-template-columns: repeat(1, 1fr); /* Cuando el ancho del viewport es 600px o menos, cambia a 1 columna */
+  }
+}
