@@ -81,7 +81,7 @@ export const getFood = (comida : any) => ({
   export const getUser = async (email: string): Promise<UserData> => {
     try {
       // Realizar la llamada a la API con Axios
-      const response = await axios.get<{ user: UserData }>(`https://pf-henry-jmnh.onrender.com/api/register/usuario/${email}`);
+      const response = await axios.get<{ user: UserData }>(`http://localhost:3000/api/register/usuario/${email}`);
   
       // Obtener el usuario devuelto en la respuesta
       const userData = response.data.user;

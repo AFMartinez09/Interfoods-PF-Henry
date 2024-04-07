@@ -21,7 +21,7 @@ import Error404 from './components/Error/error.tsx';
 import UserForm from './components/userForm/UserForm.tsx';
 import HomeAdmin from './components/AdminDashboard/HomeAdmin/HomeAdmin.tsx';
 import HomeUser from './components/profileUser/HomeUser.tsx';
-import FormMeal from './components/AdminDashboard/CreateMeal/CreateMeal.tsx';
+import CreateMeal from './components/AdminDashboard/CreateMeal/CreateMeal.tsx';
 import MiPerfil from './components/PerfilUser/MiPerfil.tsx';
 import EditDeleteFood from './components/AdminDashboard/Edit-DeleteFood/Edit-DeleteFood.tsx';
 import UpdateMeal from './components/AdminDashboard/UpdateMeal.tsx/UpdateMeal.tsx';
@@ -54,7 +54,7 @@ function App() {
     useEffect(() => {
         const fetchData2 = async () => {
             try {
-                const { data } = await axios.get(`https://pf-henry-jmnh.onrender.com/api/food/`);
+                const { data } = await axios.get(`http://127.0.0.1:3000/api/food/`);
                 if (data) {
                     dispatch(getFood(data));
                 } else {
@@ -69,44 +69,44 @@ function App() {
 
     const [showMenu, setShowMenu] = useState(false);
 
-  const toggleMenu = () => {
-      setShowMenu(!showMenu);
-  };
+    const toggleMenu = () => {
+        setShowMenu(!showMenu);
+    };
 
-  return (
-      <>
-          <div>
-              <NavBar
-                  onItemClick={() => {}}
-                  toggleMenu={toggleMenu}
-                  showMenu={showMenu}
-                  auth={usuarioRegistrado}
-              />
-              <Routes>
-                  <Route path="*"  element={<Error404/>}/>
-                  <Route path="/" element={<Home/>}/>
-                  <Route path="/form" />
-                  <Route path="/detail/:id" element={<Detail/>}/>
-                  <Route path="/NuestrosPlatos" element={<NuestrosPlatos/>}/>
-                  <Route path="/Comofunciona" element={<Funciona/>}/>
-                  <Route path="/QuienesSomos" element={<QuienesSomos/>}/>
-                  <Route path="/Faqs" element={<Faqs/>}/>
-                  <Route path="/Login" element={<Login/>}/>
-                  <Route path="/Register" element={<UserForm/>}/>
-                  <Route path="/useraccount" element={<HomeUser/>}/>
-                  <Route path="useraccount/editarperfil" element={<UserForm/>}/>
-                  <Route path="/MiPerfil" element={<MiPerfil/>}/>
-                  <Route path="/admindashboard" element={<HomeAdmin/>}/>
-                  <Route path="/admindashboard/crearplato" element={<FormMeal/>}/>
-                  <Route path="/admindashboard/editar-eliminar" element={<EditDeleteFood />}/>
-                  <Route path="/admindasboard/editar-eliminar/editarComida/" element={<UpdateMeal />}/>
-                  <Route path="*" />
-              </Routes>
-              <Footer/>
-          </div>
-      </>
-  );
-}
+    return (
+        <>
+            <div>
+                <NavBar
+                    onItemClick={() => {}}
+                    toggleMenu={toggleMenu}
+                    showMenu={showMenu}
+                    auth={usuarioRegistrado}
+                />
+                <Routes>
+                    <Route path="*"  element={<Error404/>}/>
+                    <Route path="/" element={<Home/>}/>
+                    <Route path="/form" />
+                    <Route path="/detail/:id" element={<Detail/>}/>
+                    <Route path="/NuestrosPlatos" element={<NuestrosPlatos/>}/>
+                    <Route path="/Comofunciona" element={<Funciona/>}/>
+                    <Route path="/QuienesSomos" element={<QuienesSomos/>}/>
+                    <Route path="/Faqs" element={<Faqs/>}/>
+                    <Route path="/Login" element={<Login/>}/>
+                    <Route path="/Register" element={<UserForm/>}/>
+                    <Route path="/useraccount" element={<HomeUser/>}/>
+                    <Route path="useraccount/editarperfil" element={<UserForm/>}/>
+                    <Route path="/MiPerfil" element={<MiPerfil/>}/>
+                    <Route path="/admindashboard" element={<HomeAdmin/>}/>
+                    <Route path="/admindashboard/crearplato" element={<CreateMeal/>}/>
+                    <Route path="/admindashboard/editar-eliminar" element={<EditDeleteFood />}/>
+                    <Route path="/admindasboard/editar-eliminar/editarComida/" element={<UpdateMeal />}/>
+                    <Route path="*" />
+                </Routes>
+                <Footer/>
+            </div>
+        </>
+    );
+    }
 
 export default App;
 
