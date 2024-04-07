@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { signUpNewUser } from '../../redux/actions/Actions';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
-import axios from 'axios';
+
 
 interface FormValues {
   profilePictureName: string;
@@ -57,8 +57,6 @@ const UserForm: React.FC = () => {
       icon: 'success',
       confirmButtonText: 'Entendido'
     });
-    console.log("mandar email al back");
-    await axios.post('/send-email', values.email) //manda el email al back
   } catch (error) {
     console.error("Error al iniciar sesión:", error);
     Swal.fire({

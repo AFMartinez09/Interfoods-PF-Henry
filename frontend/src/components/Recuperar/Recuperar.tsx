@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 import style from './Recuperar.module.css'
 import Swal from 'sweetalert2';
+import { NavLink } from 'react-router-dom';
 
 const Recuperar = () => {
   const [email, setEmail] = useState('');
-  const [isSent, setIsSent] = useState(false); 
+
 
   const handleChange = (e : any) => {
     setEmail(e.target.value);
@@ -16,7 +17,6 @@ const Recuperar = () => {
     try {
       const auth = getAuth();
       await sendPasswordResetEmail(auth, email);
-      setIsSent(true);
       Swal.fire({
         title: 'Contraseña restablecida',
         text: 'Se te ha enviado un correo electrónico para restablecer tu contraseña. Por favor, revisa tu correo electrónico.',
@@ -32,18 +32,24 @@ const Recuperar = () => {
 
   return (
     <div className={style.todo}>
-      <h2>Restablecer Contraseña</h2>
-      {isSent ? (
-        <p>Se ha enviado un correo electrónico para restablecer tu contraseña.</p>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <label>
-            Correo Electrónico:
-            <input type="email" value={email} onChange={handleChange} required />
-          </label>
-          <button type="submit">Enviar Correo</button>
-        </form>
-      )}
+      <div className={style.todo3}>
+        <h2 className={style.titulo}>Restablecer Tu Contraseña</h2>
+        <p className={style.titulo2}>¿Has olvidado tu contraseña?
+        No te preocupes, a todos nos pasa a veces.
+        Déjanos tu mail y te lo solucionaremos.</p>
+        <div className={style.form}>
+           <form onSubmit={handleSubmit}>
+             <div className={style.form}>
+                <input name='email' type="email"value={email} onChange={handleChange} placeholder='Correro Electronico' className={style.input}/>
+            </div>
+            <button type="submit" className={style.boton}>Enviar</button>
+           </form>
+        </div>
+        <div>
+        <NavLink to='/Login'><p className={style.boton3}>No hace falta! recorde mi contraseña</p></NavLink>
+        </div>
+        <NavLink to='/Register'><button type="submit" className={style.boton2}>Crear cuenta nueva</button></NavLink>
+      </div>
     </div>
   );
 };
