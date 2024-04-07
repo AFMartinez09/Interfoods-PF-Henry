@@ -8,7 +8,6 @@
     import Style from '../../Cards/Cards.module.css'
     import SearchBar from "../../SearchBar/SearchBar";
     import Styled from './Edit-Delete.module.css'
-    import HomeAdmin from "../HomeAdmin/HomeAdmin";
     
     
     interface Food {

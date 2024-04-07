@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import { imageUpload, signUpNewUser } from '../../redux/actions/Actions';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
-import axios from 'axios';
 
 interface FormValues {
   profilePictureName: string;
@@ -58,8 +57,8 @@ const UserForm: React.FC = () => {
   const signUp = async (values: FormValues, dispatch: any) => {
     try {
       const urlImage = await imageUpload(profilePictureUrl)
-      console.log(values.email, values.password, values.firstName, values.lastName, urlImage, values.city, values.country, values.address, false, true);
-      await dispatch(signUpNewUser(values.email, values.password, values.firstName, values.lastName, urlImage, values.city, values.country, values.address, false, true )); 
+      console.log(values.email, values.password, values.firstName, values.lastName, urlImage, values.country, values.city, values.address, false, true);
+      await dispatch(signUpNewUser(values.email, values.password, values.firstName, values.lastName, urlImage,values.country, values.city, values.address, false, true )); 
       
       Swal.fire({
         title: 'Cuenta creada',

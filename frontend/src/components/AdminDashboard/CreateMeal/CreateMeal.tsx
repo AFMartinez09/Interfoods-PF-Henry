@@ -1,11 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import styles from './FormMeal.module.css';
 import ValidationSchema from './ValidationSchema';
-import { createMeal } from '../../../redux/actions/Actions';
+import { createMeal, imageUpload } from '../../../redux/actions/Actions';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import HomeAdmin from '../HomeAdmin/HomeAdmin';
 
 interface PropsCreateMeal {
   nombre: string,
@@ -40,10 +38,17 @@ const initialValues: PropsCreateMeal = {
 };
 
 const CreateMeal: React.FC = () => {
+  const [profilePictureUrl, setProfilePictureUrl] = useState<string | null>(null);
   const dispatch = useDispatch();
-  const history = useNavigate()
+
+  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = event.currentTarget.files?.[0];
+    await setProfilePictureUrl(selectedFile);
+  };
+  
   const handleSubmit = async(values: PropsCreateMeal) => {
-    console.log(values);
+    const urlImage = await imageUpload(profilePictureUrl)
+    
     try {
       await dispatch(createMeal(
         values.nombre, 
@@ -55,12 +60,11 @@ const CreateMeal: React.FC = () => {
         values.peso,
         values.precio,
         values.tipo,
-        values.imagen,
+        urlImage,
         values.descripcion,
         values.stock,
        ))
-       console.log(dispatch)
-      history('/admindasboard');
+
     } catch (error) {
       console.error(error)
     };
@@ -167,9 +171,10 @@ const CreateMeal: React.FC = () => {
                 id='image'
                 name='image'
                 accept='image/png, image/jpeg, image/jpg'
-                onChange={(event) =>
-                  setFieldValue('image', event.currentTarget.files?.[0])
-                }
+                onChange={(event) => {
+                  setFieldValue('image', event.currentTarget.files?.[0]);
+                  handleFileChange(event);
+                }}
               />
               <p className={styles.error}><ErrorMessage name='image' /></p>
 
