@@ -1,8 +1,7 @@
 /* error.module.css */
 
 .errorContainer {
-  text-align: center;
-  margin-top: 10vh; /* Ajusta el margen superior según sea necesario */
+  text-align: center; /* Ajusta el margen superior según sea necesario */
   background-color: gainsboro;
   width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
   height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
