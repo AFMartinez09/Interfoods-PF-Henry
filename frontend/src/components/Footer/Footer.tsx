@@ -8,10 +8,11 @@ const Footer: React.FC = () => {
         <h3 className={styles.title}><NavLink className={styles.title} to="/">INTERFOODS</NavLink></h3>
         <div className={styles.containerList}>
           <hr></hr>
-          <h3 className={styles.links}><NavLink className={styles.links} to="/NuestrosPlatos">Nuestros platos</NavLink></h3>
-          <h3 className={styles.links}><NavLink className={styles.links} to="/Comofunciona">Cómo funciona</NavLink></h3>
-          <h3 className={styles.links}><NavLink className={styles.links} to="/QuienesSomos">¿Quiénes somos?</NavLink></h3>
-          <h3 className={styles.links}><NavLink className={styles.links} to="/Faqs">FAQ'S</NavLink></h3>
+          <h3 className={styles.linksh}><NavLink className={styles.links} to="/NuestrosPlatos">Nuestros platos</NavLink></h3>
+          <h3 className={styles.linksh}><NavLink className={styles.links} to="/Comofunciona">Cómo funciona</NavLink></h3>
+          <h3 className={styles.linksh}><NavLink className={styles.links} to="/QuienesSomos">¿Quiénes somos?</NavLink></h3>
+          <h3 className={styles.linksh}><NavLink className={styles.links} to="/contactos">¿Nesecitas contactarnos?</NavLink></h3>
+          <h3 className={styles.linksh}><NavLink className={styles.links} to="/Faqs">FAQ'S</NavLink></h3>
         </div>
       </div>
     </footer>

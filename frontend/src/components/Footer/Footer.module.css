@@ -23,11 +23,11 @@
 .links::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -4px;
   left: 50%;
   width: 0;
   height: 2px;
-  background-color: white;
+  background-color: rgb(255, 254, 254);
   transition: width 0.3s ease, left 0.3s ease; 
 }
 
@@ -47,4 +47,15 @@
   font-size: 35px;
   font-weight: bold;
   
+}
+
+
+
+.linksh {
+  text-align: center;
+  font-size: 23px;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  color: white;
 }

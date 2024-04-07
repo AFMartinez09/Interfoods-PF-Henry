@@ -25,6 +25,7 @@ import FormMeal from './components/AdminDashboard/RegisterMeal/FormMeal.tsx';
 import MiPerfil from './components/PerfilUser/MiPerfil.tsx';
 import Recuperar from './components/Recuperar/Recuperar.tsx';
 import Comprajoel from './components/Comprajoel/Comprajoel.tsx';
+import Soporte from './components/Soporte/Soporte.tsx';
 
 
 // comentar y descomentar para deploy
@@ -108,6 +109,7 @@ function App() {
                   <Route path="/Recuperarcontraseña" element={<Recuperar/>}/>
                   <Route path="*" />
                   <Route path="/api/payments/success" element={<Comprajoel/>}/>
+                  <Route path="/Contactos" element={<Soporte/>}/>
               </Routes>
               <Footer/>
           </div>
