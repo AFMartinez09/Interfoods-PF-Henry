@@ -14,6 +14,15 @@ const QuienesSomos: React.FC<QuienesSomosProps> = () => {
     'https://avatars.githubusercontent.com/u/108027704?v=4',
     'https://avatars.githubusercontent.com/u/122408865?v=4',
   ];
+  
+  const linked : Array <string> = [
+    'https://github.com/Gastonvg',
+    'Luis Defago',
+    'Andrez Martinez',
+    'Mirko Miler',
+    'Joel Fernandez',
+    'Aurelio Cabello',
+  ];
   const nombres : Array <string> = [
     'Gaston Vergagni',
     'Luis Defago',
@@ -31,7 +40,7 @@ const QuienesSomos: React.FC<QuienesSomosProps> = () => {
         <div><h1>¿Quiénes somos?</h1></div>
        <div><p>Te hablamos un poco de nosotros</p></div> 
        <div>         
-         <Carousel images={images} nombres={nombres}/>
+         <Carousel images={images} nombres={nombres} linked={linked}/>
        </div>
       </div>
 

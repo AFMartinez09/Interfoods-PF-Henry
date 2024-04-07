@@ -1,8 +1,8 @@
 .carouselContainer {
     position: relative;
-    width: 40%;
-    height: 700px; /* Ajusta la altura según tus necesidades */
-    margin-left: 36rem;
+    width: 30rem;
+    height: 500px; /* Ajusta la altura según tus necesidades */
+    align-items: center;
     border-radius: 50px;
     border: 1px solid rgba(0, 0, 0, 0.26);
   }
@@ -13,7 +13,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover; /* Ajusta el tamaño de la imagen para que cubra completamente el contenedor */
-    border-radius: 50px;
+    border-radius: 50px 50px 0px 0px;
     
   }
 
@@ -84,7 +84,7 @@
     bottom: 0;
     left: 0;
     color: white; /* Color del texto */ /* Espaciado alrededor del texto */
-    font-size: xx-large;
+    font-size: x-large;
     margin-bottom: 4rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     font-weight: 900;
@@ -94,4 +94,64 @@
     overflow: hidden; /* Oculta el desbordamiento del contenido */
     box-shadow: 0px 10px 10px 6px rgba(0, 0, 0, 0.452); /* Sombra externa para extender el fondo */
 
+  }
+
+  .todo{
+    width: 100%;
+    height: 100%;
+    display: grid;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; 
+  }
+
+
+  .linked{
+    background-color: rgba(238, 235, 235, 0.856);
+    padding-top: 60px;
+    margin-top: -50px;
+    border-radius: 0px 0px 50px 50px;
+    width: 30rem;
+    border: 1px solid rgba(0, 0, 0, 0.26);
+    
+  
+    
+  }
+
+  .nombre{
+    
+    bottom: 0;
+    left: 0;
+    color: rgb(250, 248, 248); /* Color del texto */ /* Espaciado alrededor del texto */
+    font-size: x-large;
+    margin-bottom: 4rem;
+    text-shadow: 2px 2px 4px rgba(243, 240, 240, 0.5);
+    font-weight: 900;
+    text-align: center;
+    width: 100%;
+    margin-top: -11px;
+    padding-top: 20px;
+    background-color: black;
+    padding-bottom: 20px;
+    
+  }
+
+
+  .nombre2{
+
+    color: rgb(10, 10, 10); /* Color del texto */ /* Espaciado alrededor del texto */
+    font-size: x-large;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(243, 240, 240, 0.5);
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    margin-top: -30px;    
+    transition: transform 0.3s ease;
+    justify-content: center; /* Centrar horizontalmente */
+   
+
+  }
+
+  .nombre2:hover{
+    transform: scale(1.4);
   }

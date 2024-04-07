@@ -39,16 +39,16 @@ const SesionDesplegable: React.FC<SesionDesplegableProps> = ({ toggleMenu }) => 
   return (
     <div className={Style.pageDesplegable} onClick={handleClickOutside}>
       <div className={Style.container}>
-        <button className={Style.btnCerrarX} onClick={toggleMenu}>X</button>
+        {/* <button className={Style.btnCerrarX} onClick={toggleMenu}>X</button> */}
         <div className={Style.item}>
           <img src='https://cdn-icons-png.flaticon.com/512/32/32438.png' className={Style.sesionImg}></img>
-          <NavLink to={'/MiPerfil'} className={Style.btnPerfil} onClick={toggleMenu}>Mi perfil</NavLink> 
+          <NavLink to={'/MiPerfil'} className={Style.btnPerfil} onClick={toggleMenu}><p className={Style.color2}>Mi perfil</p></NavLink> 
         </div>
         <hr />
         <div className={Style.item}>
           <img src='https://cdn.icon-icons.com/icons2/1769/PNG/512/4115235-exit-logout-sign-out_114030.png' className={Style.sesionImg}></img>
           <button className={Style.btnCerrarSesion} onClick={handleCerrarSesionClick}>
-            Cerrar sesión
+            <p className={Style.color}>Cerrar sesión</p>
           </button>
         </div>
       </div>
