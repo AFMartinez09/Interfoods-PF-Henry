@@ -24,6 +24,7 @@ import HomeUser from './components/profileUser/HomeUser.tsx';
 import FormMeal from './components/AdminDashboard/RegisterMeal/FormMeal.tsx';
 import MiPerfil from './components/PerfilUser/MiPerfil.tsx';
 import Recuperar from './components/Recuperar/Recuperar.tsx';
+import Comprajoel from './components/Comprajoel/Comprajoel.tsx';
 
 
 // comentar y descomentar para deploy
@@ -106,6 +107,7 @@ function App() {
                   <Route path="/MiPerfil" element={<MiPerfil/>}/>
                   <Route path="/Recuperarcontraseña" element={<Recuperar/>}/>
                   <Route path="*" />
+                  <Route path="/payments/success" element={<Comprajoel/>}/>
               </Routes>
               <Footer/>
           </div>
