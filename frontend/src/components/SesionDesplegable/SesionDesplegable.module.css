@@ -10,10 +10,11 @@
   justify-content: flex-end; 
   align-items: flex-start; 
 
+
 }
  
 .container {
-  background-color: #f3f3f3b2;
+  background-color: #ffffff;
   padding: 20px;
   border-radius: 5px;
   width: 300px;
@@ -21,6 +22,7 @@
   margin-top: 80px;
   backdrop-filter: blur(10px);
   color: black;
+  border: 1px solid black;
 }
 
 .item {
@@ -73,8 +75,9 @@
 }
 .color{
   box-shadow: 20px;
-  font-size: larger;
-  text-shadow: 0px 0px 10px 10px black
+  font-size: x-large;
+  text-shadow: 0px 0px 10px 10px rgb(253, 253, 253);
+  color: black
 }
 
 .color:hover{
@@ -84,8 +87,9 @@
 
 .color2{
   box-shadow: 20px;
-  font-size: larger;
-  text-shadow: 0px 0px 10px 10px black
+  font-size: x-large;
+  text-shadow: 0px 0px 10px 10px rgb(250, 247, 247);
+  color: black
 }
 
 .color2:hover{
