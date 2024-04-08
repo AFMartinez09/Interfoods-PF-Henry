@@ -20,13 +20,10 @@ import {
     plugins,
   )
 
-const Stock = () => {
-  const all = {
+const Postres = () => {
+  const postres = {
     labels: [ 
-      'Asado con Ensalada criolla', 'Empanadas de carne con Salsa chimichurri', 
-      'Tacos al pastor con Guacamole', 'Mole Poblano con Tortillas de maíz', 'Ceviche de camarón con Chifles',
-      'Seco de chivo con arroz', 'Encebollado con Chifles', 'Bandeja Paisa con Huevo frito', 'Ajiaco con Arepas',
-      'Sancocho con Aguacate', 'Flan casero', 'Tres leches', 'Morocho con dulce de leche', 'Natilla', 
+      'Flan casero', 'Tres leches', 'Morocho con dulce de leche', 'Natilla', 
       'Locro Vegano', 'Tacos Veganos', 'Guatita Vegana', 'Bandeja Paisa Vegana', 'Milanesa a la napolitana con papas' ],
     datasets: [{
       label: 'Cantidad',
@@ -62,8 +59,7 @@ const Stock = () => {
   
   return (
     <div className={styles.container}>
-    <h1>Inventario de todos platos</h1>
-
+    <h1>Postres</h1>
     <div className={styles.dropdown}>
       <button className={styles.dropdownBtn}>Plato</button>
       <div className={styles.dropdownContent}>
@@ -73,15 +69,14 @@ const Stock = () => {
         <a className={styles.dropdownLink} href="/admindashboard/stock/vegano">Vegano</a>
       </div>
     </div>
-
     <div className={styles.bar}>
       <Bar
-      data={all}
-      options = {options} />
+      data={postres}
+      options = {options} />  
     </div>
   </div>
 )
 
 }
 
-export default Stock  
+export default Postres  

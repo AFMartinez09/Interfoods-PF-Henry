@@ -20,21 +20,19 @@ import {
     plugins,
   )
 
-const Stock = () => {
-  const all = {
+const Vegano = () => {
+  const vegano = {
     labels: [ 
-      'Asado con Ensalada criolla', 'Empanadas de carne con Salsa chimichurri', 
-      'Tacos al pastor con Guacamole', 'Mole Poblano con Tortillas de maíz', 'Ceviche de camarón con Chifles',
-      'Seco de chivo con arroz', 'Encebollado con Chifles', 'Bandeja Paisa con Huevo frito', 'Ajiaco con Arepas',
-      'Sancocho con Aguacate', 'Flan casero', 'Tres leches', 'Morocho con dulce de leche', 'Natilla', 
-      'Locro Vegano', 'Tacos Veganos', 'Guatita Vegana', 'Bandeja Paisa Vegana', 'Milanesa a la napolitana con papas' ],
+      'Locro Vegano', 'Tacos Veganos', 'Guatita Vegana', 'Bandeja Paisa Vegana' ],
     datasets: [{
       label: 'Cantidad',
       data: [50, 40, 60, 20, 30, 33, 39, 30, 25, 15, 20, 15, 40, 42, 3, 10, 20, 19, 4],
       backgroundColor: 'rgba(191, 191, 191, 0.891)',
       borderWidth: 0,
     }]
-  }
+      }
+
+
   
   const options = {
     plugins: {
@@ -62,21 +60,19 @@ const Stock = () => {
   
   return (
     <div className={styles.container}>
-    <h1>Inventario de todos platos</h1>
-
+    <h1>Vegano</h1>
     <div className={styles.dropdown}>
       <button className={styles.dropdownBtn}>Plato</button>
       <div className={styles.dropdownContent}>
-        <a className={styles.dropdownLink} href="/admindashboard/stock/">Todos</a>
+      <a className={styles.dropdownLink} href="/admindashboard/stock/">Todos</a>
         <a className={styles.dropdownLink} href="/admindashboard/stock/principales">Principales</a>
         <a className={styles.dropdownLink} href="/admindashboard/stock/postres">Postres</a>
         <a className={styles.dropdownLink} href="/admindashboard/stock/vegano">Vegano</a>
       </div>
     </div>
-
-    <div className={styles.bar}>
+    <div className={styles.bar}> 
       <Bar
-      data={all}
+      data={vegano}
       options = {options} />
     </div>
   </div>
@@ -84,4 +80,4 @@ const Stock = () => {
 
 }
 
-export default Stock  
+export default Vegano  
