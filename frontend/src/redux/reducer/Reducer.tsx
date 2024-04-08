@@ -1,5 +1,5 @@
 
-import { GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL, GET_FILTRO } from '../actions/ActionsTypes';
+import { GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL, GET_FILTRO, SIGNUP_USER_EMAIL_DB } from '../actions/ActionsTypes';
 
 
 
@@ -96,6 +96,10 @@ const Reducer = (state: StoreState = initialState, action: Action): StoreState =
       return {
         ...state,
       };
+      case SIGNUP_USER_EMAIL_DB:
+        return {
+          ...state,
+        };
     default:
       return state;
   }

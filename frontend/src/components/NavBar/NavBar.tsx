@@ -28,7 +28,7 @@ const NavBar: React.FC<NavBarProps> = ({ onItemClick, toggleMenu, showMenu, auth
 
     getUserData();
   }, []); //
-  console.log(userData);
+ 
   
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

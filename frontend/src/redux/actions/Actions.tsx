@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_FILTRO, GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL, DELETE_MEAL, POST_MEAL, PUT_MEAL} from '../actions/ActionsTypes';
+import { GET_FILTRO, GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL, DELETE_MEAL, POST_MEAL, PUT_MEAL, SIGNUP_USER_EMAIL_DB} from '../actions/ActionsTypes';
 import { AnyAction, Dispatch } from 'redux';
 import {URL} from '../../App'
 
@@ -32,20 +32,10 @@ export const signUpNewUser = (
   admin: boolean,
   habilitado: boolean
 ) => async (dispatch: Dispatch) => {
-  try {  
-    console.log(      
-      email,
-      password,
-      nombre,
-      apellido,
-      foto,
-      pais,
-      ciudad,
-      direccion,
-      admin,
-      habilitado);
-    
-    await axios.post("http://127.0.0.1:3000/api/register/signup", {       
+  try { 
+    let respuesta = await axios.get<{ user: UserData }>(`${URL}/api/register/usuario/${email}`);
+    if(respuesta === null){
+    await axios.post(`${URL}/api/register/signup`, {       
       email,
       password,
       nombre,
@@ -57,7 +47,7 @@ export const signUpNewUser = (
       admin,
       habilitado
     });
-
+    }
     dispatch({
       type: SIGNUP_USER_EMAIL,
     });
@@ -72,7 +62,7 @@ export const signUpNewUser = (
   // ----------------------------------------------------------------------------
 
   export const getFiltro = (payload: any) => (
-    console.log(payload),
+  
     {
     type: GET_FILTRO,
     payload: payload,
@@ -95,8 +85,8 @@ export const signUpNewUser = (
 
   export const getUser = async (email: string): Promise<UserData> => {
     try {
-      // Realizar la llamada a la API con Axios
-      const response = await axios.get<{ user: UserData }>(`http://127.0.0.1:3000/api/register/usuario/${email}`);
+      // Realizar la llamada a la API con Axios 
+      const response = await axios.get<{ user: UserData }>(`${URL}/api/register/usuario/${email}`);
   
       // Obtener el usuario devuelto en la respuesta
       const userData = response.data.user;
@@ -113,9 +103,10 @@ export const signUpNewUser = (
     }
   };
 
+
   export const putUser = async (email: string, data: object): Promise<UserData> => {
     try {
-      const response = await axios.put<{ user: UserData }>(`http://127.0.0.1:3000/api/register/usuario/update/${email}`, data);
+      const response = await axios.put<{ user: UserData }>(`${URL}/api/register/usuario/update/${email}`, data);
       const userData = response.data.user;
   
       getUser(email)
@@ -143,7 +134,7 @@ export const signUpNewUser = (
   ) => async( dispatch: (action:AnyAction) => void ) => {
     try {
       
-      await axios.post('http://127.0.0.1:3000/api/food/postFood', {
+      await axios.post(`${URL}/api/food/postFood`, {
         nombre,
         origen,
         ingredientes,
@@ -197,10 +188,10 @@ export const signUpNewUser = (
     imagen: File | null,
     descripcion: string,
     stock: string,
-  ) => async(dispatch: (action:AnyAction) => void ) => {
+  ) => async(dispatch: (action: AnyAction) => void ) => {
     try {
       
-      await axios.post(`http://127.0.0.1:3000/api/food/${id}`, {
+      await axios.post(`${URL}/api/food/${id}`, {
         nombre,
         origen,
         ingredientes,
@@ -241,7 +232,7 @@ export const signUpNewUser = (
 
   export const deleteMeal = (id: number) => async( dispatch:any ) => {
     try {
-      await axios.delete(`http://127.0.0.1:3000/api/food/${id}`)
+      await axios.delete(`${URL}/api/food/${id}`)
       return dispatch({
         type: DELETE_MEAL,
       });
@@ -268,3 +259,39 @@ export const signUpNewUser = (
       console.error('Error al subir imagen:', error);
     }
   }
+
+
+  export const signUpNewUserDb = (
+    email: string, 
+    nombre: string,
+    apellido: string,
+    foto: string,
+    pais: string,
+    ciudad: string,
+    direccion: string,
+    admin: boolean,
+    habilitado: boolean
+  ) => async (dispatch: Dispatch<AnyAction>) => {
+    try {  
+      await axios.post(`${URL}/api/register/signupDb`, {       
+        email,
+        nombre,
+        apellido,
+        foto,
+        pais,
+        ciudad,
+        direccion,
+        admin,
+        habilitado
+      });
+  
+      dispatch({
+        type: SIGNUP_USER_EMAIL_DB, // Reemplaza 'SIGNUP_USER_EMAIL_DB' con el tipo de acción correcto
+      });
+  
+    } catch (error: any) {
+      console.error("Error al registrar nuevo usuario:", error);
+      window.alert("¡Error al registrar nuevo usuario!");
+      throw new Error(error);
+    }
+  };

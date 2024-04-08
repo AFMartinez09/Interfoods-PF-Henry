@@ -12,7 +12,7 @@ interface CarouselProps {
   
   const Carousel: React.FC <CarouselProps> = ({ images, nombres, linked }) => {
     const [activeIndex, setActiveIndex] = useState<number>(0);
-   console.log(activeIndex);
+  
    
    
    

@@ -112,11 +112,13 @@ import Button from './Button';
 import Swal from 'sweetalert2';
 import Validation, { ValidationErrors } from './Validation';
 import styles from './Login.module.css';
-import { GoogleAuthProvider, getAuth, signInWithEmailAndPassword, signInWithRedirect, onAuthStateChanged } from '@firebase/auth';
+import { GoogleAuthProvider, getAuth, signInWithEmailAndPassword,  signInWithPopup, onAuthStateChanged } from '@firebase/auth';
 import { app} from "../../Auth/firebaseConfig";
 import { NavLink } from 'react-router-dom';
-import { getUser } from '../../redux/actions/Actions';
 import { useNavigate } from 'react-router-dom';
+import { getUser, signUpNewUserDb} from '../../redux/actions/Actions';
+import { useDispatch } from 'react-redux';
+
 
 
 type UserLoginState = {
@@ -130,6 +132,7 @@ const InitialValue: UserLoginState = {
 };
 
 export const Login = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   const [login, setLogin] = useState(InitialValue);
   const [errors, setErrors] = useState<ValidationErrors>({});
@@ -166,7 +169,7 @@ export const Login = () => {
         // Llamar a la función registerUser pasando el correo electrónico
         if (userEmail) {
           const userData = await getUser(userEmail);
-          console.log(userData);
+    
           
         }
 
@@ -191,11 +194,7 @@ export const Login = () => {
       }
     }
   };
-  const handleGoogleSignIn = () => {
-       const auth = getAuth();
-       signInWithRedirect(auth, googleProvider);
-  };
-
+ 
   useEffect(() => {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -207,8 +206,40 @@ export const Login = () => {
     // Limpia el listener cuando el componente se desmonta
     return () => unsubscribe();
   }, []);
-
- 
+  const handleGoogleClick: MouseEventHandler<HTMLButtonElement> = async (e) => {
+    e.preventDefault();
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const userGoogleEmail = result.user.email || '';
+      const displayName = result.user.displayName || '';
+      
+      const displayNameParts = displayName.split(' ');
+  
+      const userGoogleNombre = displayNameParts[0];
+      const userGoogleApellido = displayNameParts.slice(1).join(' ');
+      
+      // Registra al usuario en la base de datos
+      dispatch(signUpNewUserDb(userGoogleEmail, userGoogleNombre, userGoogleApellido, '', '', '', '', false, true));
+  
+      // Obtiene los datos del usuario desde la base de datos
+      const userData = await getUser(userGoogleEmail);
+  
+      // Hacer algo con los datos del usuario, por ejemplo, guardarlos en el estado global
+      // O redirigir a la página principal, etc.
+   
+  
+    } catch (error) {
+      console.error("Error al iniciar sesión con Google:", error);
+      // Mostrar mensaje de error
+      Swal.fire({
+        title: 'Error al iniciar sesión',
+        text: 'Hubo un problema al intentar iniciar sesión con Google. Por favor, verifica tus credenciales e inténtalo de nuevo.',
+        icon: 'error',
+        confirmButtonText: 'Entendido'
+      });
+    }
+  };
+  
  
   
 
@@ -254,7 +285,7 @@ export const Login = () => {
           </Button>
         </div>
         <div className={styles.buttonSub}>
-          <button  className={styles.submitButtonGoogle} onClick={handleGoogleSignIn}>
+          <button className={styles.submitButtonGoogle} onClick={handleGoogleClick}>
             INICIAR SESION CON GOOGLE
           </button>
         </div>

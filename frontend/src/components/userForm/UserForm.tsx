@@ -57,7 +57,7 @@ const UserForm: React.FC = () => {
   const signUp = async (values: FormValues, dispatch: any) => {
     try {
       const urlImage = await imageUpload(profilePictureUrl)
-      console.log(values.email, values.password, values.firstName, values.lastName, urlImage, values.country, values.city, values.address, false, true);
+    
       await dispatch(signUpNewUser(values.email, values.password, values.firstName, values.lastName, urlImage,values.country, values.city, values.address, false, true )); 
       
       Swal.fire({

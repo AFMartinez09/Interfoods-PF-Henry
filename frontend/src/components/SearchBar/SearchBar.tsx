@@ -12,7 +12,7 @@ const SearchBar: React.FC = () => {
     const pais = useSelector((state: StoreState) => state.pais);
     const [selectedType, setSelectedType] = useState<string>(tipo);
     const [selectedCountry, setSelectedCountry] = useState<string>(pais);
-    console.log(URL);
+  
     
 
     const handleButtonClick = async (event: React.MouseEvent<HTMLButtonElement>) => {

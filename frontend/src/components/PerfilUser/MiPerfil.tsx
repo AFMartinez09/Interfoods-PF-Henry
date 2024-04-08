@@ -60,7 +60,7 @@ const MiPerfil = () => {
       [e.target.name]: e.target.value,
     });
   };
-  console.log(userData?.foto);
+
   
   return (
     <div className={styles.container}>

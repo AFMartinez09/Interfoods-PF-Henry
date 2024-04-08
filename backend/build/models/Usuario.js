@@ -17,14 +17,12 @@ exports.Usuario = Usuario;
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.STRING,
-        allowNull: false,
     }),
     __metadata("design:type", String)
 ], Usuario.prototype, "nombre", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.STRING,
-        allowNull: false,
     }),
     __metadata("design:type", String)
 ], Usuario.prototype, "apellido", void 0);
@@ -42,35 +40,30 @@ __decorate([
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.STRING,
-        allowNull: false,
     }),
     __metadata("design:type", String)
 ], Usuario.prototype, "pais", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.STRING,
-        allowNull: false,
     }),
     __metadata("design:type", String)
 ], Usuario.prototype, "ciudad", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.STRING,
-        allowNull: false,
     }),
     __metadata("design:type", String)
 ], Usuario.prototype, "direccion", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.BOOLEAN,
-        allowNull: false,
     }),
     __metadata("design:type", Boolean)
 ], Usuario.prototype, "admin", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.BOOLEAN,
-        allowNull: false,
     }),
     __metadata("design:type", Boolean)
 ], Usuario.prototype, "habilitado", void 0);

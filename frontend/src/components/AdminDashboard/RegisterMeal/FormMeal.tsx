@@ -35,7 +35,7 @@ const FormMeal: React.FC = () => {
   };
 
   const handleSubmit = (values: PropsCreateMeal) => {
-    console.log(values);
+
   };
 
   return (

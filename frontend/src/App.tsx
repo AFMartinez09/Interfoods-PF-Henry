@@ -62,7 +62,6 @@ function App() {
         const fetchData2 = async () => {
             try {
                 const { data } = await axios.get(`${URL}/api/food/`);
-                console.log(URL);
                 
                 if (data) {
                     dispatch(getFood(data));

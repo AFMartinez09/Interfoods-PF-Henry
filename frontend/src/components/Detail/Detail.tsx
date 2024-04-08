@@ -23,7 +23,7 @@ const Detail: React.FC = () =>{
     setMostrarIngredientes(!mostrarIngredientes);
 }
   const numeroEntero: number = (parseInt(idComida, 10));
-  console.log(numeroEntero);
+ 
   
   const foodState = useSelector((state: StoreState) => state.platos);
  
