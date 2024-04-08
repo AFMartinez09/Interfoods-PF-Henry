@@ -3,15 +3,15 @@ import path from "path";
 import dotenv from "dotenv";
 dotenv.config();
 
-const { URLBASE } = process.env;
+const { URL } = process.env;
 
-if (!URLBASE) {
+if (!URL) {
   throw new Error(
     "La variable de entorno URL no está definida en el archivo .env"
   );
 }
 
-const sequelize = new Sequelize(URLBASE, {
+const sequelize = new Sequelize(URL, {
   dialect: "postgres",
   models: [path.join(__dirname, "models")],
   dialectOptions: {
