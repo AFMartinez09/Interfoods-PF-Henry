@@ -2,7 +2,7 @@ import SesionDesplegable from '../SesionDesplegable/SesionDesplegable';
 import { NavLink } from 'react-router-dom';
 import styles from './NavBar.module.css';
 import Cart from '../Cart/Cart';
-import { useState } from 'react';
+import { useState, useRef, useEffect} from 'react';
 
 interface NavBarProps {
   onItemClick: (item: string) => void;
@@ -14,6 +14,20 @@ interface NavBarProps {
 const NavBar: React.FC<NavBarProps> = ({ onItemClick, toggleMenu, showMenu, auth}) => {
   const [showMenuAuth, setShowMenuAuth] = useState(false);
   const [showMenuAdmin, setShowMenuAdmin] = useState(false);
+  const adminMenuRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (adminMenuRef.current && !adminMenuRef.current.contains(event.target as Node)) {
+        setShowMenuAdmin(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const toggleMenuAuth = () => {
     setShowMenuAuth(!showMenuAuth);
@@ -64,7 +78,7 @@ const NavBar: React.FC<NavBarProps> = ({ onItemClick, toggleMenu, showMenu, auth
           </li>
         </ul>
         {user.admin && (
-          <div className={showMenuAdmin ? `${styles.containerAdmin} ${styles.containerAdminOpen}` : styles.containerAdmin}>
+         <div ref={adminMenuRef} className={showMenuAdmin ? `${styles.containerAdmin} ${styles.containerAdminOpen}` : styles.containerAdmin}>
             <button onClick={toggleMenuAdmin} className={styles.navLink}>
               ADMIN
             </button>
