@@ -1,6 +1,6 @@
 import { Line } from 'react-chartjs-2';
-import styles from './Income.module.css'
-import Style from '../Stock/Stock.module.css'
+import Style from '../Stock/Stock.module.css';
+
 import {
   Chart as ChartJS,
   LineElement,
@@ -22,12 +22,12 @@ ChartJS.register(
   Legend,
 )
 
-const Income = () => {
-  const semanal = {
-    labels: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
+const Anual = () => {
+  const data = {
+    labels: ['Enero', 'Febrero', 'Marzo', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
     datasets: [{
       label: 'Semanal',
-      data: [900, 700, 500, 800, 1000, 1100, 800 ],
+      data: [9000, 7000, 5000, 8000, 10000, 11000, 8000, 20000, 5000, 13482, 1298, 12921 ],
       borderColor: 'aqua',
       tension: 0.4,
     }]
@@ -39,7 +39,7 @@ const Income = () => {
 
   return (
     <div className={Style.container}>
-      <h1>Ingresos Semanales</h1>
+      <h1>Ingresos Mensuales</h1>
       <div className={Style.dropdown}>
       <button className={Style.dropdownBtn}>Plato</button>
       <div className={Style.dropdownContent}>
@@ -49,7 +49,7 @@ const Income = () => {
     </div>
       <div className={Style.bar}>
         <Line 
-          data={semanal}
+          data={data}
           options= {options}
         />
       </div>
@@ -57,4 +57,4 @@ const Income = () => {
   )
 }
 
-export default Income;
+export default Anual;

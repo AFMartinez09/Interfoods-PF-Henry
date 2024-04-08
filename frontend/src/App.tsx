@@ -27,7 +27,11 @@ import EditDeleteFood from './components/AdminDashboard/Edit-DeleteFood/Edit-Del
 import UpdateMeal from './components/AdminDashboard/UpdateMeal.tsx/UpdateMeal.tsx';
 import StatusPayment from './components/AdminDashboard/Graphics/StatusPayment/SatusPayment.tsx';
 import Stock from './components/AdminDashboard/Graphics/Stock/Stock.tsx';
-import Income from './components/AdminDashboard/Graphics/Income/Income.tsx'
+import Income from './components/AdminDashboard/Graphics/Income/Income.tsx';
+import Mensual from './components/AdminDashboard/Graphics/Income/Mensual.tsx';
+import Principales from './components/AdminDashboard/Graphics/Stock/Principales.tsx';
+import Postres from './components/AdminDashboard/Graphics/Stock/Postres.tsx';
+import Vegano from './components/AdminDashboard/Graphics/Stock/Vegano.tsx';
 
 function App() {
     const auth = getAuth(app);
@@ -100,12 +104,16 @@ function App() {
                   <Route path="useraccount/editarperfil" element={<UserForm/>}/>
                   <Route path="/MiPerfil" element={<MiPerfil/>}/>
                   <Route path="/admindashboard" element={<HomeAdmin/>}/>
-                  <Route path="/admindashboard/statuspayment" element={<StatusPayment/>}/>
-                  <Route path="/admindashboard/stock" element={<Stock/>}/>
-                  <Route path="/admindashboard/income" element={<Income/>}/>
                   <Route path="/admindashboard/crearplato" element={<CreateMeal/>}/>
                   <Route path="/admindashboard/editar-eliminar" element={<EditDeleteFood />}/>
                   <Route path="/admindasboard/editar-eliminar/editarComida/" element={<UpdateMeal />}/>
+                  <Route path="/admindashboard/statuspayment" element={<StatusPayment />}/>
+                  <Route path="/admindashboard/income" element={<Income />}/>
+                  <Route path="/admindashboard/income/mensual" element={<Mensual />}/>
+                  <Route path="/admindashboard/stock" element={<Stock />}/>
+                  <Route path="/admindashboard/stock/principales" element={<Principales />}/>
+                  <Route path="/admindashboard/stock/postres" element={<Postres />}/>
+                  <Route path="/admindashboard/stock/vegano" element={<Vegano />}/>
                   <Route path="*" />
               </Routes>
               <Footer/>
