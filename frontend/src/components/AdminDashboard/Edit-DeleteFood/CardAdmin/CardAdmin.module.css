@@ -27,7 +27,7 @@
 
 .delete:hover{
   transition: 0.5s ease;
-  background-color: rgba(222, 11, 11, 0.742);;
+  background-color: rgba(222, 11, 11, 0.742);
   color: whitesmoke;
   border-radius: 50%;
 }

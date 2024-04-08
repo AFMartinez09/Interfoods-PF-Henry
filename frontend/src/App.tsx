@@ -21,13 +21,13 @@ import Error404 from './components/Error/error.tsx';
 import UserForm from './components/userForm/UserForm.tsx';
 import HomeAdmin from './components/AdminDashboard/HomeAdmin/HomeAdmin.tsx';
 import HomeUser from './components/profileUser/HomeUser.tsx';
-import FormMeal from './components/AdminDashboard/CreateMeal/CreateMeal.tsx';
+import CreateMeal from './components/AdminDashboard/CreateMeal/CreateMeal.tsx';
 import MiPerfil from './components/PerfilUser/MiPerfil.tsx';
 import EditDeleteFood from './components/AdminDashboard/Edit-DeleteFood/Edit-DeleteFood.tsx';
 import UpdateMeal from './components/AdminDashboard/UpdateMeal.tsx/UpdateMeal.tsx';
 import StatusPayment from './components/AdminDashboard/Graphics/StatusPayment/SatusPayment.tsx';
-// import Stock from './components/AdminDashboard/Graphics/Stock/Stock.tsx';
-// import Income from './components/AdminDashboard/Graphics/Income/Income.tsx';
+import Stock from './components/AdminDashboard/Graphics/Stock/Stock.tsx';
+import Income from './components/AdminDashboard/Graphics/Income/Income.tsx'
 
 function App() {
     const auth = getAuth(app);
@@ -101,9 +101,9 @@ function App() {
                   <Route path="/MiPerfil" element={<MiPerfil/>}/>
                   <Route path="/admindashboard" element={<HomeAdmin/>}/>
                   <Route path="/admindashboard/statuspayment" element={<StatusPayment/>}/>
-                  {/* <Route path="/admindashboard/stock" element={<Stock/>}/>
-                  <Route path="/admindashboard/income" element={<Income/>}/> */}
-                  <Route path="/admindashboard/crearplato" element={<FormMeal/>}/>
+                  <Route path="/admindashboard/stock" element={<Stock/>}/>
+                  <Route path="/admindashboard/income" element={<Income/>}/>
+                  <Route path="/admindashboard/crearplato" element={<CreateMeal/>}/>
                   <Route path="/admindashboard/editar-eliminar" element={<EditDeleteFood />}/>
                   <Route path="/admindasboard/editar-eliminar/editarComida/" element={<UpdateMeal />}/>
                   <Route path="*" />

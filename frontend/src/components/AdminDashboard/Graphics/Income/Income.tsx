@@ -1,61 +1,52 @@
-// import {
-//   Chart as ChartJS,
-//   CategoryScale,
-//   LinearScale,
-//   PointElement,
-//   LineElement,
-//   Title,
-//   Tooltip,
-//   Legend,
-// } from 'chart.js';
-// import { Line } from 'react-chartjs-2';
-// import faker from 'faker';
+import { Line } from 'react-chartjs-2';
+import styles from './Income.module.css'
+import {
+  Chart as ChartJS,
+  LineElement,
+  PointElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Legend,
+} from 'chart.js';
 
-// ChartJS.register(
-//   CategoryScale,
-//   LinearScale,
-//   PointElement,
-//   LineElement,
-//   Title,
-//   Tooltip,
-//   Legend
-// );
 
-// const options = {
-//   responsive: true,
-//   plugins: {
-//     legend: {
-//       position: 'top' as const,
-//     },
-//     title: {
-//       display: true,
-//       text: 'Chart.js Line Chart',
-//     },
-//   },
-// };
 
-// const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+ChartJS.register(
+  LineElement,
+  PointElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Legend,
+)
 
-// const data = {
-//   labels,
-//   datasets: [
-//     {
-//       label: 'Dataset 1',
-//       data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-//       borderColor: 'rgb(255, 99, 132)',
-//       backgroundColor: 'rgba(255, 99, 132, 0.5)',
-//     },
-//     {
-//       label: 'Dataset 2',
-//       data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-//       borderColor: 'rgb(53, 162, 235)',
-//       backgroundColor: 'rgba(53, 162, 235, 0.5)',
-//     },
-//   ],
-// };
+const Income = () => {
+  const data = {
+    labels: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
+    datasets: [{
+      label: 'Semanal',
+      data: [900, 700, 500, 800, 1000, 1100, 800 ],
+      borderColor: 'aqua',
+      tension: 0.4,
+    }]
+  }
 
-// const Income = () => {
-//   return <Line options={options} data={data} />;
-// }
+  const options = {
 
-// export default Income;
+  }
+
+  return (
+    <div className={styles.container}>
+      <h1>Ingresos</h1>
+      <div className={styles.line}>
+        <Line 
+          data={data}
+          options= {options}
+        />
+      </div>
+    </div>
+  )
+}
+
+export default Income;

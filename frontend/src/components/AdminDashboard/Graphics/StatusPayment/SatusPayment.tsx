@@ -1,43 +1,86 @@
 import { Doughnut } from 'react-chartjs-2';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import styles from './StatusPayment.module.css'
-import { 
-  Chart as ChartJS, 
+import { Chart as ChartJS, Tooltip, ArcElement, Legend } from 'chart.js';
+
+ChartJS.register(
   ArcElement, 
   Tooltip, 
-  Legend } from 'chart.js';
+  ChartDataLabels, 
+  Legend,
+);
 
-ChartJS.register( ArcElement, Tooltip, Legend );
 
-const DataStatus = {
-  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-  datasets: [
-    {
-      label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)',
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)',
-      ],
-      borderWidth: 1,
+
+const StatusPayment= () => {
+  const DataStatus = {
+    // etiquetas a mostrar
+    labels: ['Pendiente', 'Cancelado', 'Pagado'],
+    datasets: [
+      {
+        label: 'Numero de pedidos',
+        // datos de cada etiqueta
+        data: [12, 3, 23],
+        backgroundColor: [
+          'rgba(211, 211, 5, 0.504)',
+          'rgba(222, 11, 11, 0.542)',
+          'rgba(15, 141, 11, 0.541)',
+        ],
+        borderColor: [
+          'rgba(211, 211, 5, 0.504)',
+          'rgba(222, 11, 11, 0.542)',
+          'rgba(15, 141, 11, 0.541)',
+        ],
+        borderWidth: 1,
+      },
+    ],
+  }
+
+  const options = {
+    plugins: {
+      datalabels: {
+        // estilos deseados en la grafica
+        anchor: 'center',
+        align: 'center',
+        color: 'black',
+        font: {
+          size: 25,
+          weight: 'bold'
+        },
+        // funcion para mostrar en porcentaje
+        formatter: (value: number, ctx: any) => {
+          const dataArr = ctx.chart.data.datasets[0].data;
+          const sum = dataArr.reduce((a: number, b: number) => a + b, 0);
+          const percentage = ((value * 100) / sum).toFixed(2) + '%';
+          return percentage;
+        },
+      },
+        // estilos deseados en las etiqueta
+      legend: {
+        padding: 10,
+        position: 'bottom',
+        labels: {
+          color: 'black',
+          font: {
+            size: 20,
+            weight: 'bold'
+          },
+          padding: 20,
+        }
     },
-  ],
-}
+  },
+  };
 
-
-const StatusPayment =  () => {
-  return <Doughnut data={DataStatus} className={styles.container}/>
-}
+  return (
+    <div className={styles.container}>
+      <h1>Total estado de pedidos</h1>
+      <div className={styles.doughnut}>
+        <Doughnut 
+        data={DataStatus} 
+        options= {options} />
+      </div>
+    </div>
+  );
+};
 
 export default StatusPayment;
