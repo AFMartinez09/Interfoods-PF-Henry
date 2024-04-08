@@ -16,28 +16,28 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const path_1 = __importDefault(require("path"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const { URL } = process.env;
-if (!URL) {
-    throw new Error('La variable de entorno URL no está definida en el archivo .env');
+const { URLBASE } = process.env;
+if (!URLBASE) {
+    throw new Error("La variable de entorno URL no está definida en el archivo .env");
 }
-const sequelize = new sequelize_typescript_1.Sequelize(URL, {
-    dialect: 'postgres',
-    models: [path_1.default.join(__dirname, 'models')],
+const sequelize = new sequelize_typescript_1.Sequelize(URLBASE, {
+    dialect: "postgres",
+    models: [path_1.default.join(__dirname, "models")],
     dialectOptions: {
         ssl: {
             require: true,
-            rejectUnauthorized: true
-        }
-    }
+            rejectUnauthorized: true,
+        },
+    },
 });
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             yield sequelize.authenticate();
-            console.log('Conexión con la base de datos establecida exitosamente.');
+            console.log("Conexión con la base de datos establecida exitosamente.");
             // Sincroniza los modelos con la base de datos
             yield sequelize.sync();
-            console.log('Modelos sincronizados con la base de datos.');
+            console.log("Modelos sincronizados con la base de datos.");
             // Accede a los modelos después de que la conexión se haya establecido
             const models = sequelize.models;
             Object.keys(models).forEach((modelName) => __awaiter(this, void 0, void 0, function* () {
@@ -46,7 +46,7 @@ function main() {
             }));
         }
         catch (error) {
-            console.error('No se pudo conectar con la base de datos:', error);
+            console.error("No se pudo conectar con la base de datos:", error);
         }
     });
 }
