@@ -1,5 +1,4 @@
 import { Line } from 'react-chartjs-2';
-import styles from './Income.module.css'
 import Style from '../Stock/Stock.module.css'
 import {
   Chart as ChartJS,
@@ -41,7 +40,7 @@ const Income = () => {
     <div className={Style.container}>
       <h1>Ingresos Semanales</h1>
       <div className={Style.dropdown}>
-      <button className={Style.dropdownBtn}>Plato</button>
+      <button className={Style.dropdownBtn}>Periodo</button>
       <div className={Style.dropdownContent}>
         <a className={Style.dropdownLink} href="/admindashboard/income/">Semanal</a>
         <a className={Style.dropdownLink} href="/admindashboard/income/mensual">Mensual</a>

@@ -32,6 +32,7 @@ import Mensual from './components/AdminDashboard/Graphics/Income/Mensual.tsx';
 import Principales from './components/AdminDashboard/Graphics/Stock/Principales.tsx';
 import Postres from './components/AdminDashboard/Graphics/Stock/Postres.tsx';
 import Vegano from './components/AdminDashboard/Graphics/Stock/Vegano.tsx';
+import DataUsers from './components/AdminDashboard/Graphics/DataUsers/DataUsers.tsx';
 
 function App() {
     const auth = getAuth(app);
@@ -114,6 +115,7 @@ function App() {
                   <Route path="/admindashboard/stock/principales" element={<Principales />}/>
                   <Route path="/admindashboard/stock/postres" element={<Postres />}/>
                   <Route path="/admindashboard/stock/vegano" element={<Vegano />}/>
+                  <Route path="/admindashboard/datausers" element={<DataUsers />}/>
                   <Route path="*" />
               </Routes>
               <Footer/>
