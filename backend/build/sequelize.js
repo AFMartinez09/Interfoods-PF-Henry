@@ -16,11 +16,11 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const path_1 = __importDefault(require("path"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const { URLBASE } = process.env;
-if (!URLBASE) {
+const { URL } = process.env;
+if (!URL) {
     throw new Error("La variable de entorno URL no está definida en el archivo .env");
 }
-const sequelize = new sequelize_typescript_1.Sequelize(URLBASE, {
+const sequelize = new sequelize_typescript_1.Sequelize(URL, {
     dialect: "postgres",
     models: [path_1.default.join(__dirname, "models")],
     dialectOptions: {
