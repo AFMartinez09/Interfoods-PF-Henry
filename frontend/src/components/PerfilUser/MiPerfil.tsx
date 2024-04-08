@@ -60,13 +60,17 @@ const MiPerfil = () => {
       [e.target.name]: e.target.value,
     });
   };
-
+  console.log(userData?.foto);
+  
   return (
     <div className={styles.container}>
       {userData ? (
         <div className={styles.userInfo}>
           <h2 className={styles.title}>Mi Perfil</h2>
-          <img src={userData.foto} alt={`${userData.nombre} ${userData.apellido}`} className={styles.userImage} />
+          <div className={styles.containerDato}>
+                <span className={styles.dataValue}>{userData.email}</span>
+          </div>
+          <img src={userData?.foto ? userData.foto : "https://monestir.org/wp-content/uploads/2020/06/usuario.png"}className={userData.foto ? styles.userImage : styles.userImageDefault} />
           {isEditing ? (
             <div className={styles.userData}>
               <div className={styles.containerDato}>
@@ -86,10 +90,6 @@ const MiPerfil = () => {
                   value={editedData.apellido !== undefined ? editedData.apellido : userData.apellido}
                   onChange={handleInputChange}
                 />
-              </div>
-              <div className={styles.containerDato}>
-                <span className={styles.dataType}>Email:</span>
-                <span className={styles.dataValue}>{userData.email}</span>
               </div>
               <div className={styles.containerDato}>
                 <span className={styles.dataType}>País:</span>
@@ -119,13 +119,13 @@ const MiPerfil = () => {
                 />
               </div>
               <button
-                className={styles.cancelChangesButton}
+                className={styles.editButton}
                 onClick={() => setIsEditing(false)}
               >
                 Cancelar
               </button>
               <button
-                className={styles.saveChangesButton}
+                className={styles.editButtoncancelar}
                 onClick={saveChanges}
               >
                 Guardar cambios
@@ -140,10 +140,6 @@ const MiPerfil = () => {
               <div className={styles.containerDato}>
                 <span className={styles.dataType}>Apellido:</span>
                 <span className={styles.dataValue}>{userData.apellido}</span>
-              </div>
-              <div className={styles.containerDato}>
-                <span className={styles.dataType}>Email:</span>
-                <span className={styles.dataValue}>{userData.email}</span>
               </div>
               <div className={styles.containerDato}>
                 <span className={styles.dataType}>País:</span>
