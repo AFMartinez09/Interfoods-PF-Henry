@@ -30,8 +30,8 @@ import Soporte from './components/Soporte/Soporte.tsx';
 import UpdateMeal from './components/AdminDashboard/UpdateMeal/UpdateMeal.tsx';
 
 // comentar y descomentar para deploy
-// export const URL = "https://pf-henry-jmnh.onrender.com"
-export const URL = "http://localhost:3000"
+export const URL = "https://pf-henry-jmnh.onrender.com"
+// export const URL = "http://localhost:3000"
 
 function App() {
     const auth = getAuth(app);
