@@ -174,7 +174,7 @@ export const signUpNewUser = (
     }
   };
 
-  export const upgradeMeal =  (
+  export const upgradeMeal = (
     id: number,
     nombre: string,
     origen: string,
@@ -188,47 +188,37 @@ export const signUpNewUser = (
     imagen: File | null,
     descripcion: string,
     stock: string,
-  ) => async(dispatch: (action: AnyAction) => void ) => {
+  ) => async (dispatch: (action: AnyAction) => void) => {
     try {
+      // Filtrar los campos vacíos
+      const requestBody = {
+        ...(nombre && { nombre }),
+        ...(origen && { origen }),
+        ...(ingredientes.length > 0 && { ingredientes }),
+        ...(kilocalorias && { kilocalorias }),
+        ...(carbohidratos && { carbohidratos }),
+        ...(grasas && { grasas }),
+        ...(peso && { peso }),
+        ...(precio && { precio }),
+        ...(tipo && { tipo }),
+        ...(imagen && { imagen }),
+        ...(descripcion && { descripcion }),
+        ...(stock && { stock }),
+      };
+  
+      await axios.put(`http://127.0.0.1:3000/api/food/${id}`, requestBody);
       
-      await axios.post(`${URL}/api/food/${id}`, {
-        nombre,
-        origen,
-        ingredientes,
-        kilocalorias,
-        carbohidratos,
-        grasas,
-        peso,
-        precio,
-        tipo,
-        imagen,
-        descripcion,
-        stock,
-      })
       return dispatch({
         type: PUT_MEAL,
-        payload: { 
-          nombre,
-          origen,
-          ingredientes,
-          kilocalorias,
-          carbohidratos,
-          grasas,
-          peso,
-          precio,
-          tipo,
-          imagen,
-          descripcion,
-          stock, 
-          },
+        payload: requestBody,
       });
-  
     } catch (error: any) {
       console.error("Error al actualizar plato:", error);
       window.alert("¡Error al actualizar plato!");
       throw new Error(error);
     }
   };
+  
 
   export const deleteMeal = (id: number) => async( dispatch:any ) => {
     try {

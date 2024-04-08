@@ -27,7 +27,7 @@ import EditDeleteFood from './components/AdminDashboard/Edit-DeleteFood/Edit-Del
 import Recuperar from './components/Recuperar/Recuperar.tsx';
 import Comprajoel from './components/Comprajoel/Comprajoel.tsx';
 import Soporte from './components/Soporte/Soporte.tsx';
-
+import UpdateMeal from './components/AdminDashboard/UpdateMeal/UpdateMeal.tsx';
 
 // comentar y descomentar para deploy
 // export const URL = "https://pf-henry-jmnh.onrender.com"
@@ -109,6 +109,7 @@ function App() {
                   <Route path="/Recuperarcontraseña" element={<Recuperar/>}/>
                   <Route path="/admindashboard/crearplato" element={<CreateMeal/>}/>
                   <Route path="/admindashboard/editar-eliminar" element={<EditDeleteFood />}/>
+                  <Route path="/admindashboard/editar/:id" element={<UpdateMeal />}/>
                   <Route path="*" />
                   <Route path="/api/payments/success" element={<Comprajoel/>}/>
                   <Route path="/Contactos" element={<Soporte/>}/>

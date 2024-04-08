@@ -49,7 +49,7 @@ const Card: React.FC<CardProps> = ({ name, img, weight, price, id, kilocalorias,
       </div>
       <div className={Style.conteinerPriceBtn}>
         <p className={Style.price}>{price}$</p>
-      <NavLink className={styled.editar} to={`/admindasboard/editar-eliminar/editarComida/${id}`}>Editar</NavLink>
+      <NavLink className={styled.editar} to={`/admindashboard/editar/${id}`}>Editar</NavLink>
       </div>
 
     </div>
