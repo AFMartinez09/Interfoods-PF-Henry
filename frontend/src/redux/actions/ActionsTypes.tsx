@@ -6,6 +6,8 @@ export const POST_MEAL = 'POST_MEAL';
 export const DELETE_MEAL = 'DELETE_MEAL';
 export const PUT_MEAL = 'DELETE_MEAL';
 export const SIGNUP_USER_EMAIL_DB = 'SIGNUP_USER_EMAIL_DB'
+export const SET_TRANSACCION_ID = 'SET_TRANSACCION_ID'
+export const SET_PAYMENT_STATUS = 'SET_PAYMENT_STATUS'
 
 // export const FILTER_BY_RATING  = 'FILTER_BY_RATING';
 // export const FILTER_BY_KAL  = 'FILTER_BY_KAL';

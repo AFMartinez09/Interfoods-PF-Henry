@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Style from './Cart.module.css';
+import { useDispatch } from 'react-redux';
+import { setTransaccionId } from '../../redux/actions/Actions';
+import axios from 'axios';
 
-interface Food {
+export interface Food {
   name: string;
   img: string;
   weight: number;
@@ -13,17 +16,16 @@ interface Food {
 interface CartProps {
   toggleMenu: () => void;
 }
-
 const Cart: React.FC<CartProps> = ({ toggleMenu }) => {
   const [foods, setFoods] = useState<Food[]>([]);
-  let [totalQuantity, setTotalQuantity] = useState<number>(0); // Estado para el total de la cantidad de productos en el carrito
-
-  useEffect(() => {
+  const [totalQuantity, setTotalQuantity] = useState<number>(0);
+  const dispatch = useDispatch();
+totalQuantity //!ESTA PALABRA ESTA YA QUE TOTALQUANTITY HACE QUE NO SALGA ERRORES PERO NO MOLESTA,NI SE VE
+    useEffect(() => {
     const carritoGuardado = localStorage.getItem('cart');
     if (carritoGuardado) {
       setFoods(JSON.parse(carritoGuardado));
-      totalQuantity = JSON.parse(carritoGuardado).reduce((total : any, food : any) => total + food.quantity, 0);
-      setTotalQuantity(totalQuantity);
+      setTotalQuantity(JSON.parse(carritoGuardado).reduce((total: any, food: any) => total + food.quantity, 0));
     }
   }, []);
 
@@ -56,7 +58,6 @@ const Cart: React.FC<CartProps> = ({ toggleMenu }) => {
     setTotalQuantity(totalQuantity);
   };
   
-
   const calcularTotal = () => {
     return foods.reduce((total, food) => total + (food.price * food.quantity), 0);
   };
@@ -66,9 +67,39 @@ const Cart: React.FC<CartProps> = ({ toggleMenu }) => {
     if (!target.closest(`.${Style.cart}`)) {
       toggleMenu();
     }
+   };
+
+   const handleBuyClick = async () => {
+    try {
+      console.log("Handle buy click executed");
+      const totalPrice = foods.reduce((total, food) => total + (food.price * food.quantity), 0);
+      const selectedProducts = foods.map(food => food.name);
+      const formattedProducts = selectedProducts.join(", ");
+
+  
+      const response = await axios.post("http://localhost:3000/api/payments/create-order", {
+        idCompra: 'ID_DE_LA_COMPRA',
+        producto: formattedProducts,
+        precio: totalPrice,
+        idUsuario: 'ID_DEL_USUARIO',
+      });
+      console.log("Response from backend:", response.data);
+      const transactionId = response.data.transactionId;
+      
+      dispatch(setTransaccionId(transactionId));
+      
+      const mercadoPagoURL = response.data;
+      window.location.href = mercadoPagoURL
+
+      
+    } catch (error) {
+      console.error("Error al procesar la compra:", error);
+    }
   };
 
-  return (
+  
+
+return (
     <div className={Style.pageCart} onClick={handleClickOutside}>
       <div className={Style.cart}>
         <h2 className={Style.cartTitle}>Carrito</h2>
@@ -78,18 +109,18 @@ const Cart: React.FC<CartProps> = ({ toggleMenu }) => {
             <div key={food.id} className={Style.cartItem}>
                 <img src={food.img} alt={food.name} className={Style.itemImage} />
                 <div className={Style.infoprecio}>
-                <div className={Style.info}>
-                  <p className={Style.name}>{food.name}</p>
-                </div>
-                <div className={Style.info}>
-                  <div className={Style.precio}>
-                    <p>P/u: ${food.price ? food.price.toFixed(2) : "N/A"}</p>
+                  <div className={Style.info}>
+                    <p className={Style.name}>{food.name}</p>
                   </div>
-                  <div className={Style.botonprecio}>
-                     <button onClick={() => removeFromCart(food.id)} className={Style.btnCant}>-</button>
-                     <p className={Style.cant}>{food.quantity}</p>
-                     <button onClick={() => addToCart(food.id)} className={Style.btnCant}>+</button>
-                  </div>
+                  <div className={Style.info}>
+                    <div className={Style.precio}>
+                      <p>P/u: ${food.price ? food.price.toFixed(2) : "N/A"}</p>
+                    </div>
+                    <div className={Style.botonprecio}>
+                       <button onClick={() => removeFromCart(food.id)} className={Style.btnCant}>-</button>
+                       <p className={Style.cant}>{food.quantity}</p>
+                       <button onClick={() => addToCart(food.id)} className={Style.btnCant}>+</button>
+                    </div>
                   </div>
                 </div>
             </div>
@@ -97,11 +128,11 @@ const Cart: React.FC<CartProps> = ({ toggleMenu }) => {
         </div>
         <div className={Style.totalContainer}>
           <p className={Style.totalAmount}>Total a pagar:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${calcularTotal().toFixed(2)}</p>
-          <button className={Style.checkoutButton}>Comprar</button>
+          <button className={Style.checkoutButton} onClick={handleBuyClick} >Comprar</button>
+          
         </div>
       </div>
     </div>
   );
-};
-
+}
 export default Cart;
