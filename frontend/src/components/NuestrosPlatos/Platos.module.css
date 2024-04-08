@@ -24,6 +24,7 @@
 
 
 .loading{
+  margin-top: 40px;
   margin-left: 50rem;
   height: 400px;
   width: 400px;
@@ -40,4 +41,9 @@
   .cards {
     grid-template-columns: repeat(1, 1fr); /* Cuando el ancho del viewport es 600px o menos, cambia a 1 columna */
   }
+}
+
+.noexiste{
+  font-size: 40px;
+  font-weight: 900;
 }

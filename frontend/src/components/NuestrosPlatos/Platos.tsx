@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { StoreState } from '../../redux/reducer/Reducer';
 import Card from '../Card/Card';
 import Style from './Platos.module.css'
-import Loading from '../Loading/Loading'; 
+
 
 
 interface Food {
@@ -39,7 +39,7 @@ const NuestrosPlatos = () => {
         <div className={Style.cards}>
           {loading ? (
             <div className={Style.loading}>
-               <Loading/>
+               <div className={Style.noexiste}>Lo sentimos mucho, No existen platos disponibles con estos criterios.</div>
             </div>
           ) : (
             foods.map((food) => (
