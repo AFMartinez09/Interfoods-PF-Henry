@@ -4,7 +4,9 @@ export const pay = async (
   idCompra: string,
   producto: string,
   precio: number,
-  idUsuario: string
+  idUsuario: string,
+  emailUser: string, 
+  nombreUser:string,
 ) => {
   try {
     const response = await preference.create({
@@ -20,6 +22,8 @@ export const pay = async (
         ],
         metadata: {
           idUsuario: idUsuario,
+          emailUser: emailUser,
+          nombreUser: nombreUser 
         },
         back_urls: {
           // success: "https://interfoods.netlify.app/api/payments/success", //ruta de deploy

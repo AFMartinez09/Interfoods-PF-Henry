@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.pay = void 0;
 const mercadoPago_1 = require("../config/mercadoPago");
-const pay = (idCompra, producto, precio, idUsuario) => __awaiter(void 0, void 0, void 0, function* () {
+const pay = (idCompra, producto, precio, idUsuario, emailUser, nombreUser) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const response = yield mercadoPago_1.preference.create({
             body: {
@@ -26,6 +26,8 @@ const pay = (idCompra, producto, precio, idUsuario) => __awaiter(void 0, void 0,
                 ],
                 metadata: {
                     idUsuario: idUsuario,
+                    emailUser: emailUser,
+                    nombreUser: nombreUser
                 },
                 back_urls: {
                     // success: "https://interfoods.netlify.app/api/payments/success", //ruta de deploy

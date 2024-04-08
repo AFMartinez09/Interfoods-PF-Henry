@@ -12,16 +12,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.success = void 0;
 const nodemailer_1 = require("../config/nodemailer");
 const success = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id, date_created, date_approved, status, payment_id, payment_type, transaction_amount, currency_id, description, buyer_email, } = req.query;
+    const { id, date_created, date_approved, status, payment_id, payment_type, transaction_amount, currency_id, description, buyer_email, user_email, user_name } = req.query;
     try {
         if (status === "approved") {
             console.log(`El pago con ID ${payment_id} ha sido aprobado`);
             // Envía correo electrónico al comprador
             yield nodemailer_1.transporter.sendMail({
                 from: process.env.EMAIL_INTERFOOD,
-                to: `${buyer_email}, "grupointerfoods@gmail.com"`,
+                to: `${user_email}, "grupointerfoods@gmail.com"`,
                 subject: "Confirmación de compra en InterFood",
-                text: `¡Hola ${buyer_email}! Tu pago por ${description} ha sido aprobado. Detalles de la compra: ID de pago: ${payment_id}, Monto: ${transaction_amount} ${currency_id}. ¡Gracias por tu compra!`,
+                text: `¡Hola ${user_name}! Tu pago por ${description} ha sido aprobado. Detalles de la compra: ID de pago: ${payment_id}, Monto: ${transaction_amount} ${currency_id}. ¡Gracias por tu compra!`,
             });
             res.status(200).send({
                 message: "Pago Exitoso",

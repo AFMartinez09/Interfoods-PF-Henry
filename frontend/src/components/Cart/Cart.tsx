@@ -17,6 +17,7 @@ interface CartProps {
   toggleMenu: () => void;
 }
 const Cart: React.FC<CartProps> = ({ toggleMenu }) => {
+  const [userData, setUserData] = useState<any>(null);
   const [foods, setFoods] = useState<Food[]>([]);
   const [totalQuantity, setTotalQuantity] = useState<number>(0);
   const dispatch = useDispatch();
@@ -69,6 +70,19 @@ totalQuantity //!ESTA PALABRA ESTA YA QUE TOTALQUANTITY HACE QUE NO SALGA ERRORE
     }
    };
 
+   const getUserData = () => {
+    const userDataString = localStorage.getItem('user');
+    if (userDataString) {
+      const userData = JSON.parse(userDataString);
+      setUserData(userData);
+    }
+  };
+
+  useEffect(getUserData)
+
+  const emailUser = userData.email
+  const nombreUser = userData.nombre
+
    const handleBuyClick = async () => {
     try {
       console.log("Handle buy click executed");
@@ -82,6 +96,8 @@ totalQuantity //!ESTA PALABRA ESTA YA QUE TOTALQUANTITY HACE QUE NO SALGA ERRORE
         producto: formattedProducts,
         precio: totalPrice,
         idUsuario: 'ID_DEL_USUARIO',
+        emailUser,
+        nombreUser
       });
       console.log("Response from backend:", response.data);
       const transactionId = response.data.transactionId;

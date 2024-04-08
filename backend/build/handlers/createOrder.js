@@ -13,9 +13,9 @@ exports.createOrder = void 0;
 const pay_1 = require("../controllers/pay");
 const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log("creando orden de pago");
-    const { idCompra, producto, precio, idUsuario } = req.body;
+    const { idCompra, producto, precio, idUsuario, emailUser, nombreUser } = req.body;
     try {
-        const response = yield (0, pay_1.pay)(idCompra, producto, precio, idUsuario);
+        const response = yield (0, pay_1.pay)(idCompra, producto, precio, idUsuario, emailUser, nombreUser);
         res.status(201).json(response);
         console.log("orden creada con éxito");
     }

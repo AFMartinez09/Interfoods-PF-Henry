@@ -13,6 +13,8 @@ export const success = async (req: Request, res: Response) => {
     currency_id,
     description,
     buyer_email,
+    user_email,
+    user_name 
   } = req.query;
   try {
     if (status === "approved") {
@@ -20,9 +22,9 @@ export const success = async (req: Request, res: Response) => {
       // Envía correo electrónico al comprador
       await transporter.sendMail({
         from: process.env.EMAIL_INTERFOOD,
-        to: `${buyer_email}, "grupointerfoods@gmail.com"`,
+        to: `${user_email}, "grupointerfoods@gmail.com"`,
         subject: "Confirmación de compra en InterFood",
-        text: `¡Hola ${buyer_email}! Tu pago por ${description} ha sido aprobado. Detalles de la compra: ID de pago: ${payment_id}, Monto: ${transaction_amount} ${currency_id}. ¡Gracias por tu compra!`,
+        text: `¡Hola ${user_name}! Tu pago por ${description} ha sido aprobado. Detalles de la compra: ID de pago: ${payment_id}, Monto: ${transaction_amount} ${currency_id}. ¡Gracias por tu compra!`,
       });
 
       res.status(200).send({
