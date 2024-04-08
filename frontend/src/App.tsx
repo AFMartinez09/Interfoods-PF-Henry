@@ -21,8 +21,9 @@ import Error404 from './components/Error/error.tsx';
 import UserForm from './components/userForm/UserForm.tsx';
 import HomeAdmin from './components/AdminDashboard/HomeAdmin/HomeAdmin.tsx';
 import HomeUser from './components/profileUser/HomeUser.tsx';
-import FormMeal from './components/AdminDashboard/RegisterMeal/FormMeal.tsx';
+import CreateMeal from './components/AdminDashboard/CreateMeal/CreateMeal.tsx';
 import MiPerfil from './components/PerfilUser/MiPerfil.tsx';
+import EditDeleteFood from './components/AdminDashboard/Edit-DeleteFood/Edit-DeleteFood.tsx';
 import Recuperar from './components/Recuperar/Recuperar.tsx';
 import Comprajoel from './components/Comprajoel/Comprajoel.tsx';
 import Soporte from './components/Soporte/Soporte.tsx';
@@ -103,10 +104,12 @@ function App() {
                   <Route path="/Register" element={<UserForm/>}/>
                   <Route path="/admindashboard" element={<HomeAdmin/>}/>
                   <Route path="/useraccount" element={<HomeUser/>}/>
-                  <Route path="/createMeal" element={<FormMeal/>}/>
+                  <Route path="/createMeal" element={<CreateMeal/>}/>
                   <Route path="useraccount/editarperfil" element={<UserForm/>}/>
                   <Route path="/MiPerfil" element={<MiPerfil/>}/>
                   <Route path="/Recuperarcontraseña" element={<Recuperar/>}/>
+                  <Route path="/admindashboard/crearplato" element={<CreateMeal/>}/>
+                  <Route path="/admindashboard/editar-eliminar" element={<EditDeleteFood />}/>
                   <Route path="*" />
                   <Route path="/api/payments/success" element={<Comprajoel/>}/>
                   <Route path="/Contactos" element={<Soporte/>}/>

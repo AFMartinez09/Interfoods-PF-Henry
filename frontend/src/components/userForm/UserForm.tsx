@@ -1,12 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import styles from './UserForm.module.css';
 import validateUser from './UserValidate';
 import { useNavigate } from 'react-router-dom';
-import { signUpNewUser } from '../../redux/actions/Actions';
+import { imageUpload, signUpNewUser } from '../../redux/actions/Actions';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
-
 
 interface FormValues {
   profilePictureName: string;
@@ -15,7 +14,7 @@ interface FormValues {
   email: string;
   password: string;
   confirmPassword: string;
-  profilePicture?: File | null;
+  profilePicture?: string | null;
   country: string;
   city: string;
   address: string;
@@ -35,38 +34,50 @@ const initialValues: FormValues = {
 };
 
 const UserForm: React.FC = () => {
+  const [profilePictureUrl, setProfilePictureUrl] = useState<string | null>(null);
   const history = useNavigate()
   const dispatch = useDispatch();
   
   const handleSubmit = async (values: FormValues) => {
     try {
-      await signUp(values, dispatch);
+      // Envía la URL de la imagen al servidor junto con otros datos del formulario
+      await signUp({ ...values, profilePicture: profilePictureUrl || '' }, dispatch);
       history('/');
     } catch (error) {
       console.error("Error al crear la cuenta:", error);
     }
   };
+
+  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = event.currentTarget.files?.[0];
+    setProfilePictureUrl(selectedFile)
+  };
+
   
- const signUp = async (values: FormValues, dispatch: any) => {
-  try {
-    console.log(values.email, values.password, values.firstName, values.lastName, values.profilePicture?.name, values.city, values.country, values.address, false, true );
-    await dispatch(signUpNewUser(values.email, values.password, values.firstName, values.lastName, values.profilePictureName, values.city, values.country, values.address, false, true )); 
-    Swal.fire({
-      title: 'Cuenta creada',
-      text: 'Tu cuenta ha sido creada exitosamente, Revisa tu Email para mas info',
-      icon: 'success',
-      confirmButtonText: 'Entendido'
-    });
-  } catch (error) {
-    console.error("Error al iniciar sesión:", error);
-    Swal.fire({
-      title: 'Error al crear cuenta',
-      text: 'Hubo un problema al intentar crear tu cuenta. Por favor, inténtalo de nuevo más tarde.',
-      icon: 'error',
-      confirmButtonText: 'Entendido'
-    });
-  }
-};
+  const signUp = async (values: FormValues, dispatch: any) => {
+    try {
+      const urlImage = await imageUpload(profilePictureUrl)
+      console.log(values.email, values.password, values.firstName, values.lastName, urlImage, values.country, values.city, values.address, false, true);
+      await dispatch(signUpNewUser(values.email, values.password, values.firstName, values.lastName, urlImage,values.country, values.city, values.address, false, true )); 
+      
+      Swal.fire({
+        title: 'Cuenta creada',
+        text: 'Tu cuenta ha sido creada exitosamente, Revisa tu Email para mas info',
+        icon: 'success',
+        confirmButtonText: 'Entendido'
+      });
+
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error);
+      Swal.fire({
+        title: 'Error al crear cuenta',
+        text: 'Hubo un problema al intentar crear tu cuenta. Por favor, inténtalo de nuevo más tarde.',
+        icon: 'error',
+        confirmButtonText: 'Entendido'
+      });
+    }
+  };
+
 return (
   <div className={styles.container}>
     <Formik
@@ -74,7 +85,7 @@ return (
       validationSchema={validateUser}
       onSubmit={handleSubmit}
     >
-      {({ setFieldValue, isValid, dirty }) => (
+      {({ isValid, dirty }) => (
         <Form className={styles.form}>
           <h1>Crear cuenta</h1>
           <div>
@@ -138,19 +149,17 @@ return (
           </div>
 
           <div>
-            <label htmlFor="profilePicture">Foto de perfil: (formatos en .jpg, .jpeg ó .png)</label>
-            <br />
-            <input
-              className={styles.field}
-              type="file"
-              id="profilePicture"
-              name="profilePicture"
-              accept="image/png, image/jpeg, image/jpg"
-              onChange={(event) =>
-                setFieldValue('profilePicture', event.currentTarget.files?.[0])
-              }
-            />
-            <br />
+          <label htmlFor="profilePicture">Foto de perfil: (formatos en .jpg, .jpeg ó .png)</label>
+              <br />
+              <input
+                className={styles.field}
+                type="file"
+                id="profilePicture"
+                name="profilePicture"
+                accept="image/png, image/jpeg, image/jpg"
+                onChange={handleFileChange}
+              />
+              <br />
             <p className={styles.error}><ErrorMessage name="profilePicture" /></p>
           </div>
 
