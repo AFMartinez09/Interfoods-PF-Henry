@@ -79,9 +79,9 @@ totalQuantity //!ESTA PALABRA ESTA YA QUE TOTALQUANTITY HACE QUE NO SALGA ERRORE
   };
 
   useEffect(getUserData)
-
-  const emailUser = userData.email
-  const nombreUser = userData.nombre
+  
+  const emailUser = userData?.email
+  const nombreUser = userData?.nombre
 
    const handleBuyClick = async () => {
     try {
