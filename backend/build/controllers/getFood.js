@@ -37,6 +37,17 @@ const foodServices = __importStar(require("../services/foodServices"));
 const getFood = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const finalResponse = yield foodServices.getEntriesWithoutSensitiveInfo();
+        finalResponse.sort((a, b) => {
+            // Convertir los nombres a minúsculas para un ordenamiento sin distinción de mayúsculas/minúsculas
+            const nombreA = a.nombre.toLowerCase();
+            const nombreB = b.nombre.toLowerCase();
+            // Comparar los nombres y devolver el resultado de la comparación
+            if (nombreA < nombreB)
+                return -1;
+            if (nombreA > nombreB)
+                return 1;
+            return 0;
+        });
         return res.send(finalResponse);
     }
     catch (error) {

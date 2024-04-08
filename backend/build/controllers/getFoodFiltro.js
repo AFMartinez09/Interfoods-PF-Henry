@@ -41,6 +41,17 @@ const getFoodFiltro = (_req, res) => __awaiter(void 0, void 0, void 0, function*
         ; // Suponiendo que los parámetros se envían en el cuerpo de la solicitud
         // Lógica de filtrado basada en los parámetros recibidos
         let finalResponse = yield foodServices.getEntriesWithoutSensitiveInfo();
+        finalResponse.sort((a, b) => {
+            // Convertir los nombres a minúsculas para un ordenamiento sin distinción de mayúsculas/minúsculas
+            const nombreA = a.nombre.toLowerCase();
+            const nombreB = b.nombre.toLowerCase();
+            // Comparar los nombres y devolver el resultado de la comparación
+            if (nombreA < nombreB)
+                return -1;
+            if (nombreA > nombreB)
+                return 1;
+            return 0;
+        });
         // Aplicar filtros según los parámetros recibidos
         if (pais != "Todos") {
             // Filtrar por país si el parámetro está presente
