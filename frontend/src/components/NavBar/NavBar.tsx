@@ -112,9 +112,13 @@ const NavBar: React.FC<NavBarProps> = ({ onItemClick, toggleMenu, showMenu, auth
       </div>
       <div>
       {auth ? (
-  <button onClick={toggleMenuAuth} className={styles.navbtn}>
-    <img src="https://monestir.org/wp-content/uploads/2020/06/usuario.png" alt="Logo 2" className={styles.navUser2} />
-  </button>
+        <button onClick={toggleMenuAuth} className={styles.navbtn}>
+          {userData && userData.foto ? (
+            <img src={userData.foto} alt="Logo 3" className={styles.navUser3} />
+          ) : (
+            <img src="https://monestir.org/wp-content/uploads/2020/06/usuario.png" alt="Logo 2" className={styles.navUser2} />
+          )}
+        </button>
 ) : (
   <NavLink to="/Login" onClick={() => handleItemClick('LOGIN')}>
     <img src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../releases/preview/2019/png/iconmonstr-door-7.png&r=0&g=0&b=0" alt="Logo 2" className={styles.navUser} />
@@ -125,7 +129,7 @@ const NavBar: React.FC<NavBarProps> = ({ onItemClick, toggleMenu, showMenu, auth
         </button>
       </div>
       {showMenuAuth && <SesionDesplegable toggleMenu={toggleMenuAuth} />}
-      {showMenu && <Cart toggleMenu={handleToggleMenu} />}
+      {showMenu && <Cart toggleMenu={handleToggleMenu}/>}
     </div>
   );
 };

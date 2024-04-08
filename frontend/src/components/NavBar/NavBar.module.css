@@ -95,6 +95,7 @@
 .navbtn{
   background-color: transparent;
   border: none;
+  margin-right: 30px;
 }
 
 /* Loading.module.css */
@@ -158,4 +159,23 @@
   padding-top: 10px;
   cursor: pointer;
   filter: invert(10);
+}
+.navUser3 {
+  margin-left: 10px; 
+  margin-right: -35px;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+
+.carrito{
+  margin-left: 10px;
+}
+
+
+.navUser3:hover{
+  transform: scale(1.10);
 }
