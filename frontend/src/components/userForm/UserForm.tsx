@@ -34,15 +34,14 @@ const initialValues: FormValues = {
 };
 
 const UserForm: React.FC = () => {
-  const [profilePictureUrl, setProfilePictureUrl] = useState<string | null>(null);
-  const history = useNavigate()
+  const [profilePictureUrl, setProfilePictureUrl] = useState<File | undefined>(undefined);
+  const history = useNavigate(); // Usa useHistory para obtener el objeto history
   const dispatch = useDispatch();
   
   const handleSubmit = async (values: FormValues) => {
     try {
-      // Envía la URL de la imagen al servidor junto con otros datos del formulario
-      await signUp({ ...values, profilePicture: profilePictureUrl || '' }, dispatch);
-      history('/');
+      await signUp(values, dispatch);
+      // history('/');
     } catch (error) {
       console.error("Error al crear la cuenta:", error);
     }
@@ -50,25 +49,30 @@ const UserForm: React.FC = () => {
 
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.currentTarget.files?.[0];
-    setProfilePictureUrl(selectedFile)
+    setProfilePictureUrl(selectedFile);
   };
 
-  
   const signUp = async (values: FormValues, dispatch: any) => {
     try {
-      const urlImage = await imageUpload(profilePictureUrl)
-    
-      await dispatch(signUpNewUser(values.email, values.password, values.firstName, values.lastName, urlImage,values.country, values.city, values.address, false, true )); 
-      
-      Swal.fire({
-        title: 'Cuenta creada',
-        text: 'Tu cuenta ha sido creada exitosamente, Revisa tu Email para mas info',
-        icon: 'success',
-        confirmButtonText: 'Entendido'
-      });
+        let urlImage: string | null = null;
+  
+        if (profilePictureUrl !== undefined) {
+          urlImage = await imageUpload(profilePictureUrl);
+        } else {
+          urlImage = ''
+        }
 
+        console.log("Valores para signUpNewUser:", values.email, values.password, values.firstName, values.lastName, urlImage, values.country, values.city, values.address, false, true);
+        await dispatch(signUpNewUser(values.email, values.password, values.firstName, values.lastName, urlImage, values.country, values.city, values.address, false, true)); 
+      
+        Swal.fire({
+          title: 'Cuenta creada',
+          text: 'Tu cuenta ha sido creada exitosamente, Revisa tu Email para más información',
+          icon: 'success',
+          confirmButtonText: 'Entendido'
+        });
     } catch (error) {
-      console.error("Error al iniciar sesión:", error);
+      console.error("Error al crear cuenta:", error);
       Swal.fire({
         title: 'Error al crear cuenta',
         text: 'Hubo un problema al intentar crear tu cuenta. Por favor, inténtalo de nuevo más tarde.',

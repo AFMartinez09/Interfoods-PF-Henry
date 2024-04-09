@@ -38,7 +38,7 @@ const initialValues: PropsCreateMeal = {
 };
 
 const CreateMeal: React.FC = () => {
-  const [profilePictureUrl, setProfilePictureUrl] = useState<string | null>(null);
+  const [profilePictureUrl, setProfilePictureUrl] = useState<File | undefined>(undefined);
   const dispatch = useDispatch();
 
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,29 +46,44 @@ const CreateMeal: React.FC = () => {
     await setProfilePictureUrl(selectedFile);
   };
   
-  const handleSubmit = async(values: PropsCreateMeal) => {
-    const urlImage = await imageUpload(profilePictureUrl)
-    
+  const handleSubmit = async (values: PropsCreateMeal) => {  
     try {
-      await dispatch(createMeal(
-        values.nombre, 
-        values.origen,
-        values.ingredientes,
-        values.kilocalorias,
-        values.carbohidratos,
-        values.grasas,
-        values.peso,
-        values.precio,
-        values.tipo,
-        urlImage,
-        values.descripcion,
-        values.stock,
-       ))
-
+      // Envía la URL de la imagen al servidor junto con otros datos del formulario
+      await submit({ ...values}, dispatch);
     } catch (error) {
-      console.error(error)
-    };
+      console.error("Error al crear la cuenta:", error);
+    }
   };
+
+  const submit = async (values: PropsCreateMeal, dispatch: any) => {
+    try {
+        let urlImage: string | null = null;
+  
+        if (profilePictureUrl !== undefined) {
+          urlImage = await imageUpload(profilePictureUrl);
+        }
+
+        await dispatch(
+          createMeal(
+            values.nombre,
+            values.origen,
+            values.ingredientes,
+            values.kilocalorias,
+            values.carbohidratos,
+            values.grasas,
+            values.peso,
+            values.precio,
+            values.tipo,
+            urlImage,
+            values.descripcion,
+            values.stock
+          )
+        );
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
 
   return (
     <div className='pageForm'>

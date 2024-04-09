@@ -20,35 +20,31 @@ export const getFood = (comida : any) => ({
 
 // ----------------------------------------------------------------------------
 
-export const signUpNewUser = (
-  email: string, 
-  password: string, 
+export const signUpNewUser = (  email: string, 
+  password:string, 
   nombre: string,
   apellido: string,
-  foto: string,
+  foto: string | null,
   pais: string,
   ciudad: string,
   direccion: string,
   admin: boolean,
-  habilitado: boolean
-) => async (dispatch: Dispatch) => {
-  try { 
-    let respuesta = await axios.get<{ user: UserData }>(`${URL}/api/register/usuario/${email}`);
-    if(respuesta === null){
-    await axios.post(`${URL}/api/register/signup`, {       
-      email,
-      password,
-      nombre,
-      apellido,
-      foto,
-      pais,
-      ciudad,
-      direccion,
-      admin,
-      habilitado
-    });
-    }
-    dispatch({
+  habilitado: boolean) => async (dispatch: any) => {
+  try {  
+
+    await axios.post(`${URL}/api/register/signup`, {            
+    email,
+    password,
+    nombre,
+    apellido,
+    foto,
+    pais,
+    ciudad,
+    direccion,
+    admin,
+    habilitado });
+
+    return dispatch({
       type: SIGNUP_USER_EMAIL,
     });
 
@@ -86,6 +82,8 @@ export const signUpNewUser = (
   export const getUser = async (email: string): Promise<UserData> => {
     try {
       // Realizar la llamada a la API con Axios 
+      console.log(email);
+      
       const response = await axios.get<{ user: UserData }>(`${URL}/api/register/usuario/${email}`);
   
       // Obtener el usuario devuelto en la respuesta
@@ -118,7 +116,7 @@ export const signUpNewUser = (
     }
   };
 
-  export const createMeal =  (
+  export const createMeal = (
     nombre: string,
     origen: string,
     ingredientes: string[],
@@ -128,12 +126,11 @@ export const signUpNewUser = (
     peso: number,
     precio: number,
     tipo: string,
-    imagen: File | null,
+    imagen: string | null,
     descripcion: string,
     stock: string,
-  ) => async( dispatch: (action:AnyAction) => void ) => {
+  ) => async (dispatch: Dispatch) => {
     try {
-      
       await axios.post(`${URL}/api/food/postFood`, {
         nombre,
         origen,
@@ -147,11 +144,11 @@ export const signUpNewUser = (
         imagen,
         descripcion,
         stock,
-
-      })
-      return dispatch({
+      });
+  
+      dispatch({
         type: POST_MEAL,
-        payload: { 
+        payload: {
           nombre,
           origen,
           ingredientes,
@@ -164,16 +161,15 @@ export const signUpNewUser = (
           imagen,
           descripcion,
           stock,
-          },
+        },
       });
-  
     } catch (error: any) {
       console.error("Error al crear un nuevo plato:", error);
       window.alert("¡Error al crear un nuevo plato!");
       throw new Error(error);
     }
   };
-
+  
   export const upgradeMeal = (
     id: number,
     nombre: string,

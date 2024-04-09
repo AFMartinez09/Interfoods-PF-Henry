@@ -163,12 +163,14 @@ export const Login = () => {
     if (Object.keys(validateErrors).length === 0) {
       try {
         // Iniciar sesión con Firebase
-        const userCredential = await signInWithEmailAndPassword(auth, login.email, login.password);
-        const userEmail = userCredential.user?.email;
+        await signInWithEmailAndPassword(auth, login.email, login.password);
+        const userEmail = login.email;
 
         // Llamar a la función registerUser pasando el correo electrónico
         if (userEmail) {
-          const userData = await getUser(userEmail);
+          console.log(userEmail);
+          
+          await getUser(userEmail);
     
           
         }
