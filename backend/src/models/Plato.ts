@@ -49,10 +49,9 @@ export class Plato extends Model {
   @Column(DataType.STRING(1000))
   descripcion!: string;
 
-  @Column(DataType.INTEGER)
-  stock!: number;
+  @Column(DataType.STRING)
+  stock!: string;
 
-  
   @HasMany(() => Review)
   reviews!: Review[];
 }

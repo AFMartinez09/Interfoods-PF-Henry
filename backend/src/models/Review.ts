@@ -1,7 +1,6 @@
 import { Table, Column, Model, DataType, ForeignKey, BelongsTo } from 'sequelize-typescript';
 import { Usuario } from './Usuario';
 import { Plato } from './Plato';
-'../Plato';
 
 @Table({
   modelName: 'Review',
