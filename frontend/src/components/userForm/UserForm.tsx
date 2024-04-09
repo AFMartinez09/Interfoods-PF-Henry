@@ -35,13 +35,13 @@ const initialValues: FormValues = {
 
 const UserForm: React.FC = () => {
   const [profilePictureUrl, setProfilePictureUrl] = useState<File | undefined>(undefined);
-  const history = useNavigate(); // Usa useHistory para obtener el objeto history
+  const history = useNavigate();
   const dispatch = useDispatch();
   
   const handleSubmit = async (values: FormValues) => {
     try {
       await signUp(values, dispatch);
-      // history('/');
+      history('/');
     } catch (error) {
       console.error("Error al crear la cuenta:", error);
     }

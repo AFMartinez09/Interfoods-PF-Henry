@@ -4,6 +4,7 @@ import styled from './CardAdmin.module.css';
 import React from 'react';
 import { useDispatch } from "react-redux";
 import { deleteMeal } from "../../../../redux/actions/Actions";
+import Swal from 'sweetalert2';
 
 
 interface CardProps {
@@ -21,17 +22,30 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ name, img, weight, price, id, kilocalorias, carbohidratos, stock, tipo}) => {
   
   const dispatch = useDispatch();
-  //! Esto esta malo simplemente lo hice para TS me dejara hacer commit
-  // Elimina el id cuando se dé click en X
+
   const handleDelete = async(id:number) => {
+    try {
+      await delet(dispatch, id)
+    } catch (error) {
+      console.error("Error al borrar:", error);
+      Swal.fire({
+        title: 'Error al borrar',
+        text: 'Hubo un problema al intentar borrar un plato. Por favor, inténtalo de nuevo más tarde.',
+        icon: 'error',
+        confirmButtonText: 'Entendido'
+      });
+    }
+  }
+
+  const delet = async (dispatch: any, id: number) => {
     try {
       await dispatch(deleteMeal(id))
     } catch (error) {
-      
+      console.error("Error al borrar:", error);
     }
   }
-// Style => viene de Card
-// styled => es de CardAdmin
+
+
   return (
 
     <div className={styled.card}>
