@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Plato = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
+const Review_1 = require("./Review"); // Asegúrate de que la ruta de importación es correcta
 let Plato = class Plato extends sequelize_typescript_1.Model {
 };
 exports.Plato = Plato;
@@ -65,6 +66,10 @@ __decorate([
     (0, sequelize_typescript_1.Column)(sequelize_typescript_1.DataType.STRING),
     __metadata("design:type", String)
 ], Plato.prototype, "stock", void 0);
+__decorate([
+    (0, sequelize_typescript_1.HasMany)(() => Review_1.Review),
+    __metadata("design:type", Array)
+], Plato.prototype, "reviews", void 0);
 exports.Plato = Plato = __decorate([
     (0, sequelize_typescript_1.Table)({
         modelName: 'Plato',
