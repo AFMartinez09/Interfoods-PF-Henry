@@ -220,16 +220,10 @@ export const Login = () => {
       const userGoogleNombre = displayNameParts[0];
       const userGoogleApellido = displayNameParts.slice(1).join(' ');
       
-      // Registra al usuario en la base de datos
-      dispatch(signUpNewUserDb(userGoogleEmail, userGoogleNombre, userGoogleApellido, '', '', '', '', false, true));
-  
-      // Obtiene los datos del usuario desde la base de datos
-      const userData = await getUser(userGoogleEmail);
-  
-      // Hacer algo con los datos del usuario, por ejemplo, guardarlos en el estado global
-      // O redirigir a la página principal, etc.
-   
-  
+      signUpNewUserDbDispatch(dispatch,userGoogleEmail, userGoogleNombre, userGoogleApellido, '', '', '', '', false, true )
+
+      await getUser(userGoogleEmail);
+
     } catch (error) {
       console.error("Error al iniciar sesión con Google:", error);
       // Mostrar mensaje de error
@@ -243,9 +237,24 @@ export const Login = () => {
   };
   
  
-  
-
-  
+  const signUpNewUserDbDispatch = (
+    dispatch: any,
+    email: string,
+    nombre: string,
+    apellido: string,
+    foto: string,
+    pais: string,
+    ciudad: string,
+    direccion: string,
+    admin: boolean,
+    habilitado: boolean
+  ) => {
+    try {
+      dispatch(signUpNewUserDb(email, nombre, apellido, foto, pais, ciudad, direccion, admin, habilitado));
+    } catch (error) {
+      console.error("Error al realizar el dispatch:", error);
+    }
+  };
 
   return (
     <div className={styles.loginPageContainer}>
