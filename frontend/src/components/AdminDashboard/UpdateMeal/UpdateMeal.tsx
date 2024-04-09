@@ -167,6 +167,7 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
 
   return (
     <>
+<<<<<<< HEAD
       {isAdmin === false ? (
         <Error404 />
       ) : (
@@ -175,6 +176,13 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
             initialValues={initialValuesData}
             onSubmit={handleSubmit}
           >
+=======
+    {loading ?
+    <Formik
+      initialValues={initialValuesData}
+      onSubmit={handleSubmit}
+    >
+>>>>>>> 9c812d5 (Datos en el update)
       {({ values, setFieldValue, isValid, dirty }) => (
         <Form>
           <div className={styles.container}>
@@ -385,9 +393,14 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
           </div>
         </Form>
       )}
+<<<<<<< HEAD
         </Formik>
         ) : null}</>
       )}
+=======
+    </Formik>
+     : null}
+>>>>>>> 9c812d5 (Datos en el update)
     </>
   );
 };
