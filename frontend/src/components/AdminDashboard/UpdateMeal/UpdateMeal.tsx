@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import styles from '../CreateMeal/FormMeal.module.css';
-import ValidationSchema from '../CreateMeal/ValidationSchema';
 import { useDispatch, useSelector } from 'react-redux';
 import { upgradeMeal } from '../../../redux/actions/Actions';
 import { useParams } from 'react-router-dom';
@@ -82,20 +81,57 @@ const UpdateMeal: React.FC = () => {
 
   const handleSubmit = async (values: PropsCreateMeal) => {
     try {
+      if(idComida){
+        await submit(dispatch,
+          idComida,
+          values.nombre,
+          values.origen,
+          values.ingredientes,
+          values.kilocalorias,
+          values.carbohidratos,
+          values.grasas,
+          values.peso,
+          values.precio,
+          values.tipo,
+          values.imagen,
+          values.descripcion,
+          values.stock,
+        );
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const submit = async (dispatch: any,         
+    id: number,
+    nombre: string,
+    origen: string,
+    ingredientes: string[],
+    kilocalorias: number,
+    carbohidratos: number,
+    grasas: number,
+    peso: number,
+    precio: number,
+    tipo: string,
+    imagen: File | null,
+    descripcion: string,
+    stock: string,) => {
+    try {
       await dispatch(upgradeMeal(
-        idComida,
-        values.nombre,
-        values.origen,
-        values.ingredientes,
-        values.kilocalorias,
-        values.carbohidratos,
-        values.grasas,
-        values.peso,
-        values.precio,
-        values.tipo,
-        values.imagen,
-        values.descripcion,
-        values.stock,
+        id,
+        nombre,
+        origen,
+        ingredientes,
+        kilocalorias,
+        carbohidratos,
+        grasas,
+        peso,
+        precio,
+        tipo,
+        imagen,
+        descripcion,
+        stock,
       ));
     } catch (error) {
       console.error(error);
