@@ -32,7 +32,7 @@ import Mensual from './components/AdminDashboard/Graphics/Income/Mensual.tsx';
 import Principales from './components/AdminDashboard/Graphics/Stock/Principales.tsx';
 import Postres from './components/AdminDashboard/Graphics/Stock/Postres.tsx';
 import Vegano from './components/AdminDashboard/Graphics/Stock/Vegano.tsx';
-import DataUsers from './components/AdminDashboard/Graphics/DataUsers/DataUsers.tsx';
+import DataUsers from './components/AdminDashboard/Graphics/DataUsers/table/DataUsers.tsx';
 
 function App() {
     const auth = getAuth(app);
