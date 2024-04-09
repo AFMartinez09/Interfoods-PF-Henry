@@ -13,7 +13,6 @@ exports.Review = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const Usuario_1 = require("./Usuario");
 const Plato_1 = require("./Plato");
-'../Plato';
 let Review = class Review extends sequelize_typescript_1.Model {
 };
 exports.Review = Review;
