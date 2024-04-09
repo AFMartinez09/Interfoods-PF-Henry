@@ -16,6 +16,17 @@
   box-sizing: border-box;
 }
 
+.loading{
+  margin-top: 400px;
+}
+
+.pageForm{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
 
 .formContainerL, .formContainerR {
   width: 40%; 
