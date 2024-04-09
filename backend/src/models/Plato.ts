@@ -1,4 +1,5 @@
-import { Table, Column, Model, DataType } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, HasMany } from 'sequelize-typescript';
+import { Review } from './Review'; // Asegúrate de que la ruta de importación es correcta
 
 @Table({
   modelName: 'Plato',
@@ -43,4 +44,7 @@ export class Plato extends Model {
 
   @Column(DataType.STRING)
   stock!: string;
+
+  @HasMany(() => Review)
+  reviews!: Review[];
 }
