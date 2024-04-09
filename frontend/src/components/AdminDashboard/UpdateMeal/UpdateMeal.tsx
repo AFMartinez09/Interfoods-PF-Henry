@@ -43,6 +43,7 @@ const initialValues: PropsCreateMeal = {
 const UpdateMeal: React.FC = () => {
   const [initialValuesData, setInitialValuesData] = useState<PropsCreateMeal>(initialValues);
   const [idComida, setIdComida] = useState<number>();
+  const [loading, setLoading] = useState<boolean>(false)
   const foodState = useSelector((state: StoreState) => state.platos);
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -74,6 +75,7 @@ const UpdateMeal: React.FC = () => {
           stock: selectedItem.stock,
           ingrediente: '',
         });
+        setLoading(true)
       }
     }
   }, [idComida, foodState]);
@@ -140,6 +142,7 @@ const UpdateMeal: React.FC = () => {
 
   return (
     <>
+    {loading ?
     <Formik
       initialValues={initialValuesData}
       onSubmit={handleSubmit}
@@ -175,29 +178,17 @@ const UpdateMeal: React.FC = () => {
               </p>
 
               <div>
-                <label htmlFor='ingredientes' className={styles.label}>
-                  Ingredientes*:
-                </label>
+              <label htmlFor='ingredientes' className={styles.label}>Ingredientes*:</label>
                 <br />
-                <Field
-                  placeholder='ingredientes'
-                  name='ingrediente'
-                  className={styles.inputField}
-                />
+                <Field placeholder='ingredientes' name='ingrediente' className={styles.inputField} />
                 <button
                   type='button'
+
                   className={styles.addButton}
                   onClick={() => {
                     const newIngredient = values.ingrediente.trim();
-                    if (
-                      typeof newIngredient === 'string' &&
-                      newIngredient !== '' &&
-                      !values.ingredientes.includes(newIngredient)
-                    ) {
-                      setFieldValue('ingredientes', [
-                        ...values.ingredientes,
-                        newIngredient,
-                      ]);
+                    if (typeof newIngredient === 'string' && newIngredient !== '' && !values.ingredientes.includes(newIngredient)) {
+                      setFieldValue('ingredientes', [...values.ingredientes, newIngredient]);
                       setFieldValue('ingrediente', '');
                     }
                   }}
@@ -205,24 +196,18 @@ const UpdateMeal: React.FC = () => {
                   AGREGAR
                 </button>
               </div>
-              <ErrorMessage
-                name='ingredientes'
-                component='div'
-                className={styles.error}
-              />
-
-              {initialValues.ingredientes && initialValues.ingredientes.length > 0 && (
+              <ErrorMessage name='ingredientes' component='div' className={styles.error} />
+                
+              {values.ingredientes.length > 0 && (
                 <ul className={styles.ingredientList}>
-                  {initialValues.ingredientes.map((ingrediente, index) => (
+                  {values.ingredientes.map((ingrediente, index) => (
                     <li key={index} className={styles.ingredientListItem}>
                       {ingrediente}
                       <button
                         type='button'
                         className={styles.deleteButton}
                         onClick={() => {
-                          const newIngredients = values.ingredientes.filter(
-                            (_, i) => i !== index
-                          );
+                          const newIngredients = values.ingredientes.filter((_, i) => i !== index);
                           setFieldValue('ingredientes', newIngredients);
                         }}
                       >
@@ -372,6 +357,7 @@ const UpdateMeal: React.FC = () => {
         </Form>
       )}
     </Formik>
+     : null}
     </>
   );
 };
