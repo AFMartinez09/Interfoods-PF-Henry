@@ -1,0 +1,10 @@
+.container{
+  text-align: center;
+  padding-top: 60px;
+}
+
+.line{
+  max-width: 1000px;
+  max-height: 800px;
+  align-items: center;
+}
