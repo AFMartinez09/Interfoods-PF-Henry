@@ -16,5 +16,5 @@ router.post('/postFood', postFood_1.createFood);
 router.put("/:id", putFood_1.updateFood);
 router.delete("/:id", deleteFood_1.deleteFood);
 router.get("/filtro", getFoodFiltro_1.getFoodFiltro);
-router.post("/platoId/reviews", reviewController_1.addReviewToPlato);
+router.post("/:platoid/reviews", reviewController_1.addReviewToPlato);
 exports.default = router;
