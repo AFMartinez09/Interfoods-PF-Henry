@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_FILTRO, GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL, DELETE_MEAL, POST_MEAL, PUT_MEAL, SIGNUP_USER_EMAIL_DB, SET_TRANSACCION_ID, SET_PAYMENT_STATUS} from '../actions/ActionsTypes';
+import { GET_FILTRO, GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL, DELETE_MEAL, POST_MEAL, PUT_MEAL, SIGNUP_USER_EMAIL_DB, SET_TRANSACCION_ID, SET_PAYMENT_STATUS, SET_ADMIN_STATE} from '../actions/ActionsTypes';
 import { AnyAction, Dispatch } from 'redux';
 import {URL} from '../../App'
 
@@ -292,4 +292,11 @@ export const setTransaccionId = (transactionId: string) => ({
 export const setPaymentStatus = (status: boolean) => ({
   type: SET_PAYMENT_STATUS,
   payload: status,
+});
+
+
+// Definir creadores de acciones
+export const setAdminState = (isAdmin: boolean) => ({
+  type: SET_ADMIN_STATE,
+  payload: isAdmin
 });

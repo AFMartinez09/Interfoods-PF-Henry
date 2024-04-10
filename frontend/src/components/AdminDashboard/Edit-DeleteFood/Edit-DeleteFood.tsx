@@ -8,6 +8,7 @@ import Card from "./CardAdmin/CardAdmin";
 import Style from '../../Cards/Cards.module.css'
 import SearchBar from "../../SearchBar/SearchBar";
 import Styled from './Edit-Delete.module.css'
+import Error404 from "../../Error/error";
 
 
 interface Food {
@@ -33,6 +34,7 @@ const EditDeleteFood: React.FC<CardsProps> = ({ numberOfCards, setChanges }) => 
   const location = useLocation();
   const foodState = useSelector((state: StoreState) => state.filtros);
   const foodAllState = useSelector((state: StoreState) => state.platos);
+  const isAdmin = useSelector((state: StoreState) => state.admin)
   
   const loading = foodState.length === 0 && foodAllState.length === 0;
   
@@ -44,7 +46,9 @@ const EditDeleteFood: React.FC<CardsProps> = ({ numberOfCards, setChanges }) => 
 // styled => es de Edit-DeleteFood
   return (
     <div className={Styled.home}>
-      {/* <HomeAdmin /> */}
+            {isAdmin === false ? (
+        <Error404 />
+      ) : (
     <div className={Styled.container}>
       <div className={Styled.filter} >
         <SearchBar />
@@ -73,8 +77,9 @@ const EditDeleteFood: React.FC<CardsProps> = ({ numberOfCards, setChanges }) => 
         </div>
       )}
       </div>
-    </div>
-  );
-};
+      )}
+      </div>
+    );
+  };
 
 export default EditDeleteFood

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { upgradeMeal } from '../../../redux/actions/Actions';
 import { useParams } from 'react-router-dom';
 import { StoreState } from '../../../redux/reducer/Reducer';
+import Error404 from '../../Error/error';
 
 interface PropsCreateMeal {
   id: number;
@@ -48,6 +49,7 @@ const UpdateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
   const [idComida, setIdComida] = useState<number>();
   const [loading, setLoading] = useState<boolean>(false)
   const foodState = useSelector((state: StoreState) => state.platos);
+  const isAdmin = useSelector((state: StoreState) => state.admin)
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -147,11 +149,14 @@ const UpdateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
 
   return (
     <>
-    {loading ?
-    <Formik
-      initialValues={initialValuesData}
-      onSubmit={handleSubmit}
-    >
+      {isAdmin === false ? (
+        <Error404 />
+      ) : (
+        <>{loading ? (
+          <Formik
+            initialValues={initialValuesData}
+            onSubmit={handleSubmit}
+          >
       {({ values, setFieldValue, isValid, dirty }) => (
         <Form>
           <div className={styles.container}>
@@ -361,8 +366,9 @@ const UpdateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
           </div>
         </Form>
       )}
-    </Formik>
-     : null}
+        </Formik>
+        ) : null}</>
+      )}
     </>
   );
 };
