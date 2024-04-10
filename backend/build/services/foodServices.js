@@ -37,6 +37,8 @@ const getEntriesWithoutSensitiveInfo = () => __awaiter(void 0, void 0, void 0, f
             "imagen",
             "descripcion",
             "stock",
+            "activo",
+            "inventario",
         ],
     });
 });

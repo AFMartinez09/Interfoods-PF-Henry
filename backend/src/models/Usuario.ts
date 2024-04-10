@@ -1,4 +1,5 @@
-import { Table, Column, Model, DataType } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, HasMany } from 'sequelize-typescript';
+import { Review } from './Review'; // Asegúrate de que la ruta de importación es correcta
 
 @Table({
   modelName: 'Usuario',
@@ -21,36 +22,44 @@ export class Usuario extends Model {
   })
   email!: string;
 
-  @Column(DataType.STRING(1000),)
+  @Column({
+    type: DataType.STRING(1000),
+  })
   foto!: string;
 
   @Column({
     type: DataType.STRING,
-
   })
   pais!: string;
 
   @Column({
     type: DataType.STRING,
-
   })
   ciudad!: string;
 
   @Column({
     type: DataType.STRING,
-
   })
   direccion!: string;
 
   @Column({
     type: DataType.BOOLEAN,
-
   })
   admin!: boolean;
 
   @Column({
     type: DataType.BOOLEAN,
-
   })
   habilitado!: boolean;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    allowNull: false,
+    defaultValue: true // Asegúrate de proporcionar un valor por defecto
+  })
+  activo!: boolean;
+
+
+  @HasMany(() => Review)
+  reviews!: Review[];
 }

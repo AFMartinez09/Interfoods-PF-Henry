@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Usuario = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
+const Review_1 = require("./Review"); // Asegúrate de que la ruta de importación es correcta
 let Usuario = class Usuario extends sequelize_typescript_1.Model {
 };
 exports.Usuario = Usuario;
@@ -34,7 +35,9 @@ __decorate([
     __metadata("design:type", String)
 ], Usuario.prototype, "email", void 0);
 __decorate([
-    (0, sequelize_typescript_1.Column)(sequelize_typescript_1.DataType.STRING(1000)),
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.STRING(1000),
+    }),
     __metadata("design:type", String)
 ], Usuario.prototype, "foto", void 0);
 __decorate([
@@ -67,6 +70,18 @@ __decorate([
     }),
     __metadata("design:type", Boolean)
 ], Usuario.prototype, "habilitado", void 0);
+__decorate([
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.BOOLEAN,
+        allowNull: false,
+        defaultValue: true // Asegúrate de proporcionar un valor por defecto
+    }),
+    __metadata("design:type", Boolean)
+], Usuario.prototype, "activo", void 0);
+__decorate([
+    (0, sequelize_typescript_1.HasMany)(() => Review_1.Review),
+    __metadata("design:type", Array)
+], Usuario.prototype, "reviews", void 0);
 exports.Usuario = Usuario = __decorate([
     (0, sequelize_typescript_1.Table)({
         modelName: 'Usuario',
