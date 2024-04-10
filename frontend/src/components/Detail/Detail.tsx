@@ -133,7 +133,7 @@ const Detail: React.FC = () =>{
                              </div>
                            </div>
                           </div>
-                          <div><Reseñas/></div>
+                          <div><Reseñas idPlato={parseInt(idComida)} /></div>
                 </div>
     );
 }

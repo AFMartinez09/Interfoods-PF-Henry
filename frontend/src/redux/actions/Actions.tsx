@@ -293,3 +293,20 @@ export const setPaymentStatus = (status: boolean) => ({
   type: SET_PAYMENT_STATUS,
   payload: status,
 });
+
+export const postReview = async (comentario: string, estrellas: number, platoId: number, userId: number) => {
+  try {
+    await axios.post(`${URL}/api/food/${platoId}/reviews`, {
+      comentario: comentario,
+      calificacion: estrellas, 
+      usuarioId: userId,
+    });
+
+    console.log(comentario, estrellas, platoId, userId);
+    
+
+  } catch (error) {
+    console.error("Error al crear la review:", error);
+    window.alert("¡Error al crear la review!");
+  }
+}
