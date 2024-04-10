@@ -27,6 +27,8 @@ export const getEntriesWithoutSensitiveInfo = async () => {
       "imagen",
       "descripcion",
       "stock",
+      "activo",
+      "inventario",
     ],
   });
 };
