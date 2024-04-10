@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { useSelector } from "react-redux";
 import { StoreState } from "../../../redux/reducer/Reducer";
 import { useLocation } from "react-router-dom";
@@ -26,9 +26,10 @@ interface Food {
 
 interface CardsProps {
   numberOfCards?: number;
+  setChanges: Dispatch<SetStateAction<boolean>>;
 }
 
-const EditDeleteFood: React.FC<CardsProps> = ({ numberOfCards }) => {
+const EditDeleteFood: React.FC<CardsProps> = ({ numberOfCards, setChanges }) => {
   const location = useLocation();
   const foodState = useSelector((state: StoreState) => state.filtros);
   const foodAllState = useSelector((state: StoreState) => state.platos);
@@ -66,6 +67,7 @@ const EditDeleteFood: React.FC<CardsProps> = ({ numberOfCards }) => {
               id={food.id}
               kilocalorias={food.kilocalorias}
               carbohidratos={food.carbohidratos}
+              setChanges={setChanges}
               />
             ))}
         </div>

@@ -45,6 +45,7 @@ function App() {
     const auth = getAuth(app);
     const { pathname } = useLocation();
     const [usuarioRegistrado, setUsuarioRegistrado] = useState(false);
+    const [changes, setChanges] = useState<boolean>(false)
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -81,7 +82,8 @@ function App() {
             }
         };
         fetchData2();
-    }, []);
+        setChanges(false)
+    }, [changes]);
 
     const [showMenu, setShowMenu] = useState(false);
 
@@ -111,13 +113,12 @@ function App() {
                   <Route path="/Register" element={<UserForm/>}/>
                   <Route path="/admindashboard" element={<HomeAdmin/>}/>
                   <Route path="/useraccount" element={<HomeUser/>}/>
-                  <Route path="/createMeal" element={<CreateMeal/>}/>
                   <Route path="useraccount/editarperfil" element={<UserForm/>}/>
                   <Route path="/MiPerfil" element={<MiPerfil/>}/>
                   <Route path="/Recuperarcontraseña" element={<Recuperar/>}/>
-                  <Route path="/admindashboard/crearplato" element={<CreateMeal/>}/>
-                  <Route path="/admindashboard/editar-eliminar" element={<EditDeleteFood />}/>
-                  <Route path="/admindashboard/editar/:id" element={<UpdateMeal />}/>
+                  <Route path="/admindashboard/crearplato" element={<CreateMeal  setChanges={setChanges} />}/>
+                  <Route path="/admindashboard/editar-eliminar" element={<EditDeleteFood  setChanges={setChanges} />}/>
+                  <Route path="/admindashboard/editar/:id" element={<UpdateMeal setChanges={setChanges} />}/>
                   <Route path="*" />
                   <Route path="/api/payments/success" element={<Comprajoel/>}/>
                   <Route path="/Contactos" element={<Soporte/>}/>
