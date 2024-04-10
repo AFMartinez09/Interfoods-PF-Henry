@@ -392,3 +392,19 @@ export const setcountry = (payload : string) => ({
   type: SET_COUNTRY,
   payload: payload
 });
+export const postReview = async (comentario: string, estrellas: number, platoId: number, userId: number) => {
+  try {
+    await axios.post(`${URL}/api/food/${platoId}/reviews`, {
+      comentario: comentario,
+      calificacion: estrellas, 
+      usuarioId: userId,
+    });
+
+    console.log(comentario, estrellas, platoId, userId);
+    
+
+  } catch (error) {
+    console.error("Error al crear la review:", error);
+    window.alert("¡Error al crear la review!");
+  }
+}
