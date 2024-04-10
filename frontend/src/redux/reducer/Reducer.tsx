@@ -1,5 +1,12 @@
-
-import { GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL, GET_FILTRO, SIGNUP_USER_EMAIL_DB, SET_ADMIN_STATE, GET_ALL_USERS } from '../actions/ActionsTypes';
+import { 
+  GET_FOOD,
+  GET_PAIS,
+  SIGNUP_USER_EMAIL,
+  GET_FILTRO,
+  SIGNUP_USER_EMAIL_DB,
+  GET_ALL_USERS,
+  SET_ADMIN_STATE,
+  } from '../actions/ActionsTypes';
 
 
 
@@ -28,6 +35,7 @@ export interface StoreState {
   tipo: string
   admin: boolean
   users: [],
+
 }
 
 export interface Action {
@@ -42,6 +50,7 @@ const initialState: StoreState = {
   tipo: 'Todosa',
   admin: false,
   users: [],
+
 };
 
 
@@ -117,9 +126,14 @@ const Reducer = (state: StoreState = initialState, action: Action): StoreState =
           ...state,
           users: action.payload,
         }
+        case SET_ADMIN_STATE:
+          return {
+            ...state,
+            admin: action.payload
+        };        
     default:
       return state;
   }
-};
+}
 
 export default Reducer;
