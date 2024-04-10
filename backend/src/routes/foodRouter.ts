@@ -18,6 +18,6 @@ router.post("/:id", activeFood)
 router.get("/filtro", getFoodFiltro)
 router.get("/comida/inventario", upinventario)
 
-router.post("/:platoid/reviews", addReviewToPlato)
+router.post("/:platoId/reviews", addReviewToPlato)
 
 export default router;
