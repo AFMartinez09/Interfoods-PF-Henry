@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import styles from '../CreateMeal/FormMeal.module.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -39,8 +39,11 @@ const initialValues: PropsCreateMeal = {
   stock: '',
   ingrediente: '',
 };
+interface UpdateMealProps {
+  setChanges: Dispatch<SetStateAction<boolean>>;
+}
 
-const UpdateMeal: React.FC = () => {
+const UpdateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
   const [initialValuesData, setInitialValuesData] = useState<PropsCreateMeal>(initialValues);
   const [idComida, setIdComida] = useState<number>();
   const [loading, setLoading] = useState<boolean>(false)
@@ -100,6 +103,8 @@ const UpdateMeal: React.FC = () => {
           values.stock,
         );
       }
+      alert('Se edito el plato')
+      setChanges(true)
     } catch (error) {
       console.error(error);
     }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import styles from './FormMeal.module.css';
 import ValidationSchema from './ValidationSchema';
@@ -37,7 +37,11 @@ const initialValues: PropsCreateMeal = {
   ingrediente: '',
 };
 
-const CreateMeal: React.FC = () => {
+interface UpdateMealProps {
+  setChanges: Dispatch<SetStateAction<boolean>>;
+}
+
+const CreateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
   const [profilePictureUrl, setProfilePictureUrl] = useState<File | undefined>(undefined);
   const dispatch = useDispatch();
 
@@ -50,6 +54,8 @@ const CreateMeal: React.FC = () => {
     try {
       // Envía la URL de la imagen al servidor junto con otros datos del formulario
       await submit({ ...values}, dispatch);
+      alert("Se creo con exito")
+      setChanges(true)
     } catch (error) {
       console.error("Error al crear la cuenta:", error);
     }
@@ -173,7 +179,7 @@ const CreateMeal: React.FC = () => {
               <Field as='select' id='tipo' name='tipo' className={styles.inputField}>
                 <option value=''>Seleccione un tipo</option>
                 <option value='plato fuerte'>Plato fuerte</option>
-                <option value='vegano'>Vegano</option>
+                <option value='plato vegano'>Vegano</option>
                 <option value='postre'>Postre</option>
               </Field>
               <p className={styles.error}><ErrorMessage name='tipo' /></p>
