@@ -13,6 +13,6 @@ router.put("/:id", updateFood)
 router.delete("/:id", deleteFood)
 router.get("/filtro", getFoodFiltro)
 
-router.post("/:platoid/reviews", addReviewToPlato)
+router.post("/:platoId/reviews", addReviewToPlato)
 
 export default router;
