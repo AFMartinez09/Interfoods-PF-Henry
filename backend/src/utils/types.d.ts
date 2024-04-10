@@ -10,7 +10,8 @@ export interface NewFoodEntry {
     tipo: string;
     imagen: string;
     descripcion: string;
-    stock: string;
+    stock: number;
+    activo: boolean;
 }
 
 // export type NonSensitiveInfoFoodEntry = FoodEntry;
@@ -30,5 +31,6 @@ export interface UpdateFoodEntry {
     tipo?: string;
     imagen?: string;
     descripcion?: string;
-    stock?: string;
+    stock?: number;
+    activo?: boolean;
 }

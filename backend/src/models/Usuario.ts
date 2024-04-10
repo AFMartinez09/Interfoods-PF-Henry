@@ -52,6 +52,14 @@ export class Usuario extends Model {
   })
   habilitado!: boolean;
 
+  @Column({
+    type: DataType.BOOLEAN,
+    allowNull: false,
+    defaultValue: true // Asegúrate de proporcionar un valor por defecto
+  })
+  activo!: boolean;
+
+
   @HasMany(() => Review)
   reviews!: Review[];
 }

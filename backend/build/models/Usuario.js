@@ -71,6 +71,14 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Usuario.prototype, "habilitado", void 0);
 __decorate([
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.BOOLEAN,
+        allowNull: false,
+        defaultValue: true // Asegúrate de proporcionar un valor por defecto
+    }),
+    __metadata("design:type", Boolean)
+], Usuario.prototype, "activo", void 0);
+__decorate([
     (0, sequelize_typescript_1.HasMany)(() => Review_1.Review),
     __metadata("design:type", Array)
 ], Usuario.prototype, "reviews", void 0);

@@ -1,5 +1,6 @@
-import { Table, Column, Model, DataType } from "sequelize-typescript";
+import { Table, Column, Model, DataType,  } from "sequelize-typescript";
 import sequelize from "./sequelize";
+// import { Review } from "./models/Review";
 
 @Table({
   modelName: "Plato",
@@ -44,6 +45,22 @@ export class Plato extends Model {
 
   @Column(DataType.STRING)
   stock!: string;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    allowNull: false,
+    defaultValue: true
+  })
+  activo!: boolean;
+
+  @Column(DataType.INTEGER)
+  inventario!: number;
+
+  
+
+  
+  // @HasMany(() => Review)
+  // reviews!: Review[];
 }
 
 sequelize.addModels([Plato]);

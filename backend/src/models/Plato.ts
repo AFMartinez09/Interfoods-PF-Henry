@@ -12,6 +12,13 @@ export class Plato extends Model {
   })
   nombre!: string;
 
+  @Column({
+    type: DataType.BOOLEAN,
+    allowNull: false,
+    defaultValue: true
+  })
+  activo!: boolean;
+
   @Column(DataType.STRING)
   origen!: string;
 
@@ -42,9 +49,10 @@ export class Plato extends Model {
   @Column(DataType.STRING(1000))
   descripcion!: string;
 
-  @Column(DataType.STRING)
-  stock!: string;
+  @Column(DataType.INTEGER)
+  stock!: number;
 
+  
   @HasMany(() => Review)
   reviews!: Review[];
 }
