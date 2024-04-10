@@ -10,7 +10,8 @@ import {
   SIGNUP_USER_EMAIL_DB,
   SET_TRANSACCION_ID,
   SET_PAYMENT_STATUS,
-  GET_ALL_USERS
+  GET_ALL_USERS,
+  SET_ADMIN_STATE,
   } from '../actions/ActionsTypes';
 import { AnyAction, Dispatch } from 'redux';
 import {URL} from '../../App'
@@ -321,3 +322,8 @@ export const getAllUsers = () => async (dispatch: Dispatch<AnyAction>) => {
     console.error('Hubo un error al obtener los usuarios', error)
   }
 }
+// Definir creadores de acciones
+export const setAdminState = (isAdmin: boolean) => ({
+  type: SET_ADMIN_STATE,
+  payload: isAdmin
+});
