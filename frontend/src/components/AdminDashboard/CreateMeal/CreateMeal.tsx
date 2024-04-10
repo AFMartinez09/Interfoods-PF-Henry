@@ -3,7 +3,9 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import styles from './FormMeal.module.css';
 import ValidationSchema from './ValidationSchema';
 import { createMeal, imageUpload } from '../../../redux/actions/Actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { StoreState } from '../../../redux/reducer/Reducer';
+import Error404 from '../../Error/error';
 
 interface PropsCreateMeal {
   nombre: string,
@@ -44,6 +46,7 @@ interface UpdateMealProps {
 const CreateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
   const [profilePictureUrl, setProfilePictureUrl] = useState<File | undefined>(undefined);
   const dispatch = useDispatch();
+  const isAdmin = useSelector((state: StoreState) => state.admin)
 
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.currentTarget.files?.[0];
@@ -93,9 +96,9 @@ const CreateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
 
   return (
     <div className='pageForm'>
-      {/* <div>
-        <HomeAdmin />
-      </div> */}
+      {isAdmin === false ? (
+        <Error404 />
+      ) : (
     <Formik
       initialValues={initialValues}
       validationSchema={ValidationSchema}
@@ -214,9 +217,9 @@ const CreateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
         </Form>
       )}
     </Formik>
-    </div>
-  );
-};
-
+      )}
+      </div>
+    );
+  };
 export default CreateMeal;
 

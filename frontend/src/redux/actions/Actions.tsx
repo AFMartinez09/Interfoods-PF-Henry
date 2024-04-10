@@ -12,6 +12,7 @@ import {
   SET_PAYMENT_STATUS,
   GET_ALL_USERS, 
   PUT_USER_BLOCK,
+  SET_ADMIN_STATE,
   } from '../actions/ActionsTypes';
 import { AnyAction, Dispatch } from 'redux';
 import {URL} from '../../App'
@@ -311,7 +312,7 @@ export const setPaymentStatus = (status: boolean) => ({
 export const getAllUsers = () => async (dispatch: Dispatch<AnyAction>) => {
 
   try {
-    const response = await axios.get('http://localhost:3000/api/register/usuarios')
+    const response = await axios.get(`${URL}/api/register/usuarios`)
     const users = await response.data.users;
     dispatch({
       type: GET_ALL_USERS,
@@ -336,3 +337,8 @@ export const PutUserBlock = (email: string, habilitado: boolean) => async (dispa
     console.error('hubo un error ', error);
   }
 }
+// Definir creadores de acciones
+export const setAdminState = (isAdmin: boolean) => ({
+  type: SET_ADMIN_STATE,
+  payload: isAdmin
+});

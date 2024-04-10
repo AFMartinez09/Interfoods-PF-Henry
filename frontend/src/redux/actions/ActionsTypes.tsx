@@ -10,9 +10,8 @@ export const SET_TRANSACCION_ID = 'SET_TRANSACCION_ID'
 export const SET_PAYMENT_STATUS = 'SET_PAYMENT_STATUS'
 export const GET_ALL_USERS = 'GET_ALL_USERS'
 export const PUT_USER_BLOCK = 'PUT_USER_BLOCK'
-
-
-
+export const SET_ADMIN_STATE = 'SET_ADMIN_STATE'
+export const DELETE_ADMIN = 'DELETE_ADMIN'
 
 
 

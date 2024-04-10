@@ -1,5 +1,14 @@
 
-import { GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL, GET_FILTRO, SIGNUP_USER_EMAIL_DB, GET_ALL_USERS, PUT_USER_BLOCK } from '../actions/ActionsTypes';
+import { 
+  GET_FOOD, 
+  GET_PAIS, 
+  SIGNUP_USER_EMAIL, 
+  GET_FILTRO, 
+  SIGNUP_USER_EMAIL_DB, 
+  GET_ALL_USERS, 
+  PUT_USER_BLOCK, 
+  SET_ADMIN_STATE,
+ } from '../actions/ActionsTypes';
 
 
 
@@ -39,6 +48,7 @@ export interface StoreState {
   users: [];
   searchEmail: string;
   block: user[];
+  admin: boolean
 }
 
 export interface Action {
@@ -54,6 +64,7 @@ const initialState: StoreState = {
   users: [],
   searchEmail: '',
   block: [],
+  admin: false
 };
 
 
@@ -129,9 +140,14 @@ const Reducer = (state: StoreState = initialState, action: Action): StoreState =
           block: [...state.block, action.payload],
         };
       
-    default:
-      return state;
-  }
-};
+        case SET_ADMIN_STATE:
+          return {
+            ...state,
+            admin: action.payload
+          };        
+          default:
+            return state;
+        }
+      }
 
 export default Reducer;

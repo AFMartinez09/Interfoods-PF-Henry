@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 import styles from './NavBar.module.css';
 import Cart from '../Cart/Cart';
 import { useState, useRef, useEffect} from 'react';
+import { setAdminState } from '../../redux/actions/Actions';
+import { useDispatch } from 'react-redux';
 
 interface NavBarProps {
   onItemClick: (item: string) => void;
@@ -17,6 +19,8 @@ const NavBar: React.FC<NavBarProps> = ({ onItemClick, toggleMenu, showMenu, auth
   const adminMenuRef = useRef<HTMLDivElement>(null);
   const [userData, setUserData] = useState<any>(null);
  
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const getUserData = () => {
       const userDataString = localStorage.getItem('user');
@@ -25,9 +29,29 @@ const NavBar: React.FC<NavBarProps> = ({ onItemClick, toggleMenu, showMenu, auth
         setUserData(userData);
       }
     };
-
+  
     getUserData();
-  }, []); //
+  }, []);
+  
+  useEffect(() => {
+    if (userData !== null && userData.admin !== undefined) {
+      const isAdmin = (dispatch: any, admin: boolean) => {
+        dispatch(setAdminState(admin));
+      };
+      isAdmin(dispatch, userData.admin);
+    }
+  }, [userData, dispatch]);
+  
+
+useEffect(() => {
+  if (userData !== null && userData.admin !== undefined) {
+    const isAdmin = (dispatch: any, admin: boolean) => {
+      dispatch(setAdminState(admin));
+    };
+    isAdmin(dispatch, userData.admin);
+  }
+}, [userData, dispatch]);
+
  
   
   useEffect(() => {
@@ -59,8 +83,7 @@ const NavBar: React.FC<NavBarProps> = ({ onItemClick, toggleMenu, showMenu, auth
   const handleItemClick = (item: string) => {
     onItemClick(item);
   };
-
-  const user = JSON.parse(localStorage.getItem('user') || '{}');
+  
 
   return (
     <div className={styles.navContainer}>
@@ -92,7 +115,7 @@ const NavBar: React.FC<NavBarProps> = ({ onItemClick, toggleMenu, showMenu, auth
             </NavLink>
           </li>
         </ul>
-        {user.admin && (
+        {userData && userData.admin && (
          <div ref={adminMenuRef} className={showMenuAdmin ? `${styles.containerAdmin} ${styles.containerAdminOpen}` : styles.containerAdmin}>
             <button onClick={toggleMenuAdmin} className={styles.navLink}>
               ADMIN
