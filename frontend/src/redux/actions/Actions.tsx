@@ -327,3 +327,10 @@ export const setPaymentStatus = (status: boolean) => ({
   type: SET_PAYMENT_STATUS,
   payload: status,
 });
+
+
+// Definir creadores de acciones
+export const setAdminState = (isAdmin: boolean) => ({
+  type: SET_ADMIN_STATE,
+  payload: isAdmin
+});

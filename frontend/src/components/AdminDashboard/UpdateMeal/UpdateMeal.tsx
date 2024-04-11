@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import styles from '../CreateMeal/FormMeal.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { upgradeMeal } from '../../../redux/actions/Actions';
 import { useParams } from 'react-router-dom';
 import { StoreState } from '../../../redux/reducer/Reducer';
+import Error404 from '../../Error/error';
 
 interface PropsCreateMeal {
   id: number;
@@ -39,11 +40,16 @@ const initialValues: PropsCreateMeal = {
   stock: '',
   ingrediente: '',
 };
+interface UpdateMealProps {
+  setChanges: Dispatch<SetStateAction<boolean>>;
+}
 
-const UpdateMeal: React.FC = () => {
+const UpdateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
   const [initialValuesData, setInitialValuesData] = useState<PropsCreateMeal>(initialValues);
   const [idComida, setIdComida] = useState<number>();
+  const [loading, setLoading] = useState<boolean>(false)
   const foodState = useSelector((state: StoreState) => state.platos);
+  const isAdmin = useSelector((state: StoreState) => state.admin)
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -74,6 +80,7 @@ const UpdateMeal: React.FC = () => {
           stock: selectedItem.stock,
           ingrediente: '',
         });
+        setLoading(true)
       }
     }
   }, [idComida, foodState]);
@@ -98,6 +105,8 @@ const UpdateMeal: React.FC = () => {
           values.stock,
         );
       }
+      alert('Se edito el plato')
+      setChanges(true)
     } catch (error) {
       console.error(error);
     }
@@ -141,10 +150,14 @@ const UpdateMeal: React.FC = () => {
 
   return (
     <>
-    <Formik
-      initialValues={initialValuesData}
-      onSubmit={handleSubmit}
-    >
+      {isAdmin === false ? (
+        <Error404 />
+      ) : (
+        <>{loading ? (
+          <Formik
+            initialValues={initialValuesData}
+            onSubmit={handleSubmit}
+          >
       {({ values, setFieldValue, isValid, dirty }) => (
         <Form>
           <div className={styles.container}>
@@ -177,29 +190,17 @@ const UpdateMeal: React.FC = () => {
               </p>
 
               <div>
-                <label htmlFor='ingredientes' className={styles.label}>
-                  Ingredientes*:
-                </label>
+              <label htmlFor='ingredientes' className={styles.label}>Ingredientes*:</label>
                 <br />
-                <Field
-                  placeholder='ingredientes'
-                  name='ingrediente'
-                  className={styles.inputField}
-                />
+                <Field placeholder='ingredientes' name='ingrediente' className={styles.inputField} />
                 <button
                   type='button'
+
                   className={styles.addButton}
                   onClick={() => {
                     const newIngredient = values.ingrediente.trim();
-                    if (
-                      typeof newIngredient === 'string' &&
-                      newIngredient !== '' &&
-                      !values.ingredientes.includes(newIngredient)
-                    ) {
-                      setFieldValue('ingredientes', [
-                        ...values.ingredientes,
-                        newIngredient,
-                      ]);
+                    if (typeof newIngredient === 'string' && newIngredient !== '' && !values.ingredientes.includes(newIngredient)) {
+                      setFieldValue('ingredientes', [...values.ingredientes, newIngredient]);
                       setFieldValue('ingrediente', '');
                     }
                   }}
@@ -207,24 +208,18 @@ const UpdateMeal: React.FC = () => {
                   AGREGAR
                 </button>
               </div>
-              <ErrorMessage
-                name='ingredientes'
-                component='div'
-                className={styles.error}
-              />
-
-              {initialValues.ingredientes && initialValues.ingredientes.length > 0 && (
+              <ErrorMessage name='ingredientes' component='div' className={styles.error} />
+                
+              {values.ingredientes.length > 0 && (
                 <ul className={styles.ingredientList}>
-                  {initialValues.ingredientes.map((ingrediente, index) => (
+                  {values.ingredientes.map((ingrediente, index) => (
                     <li key={index} className={styles.ingredientListItem}>
                       {ingrediente}
                       <button
                         type='button'
                         className={styles.deleteButton}
                         onClick={() => {
-                          const newIngredients = values.ingredientes.filter(
-                            (_, i) => i !== index
-                          );
+                          const newIngredients = values.ingredientes.filter((_, i) => i !== index);
                           setFieldValue('ingredientes', newIngredients);
                         }}
                       >
@@ -373,7 +368,9 @@ const UpdateMeal: React.FC = () => {
           </div>
         </Form>
       )}
-    </Formik>
+        </Formik>
+        ) : null}</>
+      )}
     </>
   );
 };
