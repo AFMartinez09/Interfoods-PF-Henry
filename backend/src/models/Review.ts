@@ -21,6 +21,13 @@ export class Review extends Model {
   })
   calificacion!: number;
 
+  @Column({
+    type: DataType.BOOLEAN,
+    allowNull: false,
+    defaultValue: true
+  })
+  habilitado!: boolean;
+
   @ForeignKey(() => Usuario)
   @Column({
     type: DataType.INTEGER,
