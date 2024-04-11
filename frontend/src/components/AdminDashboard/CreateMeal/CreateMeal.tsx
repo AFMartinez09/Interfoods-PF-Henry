@@ -95,6 +95,7 @@ const CreateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
   
 
   return (
+    
     <div className='pageForm'>
       {isAdmin === false ? (
         <Error404 />
@@ -105,9 +106,17 @@ const CreateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
       onSubmit={handleSubmit}
     >
       {({ values, setFieldValue, isValid, dirty }) => (
-        <Form>
+        
+        <Form>      
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
           <div className={styles.container}>
             <div className={styles.formContainerL}>
+            <p className={styles.formPresentation}>Este es el formulario para la creación de platos!</p>
               <label htmlFor='nombre' className={styles.label}>Nombre del plato*:</label>
               <Field placeholder='Nombre del plato' type='text' name='nombre' className={styles.inputField} />
               <p className={styles.error}><ErrorMessage name='nombre' /></p>
@@ -187,6 +196,11 @@ const CreateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
               </Field>
               <p className={styles.error}><ErrorMessage name='tipo' /></p>
 
+
+              <label htmlFor='cantidad' className={styles.label}>Cantidad (unidades)*:</label>
+              <Field placeholder='Cantidad' type='text' name='stock' className={styles.inputField} />
+              <p className={styles.error}><ErrorMessage name='stock' /></p>
+              
               <label htmlFor='image' className={styles.label}>Foto del plato*: (formatos en .jpg, .jpeg ó .png)</label>
               <br />
               <input
@@ -207,9 +221,6 @@ const CreateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
               className={styles.textArea} />
               <p className={styles.error}><ErrorMessage name='descripcion' /></p>
 
-              <label htmlFor='cantidad' className={styles.label}>Cantidad (unidades)*:</label>
-              <Field placeholder='Cantidad' type='text' name='stock' className={styles.inputField} />
-              <p className={styles.error}><ErrorMessage name='stock' /></p>
 
               <button type='submit' className={styles.submitButton} disabled={!isValid || !dirty}>Enviar</button>
             </div>

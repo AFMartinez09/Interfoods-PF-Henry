@@ -1,33 +1,33 @@
 .container {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
-}
-.formContainerL {
-  max-width: 300px;
-  padding: 140px;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
+  justify-content: center; /* Centra horizontalmente los elementos */
 }
 
-.loading{
-  margin-top: 400px;
-}
-
-.pageForm{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.formWrapper {
   width: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo negro transparente */
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.formContainerL {
+  flex: 0 0 50%; /* Toma el 50% del espacio disponible */
+  padding-right: 20px; /* Espacio entre los contenedores */
+}
+
+.formContainerL p {
+  text-align: center; /* Centra el texto */
+}
+
+.formSection {
+  margin-bottom: 20px; /* Espacio entre los divs de creación de plato */
 }
 
 .formContainerR {
-  max-width: 300px;
-  padding: 130px;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
+  flex: 0 0 50%; /* Toma el 50% del espacio disponible */
+  padding-left: 20px; /* Espacio entre los contenedores */
 }
 
 .label {
@@ -35,10 +35,9 @@
   font-weight: bold;
 }
 
-
 .inputField {
-  width: 350px;
-  padding: 12px;
+  width: 100%;
+  padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -53,12 +52,6 @@
   color: white;
   cursor: pointer;
   min-width: 100px;
-  margin-right: -111px;
-  margin-left: 10px; 
-}
-
-.addButton:hover {
-  background-color: #0056b3;
 }
 
 .error {
@@ -76,7 +69,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 5px; 
+  padding-bottom: 5px;
 }
 
 .deleteButton {
@@ -86,32 +79,32 @@
   border-radius: 10px;
   padding: 5px 15px;
   cursor: pointer;
-  margin-left: 9px;
-  margin-right: 50px;
 }
 
 .deleteButton:hover {
   background-color: #db2615;
 }
 
-.textArea{
+.textArea {
   width: 100%;
   resize: none;
   height: 150px;
 }
 
 .submitButton {
-  padding: 10px 20px;
-  margin-top: -15px;
+  padding: 13px 20px;
   border: none;
   border-radius: 10px;
-  background-color: #007bff;
+  background-color: #2F695C; /* Cambio de color al del navbar y footer */
   color: white;
   cursor: pointer;
+  margin-left: 45vh;
+  margin-block-end: 10px;
+  
 }
 
 .submitButton:hover {
-  cursor: pointer;
+  background-color: #005732;
 }
 
 .submitButton:disabled {
