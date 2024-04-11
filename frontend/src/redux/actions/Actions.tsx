@@ -408,3 +408,13 @@ export const postReview = async (comentario: string, estrellas: number, platoId:
     window.alert("¡Error al crear la review!");
   }
 }
+
+export const getReviewForPlato = async (idPlato: number) => {
+  try {
+    const response = await axios.get(`${URL}/api/food/${idPlato}/reviews`);
+    return response.data;
+  } catch (error) {
+    console.error('Error al obtener las reseñas del plato:', error);
+    return [];
+  }
+};

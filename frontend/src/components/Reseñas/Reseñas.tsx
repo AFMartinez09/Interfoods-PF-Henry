@@ -1,8 +1,9 @@
 
-import { Field, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import styles from './Reseñas.module.css'
 import React, { useEffect, useState } from "react";
-import { postReview } from '../../redux/actions/Actions';
+import { getReviewForPlato, postReview } from '../../redux/actions/Actions';
+import ReviewValidationSchema from './validationsReseñas';
 
 
 interface initialValuesInt {
@@ -22,18 +23,37 @@ interface reseñasProps{
 const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
     const [estrellasSeleccionadas, setEstrellasSeleccionadas] = useState(0);
     const [userData, setUserData] = useState<any>(null);
+    const [reseñas, setReseñas] = useState<any>([]);
+    const [newReseña, setNewReseña] = useState<boolean>(false)
 
     useEffect(() => {
         const getUserData = () => {
-        const userDataString = localStorage.getItem('user');
-        if (userDataString) {
-            const userData = JSON.parse(userDataString);
-            setUserData(userData);
-        }
+            const userDataString = localStorage.getItem('user');
+            if (userDataString) {
+                const userData = JSON.parse(userDataString);
+                setUserData(userData);
+            }
         };
 
         getUserData();
     }, []);
+
+    useEffect(() => {
+        if (!isNaN(idPlato)) { // Verifica si idPlato es un número válido
+            const fetchData = async () => {
+                try {
+                    const dataReseña = await getReviewForPlato(idPlato);
+                    setReseñas(dataReseña);
+                } catch (error) {
+                    console.error('Error al obtener las reseñas:', error);
+                }
+            };
+    
+            fetchData();
+        }
+        setNewReseña(false)
+    }, [idPlato, newReseña]);
+    
 
     const handleEstrellaClick = (valor: number) => {
         setEstrellasSeleccionadas(valor);
@@ -41,9 +61,20 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
 
     const handleSubmit = (values: initialValuesInt) => {
         values.estrellas = estrellasSeleccionadas;
-        postReview(values.review, values.estrellas, idPlato, userData.id)
+        postReview(values.review, values.estrellas, idPlato, userData.id);
+        setNewReseña(true)
     };
 
+    const generarEstrellas = (calificacion: number): string => {
+        const estrellaLlena = '★';
+        const estrellaVacia = '☆';
+        const totalEstrellas = 5;
+    
+        // Genera el string de estrellas
+        const estrellas = estrellaLlena.repeat(calificacion) + estrellaVacia.repeat(totalEstrellas - calificacion);
+    
+        return estrellas;
+    };
 
     return (
         <div>
@@ -51,8 +82,9 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
             <div className={styles.createdReview}>
                 <h3 className={styles.formTitulo}>Escribe un comentario!</h3>
                 <Formik
-                    initialValues={{ ...initialValues }}
-                    onSubmit={handleSubmit}
+                    initialValues={initialValues}
+                    validationSchema={ReviewValidationSchema} 
+                    onSubmit={handleSubmit} 
                 >
                     {({ values, handleChange }) => (
                         <Form>
@@ -80,8 +112,10 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
                                 value={values.review}
                                 onChange={handleChange}
                                 className={styles.inputField}
-                                maxLength={200} 
+                                maxLength={200}
                             />
+                            <p className="error"><ErrorMessage name="review" /></p>
+                            <p className="error"><ErrorMessage name="estrellas" /></p>
                             <button type='submit' className={styles.submitButton}>Crear</button>
                         </Form>
                     )}
@@ -91,8 +125,21 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
             <div className={styles.container3}> 
                 <div>
                     <h1 className={styles.reseñastitulo}>Aqui algunas reseñas de nuestros clientes</h1>
-                        </div>
-                        <div className={styles.cartasreseñas2}>
+                    </div>
+                    <div className={styles.cartasreseñas2}>
+                    {reseñas.map((reseña: any) => {
+                        return (
+                            <div key={reseña.id} className='cartasreseñas'>
+                                <div className={styles.reseña}>
+                                    <p className={styles.textoreseñaestrella}>{generarEstrellas(reseña.calificacion)}</p>
+                                    <p className={styles.textoreseña}>{reseña.comentario}</p>
+                                    {/* <p className={styles.textonombre}>Joel Fernandez</p> */}
+                                </div>
+                            </div>
+                        );
+                    })}
+                    </div>
+                        {/* <div className={styles.cartasreseñas2}>
                             <div className={styles.cartasreseñas}>
                                 <div className={styles.reseña}>
                                     <p className={styles.textoreseñaestrella}>★★★★★</p>
@@ -121,7 +168,8 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
                                     <p className={styles.textonombre}>Joel Fernandez</p>
                                 </div >
                             </div>
-                    </div>
+                    </div> */}
+
                 </div>
             </div>
     );
