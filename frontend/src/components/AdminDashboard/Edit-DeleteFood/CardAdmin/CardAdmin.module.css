@@ -47,3 +47,15 @@
     color: whitesmoke;
   }
   
+
+  .card2 {
+    background-color: #f78484;
+    width: 22vw;
+    color: black;
+    padding: 20px;
+    border-radius: 25px;
+    margin: 0;
+    border: solid rgba(0, 0, 0, 0.062) 1px;
+    height: fit-content;
+    transition: transform 0.3s ease;
+  }

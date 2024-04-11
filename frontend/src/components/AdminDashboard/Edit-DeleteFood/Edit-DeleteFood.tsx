@@ -22,6 +22,7 @@ interface Food {
   imagen: string;
   stock: string;
   tipo: string;
+  activo: boolean;
 }
 
 interface CardsProps {
@@ -38,6 +39,8 @@ const EditDeleteFood: React.FC<CardsProps> = ({ numberOfCards }) => {
   const foods: Food[] = location.pathname === "/admindashboard" ? foodAllState : foodState;
   
   const limitedFoods = numberOfCards ? foods.slice(0, numberOfCards) : foods;
+  console.log(foods);
+  
 
 // Style => viene de Cards
 // styled => es de Edit-DeleteFood
@@ -56,6 +59,7 @@ const EditDeleteFood: React.FC<CardsProps> = ({ numberOfCards }) => {
         <div className={Style.cards}>
           {limitedFoods.map((food) => (
             <Card
+              activo={food.activo}
               tipo={food.tipo}
               stock={food.stock}
               key={food.id}
