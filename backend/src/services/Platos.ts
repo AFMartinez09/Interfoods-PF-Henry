@@ -31,6 +31,8 @@ async function insertarPlatos() {
         imagen: plato.imagen,
         descripcion: plato.descripcion,
         stock: plato.stock,
+        activo: plato.activo,
+        inventario: plato.inventario
       });
     }
     console.log("Todos los platos fueron insertados exitosamente.");
