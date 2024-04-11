@@ -1,33 +1,35 @@
 .container {
+  background-color: #f7f3f3ce;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center; /* Centra horizontalmente los elementos */
+  flex-direction: column; 
+  align-items: center; 
+  width: 100%; 
+  box-sizing: border-box; 
 }
 
 .formWrapper {
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo negro transparente */
+  width: 80%; 
+  background-color: rgba(0, 0, 0, 0.5); 
   border-radius: 10px;
-  padding: 20px;
+  padding: 10px; 
+  margin: 0 auto; 
   box-sizing: border-box;
 }
 
-.formContainerL {
-  flex: 0 0 50%; /* Toma el 50% del espacio disponible */
-  padding-right: 20px; /* Espacio entre los contenedores */
+
+.formContainerL, .formContainerR {
+  width: 40%; 
+  padding: 8px; 
+  box-sizing: border-box; 
+  margin-bottom: 8px; 
 }
 
 .formContainerL p {
-  text-align: center; /* Centra el texto */
+  text-align: center; 
 }
 
 .formSection {
-  margin-bottom: 20px; /* Espacio entre los divs de creación de plato */
-}
-
-.formContainerR {
-  flex: 0 0 50%; /* Toma el 50% del espacio disponible */
-  padding-left: 20px; /* Espacio entre los contenedores */
+  margin-bottom: 20px; 
 }
 
 .label {
@@ -48,10 +50,11 @@
   padding: 8px 15px;
   border: none;
   border-radius: 7px;
-  background-color: #007bff;
+  background-color:  #2F695C;
   color: white;
   cursor: pointer;
   min-width: 100px;
+  margin-left: 32vh; 
 }
 
 .error {
@@ -60,9 +63,14 @@
 }
 
 .ingredientList {
+  
   margin-top: 10px;
-  list-style-type: none;
-  padding: 0;
+  list-style-type: disc; 
+  padding-left: 20px; 
+  padding: 10px; 
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+  background-color: #f9f9f9; 
 }
 
 .ingredientListItem {
@@ -70,10 +78,12 @@
   justify-content: space-between;
   align-items: center;
   padding-bottom: 5px;
+  padding-top: 5px;
+  border-bottom: 1px solid #ccc; 
 }
 
 .deleteButton {
-  background-color: #c21707;
+  background-color: #ce8383;
   color: white;
   border: none;
   border-radius: 10px;
@@ -86,7 +96,7 @@
 }
 
 .textArea {
-  width: 100%;
+  width: 100%; 
   resize: none;
   height: 150px;
 }
@@ -95,12 +105,11 @@
   padding: 13px 20px;
   border: none;
   border-radius: 10px;
-  background-color: #2F695C; /* Cambio de color al del navbar y footer */
+  background-color: #2F695C; 
   color: white;
   cursor: pointer;
-  margin-left: 45vh;
+  margin-left: 35vh;
   margin-block-end: 10px;
-  
 }
 
 .submitButton:hover {
@@ -110,4 +119,14 @@
 .submitButton:disabled {
   background-color: #474747;
   cursor: no-drop;
+}
+
+.formPresentation {
+  font-size: 23px;
+  font-style: italic;
+  font-weight: bold; 
+  color: #053f32ea;
+  text-align: center; 
+  margin-bottom: 20px; 
+  
 }

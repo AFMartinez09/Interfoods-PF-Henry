@@ -112,18 +112,24 @@ const CreateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
           <br></br>
           <br></br>
           <br></br>
-          <br></br>
-          <br></br>
+          
           <div className={styles.container}>
             <div className={styles.formContainerL}>
-            <p className={styles.formPresentation}>Este es el formulario para la creación de platos!</p>
+            <h1 className={styles.formPresentation}>Este es el formulario para la creación de platos!</h1>
               <label htmlFor='nombre' className={styles.label}>Nombre del plato*:</label>
               <Field placeholder='Nombre del plato' type='text' name='nombre' className={styles.inputField} />
               <p className={styles.error}><ErrorMessage name='nombre' /></p>
 
-              <label htmlFor='origen' className={styles.label}>País del plato*:</label>
-              <Field placeholder='País del plato' type='text' name='origen' className={styles.inputField} />
-              <p className={styles.error}><ErrorMessage name='origen' /></p>
+             <label htmlFor='origen' className={styles.label}>País del plato*:</label>
+           <Field as="select" name="origen" className={styles.inputField}>
+           <option value="">Selecciona un país</option>
+           <option value="Argentina">Argentina</option>
+           <option value="Mexico">México</option>
+           <option value="Colombia">Colombia</option>
+           <option value="Ecuador">Ecuador</option>
+           </Field>
+          <p className={styles.error}><ErrorMessage name='origen' /></p>
+
 
               <div>
                 <label htmlFor='ingredientes' className={styles.label}>Ingredientes*:</label>
