@@ -15,6 +15,9 @@ export const DELETE_ADMIN = 'DELETE_ADMIN'
 // export const FILTER_BY_RATING  = 'FILTER_BY_RATING';
 // export const FILTER_BY_KAL  = 'FILTER_BY_KAL';
 // rangos de precio
+export const GET_ALL_USERS = 'GET_ALL_USERS'
+
+
 
 
 

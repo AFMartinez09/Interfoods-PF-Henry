@@ -1,5 +1,19 @@
 import axios from 'axios';
-import { GET_FILTRO, GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL, DELETE_MEAL, POST_MEAL, PUT_MEAL, SIGNUP_USER_EMAIL_DB, SET_TRANSACCION_ID, SET_PAYMENT_STATUS, SET_ADMIN_STATE, ACTIVATE_MEAL} from '../actions/ActionsTypes';
+import { 
+  GET_FILTRO,
+  GET_FOOD,
+  GET_PAIS,
+  SIGNUP_USER_EMAIL,
+  DELETE_MEAL,
+  POST_MEAL,
+  PUT_MEAL,
+  SIGNUP_USER_EMAIL_DB,
+  SET_TRANSACCION_ID,
+  SET_PAYMENT_STATUS,
+  GET_ALL_USERS,
+  SET_ADMIN_STATE, 
+  ACTIVATE_MEAL
+  } from '../actions/ActionsTypes';
 import { AnyAction, Dispatch } from 'redux';
 import {URL} from '../../App'
 
@@ -334,3 +348,17 @@ export const setAdminState = (isAdmin: boolean) => ({
   type: SET_ADMIN_STATE,
   payload: isAdmin
 });
+export const getAllUsers = () => async (dispatch: Dispatch<AnyAction>) => {
+
+  try {
+    const response = await axios.get('http://localhost:3000/api/register/usuarios')
+    const users = await response.data.users;
+  console.log('asdf', users)
+    dispatch({
+      type: GET_ALL_USERS,
+      payload: users,
+    })
+  } catch (error) {
+    console.error('Hubo un error al obtener los usuarios', error)
+  }
+}
