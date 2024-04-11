@@ -2,10 +2,12 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import styles from '../CreateMeal/FormMeal.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { upgradeMeal } from '../../../redux/actions/Actions';
+import { upgradeMeal, getFood } from '../../../redux/actions/Actions';
 import { useParams } from 'react-router-dom';
 import { StoreState } from '../../../redux/reducer/Reducer';
 import Error404 from '../../Error/error';
+import Swal from 'sweetalert2';
+
 
 interface PropsCreateMeal {
   id: number;
@@ -44,7 +46,7 @@ interface UpdateMealProps {
   setChanges: Dispatch<SetStateAction<boolean>>;
 }
 
-const UpdateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
+const UpdateMeal: React.FC<UpdateMealProps> = () => {
   const [initialValuesData, setInitialValuesData] = useState<PropsCreateMeal>(initialValues);
   const [idComida, setIdComida] = useState<number>();
   const [loading, setLoading] = useState<boolean>(false)
@@ -89,7 +91,8 @@ const UpdateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
   const handleSubmit = async (values: PropsCreateMeal) => {
     try {
       if(idComida){
-        await submit(dispatch,
+        await submit(
+          dispatch,
           idComida,
           values.nombre,
           values.origen,
@@ -105,14 +108,27 @@ const UpdateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
           values.stock,
         );
       }
-      alert('Se edito el plato')
-      setChanges(true)
+      Swal.fire({
+        title: 'Plato actualizado',
+        text: 'Se actualizo el plato correctamente',
+        icon: 'success',
+        confirmButtonText: 'Entendido'
+      }).then(() => {
+        window.location.href = "/admindashboard/editar-eliminar";
+      })
     } catch (error) {
+      Swal.fire({
+        title: 'Error',
+        text: '¡Hubo un error al actualizar el plato!',
+        icon: 'error',
+        confirmButtonText: 'Entendido'
+      })
       console.error(error);
     }
   };
 
-  const submit = async (dispatch: any,         
+  const submit = async (
+    dispatch: any,         
     id: number,
     nombre: string,
     origen: string,
@@ -143,6 +159,7 @@ const UpdateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
         descripcion,
         stock,
       ));
+      await dispatch(getFood())
     } catch (error) {
       console.error(error);
     }
