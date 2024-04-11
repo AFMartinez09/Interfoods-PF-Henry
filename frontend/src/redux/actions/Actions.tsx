@@ -324,7 +324,6 @@ export const getReviewForPlato = async (idPlato: number) => {
 export const getAllReviews = async () => {
   try {
     const response = await axios.get(`${URL}/api/food/reviews`);
-    console.log(response.data.reviews);
     
     return response.data.reviews;
   } catch (error) {
