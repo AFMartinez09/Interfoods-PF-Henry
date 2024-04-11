@@ -11,7 +11,6 @@ import  {useDispatch} from 'react-redux'
 import { useEffect, useState } from 'react';
 import { getFood } from './redux/actions/Actions.tsx';
 import { Dispatch } from 'redux';
-import axios from 'axios'
 import Detail from './components/Detail/Detail.tsx';
 import Login from './components/Login/Login.tsx';
 import { useLocation } from 'react-router-dom';
@@ -28,10 +27,18 @@ import Recuperar from './components/Recuperar/Recuperar.tsx';
 import Comprajoel from './components/Comprajoel/Comprajoel.tsx';
 import Soporte from './components/Soporte/Soporte.tsx';
 import UpdateMeal from './components/AdminDashboard/UpdateMeal/UpdateMeal.tsx';
+import StatusPayment from './components/AdminDashboard/Graphics/StatusPayment/StatusPayment.tsx';
+import Weekly from './components/AdminDashboard/Graphics/Income/Weekly.tsx';
+import Monthly from './components/AdminDashboard/Graphics/Income/Mothly.tsx';
+import AllStock from './components/AdminDashboard/Graphics/Stock/AllStock.tsx';
+import Postres from './components/AdminDashboard/Graphics/Stock/Pricinpales.tsx';
+import Principales from './components/AdminDashboard/Graphics/Stock/Pricinpales.tsx'
+import Vegano from './components/AdminDashboard/Graphics/Stock/Vegano.tsx';
+import DataUsers from './components/AdminDashboard/Graphics/DataUsers/DataUsers.tsx';
 
 // comentar y descomentar para deploy
-export const URL = "https://pf-henry-jmnh.onrender.com"
-// export const URL = "http://localhost:3000"
+// export const URL = "https://pf-henry-jmnh.onrender.com"
+export const URL = "http://localhost:3000"
 
 function App() {
     const auth = getAuth(app);
@@ -61,23 +68,20 @@ function App() {
 
     useEffect(() => {
         const fetchData2 = async () => {
-            try {
-                const { data } = await axios.get(`${URL}/api/food/`);
-                
-                if (data) {
-                    dispatch(getFood(data));
-                } else {
-                    alert('There are no characters with this ID!');
-                }
-            } catch (error : any) {
-                alert(error.message);
-            }
+          try {
+            // Llamar a la acción getFood y luego ejecutarla con dispatch
+            const action = getFood();
+            await action(dispatch);
+          } catch (error) {
+            console.error('Error fetching food:', error);
+            // Puedes manejar errores aquí si es necesario
+          }
         };
         fetchData2();
         setChanges(false)
     }, [changes]);
 
-    const [showMenu, setShowMenu] = useState(false);
+const [showMenu, setShowMenu] = useState(false);
 
   const toggleMenu = () => {
       setShowMenu(!showMenu);
@@ -114,6 +118,14 @@ function App() {
                   <Route path="*" />
                   <Route path="/api/payments/success" element={<Comprajoel/>}/>
                   <Route path="/Contactos" element={<Soporte/>}/>
+                  <Route path="/admindashboard/statuspayment" element={<StatusPayment />}/>
+                  <Route path="/admindashboard/income" element={<Weekly />}/>
+                  <Route path="/admindashboard/income/mensual" element={<Monthly />}/>
+                  <Route path="/admindashboard/stock" element={<AllStock />}/>
+                  <Route path="/admindashboard/stock/principales" element={<Principales />}/>
+                  <Route path="/admindashboard/stock/postres" element={<Postres />}/>
+                  <Route path="/admindashboard/stock/vegano" element={<Vegano />}/>
+                  <Route path="/admindashboard/datausers" element={<DataUsers />}/>
               </Routes>
               <Footer/>
           </div>

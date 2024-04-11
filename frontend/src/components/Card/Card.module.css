@@ -10,6 +10,7 @@ a{
 .card{
   background-color: #e3eae8;
   width: 22vw;
+  min-width: 450px;
   color: black;
   padding: 0;
   border-radius: 25px;
@@ -23,6 +24,7 @@ a{
   width: 100%;
   border-radius: 25px 25px 0 0;
   min-height: 400px;
+  max-height: 400px;
 }
 
 .conteinerName{
