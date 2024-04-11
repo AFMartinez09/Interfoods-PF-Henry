@@ -110,3 +110,5 @@ const getUsers = async(dispatch: any) => {
 }
 
 export default DataUsers
+
+
