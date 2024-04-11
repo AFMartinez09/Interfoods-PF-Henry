@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import styles from '../CreateMeal/FormMeal.module.css';
+import styles from './UpdateMeal.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { upgradeMeal, getFood } from '../../../redux/actions/Actions';
 import { useParams } from 'react-router-dom';
@@ -177,6 +177,12 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
           >
       {({ values, setFieldValue, isValid, dirty }) => (
         <Form>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+        
           <div className={styles.container}>
             <div className={styles.formContainerL}>
               <label htmlFor='nombre' className={styles.label}>
