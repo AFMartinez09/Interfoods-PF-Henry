@@ -18,6 +18,8 @@ interface Food {
   imagen: string;
   stock: string;
   tipo: string;
+  activo: boolean,
+  inventario: number,
 }
 
 interface CardsProps {
@@ -31,7 +33,8 @@ const Cards: React.FC<CardsProps> = ({ numberOfCards }) => {
   
   const loading = foodState.length === 0 && foodAllState.length === 0;
   
-  const foods: Food[] = location.pathname === "/" ? foodAllState : foodState;
+  let foods: Food[] = location.pathname === "/" ? foodAllState : foodState;
+  foods = foods.filter(food => food.activo === true)
   
   const limitedFoods = numberOfCards ? foods.slice(0, numberOfCards) : foods;
 

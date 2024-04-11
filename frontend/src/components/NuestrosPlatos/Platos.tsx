@@ -19,6 +19,8 @@ interface Food {
   tipo: string;
   imagen: string;
   stock: string;
+  activo: boolean,
+  inventario: number,
 }
 
 const NuestrosPlatos = () => {
@@ -26,8 +28,10 @@ const NuestrosPlatos = () => {
 
   
 
-  const foods: Food[] = foodState;
-  const loading = foodState.length === 0;
+  let foods: Food[] = foodState;
+  foods = foods.filter(food => food.activo === true)
+
+  const loading = foods.length === 0;
 
 
   return (

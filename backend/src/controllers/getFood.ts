@@ -3,8 +3,10 @@ import * as foodServices from '../services/foodServices';
 
 export const getFood = async (_req: Request, res: Response) => {
     try {
-        const finalResponse = await foodServices.getEntriesWithoutSensitiveInfo();
-        finalResponse.sort((a : any, b :any) => {
+        let finalResponse = await foodServices.getEntriesWithoutSensitiveInfo();
+        // finalResponse = finalResponse.filter(food => food.activo === true);
+        // finalResponse = finalResponse.filter(food => food.inventario > 0);
+        finalResponse = finalResponse.sort((a : any, b :any) => {
             // Convertir los nombres a minúsculas para un ordenamiento sin distinción de mayúsculas/minúsculas
             const nombreA = a.nombre.toLowerCase();
             const nombreB = b.nombre.toLowerCase();
