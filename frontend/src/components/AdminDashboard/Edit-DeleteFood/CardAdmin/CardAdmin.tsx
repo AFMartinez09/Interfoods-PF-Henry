@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import Style from '../../../Card/Card.module.css'
 import styled from './CardAdmin.module.css';
-import React, { Dispatch, SetStateAction } from 'react';
 import { useDispatch } from "react-redux";
 import { deleteMeal, activeMeal, getFood } from "../../../../redux/actions/Actions";
 import Swal from 'sweetalert2';
@@ -27,7 +26,6 @@ const Card: React.FC<CardProps> = ({ name, img, weight, price, id, kilocalorias,
   const handleDelete = async(id:number) => {
     try {
       await delet(dispatch, id)
-      setChanges(true)
     } catch (error) {
       console.error("Error al borrar:", error);
       Swal.fire({
