@@ -27,6 +27,14 @@ import Recuperar from './components/Recuperar/Recuperar.tsx';
 import Comprajoel from './components/Comprajoel/Comprajoel.tsx';
 import Soporte from './components/Soporte/Soporte.tsx';
 import UpdateMeal from './components/AdminDashboard/UpdateMeal/UpdateMeal.tsx';
+import StatusPayment from './components/AdminDashboard/Graphics/StatusPayment/StatusPayment.tsx';
+import Weekly from './components/AdminDashboard/Graphics/Income/Weekly.tsx';
+import Monthly from './components/AdminDashboard/Graphics/Income/Mothly.tsx';
+import AllStock from './components/AdminDashboard/Graphics/Stock/AllStock.tsx';
+import Postres from './components/AdminDashboard/Graphics/Stock/Pricinpales.tsx';
+import Principales from './components/AdminDashboard/Graphics/Stock/Pricinpales.tsx'
+import Vegano from './components/AdminDashboard/Graphics/Stock/Vegano.tsx';
+import DataUsers from './components/AdminDashboard/Graphics/DataUsers/DataUsers.tsx';
 
 // comentar y descomentar para deploy
 // export const URL = "https://pf-henry-jmnh.onrender.com"
@@ -59,7 +67,7 @@ function App() {
     const dispatch = useDispatch<Dispatch>();
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchData2 = async () => {
           try {
             // Llamar a la acción getFood y luego ejecutarla con dispatch
             const action = getFood();
@@ -69,15 +77,9 @@ function App() {
             // Puedes manejar errores aquí si es necesario
           }
         };
-    
-        // Llamar a la función fetchData al montar el componente
-        fetchData();
-    
-        // Si la acción getFood depende de alguna variable, asegúrate de agregarla al arreglo de dependencias de useEffect
-        // Por ejemplo:
-        // }, [dependency]);
-    
-      }, [dispatch]); 
+        fetchData2();
+        setChanges(false)
+    }, [changes]);
 
 const [showMenu, setShowMenu] = useState(false);
 
@@ -116,6 +118,14 @@ const [showMenu, setShowMenu] = useState(false);
                   <Route path="*" />
                   <Route path="/api/payments/success" element={<Comprajoel/>}/>
                   <Route path="/Contactos" element={<Soporte/>}/>
+                  <Route path="/admindashboard/statuspayment" element={<StatusPayment />}/>
+                  <Route path="/admindashboard/income" element={<Weekly />}/>
+                  <Route path="/admindashboard/income/mensual" element={<Monthly />}/>
+                  <Route path="/admindashboard/stock" element={<AllStock />}/>
+                  <Route path="/admindashboard/stock/principales" element={<Principales />}/>
+                  <Route path="/admindashboard/stock/postres" element={<Postres />}/>
+                  <Route path="/admindashboard/stock/vegano" element={<Vegano />}/>
+                  <Route path="/admindashboard/datausers" element={<DataUsers />}/>
               </Routes>
               <Footer/>
           </div>
