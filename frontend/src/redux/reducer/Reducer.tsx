@@ -1,5 +1,5 @@
 
-import { GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL, GET_FILTRO, SIGNUP_USER_EMAIL_DB } from '../actions/ActionsTypes';
+import { GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL, GET_FILTRO, SIGNUP_USER_EMAIL_DB, GET_ALL_USERS } from '../actions/ActionsTypes';
 
 
 
@@ -23,7 +23,8 @@ export interface StoreState {
   platos: Plato[];
   filtros: Plato[];
   pais: string;
-  tipo: string
+  tipo: string;
+  users: [],
 }
 
 export interface Action {
@@ -36,6 +37,7 @@ const initialState: StoreState = {
   filtros: [],
   pais: 'Todos',
   tipo: 'Todosa',
+  users: [],
 };
 
 
@@ -100,6 +102,11 @@ const Reducer = (state: StoreState = initialState, action: Action): StoreState =
         return {
           ...state,
         };
+      case GET_ALL_USERS:
+        return{
+          ...state,
+          users: action.payload,
+        }
     default:
       return state;
   }
