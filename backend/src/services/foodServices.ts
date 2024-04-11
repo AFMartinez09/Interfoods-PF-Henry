@@ -51,6 +51,16 @@ export const deleteFood = async (id: number) => {
   if (!plato) {
     throw new Error("Plato no encontrado");
   }
-  await plato.destroy();
+  await plato.update({ activo: false });
   return { message: "Plato eliminado exitosamente" };
 };
+
+export const activar = async (id: number) => {
+  const plato = await Plato.findByPk(id);
+  if (!plato) {
+    throw new Error("Plato no encontrado");
+  }
+  await plato.update({ activo: true });
+  return { message: "Plato activado exitosamente" };
+};
+

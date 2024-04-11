@@ -11,7 +11,6 @@ import  {useDispatch} from 'react-redux'
 import { useEffect, useState } from 'react';
 import { getFood } from './redux/actions/Actions.tsx';
 import { Dispatch } from 'redux';
-import axios from 'axios'
 import Detail from './components/Detail/Detail.tsx';
 import Login from './components/Login/Login.tsx';
 import { useLocation } from 'react-router-dom';
@@ -69,23 +68,20 @@ function App() {
 
     useEffect(() => {
         const fetchData2 = async () => {
-            try {
-                const { data } = await axios.get(`${URL}/api/food/`);
-                
-                if (data) {
-                    dispatch(getFood(data));
-                } else {
-                    alert('There are no characters with this ID!');
-                }
-            } catch (error : any) {
-                alert(error.message);
-            }
+          try {
+            // Llamar a la acción getFood y luego ejecutarla con dispatch
+            const action = getFood();
+            await action(dispatch);
+          } catch (error) {
+            console.error('Error fetching food:', error);
+            // Puedes manejar errores aquí si es necesario
+          }
         };
         fetchData2();
         setChanges(false)
     }, [changes]);
 
-    const [showMenu, setShowMenu] = useState(false);
+const [showMenu, setShowMenu] = useState(false);
 
   const toggleMenu = () => {
       setShowMenu(!showMenu);

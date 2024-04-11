@@ -26,6 +26,8 @@ interface Plato {
   imagen: string;
   descripcion: string;
   stock: string;
+  activo: boolean;
+  inventario: number
 }
 interface user {
   email: string, 

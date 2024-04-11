@@ -3,7 +3,7 @@ import Style from '../../../Card/Card.module.css'
 import styled from './CardAdmin.module.css';
 import React, { Dispatch, SetStateAction } from 'react';
 import { useDispatch } from "react-redux";
-import { deleteMeal } from "../../../../redux/actions/Actions";
+import { deleteMeal, activeMeal, getFood } from "../../../../redux/actions/Actions";
 import Swal from 'sweetalert2';
 
 
@@ -17,10 +17,10 @@ interface CardProps {
   carbohidratos: number;
   stock: string;
   tipo: string;
-  setChanges: Dispatch<SetStateAction<boolean>>;
+  activo: boolean;
 }
 
-const Card: React.FC<CardProps> = ({ name, img, weight, price, id, kilocalorias, carbohidratos, stock, tipo, setChanges}) => {
+const Card: React.FC<CardProps> = ({ name, img, weight, price, id, kilocalorias, carbohidratos, stock, tipo, activo}) => {
   
   const dispatch = useDispatch();
 
@@ -38,22 +38,59 @@ const Card: React.FC<CardProps> = ({ name, img, weight, price, id, kilocalorias,
       });
     }
   }
-
-  const delet = async (dispatch: any, id: number) => {
+  const handleActive = async(id:number) => {  
     try {
-      await dispatch(deleteMeal(id))
+      await active(dispatch, id)
+    } catch (error) {
+      console.error("Error al borrar:", error);
+      Swal.fire({
+        title: 'Error al borrar',
+        text: 'Hubo un problema al intentar borrar un plato. Por favor, inténtalo de nuevo más tarde.',
+        icon: 'error',
+        confirmButtonText: 'Entendido'
+      });
+    }
+  }
+  const active = async (dispatch: any, id: number) => {
+    try {
+      await dispatch(activeMeal(id))
+      await dispatch(getFood());
     } catch (error) {
       console.error("Error al borrar:", error);
     }
   }
 
+  const delet = async (dispatch: any, id: number) => {
+    try {
+      await dispatch(deleteMeal(id))
+      await dispatch(getFood());
+    } catch (error) {
+      console.error("Error al borrar:", error);
+    }
+  }
+  // const fetchData = async () => {
+  //   try {
+  //     const action = getFood();
+  //     await action(dispatch);
+  //   } catch (error) {
+  //     console.error('Error fetching food:', error); 
+  //   }
+  // };
+
+ 
 
   return (
 
-    <div className={styled.card}>
-      <div className={styled.deleteContainer}>
-      <button className={styled.delete} onClick={() =>handleDelete(id)}>X</button>
-      </div>
+    <div className={activo ? styled.card : styled.card2}>
+      {activo ? ( // Si el plato está activo, mostrar el botón de eliminar con 'X', de lo contrario, mostrar 'A'
+        <div className={styled.deleteContainer}>
+          <button className={styled.delete} onClick={() => handleDelete(id)}>X</button>
+        </div>
+      ) : (
+        <div className={styled.deleteContainer}>
+          <button className={styled.delete} onClick={() => handleActive(id)}>ACTIVAR PLATO</button>
+        </div>
+      )}
       <div className={Style.imgcontainer}>
       <img src={img} alt={name} className={Style.img}></img>
       {stock !== 'Disponible' && <p className={Style.stock}>{stock}</p>}

@@ -13,16 +13,34 @@ import {
   GET_ALL_USERS, 
   PUT_USER_BLOCK,
   SET_ADMIN_STATE,
+  ACTIVATE_MEAL,
   } from '../actions/ActionsTypes';
 import { AnyAction, Dispatch } from 'redux';
 import {URL} from '../../App'
 
 // ----------------------------------------------------------------------------
 
-export const getFood = (comida : any) => ({
-    type: GET_FOOD,
-    payload: comida,
-  })
+
+
+export const getFood = () => async (dispatch: any) => {
+  try {
+    const { data } = await axios.get(`${URL}/api/food/`);
+    if (data) {
+      dispatch({
+        type: GET_FOOD,
+        payload: data,
+      });
+    } else {
+      alert('There are no characters with this ID!');
+    }
+  } catch (error : any) {
+    alert(error.message);
+  }
+};
+
+
+
+ 
 
 // ----------------------------------------------------------------------------
 
@@ -241,6 +259,23 @@ export const signUpNewUser = (  email: string,
       window.alert("¡Error al actualizar plato!");
     }
   }
+
+  export const activeMeal = (id: number) => async( dispatch:any ) => {
+    console.log(id);
+    
+    try {
+      await axios.post(`${URL}/api/food/${id}`)
+      return dispatch({
+        type: ACTIVATE_MEAL,
+      });
+    } catch (error) {
+      console.error("Error al actualizar plato:", error);
+      window.alert("¡Error al actualizar plato!");
+    }
+  }
+
+  
+
 
   export const imageUpload = async (file: File) => {
 
