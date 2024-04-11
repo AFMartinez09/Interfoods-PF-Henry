@@ -3,7 +3,6 @@ import React, { Dispatch, SetStateAction } from "react";
 import { useSelector } from "react-redux";
 import { StoreState } from "../../../redux/reducer/Reducer";
 import { useLocation } from "react-router-dom";
-import Loading from "../../Loading/Loading";
 import Card from "./CardAdmin/CardAdmin";
 import Style from '../../Cards/Cards.module.css'
 import SearchBar from "../../SearchBar/SearchBar";
@@ -37,7 +36,7 @@ const EditDeleteFood: React.FC<CardsProps> = ({ numberOfCards}) => {
   const foodAllState = useSelector((state: StoreState) => state.platos);
   const isAdmin = useSelector((state: StoreState) => state.admin)
   
-  const loading = foodState.length === 0 && foodAllState.length === 0;
+  const loading = foodState.length === 0;
   
   const foods: Food[] = location.pathname === "/admindashboard" ? foodAllState : foodState;
   
@@ -58,7 +57,7 @@ const EditDeleteFood: React.FC<CardsProps> = ({ numberOfCards}) => {
        </div>
       {loading ? (
         <div className="containerLoading">
-          <Loading/>
+          <div className={Styled.noexiste}>Lo sentimos mucho, No existen platos disponibles con estos criterios.</div>
         </div>
       ) : (
         <div className={Style.cards}>

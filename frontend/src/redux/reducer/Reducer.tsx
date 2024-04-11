@@ -6,6 +6,8 @@ import {
   SIGNUP_USER_EMAIL_DB,
   GET_ALL_USERS,
   SET_ADMIN_STATE,
+  SET_TYPE,
+  SET_COUNTRY,
   } from '../actions/ActionsTypes';
 
 
@@ -69,7 +71,6 @@ const Reducer = (state: StoreState = initialState, action: Action): StoreState =
         filtros: action.payload
       };
     case GET_FOOD:
-      
       return{
         ...state, 
         platos: action.payload,
@@ -122,7 +123,17 @@ const Reducer = (state: StoreState = initialState, action: Action): StoreState =
           return {
             ...state,
             admin: action.payload
-        };        
+        };     
+        case SET_TYPE:
+          return {
+            ...state,
+            tipo: action.payload
+        };
+        case SET_COUNTRY:
+          return {
+            ...state,
+            pais: action.payload
+        };
     default:
       return state;
   }

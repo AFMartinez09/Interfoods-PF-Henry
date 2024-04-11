@@ -12,6 +12,8 @@ export const SET_PAYMENT_STATUS = 'SET_PAYMENT_STATUS'
 export const GET_ALL_USERS = 'GET_ALL_USERS'
 export const SET_ADMIN_STATE = 'SET_ADMIN_STATE'
 export const DELETE_ADMIN = 'DELETE_ADMIN'
+export const SET_TYPE = 'SET_TYPE'
+export const SET_COUNTRY = 'SET_COUNTRY'
 
 
 

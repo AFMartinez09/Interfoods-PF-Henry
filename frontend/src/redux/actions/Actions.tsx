@@ -13,6 +13,8 @@ import {
   ACTIVATE_MEAL,
   GET_ALL_USERS,
   SET_ADMIN_STATE,
+  SET_TYPE,
+  SET_COUNTRY,
 } from '../actions/ActionsTypes';
 import { AnyAction, Dispatch } from 'redux';
 import {URL} from '../../App'
@@ -361,4 +363,17 @@ export const getAllUsers = () => async (dispatch: Dispatch<AnyAction>) => {
 export const setAdminState = (isAdmin: boolean) => ({
   type: SET_ADMIN_STATE,
   payload: isAdmin
+});
+
+export const settype = (payload: string) => {
+  console.log('Payload:', payload); // Agregar el console.log aquí
+  return {
+    type: SET_TYPE,
+    payload: payload
+  };
+};
+
+export const setcountry = (payload : string) => ({
+  type: SET_COUNTRY,
+  payload: payload
 });

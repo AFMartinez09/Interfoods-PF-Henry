@@ -1,23 +1,37 @@
 import React , { useState} from 'react'
 import Styles from './SearchBar.module.css'
 import { useDispatch, useSelector} from 'react-redux';
-import { getFiltro} from '../../redux/actions/Actions';
+import { getFiltro, setcountry, settype} from '../../redux/actions/Actions';
 import { StoreState } from '../../redux/reducer/Reducer';
 import axios from 'axios';
 import {URL} from '../../App'
 
 const SearchBar: React.FC = () => {
     const dispatch = useDispatch();
-    const tipo = useSelector((state: StoreState) => state.tipo);
-    const pais = useSelector((state: StoreState) => state.pais);
+    let tipo = useSelector((state: StoreState) => state.tipo);
+    let pais = useSelector((state: StoreState) => state.pais);
     const [selectedType, setSelectedType] = useState<string>(tipo);
     const [selectedCountry, setSelectedCountry] = useState<string>(pais);
+    console.log(tipo, 'tipo redux');
+    console.log(pais, 'pais redux');
+    console.log(selectedType, 'tipo local');
+    console.log(selectedCountry, 'pais local');
+    
+ 
+    
+    
+  
+    
+    
+    
+   
   
     
 
     const handleButtonClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
         if(event.currentTarget.value === selectedType){
             setSelectedType('Todosa');
+            dispatch(settype('Todosa'))
             try {
                 const params = new URLSearchParams({
                     pais: selectedCountry,
@@ -32,12 +46,14 @@ const SearchBar: React.FC = () => {
     
                 // Actualizar el estado con los datos recibidos del servidor
                 dispatch(getFiltro(response.data)) 
+                dispatch(settype(event.currentTarget.value))
             } catch (error) {
                 console.error('Error:', error);
             }
 
         } else {
         setSelectedType(event.currentTarget.value);
+        dispatch(settype(event.currentTarget.value))
         try {
             const params = new URLSearchParams({
                 pais: selectedCountry,
@@ -49,7 +65,7 @@ const SearchBar: React.FC = () => {
 
             // Verificar la respuesta si es necesario
             // Actualizar el estado con los datos recibidos del servidor
-            dispatch(getFiltro(response.data)) 
+            dispatch(getFiltro(response.data))
         } catch (error) {
             console.error('Error:', error);
         }
@@ -61,6 +77,7 @@ const SearchBar: React.FC = () => {
     const handleButtonClickcountry = async (event: React.MouseEvent<HTMLButtonElement>) => {
         if(event.currentTarget.value === selectedCountry){
             setSelectedCountry('Todos');
+            dispatch(setcountry('Todos'));
             try {
                 const params = new URLSearchParams({
                     pais: 'Todos',
@@ -81,6 +98,7 @@ const SearchBar: React.FC = () => {
 
         } else {
         setSelectedCountry(event.currentTarget.value);
+        dispatch(setcountry(event.currentTarget.value))
         try {
             const params = new URLSearchParams({
                 pais: event.currentTarget.value,
@@ -130,3 +148,5 @@ const SearchBar: React.FC = () => {
 }
 
 export default SearchBar;
+
+
