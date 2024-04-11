@@ -125,7 +125,8 @@ const UpdateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
     tipo: string,
     imagen: File | null,
     descripcion: string,
-    stock: string,) => {
+    stock: string,
+    ) => {
     try {
       await dispatch(upgradeMeal(
         id,
@@ -169,6 +170,7 @@ const UpdateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
                 type='text'
                 name='nombre'
                 className={styles.inputField}
+                defaultValue='Valor predeterminado'
               />
               <p className={styles.error}>
                 <ErrorMessage name='nombre' />

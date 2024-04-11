@@ -24,6 +24,8 @@ interface Plato {
   imagen: string;
   descripcion: string;
   stock: string;
+  activo: boolean;
+  inventario: number
 }
 
 export interface StoreState {
