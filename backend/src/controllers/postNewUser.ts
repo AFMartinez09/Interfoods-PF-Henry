@@ -1,9 +1,9 @@
 import { auth } from "../auth/firebaseAdmin";
-import fetch from 'node-fetch';
+import fetch from "node-fetch";
 
-export const registerNewUser = async (  
-  email: string, 
-  password:string, 
+export const registerNewUser = async (
+  email: string,
+  password: string,
   nombre: string,
   apellido: string,
   foto: string,
@@ -11,14 +11,15 @@ export const registerNewUser = async (
   ciudad: string,
   direccion: string,
   admin: boolean,
-  habilitado: boolean) => {
+  habilitado: boolean
+) => {
   try {
     const userRecord = await auth.createUser({
       email,
       password,
     });
 
-    const json = JSON.stringify({       
+    const json = JSON.stringify({
       email,
       nombre,
       apellido,
@@ -30,20 +31,23 @@ export const registerNewUser = async (
       habilitado,
     });
 
-    const response = await fetch('http://127.0.0.1:3000/api/register/signupDb', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: json,
-    });
+    const response = await fetch(
+      "http://127.0.0.1:3000/api/register/signupDb",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: json,
+      }
+    );
 
     if (!response.ok) {
-      throw new Error('Error al registrar el usuario en la base de datos');
+      throw new Error("Error al registrar el usuario en la base de datos");
     }
 
     return userRecord;
   } catch (error) {
-    throw new Error('Error al registrar el usuario');
+    throw new Error("Error al registrar el usuario");
   }
 };

@@ -1,7 +1,6 @@
 import { pagos } from "../config/mercadoPago";
 
 export const verifyPayment = async (dataId: any) => {
-  console.log("Estados de los pagos");
   try {
     if (dataId?.type === "payment") {
       const response = await pagos.capture(dataId.id);

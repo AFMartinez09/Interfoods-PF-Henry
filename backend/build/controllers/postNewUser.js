@@ -32,20 +32,20 @@ const registerNewUser = (email, password, nombre, apellido, foto, pais, ciudad, 
             admin,
             habilitado,
         });
-        const response = yield (0, node_fetch_1.default)('http://127.0.0.1:3000/api/register/signupDb', {
-            method: 'POST',
+        const response = yield (0, node_fetch_1.default)("http://127.0.0.1:3000/api/register/signupDb", {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
             },
             body: json,
         });
         if (!response.ok) {
-            throw new Error('Error al registrar el usuario en la base de datos');
+            throw new Error("Error al registrar el usuario en la base de datos");
         }
         return userRecord;
     }
     catch (error) {
-        throw new Error('Error al registrar el usuario');
+        throw new Error("Error al registrar el usuario");
     }
 });
 exports.registerNewUser = registerNewUser;
