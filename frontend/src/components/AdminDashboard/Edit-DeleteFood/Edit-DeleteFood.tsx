@@ -31,7 +31,7 @@ interface CardsProps {
   setChanges: Dispatch<SetStateAction<boolean>>;
 }
 
-const EditDeleteFood: React.FC<CardsProps> = ({ numberOfCards, setChanges }) => {
+const EditDeleteFood: React.FC<CardsProps> = ({ numberOfCards}) => {
   const location = useLocation();
   const foodState = useSelector((state: StoreState) => state.filtros);
   const foodAllState = useSelector((state: StoreState) => state.platos);
@@ -75,7 +75,6 @@ const EditDeleteFood: React.FC<CardsProps> = ({ numberOfCards, setChanges }) => 
               id={food.id}
               kilocalorias={food.kilocalorias}
               carbohidratos={food.carbohidratos}
-              setChanges={setChanges}
               />
             ))}
         </div>

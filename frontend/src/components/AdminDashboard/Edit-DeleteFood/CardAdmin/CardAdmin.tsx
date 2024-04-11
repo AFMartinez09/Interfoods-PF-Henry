@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import Style from '../../../Card/Card.module.css'
 import styled from './CardAdmin.module.css';
-
 import { useDispatch } from "react-redux";
 import { deleteMeal, activeMeal, getFood } from "../../../../redux/actions/Actions";
 import Swal from 'sweetalert2';
