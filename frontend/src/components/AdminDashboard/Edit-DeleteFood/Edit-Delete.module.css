@@ -2,3 +2,10 @@
 .container{
     margin: 120px 15px 0px 50px;
   }
+
+  .noexiste{
+    font-size: 40px;
+    font-weight: 900;
+    margin-bottom: 600px;
+    margin-top: 200px;
+  }

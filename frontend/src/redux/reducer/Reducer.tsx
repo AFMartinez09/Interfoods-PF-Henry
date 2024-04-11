@@ -8,7 +8,9 @@ import {
   GET_ALL_USERS, 
   PUT_USER_BLOCK, 
   SET_ADMIN_STATE,
- } from '../actions/ActionsTypes';
+  SET_TYPE,
+  SET_COUNTRY,
+  } from '../actions/ActionsTypes';
 
 
 
@@ -87,7 +89,6 @@ const Reducer = (state: StoreState = initialState, action: Action): StoreState =
         filtros: action.payload
       };
     case GET_FOOD:
-      
       return{
         ...state, 
         platos: action.payload,
@@ -146,10 +147,20 @@ const Reducer = (state: StoreState = initialState, action: Action): StoreState =
           return {
             ...state,
             admin: action.payload
-          };        
-          default:
-            return state;
-        }
-      }
+        };     
+        case SET_TYPE:
+          return {
+            ...state,
+            tipo: action.payload
+        };
+        case SET_COUNTRY:
+          return {
+            ...state,
+            pais: action.payload
+        };
+    default:
+      return state;
+  }
+}
 
 export default Reducer;

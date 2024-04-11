@@ -14,7 +14,9 @@ import {
   PUT_USER_BLOCK,
   SET_ADMIN_STATE,
   ACTIVATE_MEAL,
-  } from '../actions/ActionsTypes';
+  SET_TYPE,
+  SET_COUNTRY,
+} from '../actions/ActionsTypes';
 import { AnyAction, Dispatch } from 'redux';
 import {URL} from '../../App'
 
@@ -376,4 +378,17 @@ export const PutUserBlock = (email: string, habilitado: boolean) => async (dispa
 export const setAdminState = (isAdmin: boolean) => ({
   type: SET_ADMIN_STATE,
   payload: isAdmin
+});
+
+export const settype = (payload: string) => {
+  console.log('Payload:', payload); // Agregar el console.log aquí
+  return {
+    type: SET_TYPE,
+    payload: payload
+  };
+};
+
+export const setcountry = (payload : string) => ({
+  type: SET_COUNTRY,
+  payload: payload
 });
