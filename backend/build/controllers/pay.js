@@ -27,7 +27,7 @@ const pay = (idCompra, producto, precio, idUsuario, emailUser, nombreUser) => __
                 metadata: {
                     idUsuario: idUsuario,
                     emailUser: emailUser,
-                    nombreUser: nombreUser
+                    nombreUser: nombreUser,
                 },
                 back_urls: {
                     // success: "https://interfoods.netlify.app/api/payments/success", //ruta de deploy
@@ -38,11 +38,12 @@ const pay = (idCompra, producto, precio, idUsuario, emailUser, nombreUser) => __
                 },
                 auto_return: "approved",
                 binary_mode: true,
-                notification_url: "https://interfoods.netlify.app",
-                // "https://6744-5-90-193-17.ngrok-free.app/api/payments/webhook", //Aca debemos agregar la ruta en la cual se ha hecho el deploy
+                notification_url: 
+                // "https://interfoods.netlify.app",
+                "https://fc40-93-40-64-152.ngrok-free.app/api/payments/webhook", //Aca debemos agregar la ruta en la cual se ha hecho el deploy
             },
         });
-        console.log("URL: " + response.init_point, "metadata: " + response.metadata.idUsuario);
+        console.log("URL: " + response.init_point);
         return response.init_point;
     }
     catch (error) {

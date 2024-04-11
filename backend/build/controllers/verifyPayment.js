@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.verifyPayment = void 0;
 const mercadoPago_1 = require("../config/mercadoPago");
 const verifyPayment = (dataId) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("Estados de los pagos");
     try {
         if ((dataId === null || dataId === void 0 ? void 0 : dataId.type) === "payment") {
             const response = yield mercadoPago_1.pagos.capture(dataId.id);
