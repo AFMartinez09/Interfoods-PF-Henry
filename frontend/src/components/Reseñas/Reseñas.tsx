@@ -2,7 +2,7 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import styles from './Reseñas.module.css'
 import React, { useEffect, useState } from "react";
-import { getReviewForPlato, postReview } from '../../redux/actions/Actions';
+import { getAllReviews, getReviewForPlato, postReview } from '../../redux/actions/Actions';
 import ReviewValidationSchema from './validationsReseñas';
 
 
@@ -39,7 +39,7 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
     }, []);
 
     useEffect(() => {
-        if (!isNaN(idPlato)) { // Verifica si idPlato es un número válido
+        if (!isNaN(idPlato)) {
             const fetchData = async () => {
                 try {
                     const dataReseña = await getReviewForPlato(idPlato);
@@ -51,6 +51,20 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
     
             fetchData();
         }
+        if(reseñas?.length === 0){
+            const fetchData = async () => {
+                try {
+                    const dataReseña = await getAllReviews();
+                    setReseñas(dataReseña);
+                } catch (error) {
+                    console.error('Error al obtener las reseñas:', error);
+                }
+            };
+    
+            fetchData();
+        }
+        console.log(reseñas);
+        
         setNewReseña(false)
     }, [idPlato, newReseña]);
     
