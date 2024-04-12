@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import Cards from "../Cards/Cards";
 import Style from "./Home.module.css";
-import logowsp from "./logowsp.png"
+import logowsp from "./logowsp.png";
 
 const Home = () => {
   const whatsappLink =
