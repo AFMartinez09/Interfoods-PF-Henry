@@ -1,5 +1,5 @@
 
-import { GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL, GET_FILTRO, SIGNUP_USER_EMAIL_DB } from '../actions/ActionsTypes';
+import { GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL, GET_FILTRO, SIGNUP_USER_EMAIL_DB, GET_REVIEWS_USER } from '../actions/ActionsTypes';
 
 
 
@@ -19,11 +19,24 @@ interface Plato {
   stock: string;
 }
 
+interface Review {
+  id: number;
+  comentario: string;
+  calificacion: number;
+  habilitado: boolean;
+  usuarioId: number;
+  platoId: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+
 export interface StoreState {
   platos: Plato[];
   filtros: Plato[];
   pais: string;
   tipo: string
+  reviews: Review[]
 }
 
 export interface Action {
@@ -36,6 +49,7 @@ const initialState: StoreState = {
   filtros: [],
   pais: 'Todos',
   tipo: 'Todosa',
+  reviews: []
 };
 
 
@@ -100,6 +114,11 @@ const Reducer = (state: StoreState = initialState, action: Action): StoreState =
         return {
           ...state,
         };
+      case GET_REVIEWS_USER:
+        return{
+          ...state,
+          reviews: action.payload
+        }
     default:
       return state;
   }

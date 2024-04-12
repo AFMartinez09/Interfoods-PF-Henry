@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_FILTRO, GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL, DELETE_MEAL, POST_MEAL, PUT_MEAL, SIGNUP_USER_EMAIL_DB, SET_TRANSACCION_ID, SET_PAYMENT_STATUS} from '../actions/ActionsTypes';
+import { GET_FILTRO, GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL, DELETE_MEAL, POST_MEAL, PUT_MEAL, SIGNUP_USER_EMAIL_DB, SET_TRANSACCION_ID, SET_PAYMENT_STATUS, GET_REVIEWS_USER} from '../actions/ActionsTypes';
 import { AnyAction, Dispatch } from 'redux';
 import {URL} from '../../App'
 
@@ -343,3 +343,14 @@ export const getUserById = async (idUser: number) => {
   }
 };
 
+export const getReviewsUser = (id: number) => async (dispatch: any) => {
+  try {
+    const response = await axios.get(`http://127.0.0.1:3000/api/food/usuario/${id}/reviews`);
+    dispatch({
+      type: GET_REVIEWS_USER,
+      payload: response.data,
+    });
+  } catch (error) {
+    console.error('Error al obtener las reseñas del usuario:', error);
+  }
+};
