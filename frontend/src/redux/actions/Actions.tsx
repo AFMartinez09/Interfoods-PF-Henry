@@ -12,7 +12,9 @@ import {
   SET_PAYMENT_STATUS,
   GET_ALL_USERS,
   SET_ADMIN_STATE, 
-  ACTIVATE_MEAL
+  ACTIVATE_MEAL,
+  SET_TYPE,
+  SET_COUNTRY
 
   } from '../actions/ActionsTypes';
 import { AnyAction, Dispatch } from 'redux';
@@ -364,3 +366,11 @@ export const getAllUsers = () => async (dispatch: Dispatch<AnyAction>) => {
     console.error('Hubo un error al obtener los usuarios', error)
   }
 }
+export const settype = (isAdmin: string) => ({
+  type: SET_TYPE,
+  payload: isAdmin
+});
+export const setcountry = (isAdmin: string) => ({
+  type: SET_COUNTRY,
+  payload: isAdmin
+});
