@@ -8,13 +8,9 @@ import {
   SET_ADMIN_STATE,
   SET_TYPE,
   SET_COUNTRY,
-<<<<<<< HEAD
   } from '../actions/ActionsTypes';
 
 
-=======
-} from "../actions/ActionsTypes";
->>>>>>> dab614ea5eeaab8f98cf6f6dc06a9de6a0e11078
 
 interface Plato {
   id: number;
@@ -39,14 +35,9 @@ export interface StoreState {
   filtros: Plato[];
   pais: string;
   tipo: string;
-<<<<<<< HEAD
   admin: boolean
   users: [],
 
-=======
-  users: [];
-  admin: boolean;
->>>>>>> dab614ea5eeaab8f98cf6f6dc06a9de6a0e11078
 }
 
 export interface Action {
@@ -57,17 +48,10 @@ export interface Action {
 const initialState: StoreState = {
   platos: [],
   filtros: [],
-<<<<<<< HEAD
   pais: 'Todos',
   tipo: 'Todosa',
   users: [],
   admin: false
-=======
-  pais: "Todos",
-  tipo: "Todosa",
-  users: [],
-  admin: false,
->>>>>>> dab614ea5eeaab8f98cf6f6dc06a9de6a0e11078
 };
 
 const Reducer = (
@@ -140,7 +124,6 @@ const Reducer = (
       return {
         ...state,
       };
-<<<<<<< HEAD
       case SIGNUP_USER_EMAIL_DB:
         return {
           ...state,
@@ -171,32 +154,6 @@ const Reducer = (
             ...state,
             pais: action.payload
         };
-=======
-    case SIGNUP_USER_EMAIL_DB:
-      return {
-        ...state,
-      };
-    case GET_ALL_USERS:
-      return {
-        ...state,
-        users: action.payload,
-      };
-    case SET_ADMIN_STATE:
-      return {
-        ...state,
-        admin: action.payload,
-      };
-    case SET_TYPE:
-      return {
-        ...state,
-        tipo: action.payload,
-      };
-    case SET_COUNTRY:
-      return {
-        ...state,
-        pais: action.payload,
-      };
->>>>>>> dab614ea5eeaab8f98cf6f6dc06a9de6a0e11078
     default:
       return state;
   }

@@ -10,7 +10,6 @@ import {
   SIGNUP_USER_EMAIL_DB,
   SET_TRANSACCION_ID,
   SET_PAYMENT_STATUS,
-<<<<<<< HEAD
   GET_ALL_USERS,
   SET_ADMIN_STATE, 
   ACTIVATE_MEAL,
@@ -20,16 +19,6 @@ import {
   } from '../actions/ActionsTypes';
 import { AnyAction, Dispatch } from 'redux';
 import {URL} from '../../App'
-=======
-  ACTIVATE_MEAL,
-  GET_ALL_USERS,
-  SET_ADMIN_STATE,
-  SET_TYPE,
-  SET_COUNTRY,
-} from "../actions/ActionsTypes";
-import { AnyAction, Dispatch } from "redux";
-import { URL } from "../../App";
->>>>>>> dab614ea5eeaab8f98cf6f6dc06a9de6a0e11078
 
 // ----------------------------------------------------------------------------
 
@@ -355,10 +344,6 @@ export const setPaymentStatus = (status: boolean) => ({
   payload: status,
 });
 
-<<<<<<< HEAD
-
-
-=======
 export const getAllUsers = () => async (dispatch: Dispatch<AnyAction>) => {
   try {
     const response = await axios.get(
@@ -374,36 +359,11 @@ export const getAllUsers = () => async (dispatch: Dispatch<AnyAction>) => {
     console.error("Hubo un error al obtener los usuarios", error);
   }
 };
->>>>>>> dab614ea5eeaab8f98cf6f6dc06a9de6a0e11078
 // Definir creadores de acciones
 export const setAdminState = (isAdmin: boolean) => ({
   type: SET_ADMIN_STATE,
   payload: isAdmin,
 });
-<<<<<<< HEAD
-export const getAllUsers = () => async (dispatch: Dispatch<AnyAction>) => {
-
-  try {
-    const response = await axios.get('http://localhost:3000/api/register/usuarios')
-    const users = await response.data.users;
-  console.log('asdf', users)
-    dispatch({
-      type: GET_ALL_USERS,
-      payload: users,
-    })
-  } catch (error) {
-    console.error('Hubo un error al obtener los usuarios', error)
-  }
-}
-export const settype = (isAdmin: string) => ({
-  type: SET_TYPE,
-  payload: isAdmin
-});
-export const setcountry = (isAdmin: string) => ({
-  type: SET_COUNTRY,
-  payload: isAdmin
-});
-=======
 
 export const settype = (payload: string) => {
   console.log("Payload:", payload); // Agregar el console.log aquí
@@ -417,4 +377,3 @@ export const setcountry = (payload: string) => ({
   type: SET_COUNTRY,
   payload: payload,
 });
->>>>>>> dab614ea5eeaab8f98cf6f6dc06a9de6a0e11078

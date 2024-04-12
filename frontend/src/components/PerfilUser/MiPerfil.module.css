@@ -1,5 +1,4 @@
 .container {
-<<<<<<< HEAD
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,14 +6,6 @@
     width: 100%; 
     background-color: rgba(0, 0, 0, 0.699);
     position: relative;
-=======
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  align-items: center;
-  height: 115vh;
-  background-color: rgba(0, 0, 0, 0.699);
->>>>>>> dab614ea5eeaab8f98cf6f6dc06a9de6a0e11078
 }
 
 .container::before {
@@ -41,6 +32,19 @@
   text-align: center;
 }
 
+.userImageDefault {
+  width: 250px; 
+  height: 250px; 
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.userImageDefault:hover {
+  transform: scale(1.1);
+}
+
+
 .title {
   font-size: 2rem;
   color: #2f695c;
@@ -49,7 +53,6 @@
 }
 
 .userImage {
-<<<<<<< HEAD
     width: 200px; 
     height: 200px; 
     border-radius: 50%;
@@ -61,26 +64,6 @@
     transform: scale(1.1);
 }
 
-=======
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  margin-bottom: 20px;
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-
-.userImage:hover {
-  transform: scale(1.1);
-}
-
-/* .userImage {
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  margin-bottom: 20px;
-} */
->>>>>>> dab614ea5eeaab8f98cf6f6dc06a9de6a0e11078
 
 .userData {
   margin-top: 20px;

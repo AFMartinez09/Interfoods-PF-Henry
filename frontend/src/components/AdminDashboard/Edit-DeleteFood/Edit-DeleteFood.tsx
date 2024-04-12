@@ -49,34 +49,6 @@ const EditDeleteFood: React.FC<CardsProps> = ({ numberOfCards }) => {
       {isAdmin === false ? (
         <Error404 />
       ) : (
-<<<<<<< HEAD
-    <div className={Styled.container}>
-      <div className={Styled.filter} >
-        <SearchBar />
-       </div>
-      {loading ? (
-        <div className="containerLoading">
-          <div className={Styled.noexiste}>Lo sentimos mucho, No existen platos disponibles con estos criterios.</div>
-        </div>
-      ) : (
-        <div className={Style.cards}>
-          {limitedFoods.map((food) => (
-            <Card
-              activo={food.activo}
-              tipo={food.tipo}
-              stock={food.stock}
-              key={food.id}
-              name={food.nombre}
-              img={food.imagen}
-              weight={food.peso}
-              price={food.precio}
-              id={food.id}
-              kilocalorias={food.kilocalorias}
-              carbohidratos={food.carbohidratos}
-              
-              />
-            ))}
-=======
         <div className={Styled.container}>
           <div className={Styled.filter}>
             <SearchBar />
@@ -107,7 +79,6 @@ const EditDeleteFood: React.FC<CardsProps> = ({ numberOfCards }) => {
               ))}
             </div>
           )}
->>>>>>> dab614ea5eeaab8f98cf6f6dc06a9de6a0e11078
         </div>
       )}
     </div>

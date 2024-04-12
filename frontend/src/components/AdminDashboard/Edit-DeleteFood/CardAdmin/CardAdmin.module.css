@@ -11,20 +11,6 @@
   transition: transform 0.3s ease;
 }
 
-<<<<<<< HEAD
-  .card2 {
-    background-color: #f78484;
-    width: 22vw;
-    min-width: 450px;
-    color: black;
-    padding: 20px;
-    border-radius: 25px;
-    margin: 0;
-    border: solid rgba(0, 0, 0, 0.062) 1px;
-    height: fit-content;
-    transition: transform 0.3s ease;
-  }
-=======
 .deleteContainer {
   display: flex;
   width: 99%;
@@ -74,4 +60,3 @@
   height: fit-content;
   transition: transform 0.3s ease;
 }
->>>>>>> dab614ea5eeaab8f98cf6f6dc06a9de6a0e11078
