@@ -50,7 +50,7 @@ const EditDeleteFood: React.FC<CardsProps> = ({ numberOfCards }) => {
       {isAdmin === false ? (
         <Error404 />
       ) : (
-<<<<<<< HEAD
+
     <div className={Styled.container}>
       <div className={Styled.filter} >
         <SearchBar />
@@ -77,7 +77,7 @@ const EditDeleteFood: React.FC<CardsProps> = ({ numberOfCards }) => {
               inventario={food.inventario}
               />
             ))}
-=======
+
         <div className={Styled.container}>
           <div className={Styled.filter}>
             <SearchBar />
@@ -108,7 +108,6 @@ const EditDeleteFood: React.FC<CardsProps> = ({ numberOfCards }) => {
               ))}
             </div>
           )}
->>>>>>> dab614ea5eeaab8f98cf6f6dc06a9de6a0e11078
         </div>
       )}
     </div>
