@@ -81,11 +81,7 @@ const Home = () => {
       <div className={Style.whatsappContainer}>
         <a href={whatsappLink} target="_blank" className={Style.enlaceWsp}>
           <div className={Style.wsp__img}>
-            <img
-              className={Style.wspImage}
-              src="./logowsp.png"
-              alt="Whatsapp"
-            />
+            <img className={Style.wspImage} src="./WSP.jpg" alt="Whatsapp" />
           </div>
         </a>
       </div>
