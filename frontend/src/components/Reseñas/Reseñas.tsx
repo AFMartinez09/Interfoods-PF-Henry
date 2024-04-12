@@ -203,7 +203,13 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
                     />
                     <p className="error"><ErrorMessage name="review" /></p>
                     <p className="error"><ErrorMessage name="estrellas" /></p>
-                    <button type='submit' className={styles.submitButton}>Crear</button>
+                    <button 
+                      type='submit' 
+                      className={`${styles.submitButton} ${estrellasSeleccionadas === 0 ? styles.disabledButton : ''}`} 
+                      disabled={estrellasSeleccionadas === 0}
+                    >
+                      Crear
+                    </button>
                   </Form>
                 )}
               </Formik>

@@ -30,7 +30,7 @@ const ReviewValidationSchema = Yup.object({
                 const words = value.toLowerCase().split(/\b/);
                 return !words.some(word => badWords.includes(word));
             }
-            return true; // Devuelve true en caso de que value sea undefined
+            return true;
         })
         .required('El comentario es requerido'),
 });
