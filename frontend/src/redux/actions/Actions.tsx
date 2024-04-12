@@ -429,3 +429,15 @@ export const getAllReviews = async () => {
     return [];
   }
 };
+
+export const getUserById = async (idUser: number) => {
+  try {
+    const response = await axios.get(`${URL}/api/register/getUsuario/${idUser}`);
+    
+    return response.data.user;
+  } catch (error) {
+    console.error('Error al obtener el usuario por id:', error);
+    return [];
+  }
+};
+

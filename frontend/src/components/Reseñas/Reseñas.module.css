@@ -1,65 +1,55 @@
-
-.container3{
+.container3 {
     background-color: white;
-    margin-top: 100px;
-    height: 800px;
+    margin: 100px 0;
+    height: auto; /* Cambiado de 800px a auto para ajustarse dinámicamente al contenido */
+    padding: 20px; /* Añadido padding para separar el contenido del borde */
+    border-radius: 10px; /* Añadido borde redondeado */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Añadida sombra para resaltar el contenedor */
 }
 
-
-.reseñastitulo{
-    font-weight: 1000;
-    font-size: 50px;
+.reseñastitulo {
+    font-weight: bold; /* Cambiado de 1000 a bold para mejorar la legibilidad */
+    font-size: 2.5rem; /* Cambiado de 50px a rem para mejor escalabilidad */
     text-align: center;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-.cartasreseñas2{
-    gap: 70px;
-    height: 400px;
+
+.cartasreseñas2 {
+    gap: 30px; /* Cambiado de 70px a 30px para reducir el espacio entre las reseñas */
     display: flex;
-    margin-top: 50px;
-    transition: transform 0.3s ease;
-    flex-direction: row;
+    flex-wrap: wrap; /* Añadido para permitir que las reseñas se ajusten automáticamente */
     justify-content: center;
-}
-.cartasreseñas{
-    min-height: 400px;
-    display: flex;
-    margin-top: 50px;
-    transition: transform 0.3s ease;
-    flex-direction: row;
-    flex-wrap: wrap;
+    margin-top: 30px; /* Cambiado de 50px a 30px para equilibrar el espaciado */
 }
 
-.reseña:hover{
+.reseña:hover {
     transform: scale(1.04);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Añadida una sombra sutil al hacer hover */
 }
 
-.reseña{
+.reseña {
     width: 300px;
-    height: 400px;
     background-color: rgb(252, 217, 152);
     border-radius: 20px;
-    border: 1px solid  rgb(247, 167, 19);
-    transition: transform 0.3s ease;
+    border: 1px solid rgb(247, 167, 19);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Añadida transición para la sombra */
+    padding: 20px; /* Añadido espacio interno para mejorar la legibilidad */
 }
 
-.textoreseña{
-    font-size: 24px;
-    font-weight: 800;
-    margin-left: 10px;
-    margin-right: 10px;
+.textoreseña {
+    font-size: 1.5rem; /* Cambiado de 24px a rem para mejor escalabilidad */
+    font-weight: bold; /* Cambiado de 800 a bold para mejor legibilidad */
     text-align: center;
-    height: 280px;
+    margin: 20px 0; /* Añadido espacio superior e inferior */
 }
 
-.textonombre{
-    font-size: 20px;
+.textonombre {
+    font-size: 1rem; /* Cambiado de 20px a rem para mejor escalabilidad */
     text-align: center;
     color: rgba(0, 0, 0, 0.527);
 }
 
-
-.textoreseñaestrella{
+.textoreseñaestrella {
     text-align: center;
 }
 

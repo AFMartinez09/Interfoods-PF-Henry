@@ -2,8 +2,10 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import styles from './Reseñas.module.css'
 import React, { useEffect, useState } from "react";
-import { getAllReviews, getReviewForPlato, postReview } from '../../redux/actions/Actions';
+import { getAllReviews, getReviewForPlato, getUserById, postReview } from '../../redux/actions/Actions';
 import ReviewValidationSchema from './validationsReseñas';
+import { useSelector } from 'react-redux';
+import { StoreState } from '../../redux/reducer/Reducer';
 
 
 interface initialValuesInt {
@@ -39,6 +41,15 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
     const [newReseña, setNewReseña] = useState<boolean>(false)
     const [position, setPosition] = useState(0);
     const [reseñasObtenidas, setReseñasObtenidas] = useState<boolean>(false)
+    const [usersData, setUsersData] = useState<any[]>([]); // Estado para almacenar la información de los usuarios
+  
+  const foodState = useSelector((state: StoreState) => state.platos);
+
+  
+  const platoForId = (id: number) => {
+    let selectedItem = foodState.find(item => item.id === id);
+    return selectedItem?.nombre
+  }
 
     const handlePrev = () => {
       setPosition((prevPosition) => {
@@ -59,8 +70,6 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
         }
       });
     };
-    
-    
 
     useEffect(() => {
         const getUserData = () => {
@@ -82,7 +91,6 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
                   const reseñasPlato = await getReviewForPlato(idPlato);
                   if (reseñasPlato.length > 0) {
                       dataReseña = reseñasPlato;
-                      console.log('Plato', idPlato, dataReseña);
                       setReseñas(dataReseña); 
                       setReseñasObtenidas(true);
                       return;
@@ -91,7 +99,6 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
               
               if (!reseñasObtenidas) {
                   dataReseña = await getAllReviews();
-                  console.log('Todos', dataReseña);
                   setReseñas(dataReseña);
                   setReseñasObtenidas(true);
               }
@@ -137,6 +144,24 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
     }
 
     const reseñasFiltradas = filtrarReseñasPorPlato();
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const usersPromises = reseñasFiltradas.map(async (reseña) => {
+            const user = await getUserById(reseña.usuarioId);
+            return user;
+          });
+          const resolvedUsersData = await Promise.all(usersPromises);
+          setUsersData(resolvedUsersData);
+        } catch (error) {
+          console.error('Error al obtener la información del usuario:', error);
+        }
+      };
+    
+      fetchData();
+    }, [reseñasFiltradas]);
+    
 
     return (
         <div>
@@ -201,8 +226,12 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
                   const reseña = reseñasFiltradas[currentIndex];
                   return (
                     <div key={reseña.id} className={styles.reseña}>
+                      <p className={styles.textonombre}>
+                        {usersData.find(user => parseInt(user.id) === reseña.usuarioId)?.email}
+                      </p>
                       <p className={styles.textoreseñaestrella}>{generarEstrellas(reseña.calificacion)}</p>
                       <p className={styles.textoreseña}>{reseña.comentario}</p>
+                      <p className={styles.textonombre}>{platoForId(reseña.platoId)}</p>
                     </div>
                   );
                 })}
@@ -212,7 +241,6 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
                   Siguiente
                 </button>
               )}
-
                 </div>
               </div>
             )}
