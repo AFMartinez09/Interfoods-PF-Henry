@@ -423,7 +423,9 @@ const MiPerfil = () => {
                 className={styles.editButton}
                 onClick={() => setIsEditing(true)}
               >
+                
                 Editar
+                
               </button>
             </div>
           )}

@@ -204,6 +204,7 @@ return (
           </div>
 
           <button type="submit" className={styles.send} disabled={!isValid || !dirty}>REGISTRARME</button>
+        
         </Form>
       )}
     </Formik>

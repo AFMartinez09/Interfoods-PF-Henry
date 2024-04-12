@@ -95,6 +95,7 @@ const CreateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
   
 
   return (
+    
     <div className='pageForm'>
       {isAdmin === false ? (
         <Error404 />
@@ -105,16 +106,30 @@ const CreateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
       onSubmit={handleSubmit}
     >
       {({ values, setFieldValue, isValid, dirty }) => (
-        <Form>
+        
+        <Form>      
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          
           <div className={styles.container}>
             <div className={styles.formContainerL}>
+            <h1 className={styles.formPresentation}>Este es el formulario para la creación de platos!</h1>
               <label htmlFor='nombre' className={styles.label}>Nombre del plato*:</label>
               <Field placeholder='Nombre del plato' type='text' name='nombre' className={styles.inputField} />
               <p className={styles.error}><ErrorMessage name='nombre' /></p>
 
-              <label htmlFor='origen' className={styles.label}>País del plato*:</label>
-              <Field placeholder='País del plato' type='text' name='origen' className={styles.inputField} />
-              <p className={styles.error}><ErrorMessage name='origen' /></p>
+             <label htmlFor='origen' className={styles.label}>País del plato*:</label>
+           <Field as="select" name="origen" className={styles.inputField}>
+           <option value="">Selecciona un país</option>
+           <option value="Argentina">Argentina</option>
+           <option value="Mexico">México</option>
+           <option value="Colombia">Colombia</option>
+           <option value="Ecuador">Ecuador</option>
+           </Field>
+          <p className={styles.error}><ErrorMessage name='origen' /></p>
+
 
               <div>
                 <label htmlFor='ingredientes' className={styles.label}>Ingredientes*:</label>
@@ -187,6 +202,11 @@ const CreateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
               </Field>
               <p className={styles.error}><ErrorMessage name='tipo' /></p>
 
+
+              <label htmlFor='cantidad' className={styles.label}>Cantidad (unidades)*:</label>
+              <Field placeholder='Cantidad' type='text' name='stock' className={styles.inputField} />
+              <p className={styles.error}><ErrorMessage name='stock' /></p>
+              
               <label htmlFor='image' className={styles.label}>Foto del plato*: (formatos en .jpg, .jpeg ó .png)</label>
               <br />
               <input
@@ -207,9 +227,6 @@ const CreateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
               className={styles.textArea} />
               <p className={styles.error}><ErrorMessage name='descripcion' /></p>
 
-              <label htmlFor='cantidad' className={styles.label}>Cantidad (unidades)*:</label>
-              <Field placeholder='Cantidad' type='text' name='stock' className={styles.inputField} />
-              <p className={styles.error}><ErrorMessage name='stock' /></p>
 
               <button type='submit' className={styles.submitButton} disabled={!isValid || !dirty}>Enviar</button>
             </div>

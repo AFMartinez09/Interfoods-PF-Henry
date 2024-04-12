@@ -27,6 +27,7 @@ const Card: React.FC<CardProps> = ({ name, img, weight, price, id, kilocalorias,
   const handleDelete = async(id:number) => {
     try {
       await delet(dispatch, id)
+     
     } catch (error) {
       console.error("Error al borrar:", error);
       Swal.fire({

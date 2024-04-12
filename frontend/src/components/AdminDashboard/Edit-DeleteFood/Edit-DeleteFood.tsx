@@ -74,6 +74,7 @@ const EditDeleteFood: React.FC<CardsProps> = ({ numberOfCards}) => {
               id={food.id}
               kilocalorias={food.kilocalorias}
               carbohidratos={food.carbohidratos}
+              
               />
             ))}
         </div>

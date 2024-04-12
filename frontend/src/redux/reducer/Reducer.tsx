@@ -35,8 +35,9 @@ export interface StoreState {
   filtros: Plato[];
   pais: string;
   tipo: string;
-  users: [],
   admin: boolean
+  users: [],
+
 }
 
 export interface Action {
@@ -114,6 +115,12 @@ const Reducer = (state: StoreState = initialState, action: Action): StoreState =
         return {
           ...state,
         };
+      case GET_ALL_USERS:
+        return{
+          ...state,
+          admin: action.payload
+      };        
+ 
       case GET_ALL_USERS:
         return{
           ...state,
