@@ -38,8 +38,8 @@ import Vegano from './components/AdminDashboard/Graphics/Stock/Vegano.tsx';
 import DataUsers from './components/AdminDashboard/Graphics/DataUsers/DataUsers.tsx';
 
 // comentar y descomentar para deploy
-export const URL = "https://pf-henry-jmnh.onrender.com"
-// export const URL = "http://localhost:3000"
+// export const URL = "https://pf-henry-jmnh.onrender.com"
+export const URL = "http://localhost:3000"
 
 function App() {
     const auth = getAuth(app);

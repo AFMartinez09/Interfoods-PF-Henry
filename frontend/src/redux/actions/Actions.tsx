@@ -10,7 +10,9 @@ import {
   SIGNUP_USER_EMAIL_DB,
   SET_TRANSACCION_ID,
   SET_PAYMENT_STATUS,
-  GET_ALL_USERS
+  GET_ALL_USERS, 
+  PUT_USER_BLOCK,
+  GET_SEARCH_BY_EMAIL,
   } from '../actions/ActionsTypes';
 import { AnyAction, Dispatch } from 'redux';
 import {URL} from '../../App'
@@ -312,12 +314,43 @@ export const getAllUsers = () => async (dispatch: Dispatch<AnyAction>) => {
   try {
     const response = await axios.get('http://localhost:3000/api/register/usuarios')
     const users = await response.data.users;
-  console.log('asdf', users)
     dispatch({
       type: GET_ALL_USERS,
       payload: users,
     })
   } catch (error) {
     console.error('Hubo un error al obtener los usuarios', error)
+  }
+}
+
+export const PutUserBlock = (email: string ) => async (dispatch: any) => {
+  try {
+    // Actualiza el usuario en el servidor
+    const response = await axios.put(`${URL}/api/register/usuario/update/${email}`);
+    
+    // Despacha la acción con el usuario actualizado
+    dispatch({
+      type: PUT_USER_BLOCK,
+      payload: response.data,
+    });
+  } catch (error) {
+    console.error('hubo un error ', error);
+  }
+}
+
+
+
+export const SearchByEmail = (email: string) => async(dispatch: Dispatch) => {
+  try {
+  const response = await axios.get(`${URL}/api/register/usuario/${email}`)
+  const userEmail = await response.data.user.email
+  console.log('123456', userEmail)
+  dispatch({
+    type: GET_SEARCH_BY_EMAIL,
+    payload: userEmail,
+  })
+  } catch (error: any) {
+    console.error('Error En la busqueda', error);
+    throw new Error(error)
   }
 }

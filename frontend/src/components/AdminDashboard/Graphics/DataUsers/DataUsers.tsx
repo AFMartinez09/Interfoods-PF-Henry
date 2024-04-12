@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import styles from './DataUsers.module.css';
-import { getAllUsers } from '../../../../redux/actions/Actions';
+import { PutUserBlock, getAllUsers } from '../../../../redux/actions/Actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { StoreState } from '../../../../redux/reducer/Reducer';
+import SearchMail from './SearchMail';
 
 
 interface Users {
@@ -13,8 +14,7 @@ interface Users {
   pais: string;
   ciudad: string;
   direccion: string;
-  habilitado: boolean; // bloquear cuenta
-  activo:boolean;  // desactivar cuenta
+  habilitado: boolean; 
 }
 
 const DataUsers: React.FC = () => {
@@ -22,78 +22,95 @@ const DataUsers: React.FC = () => {
   const dispatch = useDispatch();
   const users: Users[] = useSelector((state: StoreState) => state.users)
 
-console.log('123456', users)
 
 
 const getUsers = async(dispatch: any) => {
   try {
     dispatch(getAllUsers())
   } catch (error) {
-    
+    console.error('hubo un error', error)
   }
 }
 
   useEffect(() => {
     getUsers(dispatch)
-    console.log('111111', getUsers)
   }, [])
 
+  const PutUsers = async(dispatch: any, email: string) => {
+    try {
+      dispatch(PutUserBlock(email))
+    } catch (error) {
+      console.error('hubo un error', error)
+    }
+  }
+
+
   const handleBlockAccount = (id: number) => {
+    const user = users.find(user => user.id === id)    
     
+    if(user) {
+      user.habilitado = !user.habilitado
+      console.log('boolean', user.habilitado)
+    }
+
+    try {
+      if(user?.email !== undefined) {
+        PutUsers(dispatch, user?.email)
+      }
+    } catch (error) {
+      console.error('hubo un error ')
+    }
   }
 
-  const handleDeleteAcoount = (id: number) => {
-    // try {
-    //   await delete(dispatch, id)
 
-    // } catch (error) {
-      
-    // }
-  }
 
   return (
-    <div className={styles.continer}>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>NOMBRE</th>
-            <th>APELLIDO</th>
-            <th>EMAIL</th>
-            <th>PAIS</th>
-            <th>CIUDAD</th>
-            <th>DIRECCION</th>
-            <th>BLOQUEAR CUENTA</th>
-            <th>DESACTIVAR CUENTA</th>
-          </tr>        
-        </thead>
-        <tbody>
-          {Array.isArray(users) && users.map((user: {
-            id: number, 
-            nombre: string, 
-            apellido: string, 
-            email: string,
-            pais: string,
-            ciudad: string,
-            direccion: string,
-            habilitado: boolean,
-            activo: boolean,
-          }) => (
-            <tr key={user.id}>
-              <td>{user.id}</td>
-              <td>{user.nombre}</td>
-              <td>{user.apellido}</td>
-              <td>{user.email}</td>
-              <td>{user.pais}</td>
-              <td>{user.ciudad}</td>
-              <td>{user.direccion}</td>
-              <td><button onClick={() => handleBlockAccount(user.id)}>{user.habilitado}</button></td>
-              <td><button onClick={() => handleDeleteAcoount(user.id)}>{user.activo}</button></td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+      <div className={styles.container}>
+        <h1 className={styles.headline}>Datos de usuarios</h1>
+          <SearchMail />
+        <table className={styles.table}>
+          <thead>
+            <tr className={styles.row}>
+              <th className={styles.title}>NOMBRE</th>
+              <th className={styles.title}>APELLIDO</th>
+              <th className={styles.title}>EMAIL</th>
+              <th className={styles.title}>PAIS</th>
+              <th className={styles.title}>CIUDAD</th>
+              <th className={styles.title}>DIRECCION</th>
+              <th className={styles.title}>ELIMINAR CUENTA</th>
+            </tr>        
+          </thead>
+          <tbody>
+            {Array.isArray(users) && users.map((user: {
+              id: number, 
+              nombre: string, 
+              apellido: string, 
+              email: string,
+              pais: string,
+              ciudad: string,
+              direccion: string,
+              habilitado: boolean,
+            }) => (
+              <tr key={user.id}>
+                <td className={styles.field}>{user.nombre}</td>
+                <td className={styles.field}>{user.apellido}</td>
+                <td className={styles.field}>{user.email}</td>
+                <td className={styles.field}>{user.pais}</td>
+                <td className={styles.field}>{user.ciudad}</td>
+                <td className={styles.field}>{user.direccion}</td>
+
+                <td className={styles.checkbox}>
+                  <label className={styles.switch}>
+                    <input type='checkbox' onClick={() => handleBlockAccount(user.id)}></input>
+                    <span className={styles.slider}></span>
+                  </label>
+                </td>
+
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
   )
 }
 
