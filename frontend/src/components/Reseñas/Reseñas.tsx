@@ -227,7 +227,7 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
                 <div className={styles.containerReseñasBtn}>
                 {reseñasFiltradas.length > 3 && (
                 <button onClick={handlePrev} className={styles.btnCarrousel}>
-                  Anterior
+                  &#10094;
                 </button>
               )}
               <div className={styles.cartasreseñas2}>
@@ -250,7 +250,7 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
               </div>
               {reseñasFiltradas.length > 3 && (
                 <button onClick={handleNext} className={styles.btnCarrousel}>
-                  Siguiente
+                  &#10095;
                 </button>
               )}
                 </div>
