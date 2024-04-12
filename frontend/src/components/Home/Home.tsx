@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import Cards from "../Cards/Cards";
 import Style from "./Home.module.css";
+import logowsp from "./logowsp.png"
 
 const Home = () => {
   const whatsappLink =
@@ -81,7 +82,7 @@ const Home = () => {
       <div className={Style.whatsappContainer}>
         <a href={whatsappLink} target="_blank" className={Style.enlaceWsp}>
           <div className={Style.wsp__img}>
-            <img className={Style.wspImage} src="./WSP.jpg" alt="Whatsapp" />
+            <img className={Style.wspImage} src={logowsp} alt="Whatsapp" />
           </div>
         </a>
       </div>
