@@ -227,11 +227,13 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
                   return (
                     <div key={reseña.id} className={styles.reseña}>
                       <p className={styles.textonombre}>
-                        {usersData.find(user => parseInt(user.id) === reseña.usuarioId)?.email}
+                        {usersData.find(user => parseInt(user.id) === reseña.usuarioId)?.nombre} {usersData.find(user => parseInt(user.id) === reseña.usuarioId)?.apellido}
                       </p>
                       <p className={styles.textoreseñaestrella}>{generarEstrellas(reseña.calificacion)}</p>
+                      <div className={styles.containercomentarionombreplato}>
                       <p className={styles.textoreseña}>{reseña.comentario}</p>
-                      <p className={styles.textonombre}>{platoForId(reseña.platoId)}</p>
+                      <p className={styles.textonombreplato}>{platoForId(reseña.platoId)}</p>
+                      </div>
                     </div>
                   );
                 })}
