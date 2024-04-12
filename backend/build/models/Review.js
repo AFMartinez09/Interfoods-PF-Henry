@@ -13,7 +13,6 @@ exports.Review = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const Usuario_1 = require("./Usuario");
 const Plato_1 = require("./Plato");
-'../Plato';
 let Review = class Review extends sequelize_typescript_1.Model {
 };
 exports.Review = Review;
@@ -32,6 +31,14 @@ __decorate([
     }),
     __metadata("design:type", Number)
 ], Review.prototype, "calificacion", void 0);
+__decorate([
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.BOOLEAN,
+        allowNull: false,
+        defaultValue: true
+    }),
+    __metadata("design:type", Boolean)
+], Review.prototype, "habilitado", void 0);
 __decorate([
     (0, sequelize_typescript_1.ForeignKey)(() => Usuario_1.Usuario),
     (0, sequelize_typescript_1.Column)({

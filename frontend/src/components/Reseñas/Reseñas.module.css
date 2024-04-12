@@ -1,65 +1,200 @@
-
-.container3{
-    background-color: white;
+.container3 {
+    background-color: #f8f8f8;
     margin-top: 100px;
-    height: 800px;
+    height: auto; 
+    padding: 100px 0 150px; 
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
 }
 
-
-.reseñastitulo{
-    font-weight: 1000;
-    font-size: 50px;
+.reseñastitulo {
+    font-weight: bold;
+    font-size: 2.5rem;
     text-align: center;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-.cartasreseñas2{
-    width: 100%;
-    height: 400px;
+
+.cartasreseñas2 {
+    gap: 30px;
     display: flex;
-    margin-top: 50px;
-    transition: transform 0.3s ease;
-    flex-direction: row;
-}
-.cartasreseñas{
-    width: 100%;
-    min-height: 400px;
-    display: flex;
-    margin-top: 50px;
-    transition: transform 0.3s ease;
-    flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 30px; 
 }
 
-.cartasreseñas:hover{
+.reseña:hover {
     transform: scale(1.04);
-    
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.reseña{
-    margin-left: 70px;
+.reseña {
     width: 300px;
-    height: 400px;
-    background-color: rgb(252, 217, 152);
+    height: 420px; 
+    background-color: white; 
     border-radius: 20px;
-    border: 1px solid  rgb(247, 167, 19);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 2rem 20px;
+    display: flex;
+    flex-direction: column;
 }
 
-.textoreseña{
-    font-size: 24px;
-    font-weight: 800;
-    margin-left: 10px;
-    margin-right: 10px;
+.containercomentarionombreplato {
+    flex-grow: 1;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.textoreseña {
+    font-size: 1.5rem;
+    font-weight: bold;
     text-align: center;
-    height: 280px;
 }
 
-.textonombre{
-    font-size: 20px;
+.textonombre {
+    display: inline-block;
+    font-size: 1rem;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.527);
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-top: 0;
+}
+p {
+    display: block;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+}
+
+.textonombreplato {
+    font-size: 1rem;
     text-align: center;
     color: rgba(0, 0, 0, 0.527);
 }
 
-
-.textoreseñaestrella{
+.textoreseñaestrella {
     text-align: center;
+    margin: 1rem 0;
+}
+
+
+.estrellaSeleccionada{
+    width: 30px;
+}
+
+.estrella{
+    width: 30px;
+}
+
+.createdReview{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.inputField{
+    text-align: start;
+    width: 450px;
+    height: 120px;
+    resize: none; 
+    margin: 20px 0;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.estrellasContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.submitButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: #FF9933;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    border: none;
+    color: white;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: auto;
+  }
+
+.submitButton:hover{
+    background-color: #ffb469;
+    border: none;
+    color: rgb(33, 33, 33);
+  }
+
+.formTitulo{
+    font-size: 35px;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 30px 0 10px;
+}
+
+.error {
+    color: red;
+}
+
+.containerReseñasBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btnCarrousel{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: #ff993300;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 600;
+    border: none;
+    color: #FF9933;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 30px 100px 0;
+}
+
+.btnCarrousel:hover{
+    background-color: #ffe0c000;
+    border: none;
+    color: rgb(33, 33, 33);
+  }
+
+  .disabledButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: #CCCCCC; /* Cambiar color de fondo cuando está deshabilitado */
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    border: none;
+    color: #666666; /* Cambiar color del texto cuando está deshabilitado */
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    cursor: not-allowed; /* Cambiar cursor cuando está deshabilitado */
+    margin-left: auto;
+}
+
+.disabledButton:hover {
+    background-color: #CCCCCC; /* Cambiar color de fondo en hover cuando está deshabilitado */
+    color: #666666; /* Cambiar color del texto en hover cuando está deshabilitado */
 }

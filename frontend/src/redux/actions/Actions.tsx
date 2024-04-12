@@ -1,22 +1,5 @@
-import axios from "axios";
-import {
-  GET_FILTRO,
-  GET_FOOD,
-  GET_PAIS,
-  SIGNUP_USER_EMAIL,
-  DELETE_MEAL,
-  POST_MEAL,
-  PUT_MEAL,
-  SIGNUP_USER_EMAIL_DB,
-  SET_TRANSACCION_ID,
-  SET_PAYMENT_STATUS,
-  GET_ALL_USERS,
-  SET_ADMIN_STATE, 
-  ACTIVATE_MEAL,
-  SET_TYPE,
-  SET_COUNTRY
-
-  } from '../actions/ActionsTypes';
+import axios from 'axios';
+import { GET_FILTRO, GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL, DELETE_MEAL, POST_MEAL, PUT_MEAL, SIGNUP_USER_EMAIL_DB, SET_TRANSACCION_ID, SET_PAYMENT_STATUS, GET_REVIEWS_USER, ACTIVATE_MEAL} from '../actions/ActionsTypes';
 import { AnyAction, Dispatch } from 'redux';
 import {URL} from '../../App'
 
@@ -344,36 +327,63 @@ export const setPaymentStatus = (status: boolean) => ({
   payload: status,
 });
 
-export const getAllUsers = () => async (dispatch: Dispatch<AnyAction>) => {
+export const postReview = async (comentario: string, estrellas: number, platoId: number, userId: number) => {
   try {
-    const response = await axios.get(
-      "http://localhost:3000/api/register/usuarios"
-    );
-    const users = await response.data.users;
-    console.log("asdf", users);
-    dispatch({
-      type: GET_ALL_USERS,
-      payload: users,
+    await axios.post(`${URL}/api/food/${platoId}/reviews`, {
+      comentario: comentario,
+      calificacion: estrellas, 
+      usuarioId: userId,
     });
+
+    console.log(comentario, estrellas, platoId, userId);
+    
+
   } catch (error) {
-    console.error("Hubo un error al obtener los usuarios", error);
+    console.error("Error al crear la review:", error);
+    window.alert("¡Error al crear la review!");
+  }
+}
+
+export const getReviewForPlato = async (idPlato: number) => {
+  try {
+    const response = await axios.get(`${URL}/api/food/${idPlato}/reviews`);
+    return response.data;
+  } catch (error) {
+    console.error('Error al obtener las reseñas del plato:', error);
+    return [];
   }
 };
-// Definir creadores de acciones
-export const setAdminState = (isAdmin: boolean) => ({
-  type: SET_ADMIN_STATE,
-  payload: isAdmin,
-});
 
-export const settype = (payload: string) => {
-  console.log("Payload:", payload); // Agregar el console.log aquí
-  return {
-    type: SET_TYPE,
-    payload: payload,
-  };
+export const getAllReviews = async () => {
+  try {
+    const response = await axios.get(`${URL}/api/food/reviews`);
+    
+    return response.data.reviews;
+  } catch (error) {
+    console.error('Error al obtener las reseñas del plato:', error);
+    return [];
+  }
 };
 
-export const setcountry = (payload: string) => ({
-  type: SET_COUNTRY,
-  payload: payload,
-});
+export const getUserById = async (idUser: number) => {
+  try {
+    const response = await axios.get(`${URL}/api/register/getUsuario/${idUser}`);
+    
+    return response.data.user;
+  } catch (error) {
+    console.error('Error al obtener el usuario por id:', error);
+    return [];
+  }
+};
+
+export const getReviewsUser = (id: number) => async (dispatch: any) => {
+  try {
+    const response = await axios.get(`http://127.0.0.1:3000/api/food/usuario/${id}/reviews`);
+    dispatch({
+      type: GET_REVIEWS_USER,
+      payload: response.data,
+    });
+  } catch (error) {
+    console.error('Error al obtener las reseñas del usuario:', error);
+  }
+};

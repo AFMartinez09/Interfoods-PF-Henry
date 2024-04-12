@@ -1,14 +1,5 @@
-import {
-  GET_FOOD,
-  GET_PAIS,
-  SIGNUP_USER_EMAIL,
-  GET_FILTRO,
-  SIGNUP_USER_EMAIL_DB,
-  GET_ALL_USERS,
-  SET_ADMIN_STATE,
-  SET_TYPE,
-  SET_COUNTRY,
-  } from '../actions/ActionsTypes';
+
+import { GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL, GET_FILTRO, SIGNUP_USER_EMAIL_DB, GET_REVIEWS_USER } from '../actions/ActionsTypes';
 
 
 
@@ -26,18 +17,26 @@ interface Plato {
   imagen: string;
   descripcion: string;
   stock: string;
-  activo: boolean;
-  inventario: number;
 }
+
+interface Review {
+  id: number;
+  comentario: string;
+  calificacion: number;
+  habilitado: boolean;
+  usuarioId: number;
+  platoId: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
 
 export interface StoreState {
   platos: Plato[];
   filtros: Plato[];
   pais: string;
-  tipo: string;
-  admin: boolean
-  users: [],
-
+  tipo: string
+  reviews: Review[]
 }
 
 export interface Action {
@@ -50,8 +49,7 @@ const initialState: StoreState = {
   filtros: [],
   pais: 'Todos',
   tipo: 'Todosa',
-  users: [],
-  admin: false
+  reviews: []
 };
 
 const Reducer = (
@@ -128,32 +126,11 @@ const Reducer = (
         return {
           ...state,
         };
-      case GET_ALL_USERS:
+      case GET_REVIEWS_USER:
         return{
           ...state,
-          admin: action.payload
-      };        
- 
-      case GET_ALL_USERS:
-        return{
-          ...state,
-          users: action.payload,
+          reviews: action.payload
         }
-        case SET_ADMIN_STATE:
-          return {
-            ...state,
-            admin: action.payload
-        };     
-        case SET_TYPE:
-          return {
-            ...state,
-            tipo: action.payload
-        };
-        case SET_COUNTRY:
-          return {
-            ...state,
-            pais: action.payload
-        };
     default:
       return state;
   }

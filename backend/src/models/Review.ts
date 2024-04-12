@@ -1,7 +1,7 @@
 import { Table, Column, Model, DataType, ForeignKey, BelongsTo } from 'sequelize-typescript';
 import { Usuario } from './Usuario';
 import { Plato } from './Plato';
-'../Plato';
+
 
 @Table({
   modelName: 'Review',
@@ -20,6 +20,13 @@ export class Review extends Model {
     validate: { min: 1, max: 5 },
   })
   calificacion!: number;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    allowNull: false,
+    defaultValue: true
+  })
+  habilitado!: boolean;
 
   @ForeignKey(() => Usuario)
   @Column({
