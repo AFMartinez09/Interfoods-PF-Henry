@@ -1,5 +1,23 @@
-import axios from 'axios';
-import { GET_FILTRO, GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL, DELETE_MEAL, POST_MEAL, PUT_MEAL, SIGNUP_USER_EMAIL_DB, SET_TRANSACCION_ID, SET_PAYMENT_STATUS, GET_REVIEWS_USER, ACTIVATE_MEAL} from '../actions/ActionsTypes';
+import axios from "axios";
+import {
+  GET_FILTRO,
+  GET_FOOD,
+  GET_PAIS,
+  SIGNUP_USER_EMAIL,
+  DELETE_MEAL,
+  POST_MEAL,
+  PUT_MEAL,
+  SIGNUP_USER_EMAIL_DB,
+  SET_TRANSACCION_ID,
+  SET_PAYMENT_STATUS,
+  GET_ALL_USERS,
+  SET_ADMIN_STATE, 
+  ACTIVATE_MEAL,
+  SET_TYPE,
+  SET_COUNTRY,
+  GET_REVIEWS_USER
+
+  } from '../actions/ActionsTypes';
 import { AnyAction, Dispatch } from 'redux';
 import {URL} from '../../App'
 
@@ -327,6 +345,40 @@ export const setPaymentStatus = (status: boolean) => ({
   payload: status,
 });
 
+export const getAllUsers = () => async (dispatch: Dispatch<AnyAction>) => {
+  try {
+    const response = await axios.get(
+      "http://localhost:3000/api/register/usuarios"
+    );
+    const users = await response.data.users;
+    console.log("asdf", users);
+    dispatch({
+      type: GET_ALL_USERS,
+      payload: users,
+    });
+  } catch (error) {
+    console.error("Hubo un error al obtener los usuarios", error);
+  }
+};
+// Definir creadores de acciones
+export const setAdminState = (isAdmin: boolean) => ({
+  type: SET_ADMIN_STATE,
+  payload: isAdmin,
+});
+
+export const settype = (payload: string) => {
+  console.log("Payload:", payload); // Agregar el console.log aquí
+  return {
+    type: SET_TYPE,
+    payload: payload,
+  };
+};
+
+export const setcountry = (payload: string) => ({
+  type: SET_COUNTRY,
+  payload: payload,
+});
+
 export const postReview = async (comentario: string, estrellas: number, platoId: number, userId: number) => {
   try {
     await axios.post(`${URL}/api/food/${platoId}/reviews`, {
@@ -387,3 +439,5 @@ export const getReviewsUser = (id: number) => async (dispatch: any) => {
     console.error('Error al obtener las reseñas del usuario:', error);
   }
 };
+
+

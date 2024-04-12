@@ -32,28 +32,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getFood = void 0;
+exports.activeFood = void 0;
 const foodServices = __importStar(require("../services/foodServices"));
-const getFood = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const activeFood = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let finalResponse = yield foodServices.getEntriesWithoutSensitiveInfo();
-        // finalResponse = finalResponse.filter(food => food.activo === true);
-        // finalResponse = finalResponse.filter(food => food.inventario > 0);
-        finalResponse = finalResponse.sort((a, b) => {
-            // Convertir los nombres a minúsculas para un ordenamiento sin distinción de mayúsculas/minúsculas
-            const nombreA = a.nombre.toLowerCase();
-            const nombreB = b.nombre.toLowerCase();
-            // Comparar los nombres y devolver el resultado de la comparación
-            if (nombreA < nombreB)
-                return -1;
-            if (nombreA > nombreB)
-                return 1;
-            return 0;
-        });
-        return res.send(finalResponse);
+        const { id } = req.params;
+        const response = yield foodServices.activar(Number(id));
+        res.json(response);
     }
     catch (error) {
-        return res.status(500).json({ error: 'Error searching for Foods.' });
+        if (error instanceof Error) {
+            res.status(404).json({ error: error.message });
+        }
+        else {
+            res.status(500).json({ error: 'Un error desconocido ocurrió al intentar activar el plato' });
+        }
     }
 });
-exports.getFood = getFood;
+exports.activeFood = activeFood;

@@ -9,6 +9,7 @@ import { getReviewForPlato } from "../controllers/getReviewPlato";
 import { getAllReviews } from "../controllers/getAllReviews";
 import { disableReview } from "../controllers/disableReview";
 import { getReviewForUser } from "../controllers/getReviewUser";
+import { activeFood } from "../controllers/activateFood";
 const router = express.Router();
 
 router.get("/", getFood);
