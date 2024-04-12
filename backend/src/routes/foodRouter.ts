@@ -9,6 +9,7 @@ import { activeFood } from "../controllers/activateFood";
 import {upinventario } from "../controllers/updateInventario";
 import { getReviewForPlato } from "../controllers/getReviewPlato";
 import { getAllReviews } from "../controllers/getAllReviews";
+import { disableReview } from "../controllers/disableReview";
 const router = express.Router();
 
 router.get("/", getFood);
@@ -22,5 +23,6 @@ router.get("/comida/inventario", upinventario)
 router.post("/:platoId/reviews", addReviewToPlato)
 router.get('/:platoId/reviews', getReviewForPlato)
 router.get('/reviews', getAllReviews)
+router.put('/disableReview/:id', disableReview)
 
 export default router;

@@ -135,12 +135,12 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
 
     const filtrarReseñasPorPlato = () => {
       if (!isNaN(idPlato)) {
-          const reseñasPlato = reseñas.filter(reseña => reseña.platoId === idPlato);
-          if (reseñasPlato.length > 0) {
-              return reseñasPlato;
-          }
+        const reseñasPlato = reseñas.filter(reseña => reseña.platoId === idPlato && reseña.habilitado);
+        if (reseñasPlato.length > 0) {
+          return reseñasPlato;
+        }
       }
-      return reseñas;
+      return reseñas.filter(reseña => reseña.habilitado); // Filtrar todas las reseñas habilitadas si no hay reseñas específicas del plato
     }
 
     const reseñasFiltradas = filtrarReseñasPorPlato();
@@ -148,12 +148,16 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const usersPromises = reseñasFiltradas.map(async (reseña) => {
-            const user = await getUserById(reseña.usuarioId);
-            return user;
-          });
-          const resolvedUsersData = await Promise.all(usersPromises);
-          setUsersData(resolvedUsersData);
+          if (reseñasFiltradas && reseñasFiltradas.length > 0) {
+            const usersPromises = reseñasFiltradas.map(async (reseña) => {
+              const user = await getUserById(reseña.usuarioId);
+              return user;
+            });
+            const resolvedUsersData = await Promise.all(usersPromises);
+            setUsersData(resolvedUsersData);
+          } else {
+            console.log('No hay reseñas filtradas disponibles.');
+          }
         } catch (error) {
           console.error('Error al obtener la información del usuario:', error);
         }
