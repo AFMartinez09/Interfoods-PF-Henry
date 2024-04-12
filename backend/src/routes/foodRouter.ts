@@ -7,6 +7,7 @@ import { getFoodFiltro } from "../controllers/getFoodFiltro";
 import { addReviewToPlato } from "../controllers/reviewController";
 import { getReviewForPlato } from "../controllers/getReviewPlato";
 import { getAllReviews } from "../controllers/getAllReviews";
+import { disableReview } from "../controllers/disableReview";
 const router = express.Router();
 
 router.get("/", getFood);
@@ -18,5 +19,6 @@ router.get("/filtro", getFoodFiltro)
 router.post("/:platoId/reviews", addReviewToPlato)
 router.get('/:platoId/reviews', getReviewForPlato)
 router.get('/reviews', getAllReviews)
+router.put('/disableReview/:id', disableReview)
 
 export default router;
