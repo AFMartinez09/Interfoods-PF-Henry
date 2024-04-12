@@ -1,133 +1,103 @@
 .container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  align-items: center;
-  height: 115vh;
-  background-color: rgba(0, 0, 0, 0.699);
-  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 40vh;
+    width: 100%; 
+    background-color: rgba(0, 0, 0, 0.699);
+    position: relative;
 }
 
-.container::before{
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-size: cover;
-  height: 115vh;
-  background-image: url('https://images6.alphacoders.com/130/1308741.jpg');
-  z-index: -1;
-  filter: blur(1px);
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://images6.alphacoders.com/130/1308741.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(1px);
+    z-index: -1;
 }
+
 
 .userInfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 30px 50px 50px;
-  min-width: 40%;
-  border-radius: 60px;
-  background-color: #dbe9e9;
-  text-align: center;
+    width: 60%; 
+    max-width: 400px; 
+    margin: 100px auto 50px; 
+    padding: 30px 30px 20px;
+    border-radius: 30px; 
+    background-color: #dbe9e9;
+    text-align: center;
 }
+
 
 .title {
-  text-align: center;
-  margin: 30px 0;
-  font-size: 45px;
-  color: #2f695c;
-  font-family: Lobster, cursive;
-  font-weight: bold;
+    font-size: 2rem; 
+    color: #2f695c;
+    font-family: 'Lobster', cursive;
+    margin-bottom: 20px;
 }
 
+
 .userImage {
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  margin-bottom: 20px;
-  transition: transform 0.3s ease;
-  cursor: pointer;
+    width: 200px; 
+    height: 200px; 
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
 .userImage:hover {
-  transform: scale(1.1); 
+    transform: scale(1.1);
 }
 
-/* .userImage {
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  margin-bottom: 20px;
-} */
 
 .userData {
-  margin-top: 20px;
+    margin-top: 20px;
+    text-align: center; 
+    width: 90%;
+    margin: 20px auto; 
 }
+
 
 .containerDato {
-  margin-bottom: 10px;
-}
+    margin-bottom: 15px; 
+    }
+
 
 .dataType {
-  font-weight: bold;
-  margin-right: 10px;
-  font-size: 24px;
+    font-weight: bold; 
+    font-size: 1rem; 
+    color: #2f695c; 
+    margin-right: 5px;
 }
+
 
 .dataValue {
-  font-weight: normal;
-  font-size: 24px;
-}
-
-.userDetail {
-  margin-bottom: 10px;
-  font-weight: bold;
+    font-weight: normal; 
+    font-size: 1rem; 
+    color: #1f1f1f; 
 }
 
 
-.userImageDefault {
-  width: 400px;
-  height: 250px;
-  border-radius: 50%;
-  margin-bottom: 20px;
-}
-
-.editButton{
-  margin-top: 40px;
+.editButton,
+.editButtoncancelar {
     height: 50px;
-    width: 200px;
-    font-size: 20px;
+    width: 150px; 
+    font-size: 1rem; 
     font-weight: 600;
     border-radius: 10px;
     background-color: rgb(255, 173, 49);
     transition: all 0.3s ease;
     border: none;
+    margin-top: 10px;
+    margin-left: 8px;
 }
 
-
-.editButton:hover{
-  transform: scale(1.10);
-
-}
-
-
-.editButtoncancelar{
-  margin-top: 40px;
-    height: 50px;
-    width: 200px;
-    font-size: 20px;
-    font-weight: 600;
-    border-radius: 10px;
-    background-color: rgb(255, 173, 49);
-    transition: all 0.3s ease;
-    border: none;
-    margin-left: 20px;
-}
-.editButtoncancelar:hover{
-  transform: scale(1.10);
-
+.editButton:hover,
+.editButtoncancelar:hover {
+    transform: scale(1.10);
 }
