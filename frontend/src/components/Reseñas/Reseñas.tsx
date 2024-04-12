@@ -163,8 +163,12 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
         }
       };
     
-      fetchData();
-    }, [reseñasFiltradas]);
+      // Verifica si ya hay datos de usuarios, si no los hay, realiza la llamada
+      if (!usersData || usersData.length === 0) {
+        fetchData();
+      }
+    }, [reseñasFiltradas, usersData]); // Agrega usersData como dependencia
+    
     
 
     return (
