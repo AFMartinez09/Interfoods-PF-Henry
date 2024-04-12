@@ -26,6 +26,7 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
     const [reseñas, setReseñas] = useState<string[]>([]);
     const [newReseña, setNewReseña] = useState<boolean>(false)
     const [position, setPosition] = useState(0);
+    const [reseñasObtenidas, setReseñasObtenidas] = useState<boolean>(false)
 
     const handleNext = () => {
       setPosition((prevPosition) => Math.min(prevPosition + 1, reseñas.length - 3));
@@ -48,37 +49,37 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
     }, []);
 
     useEffect(() => {
-        setReseñas([]);
-        const fetchData = async () => {
-            try {
-                console.log(idPlato);
-                let dataReseña;
-                if (!isNaN(idPlato)) {
-                    const reseñasPlato = await getReviewForPlato(idPlato);
-                    if (reseñasPlato.length > 0) {
-                        dataReseña = reseñasPlato;
-                        console.log('Plato', idPlato, dataReseña);
-                    } else {
-                        if(!dataReseña && reseñas.length === 0) {
-                            dataReseña = await getAllReviews();
-                            console.log('Todos', dataReseña);
-                        }
-                    }
-                } else {
-                    if(!dataReseña && reseñas.length === 0) {
-                        dataReseña = await getAllReviews();
-                        console.log('Todos', dataReseña);
-                    }
-                }
-                setReseñas(dataReseña);
-            } catch (error) {
-                console.error('Error al obtener las reseñas:', error);
-            }
-        };
-    
-        fetchData();
-        setNewReseña(false);
-    }, [idPlato, newReseña]);
+      const fetchData = async () => {
+          try {
+              let dataReseña;
+              if (!isNaN(idPlato)) {
+                  const reseñasPlato = await getReviewForPlato(idPlato);
+                  if (reseñasPlato.length > 0) {
+                      dataReseña = reseñasPlato;
+                      console.log('Plato', idPlato, dataReseña);
+                      setReseñas(dataReseña); // Aquí estableces las reseñas
+                      setReseñasObtenidas(true); // Establece el estado de reseñas obtenidas
+                      return;
+                  }
+              }
+              // Si llegas aquí, significa que no hay reseñas para el plato específico, entonces obtienes todas las reseñas
+              if (!reseñasObtenidas) { // Verifica si ya se obtuvieron las reseñas
+                  dataReseña = await getAllReviews();
+                  console.log('Todos', dataReseña);
+                  setReseñas(dataReseña);
+                  setReseñasObtenidas(true);
+              }
+          } catch (error) {
+              console.error('Error al obtener las reseñas:', error);
+          }
+      };
+  
+      fetchData();
+      setNewReseña(false);
+  }, [idPlato, newReseña, reseñasObtenidas]); // Agrega reseñasObtenidas al arreglo de dependencias
+  
+  
+  
     
     
 
