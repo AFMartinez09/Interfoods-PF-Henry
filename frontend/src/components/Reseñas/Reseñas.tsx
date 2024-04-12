@@ -20,21 +20,47 @@ interface reseñasProps{
     idPlato: number
 }
 
+interface Reseña {
+  calificacion: number;
+  comentario: string;
+  createdAt: string;
+  habilitado: boolean;
+  id: number;
+  platoId: number;
+  updatedAt: string;
+  usuarioId: number;
+}
+
+
 const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
     const [estrellasSeleccionadas, setEstrellasSeleccionadas] = useState(0);
     const [userData, setUserData] = useState<any>(null);
-    const [reseñas, setReseñas] = useState<string[]>([]);
+    const [reseñas, setReseñas] = useState<Reseña[]>([]);
     const [newReseña, setNewReseña] = useState<boolean>(false)
     const [position, setPosition] = useState(0);
     const [reseñasObtenidas, setReseñasObtenidas] = useState<boolean>(false)
 
-    const handleNext = () => {
-      setPosition((prevPosition) => Math.min(prevPosition + 1, reseñas.length - 3));
-    };
-  
     const handlePrev = () => {
-      setPosition((prevPosition) => Math.max(prevPosition - 1, 0));
+      setPosition((prevPosition) => {
+        if (prevPosition === 0) {
+          return reseñasFiltradas.length - 1; // Si está en el primer elemento, regresa al último
+        } else {
+          return prevPosition - 1; // De lo contrario, retrocede al elemento anterior
+        }
+      });
     };
+    
+    const handleNext = () => {
+      setPosition((prevPosition) => {
+        if (prevPosition === reseñasFiltradas.length - 1) {
+          return 0; // Si está en el último elemento, avanza al primero
+        } else {
+          return prevPosition + 1; // De lo contrario, avanza al siguiente elemento
+        }
+      });
+    };
+    
+    
 
     useEffect(() => {
         const getUserData = () => {
@@ -57,13 +83,13 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
                   if (reseñasPlato.length > 0) {
                       dataReseña = reseñasPlato;
                       console.log('Plato', idPlato, dataReseña);
-                      setReseñas(dataReseña); // Aquí estableces las reseñas
-                      setReseñasObtenidas(true); // Establece el estado de reseñas obtenidas
+                      setReseñas(dataReseña); 
+                      setReseñasObtenidas(true);
                       return;
                   }
               }
-              // Si llegas aquí, significa que no hay reseñas para el plato específico, entonces obtienes todas las reseñas
-              if (!reseñasObtenidas) { // Verifica si ya se obtuvieron las reseñas
+              
+              if (!reseñasObtenidas) {
                   dataReseña = await getAllReviews();
                   console.log('Todos', dataReseña);
                   setReseñas(dataReseña);
@@ -76,12 +102,8 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
   
       fetchData();
       setNewReseña(false);
-  }, [idPlato, newReseña, reseñasObtenidas]); // Agrega reseñasObtenidas al arreglo de dependencias
+  }, [idPlato, newReseña, reseñasObtenidas]); 
   
-  
-  
-    
-    
 
     const handleEstrellaClick = (valor: number) => {
         setEstrellasSeleccionadas(valor);
@@ -103,6 +125,18 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
     
         return estrellas;
     };
+
+    const filtrarReseñasPorPlato = () => {
+      if (!isNaN(idPlato)) {
+          const reseñasPlato = reseñas.filter(reseña => reseña.platoId === idPlato);
+          if (reseñasPlato.length > 0) {
+              return reseñasPlato;
+          }
+      }
+      return reseñas;
+    }
+
+    const reseñasFiltradas = filtrarReseñasPorPlato();
 
     return (
         <div>
@@ -150,35 +184,38 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
               </Formik>
             </div>
           )}
-          <div className={styles.container3}> 
-            <div>
-              <h1 className={styles.reseñastitulo}>Aqui algunas reseñas de nuestros clientes</h1>
-            </div>
+            {reseñasFiltradas && (
+              <div className={styles.container3}> 
+                <div>
+                  <h1 className={styles.reseñastitulo}>Aquí algunas reseñas de nuestros clientes</h1>
+                </div>
                 <div className={styles.containerReseñasBtn}>
-                        {reseñas.length > 3 && 
-                            (
-                                <button onClick={handlePrev} disabled={position === 0} className={styles.btnCarrousel}>
-                                    Anterior
-                                </button>
-                            )
-                        }
-                        <div className={styles.cartasreseñas2}>
-                        {reseñas && reseñas.length > 0 && reseñas.slice(position, position + 3).map((reseña: any) => (
-                            <div key={reseña.id} className={styles.reseña}>
-                            <p className={styles.textoreseñaestrella}>{generarEstrellas(reseña.calificacion)}</p>
-                            <p className={styles.textoreseña}>{reseña.comentario}</p>
-                            </div>
-                        ))}
-                        </div>
-                        {reseñas.length > 3 && 
-                            (
-                            <button onClick={handleNext} disabled={position === reseñas.length - 3}  className={styles.btnCarrousel}>
-                                Siguiente
-                            </button>
-                            )
-                        }
+                {reseñasFiltradas.length > 3 && (
+                <button onClick={handlePrev} className={styles.btnCarrousel}>
+                  Anterior
+                </button>
+              )}
+              <div className={styles.cartasreseñas2}>
+                {reseñasFiltradas.length > 0 && Array.from({ length: Math.min(3, reseñasFiltradas.length) }).map((_, index) => {
+                  const currentIndex = (position + index) % reseñasFiltradas.length;
+                  const reseña = reseñasFiltradas[currentIndex];
+                  return (
+                    <div key={reseña.id} className={styles.reseña}>
+                      <p className={styles.textoreseñaestrella}>{generarEstrellas(reseña.calificacion)}</p>
+                      <p className={styles.textoreseña}>{reseña.comentario}</p>
                     </div>
-            </div>
+                  );
+                })}
+              </div>
+              {reseñasFiltradas.length > 3 && (
+                <button onClick={handleNext} className={styles.btnCarrousel}>
+                  Siguiente
+                </button>
+              )}
+
+                </div>
+              </div>
+            )}
         </div>
     );
 

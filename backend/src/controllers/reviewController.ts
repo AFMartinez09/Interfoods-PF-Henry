@@ -5,16 +5,10 @@ import { Plato } from '../models/Plato';
 export const addReviewToPlato = async (req: Request, res: Response) => {
   try {
     const { platoId } = req.params; 
-    const { comentario, calificacion, usuarioId } = req.body; // Incluyendo usuarioId en el body
+    const { comentario, calificacion, usuarioId } = req.body;
 
-    // Verificar si platoId está presente
-    if (!platoId) {
-      return res.status(400).send({ error: "Falta el ID del plato" });
-    }
-
-    // Verificar si usuarioId está presente
-    if (!usuarioId) {
-      return res.status(400).send({ error: "Falta el ID del usuario" });
+    if (!platoId || !usuarioId) {
+      return res.status(400).send({ error: "Falta el ID del plato o del usuario" });
     }
 
     const plato = await Plato.findByPk(platoId);
@@ -25,13 +19,14 @@ export const addReviewToPlato = async (req: Request, res: Response) => {
     const review = await Review.create({
       comentario,
       calificacion,
+      habilitado: true,
       usuarioId,
       platoId,
     });
 
     return res.status(201).send(review);
   } catch (error) {
-    console.error(error); // Mejor manejo del log de errores para diagnóstico
-    return res.status(500).send({error: "Error al procesar la solicitud", detalle: error});
+    console.error('Error al procesar la solicitud:', error);
+    return res.status(500).send({ error: "Error al procesar la solicitud" });
   }
 };
