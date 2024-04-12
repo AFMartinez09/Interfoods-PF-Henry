@@ -16,6 +16,7 @@ import {
   ACTIVATE_MEAL,
   SET_TYPE,
   SET_COUNTRY,
+  GET_REVIEWS_USER,
 } from '../actions/ActionsTypes';
 import { AnyAction, Dispatch } from 'redux';
 import {URL} from '../../App'
@@ -441,3 +442,14 @@ export const getUserById = async (idUser: number) => {
   }
 };
 
+export const getReviewsUser = (id: number) => async (dispatch: any) => {
+  try {
+    const response = await axios.get(`http://127.0.0.1:3000/api/food/usuario/${id}/reviews`);
+    dispatch({
+      type: GET_REVIEWS_USER,
+      payload: response.data,
+    });
+  } catch (error) {
+    console.error('Error al obtener las reseñas del usuario:', error);
+  }
+};

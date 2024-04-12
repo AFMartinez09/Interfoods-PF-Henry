@@ -10,6 +10,7 @@ import {
   SET_ADMIN_STATE,
   SET_TYPE,
   SET_COUNTRY,
+  GET_REVIEWS_USER,
   } from '../actions/ActionsTypes';
 
 
@@ -44,6 +45,18 @@ interface user {
 }
 
 
+interface Review {
+  id: number;
+  comentario: string;
+  calificacion: number;
+  habilitado: boolean;
+  usuarioId: number;
+  platoId: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+
 export interface StoreState {
   platos: Plato[];
   filtros: Plato[];
@@ -53,6 +66,7 @@ export interface StoreState {
   searchEmail: string;
   block: user[];
   admin: boolean;
+  reviews: Review[]
 }
 
 export interface Action {
@@ -68,7 +82,8 @@ const initialState: StoreState = {
   users: [],
   searchEmail: '',
   block: [],
-  admin: false
+  admin: false,
+  reviews: []
 };
 
 const Reducer = (
@@ -171,6 +186,11 @@ const Reducer = (
             ...state,
             pais: action.payload
         };
+      case GET_REVIEWS_USER:
+        return{
+          ...state,
+          reviews: action.payload
+        }
     default:
       return state;
   }

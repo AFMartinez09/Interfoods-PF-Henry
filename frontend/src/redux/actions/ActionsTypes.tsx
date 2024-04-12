@@ -15,3 +15,14 @@ export const SET_ADMIN_STATE = 'SET_ADMIN_STATE'
 export const DELETE_ADMIN = 'DELETE_ADMIN'
 export const SET_TYPE = 'SET_TYPE'
 export const SET_COUNTRY = 'SET_COUNTRY'
+export const GET_REVIEWS_USER = 'GET_REVIEWS_USER'
+
+
+
+
+
+
+
+
+
+
