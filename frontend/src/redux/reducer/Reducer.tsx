@@ -29,7 +29,7 @@ interface Plato {
   descripcion: string;
   stock: string;
   activo: boolean;
-  inventario: number
+  inventario: number;
 }
 interface user {
   email: string, 

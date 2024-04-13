@@ -20,7 +20,9 @@ interface PropsCreateMeal {
   imagen: File | null,
   descripcion: string,
   stock: string,
-  ingrediente: string
+  ingrediente: string,
+  activo: boolean,
+  inventario: number,
 }
 
 const initialValues: PropsCreateMeal = {
@@ -37,6 +39,8 @@ const initialValues: PropsCreateMeal = {
   descripcion: '',
   stock: '',
   ingrediente: '',
+  activo: true,
+  inventario: 0,
 };
 
 interface UpdateMealProps {
@@ -85,7 +89,9 @@ const CreateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
             values.tipo,
             urlImage,
             values.descripcion,
-            values.stock
+            values.stock,
+            values.activo,
+            values.inventario
           )
         );
     } catch (error) {
@@ -119,7 +125,6 @@ const CreateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
               <label htmlFor='nombre' className={styles.label}>Nombre del plato*:</label>
               <Field placeholder='Nombre del plato' type='text' name='nombre' className={styles.inputField} />
               <p className={styles.error}><ErrorMessage name='nombre' /></p>
-
              <label htmlFor='origen' className={styles.label}>País del plato*:</label>
            <Field as="select" name="origen" className={styles.inputField}>
            <option value="">Selecciona un país</option>
@@ -203,9 +208,9 @@ const CreateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
               <p className={styles.error}><ErrorMessage name='tipo' /></p>
 
 
-              <label htmlFor='cantidad' className={styles.label}>Cantidad (unidades)*:</label>
-              <Field placeholder='Cantidad' type='text' name='stock' className={styles.inputField} />
-              <p className={styles.error}><ErrorMessage name='stock' /></p>
+              <label htmlFor='inventario' className={styles.label}>Inventario*:</label>
+              <Field placeholder='Inventario' type='number' name='inventario' className={styles.inputField} />
+              <p className={styles.error}><ErrorMessage name='inventario' /></p>
               
               <label htmlFor='image' className={styles.label}>Foto del plato*: (formatos en .jpg, .jpeg ó .png)</label>
               <br />

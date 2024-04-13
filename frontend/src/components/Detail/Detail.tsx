@@ -38,7 +38,10 @@ const Detail: React.FC = () =>{
   let img = selectedItem?.imagen
   let weight = selectedItem?.peso
   let price = selectedItem?.precio
-  let stock = selectedItem?.stock
+  let inventario = selectedItem?.inventario
+ 
+  
+
   const [cant, setCant] = useState<number>(0);
   useEffect(() => {
     const existingCart = localStorage.getItem('cart');
@@ -69,7 +72,7 @@ const Detail: React.FC = () =>{
       if (itemIndex !== -1) {
         cartItems[itemIndex].quantity += 1;
       } else {
-        cartItems.push({ id, name, img, weight, price, quantity: 1  });
+        cartItems.push({ id, name, img, weight, price, quantity: 1, inventario });
       }
       localStorage.setItem('cart', JSON.stringify(cartItems));
     } else {
@@ -80,7 +83,10 @@ const Detail: React.FC = () =>{
     }
     setCant(prevCant => prevCant + 1);
   };
-
+  console.log(cant);
+  console.log(inventario);
+  
+  
   const removeFromCart = () => {
     const existingCart = localStorage.getItem('cart');
     if (existingCart) {
@@ -109,13 +115,13 @@ const Detail: React.FC = () =>{
                              <h2 className={styles.descripcion}>{selectedItem?.descripcion}</h2>
                              <div className={styles.calorias}> <p className={styles.caloriastexto}>{selectedItem?.kilocalorias} kilocalorias  |  {selectedItem?.grasas}g grasas  |  {selectedItem?.carbohidratos}g carbohidratos</p></div>
                              <div className={styles.botoncarro}>
-                             {stock !== 'Agotado' ? (
+                             {inventario !== undefined && inventario !== 0 ? (
                                    <>
                                    {cant > 0 ? (
                                    <>
                                    <button className={styles.btn} onClick={removeFromCart}>-</button>
                                    <span className={styles.cant}>{cant}</span>
-                                   <button className={styles.btn} onClick={addToCart}>+</button>
+                                   <button className={styles.btn} onClick={addToCart} disabled={cant >= inventario}>+</button>
                                    </>
                                ) : (
                                    <button className={styles.btnAdd} onClick={addToCart}>Añadir</button>

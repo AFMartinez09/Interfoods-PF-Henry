@@ -58,6 +58,7 @@ const NuestrosPlatos = () => {
                           weight={food.peso}
                           price={food.precio}
                           id={food.id}
+                          inventario={food.inventario}
                         />
                       ))
           )

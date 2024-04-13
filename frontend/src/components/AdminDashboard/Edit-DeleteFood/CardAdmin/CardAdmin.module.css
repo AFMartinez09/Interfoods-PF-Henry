@@ -50,7 +50,7 @@
   
 
   .card2 {
-    background-color: #f78484;
+    background-color: rgb(218, 80, 80);
     width: 22vw;
     color: black;
     padding: 20px;
@@ -59,4 +59,30 @@
     border: solid rgba(0, 0, 0, 0.062) 1px;
     height: fit-content;
     transition: transform 0.3s ease;
+  }
+
+
+  .inventario{
+    background-color: rgb(218, 80, 80);
+    border-radius: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: whitesmoke;
+
+  }
+
+  .textoinventario{
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+
+
+  .inventario2{
+    background-color: rgba(15, 141, 11, 0.941);
+    border-radius: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: whitesmoke;
+
   }

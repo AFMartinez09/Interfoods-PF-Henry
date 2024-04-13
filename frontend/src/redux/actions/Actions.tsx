@@ -163,6 +163,8 @@ export const signUpNewUser = (  email: string,
     imagen: string | null,
     descripcion: string,
     stock: string,
+    activo: boolean,
+    inventario: number,
   ) => async (dispatch: Dispatch) => {
     try {
       await axios.post(`${URL}/api/food/postFood`, {
@@ -178,6 +180,8 @@ export const signUpNewUser = (  email: string,
         imagen,
         descripcion,
         stock,
+        activo,
+        inventario,
       });
   
       dispatch({
@@ -195,6 +199,8 @@ export const signUpNewUser = (  email: string,
           imagen,
           descripcion,
           stock,
+          activo,
+          inventario,
         },
       });
     } catch (error: any) {
@@ -218,6 +224,7 @@ export const signUpNewUser = (  email: string,
     imagen: File | null,
     descripcion: string,
     stock: string,
+    inventario: number,
   ) => async (dispatch: (action: AnyAction) => void) => {
     try {
       // Filtrar los campos vacíos
@@ -225,18 +232,19 @@ export const signUpNewUser = (  email: string,
         ...(nombre && { nombre }),
         ...(origen && { origen }),
         ...(ingredientes.length > 0 && { ingredientes }),
-        ...(kilocalorias && { kilocalorias }),
-        ...(carbohidratos && { carbohidratos }),
-        ...(grasas && { grasas }),
+        ...({ kilocalorias }),
+        ...({ carbohidratos }),
+        ...({ grasas }),
         ...(peso && { peso }),
-        ...(precio && { precio }),
+        ...({ precio }),
         ...(tipo && { tipo }),
         ...(imagen && { imagen }),
         ...(descripcion && { descripcion }),
-        ...(stock && { stock }),
+        ...({ stock }),
+        ...({inventario})
       };
   
-      await axios.put(`http://127.0.0.1:3000/api/food/${id}`, requestBody);
+      await axios.put(`${URL}/api/food/${id}`, requestBody);
       
       return dispatch({
         type: PUT_MEAL,
