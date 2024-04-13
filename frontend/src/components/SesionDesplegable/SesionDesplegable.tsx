@@ -44,6 +44,10 @@ const SesionDesplegable: React.FC<SesionDesplegableProps> = ({ toggleMenu }) => 
           <img src='https://cdn-icons-png.flaticon.com/512/32/32438.png' className={Style.sesionImg}></img>
           <NavLink to={'/MiPerfil'} className={Style.btnPerfil} onClick={toggleMenu}><p className={Style.color2}>Mi perfil</p></NavLink> 
         </div>
+        <div className={Style.item}>
+          <img src='  https://cdn-icons.flaticon.com/svg/3916/3916599.svg?token=exp=1713035828~hmac=fd8592c3d6684f194ae2c59cc9984d87' className={Style.sesionImg}></img>
+          <NavLink to={'/userReviews'} className={Style.btnPerfil} onClick={toggleMenu}><p className={Style.color2}>Mis reviews</p></NavLink> 
+        </div>
         <hr />
         <div className={Style.item}>
           <img src='https://cdn.icon-icons.com/icons2/1769/PNG/512/4115235-exit-logout-sign-out_114030.png' className={Style.sesionImg}></img>

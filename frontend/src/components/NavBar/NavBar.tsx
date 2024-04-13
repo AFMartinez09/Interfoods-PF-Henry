@@ -128,6 +128,9 @@ useEffect(() => {
                 <NavLink to="/admindashboard/editar-eliminar" className={styles.navLinkAdm} onClick={() => handleItemClick('EDITAR/ELIMINAR')}>
                   Editar/Eliminar
                 </NavLink>
+                <NavLink to="/admindashboard/allReviews" className={styles.navLinkAdm} onClick={() => handleItemClick('EDITAR/ELIMINAR')}>
+                  Reviews
+                </NavLink>
               </div>
             )}
           </div>

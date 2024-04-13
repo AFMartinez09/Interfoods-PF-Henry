@@ -431,14 +431,17 @@ export const getUserById = async (idUser: number) => {
 export const getReviewsUser = (id: number) => async (dispatch: any) => {
   try {
     const response = await axios.get(`${URL}/api/food/usuario/${id}/reviews`);
+    const reviews = response.data; // Obtener las revisiones de la respuesta
     dispatch({
       type: GET_REVIEWS_USER,
-      payload: response.data,
+      payload: reviews, // Agregar las revisiones a la tienda
     });
+    return reviews; // Devolver las revisiones obtenidas
   } catch (error) {
     console.error('Error al obtener las reseñas del usuario:', error);
   }
 };
+
 
 export const disableReview = async (id: number) => {
   try {
