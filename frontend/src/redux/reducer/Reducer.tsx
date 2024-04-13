@@ -19,7 +19,7 @@ interface Plato {
   stock: string;
 }
 
-interface Review {
+export interface Review {
   id: number;
   comentario: string;
   calificacion: number;

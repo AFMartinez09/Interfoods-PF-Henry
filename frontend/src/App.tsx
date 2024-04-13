@@ -35,6 +35,7 @@ import Postres from './components/AdminDashboard/Graphics/Stock/Pricinpales.tsx'
 import Principales from './components/AdminDashboard/Graphics/Stock/Pricinpales.tsx'
 import Vegano from './components/AdminDashboard/Graphics/Stock/Vegano.tsx';
 import DataUsers from './components/AdminDashboard/Graphics/DataUsers/DataUsers.tsx';
+import AllReviews from './components/ReviewsAdmin/ReviewsAdmin.tsx';
 
 // comentar y descomentar para deploy
 // export const URL = "https://pf-henry-jmnh.onrender.com"
@@ -126,6 +127,7 @@ const [showMenu, setShowMenu] = useState(false);
                   <Route path="/admindashboard/stock/postres" element={<Postres />}/>
                   <Route path="/admindashboard/stock/vegano" element={<Vegano />}/>
                   <Route path="/admindashboard/datausers" element={<DataUsers />}/>
+                    <Route path="/admindashboard/allReviews" element={<AllReviews />}/>
               </Routes>
               <Footer/>
           </div>
