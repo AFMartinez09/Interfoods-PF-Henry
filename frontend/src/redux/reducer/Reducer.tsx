@@ -14,7 +14,7 @@ import {
 
 
 
-interface Plato {
+export interface Plato {
   id: number;
   nombre: string;
   origen: string;
@@ -164,3 +164,4 @@ const Reducer = (state: StoreState = initialState, action: Action): StoreState =
 }
 
 export default Reducer;
+
