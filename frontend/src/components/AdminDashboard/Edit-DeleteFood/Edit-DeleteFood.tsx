@@ -23,6 +23,7 @@ interface Food {
   stock: string;
   tipo: string;
   activo: boolean;
+  inventario: number;
 }
 
 interface CardsProps {
@@ -74,7 +75,7 @@ const EditDeleteFood: React.FC<CardsProps> = ({ numberOfCards}) => {
               id={food.id}
               kilocalorias={food.kilocalorias}
               carbohidratos={food.carbohidratos}
-              
+              inventario={food.inventario}
               />
             ))}
         </div>

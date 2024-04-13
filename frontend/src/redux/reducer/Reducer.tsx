@@ -27,7 +27,7 @@ interface Plato {
   descripcion: string;
   stock: string;
   activo: boolean;
-  inventario: number
+  inventario: number;
 }
 
 export interface StoreState {

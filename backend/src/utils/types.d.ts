@@ -12,6 +12,7 @@ export interface NewFoodEntry {
     descripcion: string;
     stock: number;
     activo: boolean;
+    inventario: number;
 }
 
 // export type NonSensitiveInfoFoodEntry = FoodEntry;
@@ -33,4 +34,5 @@ export interface UpdateFoodEntry {
     descripcion?: string;
     stock?: number;
     activo?: boolean;
+    inventario?: number;
 }

@@ -18,9 +18,10 @@ interface CardProps {
   stock: string;
   tipo: string;
   activo: boolean;
+  inventario: number;
 }
 
-const Card: React.FC<CardProps> = ({ name, img, weight, price, id, kilocalorias, carbohidratos, stock, tipo, activo}) => {
+const Card: React.FC<CardProps> = ({ name, img, weight, price, id, kilocalorias, carbohidratos, stock, tipo, activo, inventario}) => {
   
   const dispatch = useDispatch();
 
@@ -102,6 +103,9 @@ const Card: React.FC<CardProps> = ({ name, img, weight, price, id, kilocalorias,
       </div>
       <div className={Style.conteinerPriceBtn}>
         <p className={Style.price}>{price}$</p>
+         <div className={inventario === 0 ? styled.inventario : styled.inventario2}>
+          <p className={styled.textoinventario}>Inventario: {inventario}</p>
+         </div>
       <NavLink className={styled.editar} to={`/admindashboard/editar/${id}`}>Editar</NavLink>
       </div>
 

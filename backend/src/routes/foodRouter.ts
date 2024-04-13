@@ -6,6 +6,7 @@ import { deleteFood } from "../controllers/deleteFood";
 import { getFoodFiltro } from "../controllers/getFoodFiltro";
 import { addReviewToPlato } from "../controllers/reviewController";
 import { activeFood } from "../controllers/activateFood";
+import {upinventario } from "../controllers/updateInventario";
 
 const router = express.Router();
 
@@ -15,6 +16,7 @@ router.put("/:id", updateFood)
 router.delete("/:id", deleteFood)
 router.post("/:id", activeFood)
 router.get("/filtro", getFoodFiltro)
+router.get("/comida/inventario", upinventario)
 
 router.post("/:platoid/reviews", addReviewToPlato)
 

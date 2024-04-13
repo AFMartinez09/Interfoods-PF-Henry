@@ -36,6 +36,7 @@ import Principales from './components/AdminDashboard/Graphics/Stock/Pricinpales.
 import Vegano from './components/AdminDashboard/Graphics/Stock/Vegano.tsx';
 import DataUsers from './components/AdminDashboard/Graphics/DataUsers/DataUsers.tsx';
 
+
 // comentar y descomentar para deploy
 // export const URL = "https://pf-henry-jmnh.onrender.com"
 export const URL = "http://localhost:3000"
@@ -49,6 +50,8 @@ function App() {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [pathname]);
+
+    
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (usuario) => {

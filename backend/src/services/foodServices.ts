@@ -64,3 +64,14 @@ export const activar = async (id: number) => {
   return { message: "Plato activado exitosamente" };
 };
 
+
+export const cambiarinventario = async (id: number, quantity: number) => {
+  const plato = await Plato.findByPk(id);
+  if (!plato) {
+    throw new Error("Plato no encontradoaaaaaaaaaaaaaaaa");
+  }
+  let inventario = plato.inventario
+  let final = inventario - quantity
+  await plato.update({ inventario: final});
+  return { message: "Inventario actualizado" };
+};
