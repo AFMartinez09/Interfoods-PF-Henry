@@ -12,7 +12,6 @@ import {
   SET_PAYMENT_STATUS,
   GET_ALL_USERS, 
   PUT_USER_BLOCK,
-  GET_SEARCH_BY_EMAIL,
   } from '../actions/ActionsTypes';
 import { AnyAction, Dispatch } from 'redux';
 import {URL} from '../../App'
@@ -336,20 +335,5 @@ export const PutUserBlock = (email: string, habilitado: boolean) => async (dispa
     });
   } catch (error) {
     console.error('hubo un error ', error);
-  }
-}
-
-
-
-
-export const SearchByEmail = (email: string) => async(dispatch: Dispatch) => {
-  try {
-  dispatch({
-    type: GET_SEARCH_BY_EMAIL,
-    payload: email,
-  })
-  } catch (error: any) {
-    console.error('Error En la busqueda', error);
-    throw new Error(error)
   }
 }

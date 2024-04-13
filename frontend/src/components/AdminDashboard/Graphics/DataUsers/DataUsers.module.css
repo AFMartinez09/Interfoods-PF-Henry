@@ -30,8 +30,14 @@
 }
 
 .fieldSearch{
-  background-color: green !important;
-  color: black !important;
+  background-color: #2f695c49;
+  color: black;
+  border: 3px solid gray;
+  padding: 10px 0px 10px 20px;
+  width: 5%;
+  font-size: 25px;
+  font-weight: bold;
+  font-style: italic;
 }
 
 

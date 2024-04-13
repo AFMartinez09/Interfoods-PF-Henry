@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './DataUsers.module.css';
 import { PutUserBlock, getAllUsers } from '../../../../redux/actions/Actions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,7 +21,7 @@ const DataUsers: React.FC = () => {
 
   const dispatch = useDispatch();
   const users: Users[] = useSelector((state: StoreState) => state.users)
-  const search: string = useSelector((state: StoreState) => state.searchEmail)
+  const [search, setSearch] = useState<string>('')
 
 const getUsers = async(dispatch: any) => {
   try {
@@ -37,7 +37,6 @@ const getUsers = async(dispatch: any) => {
 
   const handleBlockAccount = async (id: number) => {
     const user = users.find(user => user.id === id);
-  
     if (user) {
       try {
         if (user.email) {
@@ -52,12 +51,14 @@ const getUsers = async(dispatch: any) => {
     }
   };
   
-
+  const getSearch = (email:string) => {
+    setSearch(email)
+  }
 
   return (
       <div className={styles.container}>
         <h1 className={styles.headline}>Datos de usuarios</h1>
-          <SearchMail />
+          <SearchMail setSearch={getSearch} />
         <table className={styles.table}>
           <thead>
             <tr className={styles.row}>
@@ -84,7 +85,7 @@ const getUsers = async(dispatch: any) => {
               <tr key={user.id}>
                 <td className={styles.field}>{user.nombre}</td>
                 <td className={styles.field}>{user.apellido}</td>
-                <td className={search === user.email ? styles.field : styles.fieldSearch}>{user.email}</td>
+                <td className={search && search === user.email ? styles.fieldSearch :  styles.field}>{user.email}</td>
                 <td className={styles.field}>{user.pais}</td>
                 <td className={styles.field}>{user.ciudad}</td>
                 <td className={styles.field}>{user.direccion}</td>

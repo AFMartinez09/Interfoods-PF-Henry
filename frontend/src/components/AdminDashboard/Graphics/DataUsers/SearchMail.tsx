@@ -1,58 +1,24 @@
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { SearchByEmail } from '../../../../redux/actions/Actions';
+import { useState } from 'react'
 import styles from './SearchMail.module.css';
-import { StoreState } from '../../../../redux/reducer/Reducer';
-import Highlighter from 'react-highlight-words';
 
-// interface Users {
-//   id: number;
-//   nombre: string;
-//   apellido: string;
-//   email: string;
-//   pais: string;
-//   ciudad: string;
-//   direccion: string;
-//   habilitado: boolean; 
-// }
-
-const SearchMail = () => {
-  const dispatch = useDispatch();
+const SearchMail = ({ setSearch }: { setSearch: any }) => {
   const [email, setEmail] = useState('');
-  const searchResult:string = useSelector((state: StoreState) => state.searchEmail)
-console.log(searchResult)
-  const getEmails = async(dispatch: any) => {
-    try {
-      console.log('searchMail', email)
-      dispatch(SearchByEmail(email))
-      console.log('searchResult', searchResult);
-      
-    } catch (error) {
-      console.error('hubo un error', error)
-    }
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSearch(email)
+  }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
   }
   
-  useEffect(() => {
-    if(email){
-      getEmails(dispatch)
-    }
-  }, [email])
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    getEmails(dispatch);
-  }
-
-  const handleInputChange = (e:any) => {
-    setEmail(e.target.value)
-  }
-
   return (
     <div>
       <div className={styles.container}>
         <form onSubmit={handleSubmit}>
           <div>
-            <input 
+            <input
               className={styles.text}
               type='search'
               name='search'
@@ -62,20 +28,11 @@ console.log(searchResult)
             />
             <button className={styles.search}
               type='submit'
-              onClick={handleSubmit}
-              >Buscar
+            >Buscar
             </button>
           </div>
         </form>
       </div>
-      {Array.isArray(searchResult) && searchResult.map(user => (
-        <Highlighter
-          highlightClassName={styles.Highlight}
-          searchWords={[email]}
-          autoEscape={true}
-          textToHighlight={user.email}
-        />
-      ))}
     </div>
   )
 }

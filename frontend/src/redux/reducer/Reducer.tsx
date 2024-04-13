@@ -1,5 +1,5 @@
 
-import { GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL, GET_FILTRO, SIGNUP_USER_EMAIL_DB, GET_ALL_USERS, GET_SEARCH_BY_EMAIL, PUT_USER_BLOCK } from '../actions/ActionsTypes';
+import { GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL, GET_FILTRO, SIGNUP_USER_EMAIL_DB, GET_ALL_USERS, PUT_USER_BLOCK } from '../actions/ActionsTypes';
 
 
 
@@ -123,12 +123,6 @@ const Reducer = (state: StoreState = initialState, action: Action): StoreState =
           ...state,
           users: action.payload,
         }
-      case GET_SEARCH_BY_EMAIL: {
-        return {
-          ...state,
-          searchEmail:action.payload,
-        }
-      }
       case PUT_USER_BLOCK:
         return {
           ...state,
