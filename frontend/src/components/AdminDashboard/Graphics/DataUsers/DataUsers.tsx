@@ -23,7 +23,6 @@ const DataUsers: React.FC = () => {
   const users: Users[] = useSelector((state: StoreState) => state.users)
 
 
-
 const getUsers = async(dispatch: any) => {
   try {
     dispatch(getAllUsers())
@@ -34,33 +33,26 @@ const getUsers = async(dispatch: any) => {
 
   useEffect(() => {
     getUsers(dispatch)
-  }, [])
+  }, [dispatch])
 
-  const PutUsers = async(dispatch: any, email: string) => {
-    try {
-      dispatch(PutUserBlock(email))
-    } catch (error) {
-      console.error('hubo un error', error)
-    }
-  }
-
-
-  const handleBlockAccount = async(id: number) => {
-    const user = users.find(user => user.id === id)    
-    
-    if(user) {
-      user.habilitado = !user.habilitado
-      console.log('boolean', user.habilitado)
-    }
+  const handleBlockAccount = async (id: number) => {
+    const user = users.find(user => user.id === id);
+  
+    if (user) {
       try {
-        if(user?.email !== undefined) {
-          await PutUsers(dispatch, user?.email)
+        if (user.email) {
+          const newHabilitadoState = !user.habilitado;
+          console.log(newHabilitadoState);
+          
+          await PutUserBlock(user.email, newHabilitadoState)(dispatch);
+          getUsers(dispatch)
+        }
+      } catch (error) {
+        console.error('Hubo un error', error);
       }
-    } catch (error) {
-      console.error('hubo un error ')
     }
-  }
-
+  };
+  
 
 
   return (
@@ -100,11 +92,14 @@ const getUsers = async(dispatch: any) => {
 
                 <td className={styles.checkbox}>
                   <label className={styles.switch}>
-                    <input type='checkbox' onClick={() => handleBlockAccount(user.id)}></input>
+                    <input 
+                      type='checkbox' 
+                      onChange={() => handleBlockAccount(user.id)} 
+                      checked={!user.habilitado} 
+                    />
                     <span className={styles.slider}></span>
                   </label>
                 </td>
-
               </tr>
             ))}
           </tbody>

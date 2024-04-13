@@ -323,11 +323,13 @@ export const getAllUsers = () => async (dispatch: Dispatch<AnyAction>) => {
   }
 }
 
-export const PutUserBlock = (email: string ) => async (dispatch: any) => {
+export const PutUserBlock = (email: string, habilitado: boolean) => async (dispatch: any) => {
   try {
-    const response = await axios.put(`${URL}/api/register/usuario/update/${email}`);
-    const blockUser = response.data.email
-    console.log('debug', blockUser)
+    const response = await axios.put(`${URL}/api/register/usuario/update/${email}`, {
+      habilitado: habilitado
+    });
+    const blockUser = response.data;
+    console.log('debug', blockUser);
     dispatch({
       type: PUT_USER_BLOCK,
       payload: blockUser,
@@ -336,6 +338,7 @@ export const PutUserBlock = (email: string ) => async (dispatch: any) => {
     console.error('hubo un error ', error);
   }
 }
+
 
 
 

@@ -18,6 +18,18 @@ interface Plato {
   descripcion: string;
   stock: string;
 }
+interface user {
+  email: string, 
+  nombre: string,
+  apellido: string,
+  foto: string,
+  pais: string,
+  ciudad: string,
+  direccion: string,
+  admin: boolean,
+  habilitado: boolean
+}
+
 
 export interface StoreState {
   platos: Plato[];
@@ -26,7 +38,7 @@ export interface StoreState {
   tipo: string;
   users: [];
   searchEmail: [];
-  block: [];
+  block: user[];
 }
 
 export interface Action {
@@ -118,10 +130,11 @@ const Reducer = (state: StoreState = initialState, action: Action): StoreState =
         }
       }
       case PUT_USER_BLOCK:
-      return {
-        ...state,
-        block: action.payload,
-      }
+        return {
+          ...state,
+          block: [...state.block, action.payload],
+        };
+      
     default:
       return state;
   }
