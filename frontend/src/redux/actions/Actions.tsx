@@ -325,13 +325,12 @@ export const getAllUsers = () => async (dispatch: Dispatch<AnyAction>) => {
 
 export const PutUserBlock = (email: string ) => async (dispatch: any) => {
   try {
-    // Actualiza el usuario en el servidor
     const response = await axios.put(`${URL}/api/register/usuario/update/${email}`);
-    
-    // Despacha la acción con el usuario actualizado
+    const blockUser = response.data.email
+    console.log('debug', blockUser)
     dispatch({
       type: PUT_USER_BLOCK,
-      payload: response.data,
+      payload: blockUser,
     });
   } catch (error) {
     console.error('hubo un error ', error);
@@ -343,7 +342,7 @@ export const PutUserBlock = (email: string ) => async (dispatch: any) => {
 export const SearchByEmail = (email: string) => async(dispatch: Dispatch) => {
   try {
   const response = await axios.get(`${URL}/api/register/usuario/${email}`)
-  const userEmail = await response.data.user.email
+  const userEmail = await response.data.user.habilitado
   console.log('123456', userEmail)
   dispatch({
     type: GET_SEARCH_BY_EMAIL,

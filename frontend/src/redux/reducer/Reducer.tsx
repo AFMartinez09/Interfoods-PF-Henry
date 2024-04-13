@@ -1,5 +1,5 @@
 
-import { GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL, GET_FILTRO, SIGNUP_USER_EMAIL_DB, GET_ALL_USERS, GET_SEARCH_BY_EMAIL } from '../actions/ActionsTypes';
+import { GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL, GET_FILTRO, SIGNUP_USER_EMAIL_DB, GET_ALL_USERS, GET_SEARCH_BY_EMAIL, PUT_USER_BLOCK } from '../actions/ActionsTypes';
 
 
 
@@ -26,6 +26,7 @@ export interface StoreState {
   tipo: string;
   users: [];
   searchEmail: [];
+  block: [];
 }
 
 export interface Action {
@@ -40,6 +41,7 @@ const initialState: StoreState = {
   tipo: 'Todosa',
   users: [],
   searchEmail: [],
+  block: [],
 };
 
 
@@ -114,6 +116,11 @@ const Reducer = (state: StoreState = initialState, action: Action): StoreState =
           ...state,
           searchEmail: action.payload,
         }
+      }
+      case PUT_USER_BLOCK:
+      return {
+        ...state,
+        block: action.payload,
       }
     default:
       return state;

@@ -31,6 +31,6 @@
 }
 
 .Highlight {
-  background-color: yellow;
-  color: black;
+  background-color: yellow !important;
+  color: black !important;
 }

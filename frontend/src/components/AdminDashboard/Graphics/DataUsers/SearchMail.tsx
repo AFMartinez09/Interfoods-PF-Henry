@@ -66,8 +66,7 @@ console.log(searchResult)
           </div>
         </form>
       </div>
-      {Array.isArray(searchResult) 
-      && searchResult.map(user => (
+      {Array.isArray(searchResult) && searchResult.map(user => (
         <Highlighter
           highlightClassName={styles.Highlight}
           searchWords={[email]}

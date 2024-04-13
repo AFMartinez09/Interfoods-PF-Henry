@@ -45,17 +45,16 @@ const getUsers = async(dispatch: any) => {
   }
 
 
-  const handleBlockAccount = (id: number) => {
+  const handleBlockAccount = async(id: number) => {
     const user = users.find(user => user.id === id)    
     
     if(user) {
       user.habilitado = !user.habilitado
       console.log('boolean', user.habilitado)
     }
-
-    try {
-      if(user?.email !== undefined) {
-        PutUsers(dispatch, user?.email)
+      try {
+        if(user?.email !== undefined) {
+          await PutUsers(dispatch, user?.email)
       }
     } catch (error) {
       console.error('hubo un error ')
@@ -115,5 +114,3 @@ const getUsers = async(dispatch: any) => {
 }
 
 export default DataUsers
-
-
