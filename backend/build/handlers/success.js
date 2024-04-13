@@ -15,6 +15,7 @@ const success = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id, date_created, status, payment_id, payment_type, transaction_amount, description, user_email, user_name, } = req.query;
     try {
         let ventas = 0;
+        let rechazados = 0;
         if (status === "approved") {
             ventas += 1;
             console.log(`El status del pago es: ${status}, ID: ${payment_id}`);
@@ -315,9 +316,11 @@ const success = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 description: description,
                 transaction_amount: transaction_amount,
                 ventas: ventas,
+                rechazados: rechazados,
             });
         }
         else {
+            rechazados += 1;
             console.log(`No pudimos aprobar el pago con ID ${payment_id}`);
         }
     }

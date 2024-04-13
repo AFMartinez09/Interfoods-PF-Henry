@@ -15,6 +15,7 @@ export const success = async (req: Request, res: Response) => {
   } = req.query;
   try {
     let ventas = 0;
+    let rechazados = 0;
     if (status === "approved") {
       ventas += 1;
       console.log(`El status del pago es: ${status}, ID: ${payment_id}`);
@@ -316,8 +317,10 @@ export const success = async (req: Request, res: Response) => {
         description: description,
         transaction_amount: transaction_amount,
         ventas: ventas,
+        rechazados: rechazados,
       });
     } else {
+      rechazados += 1;
       console.log(`No pudimos aprobar el pago con ID ${payment_id}`);
     }
   } catch (error) {
