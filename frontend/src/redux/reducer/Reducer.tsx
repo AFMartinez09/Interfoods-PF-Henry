@@ -37,7 +37,7 @@ export interface StoreState {
   pais: string;
   tipo: string;
   users: [];
-  searchEmail: [];
+  searchEmail: string;
   block: user[];
 }
 
@@ -52,7 +52,7 @@ const initialState: StoreState = {
   pais: 'Todos',
   tipo: 'Todosa',
   users: [],
-  searchEmail: [],
+  searchEmail: '',
   block: [],
 };
 
@@ -126,7 +126,7 @@ const Reducer = (state: StoreState = initialState, action: Action): StoreState =
       case GET_SEARCH_BY_EMAIL: {
         return {
           ...state,
-          searchEmail: action.payload,
+          searchEmail:action.payload,
         }
       }
       case PUT_USER_BLOCK:

@@ -344,12 +344,9 @@ export const PutUserBlock = (email: string, habilitado: boolean) => async (dispa
 
 export const SearchByEmail = (email: string) => async(dispatch: Dispatch) => {
   try {
-  const response = await axios.get(`${URL}/api/register/usuario/${email}`)
-  const userEmail = await response.data.user.habilitado
-  console.log('123456', userEmail)
   dispatch({
     type: GET_SEARCH_BY_EMAIL,
-    payload: userEmail,
+    payload: email,
   })
   } catch (error: any) {
     console.error('Error En la busqueda', error);

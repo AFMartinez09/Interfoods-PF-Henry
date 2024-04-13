@@ -21,7 +21,7 @@ const DataUsers: React.FC = () => {
 
   const dispatch = useDispatch();
   const users: Users[] = useSelector((state: StoreState) => state.users)
-
+  const search: string = useSelector((state: StoreState) => state.searchEmail)
 
 const getUsers = async(dispatch: any) => {
   try {
@@ -42,7 +42,6 @@ const getUsers = async(dispatch: any) => {
       try {
         if (user.email) {
           const newHabilitadoState = !user.habilitado;
-          console.log(newHabilitadoState);
           
           await PutUserBlock(user.email, newHabilitadoState)(dispatch);
           getUsers(dispatch)
@@ -85,7 +84,7 @@ const getUsers = async(dispatch: any) => {
               <tr key={user.id}>
                 <td className={styles.field}>{user.nombre}</td>
                 <td className={styles.field}>{user.apellido}</td>
-                <td className={styles.field}>{user.email}</td>
+                <td className={search === user.email ? styles.field : styles.fieldSearch}>{user.email}</td>
                 <td className={styles.field}>{user.pais}</td>
                 <td className={styles.field}>{user.ciudad}</td>
                 <td className={styles.field}>{user.direccion}</td>

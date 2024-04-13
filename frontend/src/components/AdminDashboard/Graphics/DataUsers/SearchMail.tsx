@@ -5,26 +5,28 @@ import styles from './SearchMail.module.css';
 import { StoreState } from '../../../../redux/reducer/Reducer';
 import Highlighter from 'react-highlight-words';
 
-interface Users {
-  id: number;
-  nombre: string;
-  apellido: string;
-  email: string;
-  pais: string;
-  ciudad: string;
-  direccion: string;
-  habilitado: boolean; 
-}
+// interface Users {
+//   id: number;
+//   nombre: string;
+//   apellido: string;
+//   email: string;
+//   pais: string;
+//   ciudad: string;
+//   direccion: string;
+//   habilitado: boolean; 
+// }
 
 const SearchMail = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
-  const searchResult:Users[] = useSelector((state: StoreState) => state.searchEmail)
+  const searchResult:string = useSelector((state: StoreState) => state.searchEmail)
 console.log(searchResult)
   const getEmails = async(dispatch: any) => {
     try {
       console.log('searchMail', email)
       dispatch(SearchByEmail(email))
+      console.log('searchResult', searchResult);
+      
     } catch (error) {
       console.error('hubo un error', error)
     }

@@ -29,6 +29,12 @@
   font-size: 25px;
 }
 
+.fieldSearch{
+  background-color: green !important;
+  color: black !important;
+}
+
+
 .row {
   border: 3px solid gray;
 }
