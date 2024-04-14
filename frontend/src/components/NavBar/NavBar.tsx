@@ -177,7 +177,7 @@ useEffect(() => {
           {userData && userData.foto ? (
             <img src={userData.foto} alt="Logo 3" className={styles.navUser3} />
           ) : (
-            <img src="https://monestir.org/wp-content/uploads/2020/06/usuario.png" alt="Logo 2" className={styles.navUser2} />
+            <img src="https://cdn-icons-png.flaticon.com/128/13462/13462525.png" alt="Logo 2" className={styles.navUser2} />
           )}
         </button>
        ) : (
