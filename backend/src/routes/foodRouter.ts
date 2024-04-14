@@ -5,13 +5,13 @@ import { updateFood } from "../controllers/putFood";
 import { deleteFood } from "../controllers/deleteFood";
 import { getFoodFiltro } from "../controllers/getFoodFiltro";
 import { addReviewToPlato } from "../controllers/reviewController";
-import { activeFood } from "../controllers/activateFood";
-import {upinventario } from "../controllers/updateInventario";
 import { getReviewForPlato } from "../controllers/getReviewPlato";
 import { getAllReviews } from "../controllers/getAllReviews";
 import { disableReview } from "../controllers/disableReview";
 import { getReviewForUser } from "../controllers/getReviewUser";
 import { activeFood } from "../controllers/activateFood";
+import {upinventario } from "../controllers/updateInventario";
+
 const router = express.Router();
 
 router.get("/", getFood);

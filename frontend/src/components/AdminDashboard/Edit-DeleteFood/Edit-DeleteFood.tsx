@@ -85,8 +85,7 @@ const EditDeleteFood: React.FC<CardsProps> = ({ numberOfCards }) => {
           {loading ? (
             <div className="containerLoading">
               <div className={Styled.noexiste}>
-                Lo sentimos mucho, No existen platos disponibles con estos
-                criterios.
+                Lo sentimos mucho, No existen platos disponibles con estos criterios.
               </div>
             </div>
           ) : (
@@ -104,6 +103,7 @@ const EditDeleteFood: React.FC<CardsProps> = ({ numberOfCards }) => {
                   id={food.id}
                   kilocalorias={food.kilocalorias}
                   carbohidratos={food.carbohidratos}
+                  inventario={food.inventario}
                 />
               ))}
             </div>

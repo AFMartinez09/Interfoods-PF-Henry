@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { 
+import axios from "axios";
+import {
   GET_FILTRO,
   GET_FOOD,
   GET_PAIS,
@@ -23,8 +23,6 @@ import {URL} from '../../App'
 
 // ----------------------------------------------------------------------------
 
-
-
 export const getFood = () => async (dispatch: any) => {
   try {
     const { data } = await axios.get(`${URL}/api/food/`);
@@ -42,116 +40,121 @@ export const getFood = () => async (dispatch: any) => {
 };
 
 
+// ----------------------------------------------------------------------------
 
- 
+export const getPais = (event: any) => ({
+  type: GET_PAIS,
+  payload: event,
+});
 
 // ----------------------------------------------------------------------------
 
-  export const getPais = (event: any) => (
-    {
-    type: GET_PAIS,
-    payload: event,
-  })
+export const signUpNewUser =
+  (
+    email: string,
+    password: string,
+    nombre: string,
+    apellido: string,
+    foto: string | null,
+    pais: string,
+    ciudad: string,
+    direccion: string,
+    admin: boolean,
+    habilitado: boolean
+  ) =>
+  async (dispatch: any) => {
+    try {
+      await axios.post(`${URL}/api/register/signup`, {
+        email,
+        password,
+        nombre,
+        apellido,
+        foto,
+        pais,
+        ciudad,
+        direccion,
+        admin,
+        habilitado,
+      });
+
+      return dispatch({
+        type: SIGNUP_USER_EMAIL,
+      });
+    } catch (error: any) {
+      console.error("Error al registrar nuevo usuario:", error);
+      window.alert("¡Error al registrar nuevo usuario!");
+      throw new Error(error);
+    }
+  };
 
 // ----------------------------------------------------------------------------
 
-export const signUpNewUser = (  email: string, 
-  password:string, 
-  nombre: string,
-  apellido: string,
-  foto: string | null,
-  pais: string,
-  ciudad: string,
-  direccion: string,
-  admin: boolean,
-  habilitado: boolean) => async (dispatch: any) => {
-  try {  
+export const getFiltro = (payload: any) => ({
+  type: GET_FILTRO,
+  payload: payload,
+});
 
-    await axios.post(`${URL}/api/register/signup`, {            
-    email,
-    password,
-    nombre,
-    apellido,
-    foto,
-    pais,
-    ciudad,
-    direccion,
-    admin,
-    habilitado });
+// ----------------------------------------------------------------------------
 
-    return dispatch({
-      type: SIGNUP_USER_EMAIL,
-    });
+interface UserData {
+  id: number;
+  nombre: string;
+  apellido: string;
+  email: string;
+  foto: string;
+  pais: string;
+  ciudad: string;
+  direccion: string;
+  admin: boolean;
+  habilitado: boolean;
+}
 
-  } catch (error: any) {
-    console.error("Error al registrar nuevo usuario:", error);
-    window.alert("¡Error al registrar nuevo usuario!");
-    throw new Error(error);
+export const getUser = async (email: string): Promise<UserData> => {
+  try {
+    // Realizar la llamada a la API con Axios
+    console.log(email);
+
+    const response = await axios.get<{ user: UserData }>(
+      `${URL}/api/register/usuario/${email}`
+    );
+
+    // Obtener el usuario devuelto en la respuesta
+    const userData = response.data.user;
+
+    // Guardar el usuario en el localStorage
+    localStorage.setItem("user", JSON.stringify(userData));
+
+    // Devolver el usuario obtenido
+    return userData;
+  } catch (error) {
+    // Manejar errores de la llamada a la API
+    console.error("Error al registrar al usuario:", error);
+    throw new Error("Error al registrar al usuario");
   }
 };
 
-  // ----------------------------------------------------------------------------
+export const putUser = async (
+  email: string,
+  data: object
+): Promise<UserData> => {
+  try {
+    const response = await axios.put<{ user: UserData }>(
+      `${URL}/api/register/usuario/update/${email}`,
+      data
+    );
+    const userData = response.data.user;
 
-  export const getFiltro = (payload: any) => (
-  
-    {
-    type: GET_FILTRO,
-    payload: payload,
-  })
+    getUser(email);
 
-  // ---------------------------------------------------------------------------- 
-
-  interface UserData {
-    id: number;
-    nombre: string;
-    apellido: string;
-    email: string;
-    foto: string;
-    pais: string;
-    ciudad: string;
-    direccion: string;
-    admin: boolean;
-    habilitado: boolean;
+    return userData;
+  } catch (error) {
+    console.error("Error al editar datos del usuario:", error);
+    throw new Error("Error al editar datos del usuario");
   }
+};
 
-  export const getUser = async (email: string): Promise<UserData> => {
-    try {
-      // Realizar la llamada a la API con Axios 
-      console.log(email);
-      
-      const response = await axios.get<{ user: UserData }>(`${URL}/api/register/usuario/${email}`);
-  
-      // Obtener el usuario devuelto en la respuesta
-      const userData = response.data.user;
-  
-      // Guardar el usuario en el localStorage
-      localStorage.setItem('user', JSON.stringify(userData));
-  
-      // Devolver el usuario obtenido
-      return userData;
-    } catch (error) {
-      // Manejar errores de la llamada a la API
-      console.error('Error al registrar al usuario:', error);
-      throw new Error('Error al registrar al usuario');
-    }
-  };
-
-
-  export const putUser = async (email: string, data: object): Promise<UserData> => {
-    try {
-      const response = await axios.put<{ user: UserData }>(`${URL}/api/register/usuario/update/${email}`, data);
-      const userData = response.data.user;
-  
-      getUser(email)
-  
-      return userData;
-    } catch (error) {
-      console.error('Error al editar datos del usuario:', error);
-      throw new Error('Error al editar datos del usuario');
-    }
-  };
-
-  export const createMeal = (
+export const createMeal =
+  (
     nombre: string,
     origen: string,
     ingredientes: string[],
@@ -164,6 +167,8 @@ export const signUpNewUser = (  email: string,
     imagen: string | null,
     descripcion: string,
     stock: string,
+    activo: boolean,
+    inventario: number,
   ) => async (dispatch: Dispatch) => {
     try {
       await axios.post(`${URL}/api/food/postFood`, {
@@ -179,8 +184,10 @@ export const signUpNewUser = (  email: string,
         imagen,
         descripcion,
         stock,
+        activo,
+        inventario,
       });
-  
+
       dispatch({
         type: POST_MEAL,
         payload: {
@@ -196,6 +203,8 @@ export const signUpNewUser = (  email: string,
           imagen,
           descripcion,
           stock,
+          activo,
+          inventario,
         },
       });
     } catch (error: any) {
@@ -204,8 +213,9 @@ export const signUpNewUser = (  email: string,
       throw new Error(error);
     }
   };
-  
-  export const upgradeMeal = (
+
+export const upgradeMeal =
+  (
     id: number,
     nombre: string,
     origen: string,
@@ -219,6 +229,7 @@ export const signUpNewUser = (  email: string,
     imagen: File | null,
     descripcion: string,
     stock: string,
+    inventario: number,
   ) => async (dispatch: (action: AnyAction) => void) => {
     try {
       // Filtrar los campos vacíos
@@ -226,18 +237,19 @@ export const signUpNewUser = (  email: string,
         ...(nombre && { nombre }),
         ...(origen && { origen }),
         ...(ingredientes.length > 0 && { ingredientes }),
-        ...(kilocalorias && { kilocalorias }),
-        ...(carbohidratos && { carbohidratos }),
-        ...(grasas && { grasas }),
+        ...({ kilocalorias }),
+        ...({ carbohidratos }),
+        ...({ grasas }),
         ...(peso && { peso }),
-        ...(precio && { precio }),
+        ...({ precio }),
         ...(tipo && { tipo }),
         ...(imagen && { imagen }),
         ...(descripcion && { descripcion }),
-        ...(stock && { stock }),
+        ...({ stock }),
+        ...({inventario})
       };
   
-      await axios.put(`http://127.0.0.1:3000/api/food/${id}`, requestBody);
+      await axios.put(`${URL}/api/food/${id}`, requestBody);
       
       return dispatch({
         type: PUT_MEAL,
@@ -249,58 +261,53 @@ export const signUpNewUser = (  email: string,
       throw new Error(error);
     }
   };
-  
 
-  export const deleteMeal = (id: number) => async( dispatch:any ) => {
-    try {
-      await axios.delete(`${URL}/api/food/${id}`)
-      return dispatch({
-        type: DELETE_MEAL,
-      });
-    } catch (error) {
-      console.error("Error al actualizar plato:", error);
-      window.alert("¡Error al actualizar plato!");
-    }
+export const deleteMeal = (id: number) => async (dispatch: any) => {
+  try {
+    await axios.delete(`${URL}/api/food/${id}`);
+    return dispatch({
+      type: DELETE_MEAL,
+    });
+  } catch (error) {
+    console.error("Error al actualizar plato:", error);
+    window.alert("¡Error al actualizar plato!");
   }
+};
 
-  export const activeMeal = (id: number) => async( dispatch:any ) => {
-    console.log(id);
-    
-    try {
-      await axios.post(`${URL}/api/food/${id}`)
-      return dispatch({
-        type: ACTIVATE_MEAL,
-      });
-    } catch (error) {
-      console.error("Error al actualizar plato:", error);
-      window.alert("¡Error al actualizar plato!");
-    }
+export const activeMeal = (id: number) => async (dispatch: any) => {
+  console.log(id);
+
+  try {
+    await axios.post(`${URL}/api/food/${id}`);
+    return dispatch({
+      type: ACTIVATE_MEAL,
+    });
+  } catch (error) {
+    console.error("Error al actualizar plato:", error);
+    window.alert("¡Error al actualizar plato!");
   }
+};
 
-  
+export const imageUpload = async (file: File) => {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", "jdiimohm");
 
+  try {
+    const response = await axios.post<any>(
+      "https://api.cloudinary.com/v1_1/dbqekrcf4/image/upload",
+      formData
+    );
 
-  export const imageUpload = async (file: File) => {
-
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('upload_preset', 'jdiimohm');
-
-    try {
-      const response = await axios.post<any>(
-        'https://api.cloudinary.com/v1_1/dbqekrcf4/image/upload',
-        formData
-      );
-
-      return response.data.secure_url;
-    } catch (error) {
-      console.error('Error al subir imagen:', error);
-    }
+    return response.data.secure_url;
+  } catch (error) {
+    console.error("Error al subir imagen:", error);
   }
+};
 
-
-  export const signUpNewUserDb = (
-    email: string, 
+export const signUpNewUserDb =
+  (
+    email: string,
     nombre: string,
     apellido: string,
     foto: string,
@@ -309,9 +316,10 @@ export const signUpNewUser = (  email: string,
     direccion: string,
     admin: boolean,
     habilitado: boolean
-  ) => async (dispatch: Dispatch<AnyAction>) => {
-    try {  
-      await axios.post(`${URL}/api/register/signupDb`, {       
+  ) =>
+  async (dispatch: Dispatch<AnyAction>) => {
+    try {
+      await axios.post(`${URL}/api/register/signupDb`, {
         email,
         nombre,
         apellido,
@@ -320,20 +328,18 @@ export const signUpNewUser = (  email: string,
         ciudad,
         direccion,
         admin,
-        habilitado
+        habilitado,
       });
-  
+
       dispatch({
         type: SIGNUP_USER_EMAIL_DB, // Reemplaza 'SIGNUP_USER_EMAIL_DB' con el tipo de acción correcto
       });
-  
     } catch (error: any) {
       console.error("Error al registrar nuevo usuario:", error);
       window.alert("¡Error al registrar nuevo usuario!");
       throw new Error(error);
     }
   };
-
 
 export const setTransaccionId = (transactionId: string) => ({
   type: SET_TRANSACCION_ID,
@@ -346,18 +352,16 @@ export const setPaymentStatus = (status: boolean) => ({
   payload: status,
 });
 
-
 export const getAllUsers = () => async (dispatch: Dispatch<AnyAction>) => {
-
   try {
     const response = await axios.get(`${URL}/api/register/usuarios`)
     const users = await response.data.users;
     dispatch({
       type: GET_ALL_USERS,
       payload: users,
-    })
+    });
   } catch (error) {
-    console.error('Hubo un error al obtener los usuarios', error)
+    console.error("Hubo un error al obtener los usuarios", error);
   }
 }
 
