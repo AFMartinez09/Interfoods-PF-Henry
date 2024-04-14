@@ -113,7 +113,11 @@ const MiPerfil = () => {
               onDoubleClick={(e) => e.stopPropagation()}
             />
             <img
-              src={userData?.foto ? userData.foto : "https://monestir.org/wp-content/uploads/2020/06/usuario.png"}
+              src={isEditing
+                ? "https://cdn.pixabay.com/photo/2017/11/10/05/24/add-2935429_640.png"
+                : userData?.foto
+                  ? userData.foto
+                  : "https://monestir.org/wp-content/uploads/2020/06/usuario.png"}
               className={userData.foto ? styles.userImage : styles.userImageDefault}
               alt="Imagen de perfil"
               onClick={(e) => isEditing && e.stopPropagation()}
