@@ -2,7 +2,7 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import styles from './Reseñas.module.css'
 import React, { useEffect, useState } from "react";
-import { getAllReviews, getReviewForPlato, getUserById, postReview } from '../../redux/actions/Actions';
+import { getAllReviews,getUserById, postReview } from '../../redux/actions/Actions';
 import ReviewValidationSchema from './validationsReseñas';
 import { useSelector } from 'react-redux';
 import { StoreState } from '../../redux/reducer/Reducer';
@@ -104,31 +104,22 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
 
     useEffect(() => {
       const fetchData = async () => {
-          try {
-              let dataReseña;
-              if (!isNaN(idPlato)) {
-                  const reseñasPlato = await getReviewForPlato(idPlato);
-                  if (reseñasPlato.length > 0) {
-                      dataReseña = reseñasPlato;
-                      setReseñas(dataReseña); 
-                      setReseñasObtenidas(true);
-                      return;
-                  }
-              }
-              
-              if (!reseñasObtenidas) {
-                  dataReseña = await getAllReviews();
-                  setReseñas(dataReseña);
-                  setReseñasObtenidas(true);
-              }
-          } catch (error) {
-              console.error('Error al obtener las reseñas:', error);
-          }
+        try {
+          const dataReseña = await getAllReviews();
+          setReseñas(dataReseña);
+          setReseñasObtenidas(true);
+        } catch (error) {
+          console.error('Error al obtener las reseñas:', error);
+        }
       };
-  
-      fetchData();
+    
+      if (!reseñasObtenidas) {
+        fetchData();
+      }
+    
       setNewReseña(false);
-  }, [idPlato, newReseña, reseñasObtenidas]); 
+    }, [newReseña, reseñasObtenidas]);
+    
   
 
     const handleEstrellaClick = (valor: number) => {
@@ -155,11 +146,14 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
     const filtrarReseñasPorPlato = () => {
       if (!isNaN(idPlato)) {
         const reseñasPlato = reseñas.filter(reseña => reseña.platoId === idPlato && reseña.habilitado);
+        reseñasPlato.filter(reseña => reseña.habilitado);
         if (reseñasPlato.length > 0) {
           return reseñasPlato;
+        } else {
+          return reseñas.filter(reseña => reseña.habilitado);
         }
       }
-      return reseñas.filter(reseña => reseña.habilitado); // Filtrar todas las reseñas habilitadas si no hay reseñas específicas del plato
+      return reseñas.filter(reseña => reseña.habilitado);
     }
 
     const reseñasFiltradas = filtrarReseñasPorPlato();
