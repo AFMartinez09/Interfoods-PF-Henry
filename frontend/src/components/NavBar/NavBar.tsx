@@ -18,8 +18,38 @@ const NavBar: React.FC<NavBarProps> = ({ onItemClick, toggleMenu, showMenu, auth
   const [showMenuAdmin, setShowMenuAdmin] = useState(false);
   const adminMenuRef = useRef<HTMLDivElement>(null);
   const [userData, setUserData] = useState<any>(null);
+  const [totalQuantity, setTotalQuantity] = useState<number>(0);
  
   const dispatch = useDispatch();
+  
+  useEffect(() => {
+    const calcularTotalQuantity = () => {
+      const cartItems = localStorage.getItem('cart');
+      if (cartItems) {
+        const parsedCart = JSON.parse(cartItems);
+        const total = parsedCart.reduce((accumulator: number, currentItem: any) => {
+          return accumulator + currentItem.quantity;
+        }, 0);
+        return total;
+      } else {
+        return 0;
+      }
+    };
+
+    const handleStorageChange = () => {
+      const total = calcularTotalQuantity();
+      setTotalQuantity(total);
+    };
+
+    const initialTotal = calcularTotalQuantity();
+    setTotalQuantity(initialTotal);
+
+    window.addEventListener('cartChange', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('cartChange', handleStorageChange);
+    };
+  }, []);
 
   useEffect(() => {
     const getUserData = () => {
@@ -67,6 +97,8 @@ useEffect(() => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+ 
 
   const toggleMenuAuth = () => {
     setShowMenuAuth(!showMenuAuth);
@@ -133,8 +165,14 @@ useEffect(() => {
           </div>
         )}
       </div>
-      <div>
-      {auth ? (
+      <div className={styles.carritonumero}>
+      <p className={totalQuantity === 0 ? styles.numero2 : styles.numero}>{totalQuantity}</p>
+        <button onClick={handleToggleMenu} className={styles.navbtn2}>
+        <div className={styles.carritonumero}>
+             <img src="https://static.vecteezy.com/system/resources/previews/019/787/018/original/shopping-cart-icon-shopping-basket-on-transparent-background-free-png.png" alt="Logo 1" className={styles.navLogo}/>
+          </div>
+        </button>
+        {auth ? (
         <button onClick={toggleMenuAuth} className={styles.navbtn}>
           {userData && userData.foto ? (
             <img src={userData.foto} alt="Logo 3" className={styles.navUser3} />
@@ -142,14 +180,11 @@ useEffect(() => {
             <img src="https://monestir.org/wp-content/uploads/2020/06/usuario.png" alt="Logo 2" className={styles.navUser2} />
           )}
         </button>
-) : (
-  <NavLink to="/Login" onClick={() => handleItemClick('LOGIN')}>
-    <img src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../releases/preview/2019/png/iconmonstr-door-7.png&r=0&g=0&b=0" alt="Logo 2" className={styles.navUser} />
-  </NavLink>
-)}
-        <button onClick={handleToggleMenu} className={styles.navbtn}>
-          <img src="https://static.vecteezy.com/system/resources/previews/019/787/018/original/shopping-cart-icon-shopping-basket-on-transparent-background-free-png.png" alt="Logo 1" className={styles.navLogo}/>
-        </button>
+       ) : (
+           <NavLink to="/Login" onClick={() => handleItemClick('LOGIN')}>
+              <img src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../releases/preview/2019/png/iconmonstr-door-7.png&r=0&g=0&b=0" alt="Logo 2" className={styles.navUser} />
+           </NavLink>
+       )}
       </div>
       {showMenuAuth && <SesionDesplegable toggleMenu={toggleMenuAuth} />}
       {showMenu && <Cart toggleMenu={handleToggleMenu}/>}

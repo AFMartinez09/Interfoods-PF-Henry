@@ -53,6 +53,8 @@ const Card: React.FC<CardProps> = ({ name, img, weight, price, id, kilocalorias,
       );
     }
     setCant(prevCant => prevCant + 1);
+    const event = new Event('cartChange');
+    window.dispatchEvent(event);
   };
 
   const removeFromCart = () => {
@@ -70,6 +72,8 @@ const Card: React.FC<CardProps> = ({ name, img, weight, price, id, kilocalorias,
         setCant(prevCant => prevCant > 0 ? prevCant - 1 : 0);
       }
     }
+    const event = new Event('cartChange');
+    window.dispatchEvent(event);
   };
   
 
