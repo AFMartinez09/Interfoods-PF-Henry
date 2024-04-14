@@ -72,7 +72,8 @@ const getUsers = async(dispatch: any) => {
             </tr>        
           </thead>
           <tbody>
-            {Array.isArray(users) && users.map((user: {
+            {Array.isArray(users) && users.sort((a, b) => a.id - b.id)
+            .map((user: {
               id: number, 
               nombre: string, 
               apellido: string, 

@@ -328,7 +328,6 @@ export const PutUserBlock = (email: string, habilitado: boolean) => async (dispa
       habilitado: habilitado
     });
     const blockUser = response.data;
-    console.log('debug', blockUser);
     dispatch({
       type: PUT_USER_BLOCK,
       payload: blockUser,

@@ -1,19 +1,17 @@
 .container{
-  margin-top: -20px;
-  padding: 150px;
+  padding: 5rem;
 }
 
 .headline{
   text-align: center;
-  font-size: 60px;
+  font-size: 3.75rem;
 }
 
 .table{
-  padding-top: 20px;
-  margin-right: 20px;
+  margin-left: 1.6rem;
   border-collapse: collapse;
   width: 95%;
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 .title {
@@ -24,9 +22,9 @@
 
 .field{
   border: 3px solid gray;
-  padding: 10px 0px 10px 20px;
-  width: 5%;
-  font-size: 25px;
+  padding: 10px;
+  max-width: 15vw;
+  font-size: 1rem;
 }
 
 .fieldSearch{
@@ -35,7 +33,7 @@
   border: 3px solid gray;
   padding: 10px 0px 10px 20px;
   width: 5%;
-  font-size: 25px;
+  font-size: 1rem;
   font-weight: bold;
   font-style: italic;
 }
@@ -52,7 +50,7 @@
   padding: 10px 10px 10px 10px;
   justify-content: center;
   align-items: center;
-  width: 3%;
+  width: 5vw;
 }
 
 .switch {
@@ -60,8 +58,8 @@
   flex-wrap: wrap;
   align-items: center;
   position: relative;
-  width: 100px;
-  height: 34px;
+  width: 6.25rem;
+  height: 2.1rem;
   margin: auto;
 }
 
