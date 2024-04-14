@@ -3,10 +3,12 @@ import { disableReview, getAllReviews, getUserById } from "../../redux/actions/A
 import { Review, StoreState } from "../../redux/reducer/Reducer";
 import styles from './ReviewsAdmin.module.css';
 import { useSelector } from "react-redux";
+import Loading from "../Loading/Loading";
 
 const AllReviews = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
   const foodState = useSelector((state: StoreState) => state.platos);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const platoForId = (id: number) => {
     let selectedItem = foodState.find(item => item.id === id);
@@ -18,6 +20,7 @@ const AllReviews = () => {
       try {
         const reviewsData = await getAllReviews();
         setReviews(reviewsData);
+        setLoading(false)
       } catch (error) {
         console.error('Hubo un error al obtener las revisiones', error);
       }
@@ -63,29 +66,38 @@ const AllReviews = () => {
 
   return (
     <div className={styles.pageReviews}>
-      <h1 className={styles.titulo}>Comentarios</h1>
-      <div className={styles.containerReseñas}>
-        {reviews.map((review, index) => (
-          <div key={review.id} className={styles.reseña}>
-            <p className={styles.textonombre}>
-              {users[index] && `${users[index].nombre} ${users[index].apellido}`}
-            </p>
-            <p className={styles.textoreseñaestrella}>{generarEstrellas(review.calificacion)}</p>
-            <div className={styles.containercomentarionombreplato}>
-              <p className={styles.textoreseña}>{review.comentario}</p>
-              <p className={styles.textonombreplato}>{platoForId(review.platoId)}</p>
-            </div>
-            <button 
-              onClick={() => handleToggleReview(review.id)}
-              className={`${styles.button} ${review.habilitado ? styles.deshabilitar : styles.habilitar}`}
-            >
-              {review.habilitado ? 'Deshabilitar' : 'Habilitar'}
-            </button>
+      {loading ? (
+        <div className="containerLoading">
+          <Loading/>
+        </div>
+      ) : (
+        <>
+          <h1 className={styles.titulo}>Comentarios</h1>
+          <div className={styles.containerReseñas}>
+            {reviews.map((review, index) => (
+              <div key={review.id} className={styles.reseña}>
+                <p className={styles.textonombre}>
+                  {users[index] && `${users[index].nombre} ${users[index].apellido}`}
+                </p>
+                <p className={styles.textoreseñaestrella}>{generarEstrellas(review.calificacion)}</p>
+                <div className={styles.containercomentarionombreplato}>
+                  <p className={styles.textoreseña}>{review.comentario}</p>
+                  <p className={styles.textonombreplato}>{platoForId(review.platoId)}</p>
+                </div>
+                <button 
+                  onClick={() => handleToggleReview(review.id)}
+                  className={`${styles.button} ${review.habilitado ? styles.deshabilitar : styles.habilitar}`}
+                >
+                  {review.habilitado ? 'Deshabilitar' : 'Habilitar'}
+                </button>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </>
+      )}
     </div>
   );
+  
 };
 
 export default AllReviews;

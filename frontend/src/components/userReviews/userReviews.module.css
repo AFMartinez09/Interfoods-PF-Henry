@@ -125,3 +125,11 @@ p {
   filter: brightness(90%); /* Reducción del brillo */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra */
 }
+
+.containerMsj{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 65vh;
+}
