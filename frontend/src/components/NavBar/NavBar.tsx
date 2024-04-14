@@ -61,7 +61,7 @@ const NavBar: React.FC<NavBarProps> = ({ onItemClick, toggleMenu, showMenu, auth
     };
   
     getUserData();
-  }, []);
+  }, [userData]);
   
   useEffect(() => {
     if (userData !== null && userData.admin !== undefined) {

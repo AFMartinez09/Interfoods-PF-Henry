@@ -240,12 +240,10 @@ const MiPerfil = () => {
     if (isEditing) {
       const selectedFile = event.currentTarget.files?.[0];
       setProfilePictureUrl(selectedFile);  
-      console.log(selectedFile);
       
       if (selectedFile) {
         const fileUrl = URL.createObjectURL(selectedFile);
         seturleditando(fileUrl)
-        console.log(fileUrl);
         
       }
       
