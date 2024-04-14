@@ -21,7 +21,7 @@ export interface Plato {
   inventario: number;
 }
 
-interface Review {
+export interface Review {
   id: number;
   comentario: string;
   calificacion: number;
