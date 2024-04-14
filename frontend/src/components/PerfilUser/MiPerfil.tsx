@@ -8,6 +8,7 @@ const MiPerfil = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedData, setEditedData] = useState<any>({});
   const [profilePictureUrl, setProfilePictureUrl] = useState<File | undefined>(undefined);
+  let [urleditando, seturleditando] = useState<string>("https://cdn.pixabay.com/photo/2017/11/10/05/24/add-2935429_640.png");
 
   const getUserData = () => {
     const userDataString = localStorage.getItem('user');
@@ -20,15 +21,29 @@ const MiPerfil = () => {
   const handleProfilePictureChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (isEditing) {
       const selectedFile = event.currentTarget.files?.[0];
-      setProfilePictureUrl(selectedFile);
+      setProfilePictureUrl(selectedFile);  
+      console.log(selectedFile);
+      
+      if (selectedFile) {
+        const fileUrl = URL.createObjectURL(selectedFile);
+        seturleditando(fileUrl)
+        console.log(fileUrl);
+        
+      }
+      
+      
     }
   };
   
+ 
+  
 
   const uploadProfilePicture = async () => {
+    
     try {
       if (profilePictureUrl !== undefined) {
         const imageUrl = await imageUpload(profilePictureUrl);
+        urleditando = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9Xz4dXITCrP7D3zPQ5SsuaOhL-WX1NJSbPeUJGzbt-vdel1WfKSPc1Kl9thAp8YG-VEo&usqp=CAU"
         return imageUrl;
       }
       return null;
@@ -114,10 +129,10 @@ const MiPerfil = () => {
             />
             <img
               src={isEditing
-                ? "https://cdn.pixabay.com/photo/2017/11/10/05/24/add-2935429_640.png"
+                ? urleditando
                 : userData?.foto
                   ? userData.foto
-                  : "https://monestir.org/wp-content/uploads/2020/06/usuario.png"}
+                  : "https://media-public.canva.com/ZkY4E/MAEuj5ZkY4E/1/t.png"}
               className={userData.foto ? styles.userImage : styles.userImageDefault}
               alt="Imagen de perfil"
               onClick={(e) => isEditing && e.stopPropagation()}
