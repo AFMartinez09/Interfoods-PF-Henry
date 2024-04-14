@@ -21,7 +21,7 @@ const UserReviews = () => {
   const getReviews = async (dispatch: any, id: number) => {
     const reviews = await dispatch(getReviewsUser(id));
     if (reviews) {
-      const reviewsFilter = reviews.filter((review: Review) => review.habilitado);
+      const reviewsFilter = reviews.filter((review: Review) => !review.habilitado);
       setLoading(false)
       return reviewsFilter
     } else {

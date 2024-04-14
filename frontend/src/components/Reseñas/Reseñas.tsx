@@ -145,15 +145,15 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
 
     const filtrarReseñasPorPlato = () => {
       if (!isNaN(idPlato)) {
-        const reseñasPlato = reseñas.filter(reseña => reseña.platoId === idPlato && reseña.habilitado);
-        reseñasPlato.filter(reseña => reseña.habilitado);
+        const reseñasPlato = reseñas.filter(reseña => reseña.platoId === idPlato && !reseña.habilitado);
+        reseñasPlato.filter(reseña => !reseña.habilitado);
         if (reseñasPlato.length > 0) {
           return reseñasPlato;
         } else {
-          return reseñas.filter(reseña => reseña.habilitado);
+          return reseñas.filter(reseña => !reseña.habilitado);
         }
       }
-      return reseñas.filter(reseña => reseña.habilitado);
+      return reseñas.filter(reseña => !reseña.habilitado);
     }
 
     const reseñasFiltradas = filtrarReseñasPorPlato();
