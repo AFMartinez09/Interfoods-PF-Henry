@@ -31,29 +31,29 @@ export interface Plato {
   activo: boolean;
   inventario: number;
 }
-interface user {
-  email: string, 
-  nombre: string,
-  apellido: string,
-  foto: string,
-  pais: string,
-  ciudad: string,
-  direccion: string,
-  admin: boolean,
-  habilitado: boolean
+
+export interface Review {
+  id: number;
+  comentario: string;
+  calificacion: number;
+  habilitado: boolean;
+  usuarioId: number;
+  platoId: number;
+  createdAt: string;
+  updatedAt: string;
 }
 
-interface user {
-  email: string, 
-  nombre: string,
-  apellido: string,
-  foto: string,
-  pais: string,
-  ciudad: string,
-  direccion: string,
-  admin: boolean,
-  habilitado: boolean
-}
+  interface user {
+    email: string, 
+    nombre: string,
+    apellido: string,
+    foto: string,
+    pais: string,
+    ciudad: string,
+    direccion: string,
+    admin: boolean,
+    habilitado: boolean
+  }
 
 
 export interface StoreState {
