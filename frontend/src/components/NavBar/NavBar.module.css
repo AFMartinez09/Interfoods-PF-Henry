@@ -187,10 +187,13 @@
 .carritonumero{
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .numero{
-  
+  position: absolute;
+  top: -30px; 
+  right: 81px;
   font-size: 20px;
   color: white;
   min-width: 40px;
@@ -202,6 +205,7 @@
   border-radius: 50%;
   padding-left: 7px;
   padding-right: 7px;
+  text-align: center;
 }
 
 .navbtn2{
@@ -212,6 +216,9 @@
 
 
 .numero2{
+  position: absolute;
+  top: -30px; 
+  right: 81px;
   font-size: 20px;
   color: #2F695C;
   min-width: 40px;
@@ -220,7 +227,8 @@
      0.5px -0.5px 0 #2F695C,
     -0.5px  0.5px 0 #2F695C,
      0.5px  0.5px 0 #2F695C;
-  border-radius: 50%;
-  padding-left: 7px;
-  padding-right: 7px;
+     border-radius: 50%;
+     padding-left: 7px;
+     padding-right: 7px;
+     text-align: center;
 }
