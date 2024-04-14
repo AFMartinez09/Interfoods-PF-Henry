@@ -16,19 +16,17 @@ ChartJS.register(
 const StatusPayment= () => {
   const DataStatus = {
     // etiquetas a mostrar
-    labels: ['Pendiente', 'Cancelado', 'Pagado'],
+    labels: [ 'Cancelado', 'Pagado'],
     datasets: [
       {
         label: 'Numero de pedidos',
         // datos de cada etiqueta
-        data: [12, 3, 23],
+        data: [12, 23],
         backgroundColor: [
-          'rgba(211, 211, 5, 0.504)',
           'rgba(222, 11, 11, 0.542)',
           'rgba(15, 141, 11, 0.541)',
         ],
         borderColor: [
-          'rgba(211, 211, 5, 0.504)',
           'rgba(222, 11, 11, 0.542)',
           'rgba(15, 141, 11, 0.541)',
         ],

@@ -10,14 +10,14 @@ import {
   SIGNUP_USER_EMAIL_DB,
   SET_TRANSACCION_ID,
   SET_PAYMENT_STATUS,
-  GET_ALL_USERS,
-  SET_ADMIN_STATE, 
+  GET_ALL_USERS, 
+  PUT_USER_BLOCK,
+  SET_ADMIN_STATE,
   ACTIVATE_MEAL,
   SET_TYPE,
   SET_COUNTRY,
-  GET_REVIEWS_USER
-
-  } from '../actions/ActionsTypes';
+  GET_REVIEWS_USER,
+} from '../actions/ActionsTypes';
 import { AnyAction, Dispatch } from 'redux';
 import {URL} from '../../App'
 
@@ -32,12 +32,13 @@ export const getFood = () => async (dispatch: any) => {
         payload: data,
       });
     } else {
-      alert("There are no characters with this ID!");
+      alert('There are no characters with this ID!');
     }
-  } catch (error: any) {
+  } catch (error : any) {
     alert(error.message);
   }
 };
+
 
 // ----------------------------------------------------------------------------
 
@@ -355,7 +356,6 @@ export const getAllUsers = () => async (dispatch: Dispatch<AnyAction>) => {
   try {
     const response = await axios.get(`${URL}/api/register/usuarios`)
     const users = await response.data.users;
-    console.log("asdf", users);
     dispatch({
       type: GET_ALL_USERS,
       payload: users,
@@ -363,26 +363,40 @@ export const getAllUsers = () => async (dispatch: Dispatch<AnyAction>) => {
   } catch (error) {
     console.error("Hubo un error al obtener los usuarios", error);
   }
-};
+}
+
+export const PutUserBlock = (email: string, habilitado: boolean) => async (dispatch: any) => {
+  try {
+    const response = await axios.put(`${URL}/api/register/usuario/update/${email}`, {
+      habilitado: habilitado
+    });
+    const blockUser = response.data;
+    dispatch({
+      type: PUT_USER_BLOCK,
+      payload: blockUser,
+    });
+  } catch (error) {
+    console.error('hubo un error ', error);
+  }
+}
 // Definir creadores de acciones
 export const setAdminState = (isAdmin: boolean) => ({
   type: SET_ADMIN_STATE,
-  payload: isAdmin,
+  payload: isAdmin
 });
 
 export const settype = (payload: string) => {
-  console.log("Payload:", payload); // Agregar el console.log aquí
+  console.log('Payload:', payload); // Agregar el console.log aquí
   return {
     type: SET_TYPE,
-    payload: payload,
+    payload: payload
   };
 };
 
-export const setcountry = (payload: string) => ({
+export const setcountry = (payload : string) => ({
   type: SET_COUNTRY,
-  payload: payload,
+  payload: payload
 });
-
 export const postReview = async (comentario: string, estrellas: number, platoId: number, userId: number) => {
   try {
     await axios.post(`${URL}/api/food/${platoId}/reviews`, {
