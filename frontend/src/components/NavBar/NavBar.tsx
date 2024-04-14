@@ -169,7 +169,7 @@ useEffect(() => {
         <button onClick={handleToggleMenu} className={styles.navbtn2}>
         <p className={totalQuantity === 0 ? styles.numero2 : styles.numero}>{totalQuantity}</p>
         <div className={styles.carritonumero}>
-             <img src="https://static.vecteezy.com/system/resources/previews/019/787/018/original/shopping-cart-icon-shopping-basket-on-transparent-background-free-png.png" alt="Logo 1" className={styles.navLogo}/>
+             <img src={totalQuantity != 0 ? "https://i.ibb.co/jzrMVBD/carritoop.png" : "https://static.vecteezy.com/system/resources/previews/019/787/018/original/shopping-cart-icon-shopping-basket-on-transparent-background-free-png.png"} className={styles.navLogo}/>
           </div>
         </button>
         {auth ? (
