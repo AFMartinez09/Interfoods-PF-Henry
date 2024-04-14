@@ -83,8 +83,9 @@
 }
 
 .navUser {
-  width: 44px; 
-  height: 35px; 
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
   cursor: pointer;
   filter: invert(10);
   margin-right: 30px;
@@ -155,13 +156,14 @@
   left: 0;
 }
 .navUser2 {
-  width: 55px; 
-  height: 35px; 
-  margin-left: 0px; 
-  padding-top: 10px;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
   cursor: pointer;
   filter: invert(10);
-  
+  margin-top: 4px;
 }
 .navUser3 {
   cursor: pointer;
@@ -178,8 +180,14 @@
   margin-left: 10px;
 }
 
-
+.navUser2:hover{
+  transform: scale(1.10);
+}
 .navUser3:hover{
+  transform: scale(1.10);
+}
+
+.navUser:hover{
   transform: scale(1.10);
 }
 
