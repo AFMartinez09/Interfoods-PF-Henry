@@ -4,9 +4,12 @@ import { Plato } from '../models/Plato';
 
 export const addReviewToPlato = async (req: Request, res: Response) => {
   try {
-    const { platoId } = req.params; // 
-    const { comentario, calificacion } = req.body;
-    const usuarioId = (req as any).usuario.id; 
+    const { platoId } = req.params; 
+    const { comentario, calificacion, usuarioId } = req.body;
+
+    if (!platoId || !usuarioId) {
+      return res.status(400).send({ error: "Falta el ID del plato o del usuario" });
+    }
 
     const plato = await Plato.findByPk(platoId);
     if (!plato) {
@@ -16,14 +19,14 @@ export const addReviewToPlato = async (req: Request, res: Response) => {
     const review = await Review.create({
       comentario,
       calificacion,
+      habilitado: true,
       usuarioId,
       platoId,
     });
 
     return res.status(201).send(review);
   } catch (error) {
-    
-    return res.status(400).send(error);
+    console.error('Error al procesar la solicitud:', error);
+    return res.status(500).send({ error: "Error al procesar la solicitud" });
   }
-  
 };

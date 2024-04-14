@@ -14,9 +14,11 @@ const Review_1 = require("../models/Review");
 const Plato_1 = require("../models/Plato");
 const addReviewToPlato = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { platoId } = req.params; // 
-        const { comentario, calificacion } = req.body;
-        const usuarioId = req.usuario.id;
+        const { platoId } = req.params;
+        const { comentario, calificacion, usuarioId } = req.body;
+        if (!platoId || !usuarioId) {
+            return res.status(400).send({ error: "Falta el ID del plato o del usuario" });
+        }
         const plato = yield Plato_1.Plato.findByPk(platoId);
         if (!plato) {
             return res.status(404).send({ error: "Plato no encontrado" });
@@ -24,13 +26,15 @@ const addReviewToPlato = (req, res) => __awaiter(void 0, void 0, void 0, functio
         const review = yield Review_1.Review.create({
             comentario,
             calificacion,
+            habilitado: true,
             usuarioId,
             platoId,
         });
         return res.status(201).send(review);
     }
     catch (error) {
-        return res.status(400).send(error);
+        console.error('Error al procesar la solicitud:', error);
+        return res.status(500).send({ error: "Error al procesar la solicitud" });
     }
 });
 exports.addReviewToPlato = addReviewToPlato;

@@ -9,38 +9,48 @@
 }
 
 .container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('https://images6.alphacoders.com/130/1308741.jpg');
-    background-size: cover;
-    background-position: center;
-    filter: blur(1px);
-    z-index: -1;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("https://images6.alphacoders.com/130/1308741.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(1px);
+  z-index: -1;
 }
 
-
 .userInfo {
-    width: 60%; 
-    max-width: 400px; 
-    margin: 100px auto 50px; 
-    padding: 30px 30px 20px;
-    border-radius: 30px; 
-    background-color: #dbe9e9;
-    text-align: center;
+  width: 60%;
+  max-width: 590px;
+  margin: 100px auto 50px;
+  padding: 30px 30px 20px;
+  border-radius: 30px;
+  background-color: #dbe9e9;
+  text-align: center;
+}
+
+.userImageDefault {
+  width: 250px; 
+  height: 250px; 
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.userImageDefault:hover {
+  transform: scale(1.1);
 }
 
 
 .title {
-    font-size: 2rem; 
-    color: #2f695c;
-    font-family: 'Lobster', cursive;
-    margin-bottom: 20px;
+  font-size: 3rem;
+  color: #2f695c;
+  font-family: "Lobster", cursive;
+  margin-bottom: 20px;
 }
-
 
 .userImage {
     width: 200px; 
@@ -56,48 +66,44 @@
 
 
 .userData {
-    margin-top: 20px;
-    text-align: center; 
-    width: 90%;
-    margin: 20px auto; 
+  margin-top: 20px;
+  text-align: center;
+  width: 90%;
+  margin: 20px auto;
 }
-
 
 .containerDato {
-    margin-bottom: 15px; 
-    }
-
+  margin-bottom: 15px;
+}
 
 .dataType {
-    font-weight: bold; 
-    font-size: 1rem; 
-    color: #2f695c; 
-    margin-right: 5px;
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: #2f695c;
+  margin-right: 5px;
 }
-
 
 .dataValue {
-    font-weight: normal; 
-    font-size: 1rem; 
-    color: #1f1f1f; 
+  font-weight: normal;
+  font-size: 1.2rem;
+  color: #1f1f1f;
 }
-
 
 .editButton,
 .editButtoncancelar {
-    height: 50px;
-    width: 150px; 
-    font-size: 1rem; 
-    font-weight: 600;
-    border-radius: 10px;
-    background-color: rgb(255, 173, 49);
-    transition: all 0.3s ease;
-    border: none;
-    margin-top: 10px;
-    margin-left: 8px;
+  height: 55px;
+  width: 155px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  background-color: rgb(255, 173, 49);
+  transition: all 0.3s ease;
+  border: none;
+  margin-top: 10px;
+  margin-left: 8px;
 }
 
 .editButton:hover,
 .editButtoncancelar:hover {
-    transform: scale(1.10);
+  transform: scale(1.1);
 }
