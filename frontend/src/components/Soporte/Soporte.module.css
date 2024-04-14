@@ -1,44 +1,57 @@
-/* error.module.css */
-
-.errorContainer {
-  text-align: center; /* Ajusta el margen superior según sea necesario */
-  background-color: gainsboro;
-  width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
-  height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
+.map {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+  padding-top: 18vh;
 }
 
-.errorTitle {
-  font-size: 2.5rem;
-  color: #2f695c;
+.contactBox {
+  width: 80%;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #d0d0d0;
 }
 
-.errorMessage {
-  font-size: 1.2rem;
-  margin-top: -10px;
+.contactBox h2{
+padding-left: 68vh;
+font-weight: bold;
+font-size: 30px;
+color: #2F695C;
 }
 
-.errorLink {
-  color: #007bff; /* Azul */
+.contactItem {
+  margin-bottom: 10px;
+}
+
+.contactItem span{
+ color: rgba(0, 0, 0, 0.671);
+ font-size: 3vh;
+ padding-left: 62vh;
+}
+
+.contactItem span {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.link:hover {
   text-decoration: underline;
+}
+
+.mapContainer {
   margin-top: 20px;
-  display: inline-block;
 }
 
-.errorImage {
-  width: 150px;
-  margin-top: 30px;
-}
-
-.iframeContainer {
+.mapIframe {
   width: 100%;
-}
-
-.iframe {
-  width: 40%;
-  height: 400px;
-  border: 0;
+  height: 300px;
+  border: none;
 }
