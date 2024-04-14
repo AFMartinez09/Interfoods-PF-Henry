@@ -42,6 +42,8 @@ const Cart: React.FC<CartProps> = ({ toggleMenu }) => {
     });
     setFoods(updatedFoods);
     localStorage.setItem('cart', JSON.stringify(updatedFoods));
+    const event = new Event('cartChange');
+    window.dispatchEvent(event);
   };
 
   const removeFromCart = (id: number) => {
@@ -54,6 +56,8 @@ const Cart: React.FC<CartProps> = ({ toggleMenu }) => {
     const filteredFoods = updatedFoods.filter(food => food.quantity > 0);
     setFoods(filteredFoods);
     localStorage.setItem('cart', JSON.stringify(filteredFoods));
+    const event = new Event('cartChange');
+    window.dispatchEvent(event);
   };
   
   const calcularTotal = () => {
