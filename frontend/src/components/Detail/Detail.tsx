@@ -82,6 +82,8 @@ const Detail: React.FC = () =>{
       );
     }
     setCant(prevCant => prevCant + 1);
+    const event = new Event('cartChange');
+    window.dispatchEvent(event);
   };
   console.log(cant);
   console.log(inventario);
@@ -100,6 +102,8 @@ const Detail: React.FC = () =>{
         }
         localStorage.setItem('cart', JSON.stringify(cartItems));
         setCant(prevCant => prevCant > 0 ? prevCant - 1 : 0);
+        const event = new Event('cartChange');
+        window.dispatchEvent(event);
       }
     }
   };

@@ -190,20 +190,37 @@
 }
 
 .numero{
+  
   font-size: 20px;
   color: white;
- margin-right: -14px;
-
+  min-width: 40px;
+  text-shadow: 
+    -0.5px -0.5px 0 black,  
+     0.5px -0.5px 0 black,
+    -0.5px  0.5px 0 black,
+     0.5px  0.5px 0 black;
+  border-radius: 50%;
+  padding-left: 7px;
+  padding-right: 7px;
 }
 
 .navbtn2{
   background-color: transparent;
   border: none;
+  margin-left: -38px;
 }
 
 
 .numero2{
   font-size: 20px;
   color: #2F695C;
- margin-right: -14px;
+  min-width: 40px;
+  text-shadow: 
+    -0.5px -0.5px 0 #2F695C,  
+     0.5px -0.5px 0 #2F695C,
+    -0.5px  0.5px 0 #2F695C,
+     0.5px  0.5px 0 #2F695C;
+  border-radius: 50%;
+  padding-left: 7px;
+  padding-right: 7px;
 }
