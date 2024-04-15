@@ -5,7 +5,7 @@ import logowsp from "./logowsp.png";
 
 const Home = () => {
   const whatsappLink =
-    "https://wa.me/3757723901?text=Hola! Gracias por comunicarte con el equipo de InterFood. ¿En que podemos ayudarte?";
+    "https://wa.me/+393757723901?text=Hola! Quería comunicarme para realizar un pedido!";
 
   return (
     <div className={Style.home}>

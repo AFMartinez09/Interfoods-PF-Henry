@@ -12,19 +12,6 @@ const SearchBar: React.FC = () => {
     let pais = useSelector((state: StoreState) => state.pais);
     const [selectedType, setSelectedType] = useState<string>(tipo);
     const [selectedCountry, setSelectedCountry] = useState<string>(pais);
-    console.log(tipo, 'tipo redux');
-    console.log(pais, 'pais redux');
-    console.log(selectedType, 'tipo local');
-    console.log(selectedCountry, 'pais local');
-    
- 
-    
-    
-  
-    
-    
-    
-   
   
     
 

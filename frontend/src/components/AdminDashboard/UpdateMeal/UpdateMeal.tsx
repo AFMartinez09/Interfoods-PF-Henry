@@ -24,6 +24,7 @@ interface PropsCreateMeal {
   descripcion: string;
   stock: string;
   ingrediente: string;
+  inventario: number;
 }
 
 const initialValues: PropsCreateMeal = {
@@ -41,6 +42,7 @@ const initialValues: PropsCreateMeal = {
   descripcion: '',
   stock: '',
   ingrediente: '',
+  inventario: 0,
 };
 interface UpdateMealProps {
   setChanges: Dispatch<SetStateAction<boolean>>;
@@ -81,6 +83,7 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
           descripcion: selectedItem.descripcion,
           stock: selectedItem.stock,
           ingrediente: '',
+          inventario: selectedItem.inventario,
         });
         setLoading(true)
       }
@@ -90,6 +93,7 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
 
   const handleSubmit = async (values: PropsCreateMeal) => {
     try {
+      console.log('Valor de inventario antes de enviar el formulario:', values.inventario);
       if(idComida){
         await submit(
           dispatch,
@@ -106,6 +110,7 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
           values.imagen,
           values.descripcion,
           values.stock,
+          values.inventario
         );
       }
       Swal.fire({
@@ -142,8 +147,9 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
     imagen: File | null,
     descripcion: string,
     stock: string,
+    inventario: number,
     ) => {
-    try {
+    try { 
       await dispatch(upgradeMeal(
         id,
         nombre,
@@ -158,6 +164,7 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
         imagen,
         descripcion,
         stock,
+        inventario,
       ));
       await dispatch(getFood())
     } catch (error) {
@@ -211,6 +218,19 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
               <p className={styles.error}>
                 <ErrorMessage name='origen' />
               </p>
+              <label htmlFor='inventario' className={styles.label}>
+            Inventario*:
+          </label>
+          <Field
+            placeholder='Inventario'
+            type='number'
+            name='inventario'
+            className={styles.inputField}
+            min={0} // Agrega esta línea para permitir que el valor sea cero
+          />
+          <p className={styles.error}>
+            <ErrorMessage name='inventario' />
+          </p>
 
               <div>
               <label htmlFor='ingredientes' className={styles.label}>Ingredientes*:</label>
@@ -260,6 +280,7 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
                 type='number'
                 name='kilocalorias'
                 className={styles.inputField}
+                min={0}
               />
               <p className={styles.error}>
                 <ErrorMessage name='kilocalorias' />
@@ -273,6 +294,7 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
                 type='number'
                 name='carbohidratos'
                 className={styles.inputField}
+                min={0}
               />
               <p className={styles.error}>
                 <ErrorMessage name='carbohidratos' />
@@ -286,6 +308,7 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
                 type='number'
                 name='grasas'
                 className={styles.inputField}
+                min={0}
               />
               <p className={styles.error}>
                 <ErrorMessage name='grasas' />
@@ -300,6 +323,7 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
                 type='number'
                 name='peso'
                 className={styles.inputField}
+                min={0}
               />
               <p className={styles.error}>
                 <ErrorMessage name='peso' />
@@ -313,6 +337,7 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
                 type='number'
                 name='precio'
                 className={styles.inputField}
+                min={0}
               />
               <p className={styles.error}>
                 <ErrorMessage name='precio' />
@@ -365,19 +390,6 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
               />
               <p className={styles.error}>
                 <ErrorMessage name='descripcion' />
-              </p>
-
-              <label htmlFor='cantidad' className={styles.label}>
-                Cantidad (unidades)*:
-              </label>
-              <Field
-                placeholder='Cantidad'
-                type='text'
-                name='stock'
-                className={styles.inputField}
-              />
-              <p className={styles.error}>
-                <ErrorMessage name='stock' />
               </p>
 
               <button

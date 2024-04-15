@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { StoreState } from "../../../redux/reducer/Reducer";
 import { useLocation } from "react-router-dom";
 import Card from "./CardAdmin/CardAdmin";
-import Style from "../../Cards/Cards.module.css";
 import SearchBar from "../../SearchBar/SearchBar";
 import Styled from "./Edit-Delete.module.css";
 import Error404 from "../../Error/error";
@@ -21,6 +20,7 @@ interface Food {
   stock: string;
   tipo: string;
   activo: boolean;
+  inventario: number;
 }
 
 interface CardsProps {
@@ -56,17 +56,16 @@ const EditDeleteFood: React.FC<CardsProps> = ({ numberOfCards }) => {
           {loading ? (
             <div className="containerLoading">
               <div className={Styled.noexiste}>
-                Lo sentimos mucho, No existen platos disponibles con estos
-                criterios.
+                Lo sentimos mucho, No existen platos disponibles con estos criterios.
               </div>
             </div>
           ) : (
-            <div className={Style.cards}>
+            <div className={Styled.container}>
+             <div className={Styled.cards}>
               {limitedFoods.map((food) => (
                 <Card
                   activo={food.activo}
                   tipo={food.tipo}
-                  stock={food.stock}
                   key={food.id}
                   name={food.nombre}
                   img={food.imagen}
@@ -75,14 +74,17 @@ const EditDeleteFood: React.FC<CardsProps> = ({ numberOfCards }) => {
                   id={food.id}
                   kilocalorias={food.kilocalorias}
                   carbohidratos={food.carbohidratos}
+                  inventario={food.inventario}
                 />
               ))}
+             </div>
             </div>
           )}
         </div>
       )}
     </div>
   );
+  
 };
 
 export default EditDeleteFood;

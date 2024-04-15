@@ -34,6 +34,8 @@ const Cards: React.FC<CardsProps> = ({ numberOfCards }) => {
   const loading = foodState.length === 0 && foodAllState.length === 0;
   
   let foods: Food[] = location.pathname === "/" ? foodAllState : foodState;
+  console.log(foods);
+  
   foods = foods.filter(food => food.activo === true)
   
   const limitedFoods = numberOfCards ? foods.slice(0, numberOfCards) : foods;
@@ -48,6 +50,7 @@ const Cards: React.FC<CardsProps> = ({ numberOfCards }) => {
         <div className={Style.cards}>
           {limitedFoods.map((food) => (
             <Card
+              inventario={food.inventario}
               tipo={food.tipo}
               stock={food.stock}
               key={food.id}

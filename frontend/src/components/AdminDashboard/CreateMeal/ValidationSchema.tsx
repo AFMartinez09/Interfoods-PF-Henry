@@ -24,7 +24,7 @@ import * as Yup from 'yup';
     const supportedFormats = ['image/jpeg', 'image/png', 'image/jpg'];
     return supportedFormats.includes(file.type);
   }).required('Imagen del plato es requerida'),
-    stock: Yup.string().required('Cantidad es requerida'),
+    inventario: Yup.string().required('Cantidad es requerida'),
     descripcion: Yup.string()
       .min(10, 'La descripción debe tener al menos 10 caracteres')
       .max(1000, 'La descripción no puede exceder los 1000 caracteres')

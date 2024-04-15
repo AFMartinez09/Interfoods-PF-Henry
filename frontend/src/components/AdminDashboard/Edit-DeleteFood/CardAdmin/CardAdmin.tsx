@@ -18,29 +18,19 @@ interface CardProps {
   id: number;
   kilocalorias: number;
   carbohidratos: number;
-  stock: string;
   tipo: string;
   activo: boolean;
+  inventario: number;
 }
 
-const Card: React.FC<CardProps> = ({
-  name,
-  img,
-  weight,
-  price,
-  id,
-  kilocalorias,
-  carbohidratos,
-  stock,
-  tipo,
-  activo,
-}) => {
+const Card: React.FC<CardProps> = ({ name, img, weight, price, id, kilocalorias, carbohidratos, tipo, activo, inventario}) => {
+  
   const dispatch = useDispatch();
 
   const handleDelete = async (id: number) => {
     try {
       await delet(dispatch, id)
-    
+     
     } catch (error) {
       console.error("Error al borrar:", error);
       Swal.fire({
@@ -107,7 +97,6 @@ const Card: React.FC<CardProps> = ({
       )}
       <div className={Style.imgcontainer}>
         <img src={img} alt={name} className={Style.img}></img>
-        {stock !== "Disponible" && <p className={Style.stock}>{stock}</p>}
         <p className={Style.tipofoto}>{tipo}</p>
       </div>
       <div className={Style.conteinerName}>
@@ -123,9 +112,10 @@ const Card: React.FC<CardProps> = ({
       </div>
       <div className={Style.conteinerPriceBtn}>
         <p className={Style.price}>{price}$</p>
-        <NavLink className={styled.editar} to={`/admindashboard/editar/${id}`}>
-          Editar
-        </NavLink>
+         <div className={inventario === 0 ? styled.inventario : styled.inventario2}>
+          <p className={styled.textoinventario}>Inventario: {inventario}</p>
+         </div>
+      <NavLink className={styled.editar} to={`/admindashboard/editar/${id}`}>Editar</NavLink>
       </div>
     </div>
   );

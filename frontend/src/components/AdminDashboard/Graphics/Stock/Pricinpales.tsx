@@ -59,7 +59,7 @@ const Postres = () => {
   
   return (
     <div className={styles.container}>
-    <h1>Postres</h1>
+    <h1>Principales</h1>
     <div className={styles.dropdown}>
       <button className={styles.dropdownBtn}>Plato</button>
       <div className={styles.dropdownContent}>

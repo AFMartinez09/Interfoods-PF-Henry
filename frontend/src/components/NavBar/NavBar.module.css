@@ -47,7 +47,7 @@
 }
 
 .containerAdminOpen{
-  margin-top: 91px;
+  margin-top: 130px;
   width: fit-content;
 }
 
@@ -72,8 +72,8 @@
 }
 
 .navLogo {
-  width: 55px;
-  height: 35px;
+  width: 90px;
+  height: 40px;
   margin-left: 5px; 
   cursor: pointer;
   filter:invert(10)
@@ -83,12 +83,13 @@
 }
 
 .navUser {
-  width: 44px; 
-  height: 35px; 
-  margin-left: 10px; 
-  margin-top: 4px;
+  width: 35px;
+  height: 35px;
   cursor: pointer;
   filter: invert(10);
+  margin-right: 33px;
+  margin-left: 10px; 
+  margin-top: 4px;
 }
 .navUser:hover{
   filter: invert(0);
@@ -154,23 +155,23 @@
   left: 0;
 }
 .navUser2 {
-  width: 60px; 
-  height: 35px; 
-  margin-left: 10px; 
-  margin-right: -15px;
-  padding-top: 10px;
-  cursor: pointer;
-  filter: invert(10);
-}
-.navUser3 {
-  margin-left: 10px; 
-  margin-right: -35px;
   cursor: pointer;
   width: 35px;
   height: 35px;
   border-radius: 50%;
   transition: all 0.3s ease;
-  border: 1px solid rgb(2, 2, 2);
+  cursor: pointer;
+  filter: invert(10);
+  margin-top: 4px;
+}
+.navUser3 {
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  border: 1px solid rgb(2, 2, 2); 
+  margin-top: 4px;
 }
 
 
@@ -178,7 +179,87 @@
   margin-left: 10px;
 }
 
-
+.navUser2:hover{
+  transform: scale(1.10);
+}
 .navUser3:hover{
   transform: scale(1.10);
+}
+
+.navUser:hover{
+  transform: scale(1.10);
+}
+
+
+.carritonumero{
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.numero{
+  position: absolute;
+  top: 4px; 
+  right: 96px;
+  font-size: 20px;
+  color: white;
+  min-width: 40px;
+  text-shadow: 
+    -0.5px -0.5px 0 black,  
+     0.5px -0.5px 0 black,
+    -0.5px  0.5px 0 black,
+     0.5px  0.5px 0 black;
+  border-radius: 50%;
+  padding-left: 7px;
+  padding-right: 7px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.navbtn2{
+  background-color: transparent;
+  border: none;
+  margin-left: -38px;
+}
+
+
+.numero2{
+  position: absolute;
+  top: -10px; 
+  right: 81px;
+  font-size: 20px;
+  color: #2F695C;
+  min-width: 40px;
+  text-shadow: 
+    -0.5px -0.5px 0 #2F695C,  
+     0.5px -0.5px 0 #2F695C,
+    -0.5px  0.5px 0 #2F695C,
+     0.5px  0.5px 0 #2F695C;
+     border-radius: 50%;
+     padding-left: 7px;
+     padding-right: 7px;
+     text-align: center;
+}
+
+.interlogo{
+  width: 170px;
+  height:70px;
+  margin-right: -45px;
+  margin-top: -10px;
+ 
+}
+.parrafo2{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.navLogo2 {
+  width: 70px;
+  height: 40px;
+  margin-left: 5px; 
+  cursor: pointer;
+  filter:invert(10);
+  padding-left: 20px;
 }

@@ -1,9 +1,20 @@
 
-import { GET_FOOD, GET_PAIS, SIGNUP_USER_EMAIL, GET_FILTRO, SIGNUP_USER_EMAIL_DB, GET_REVIEWS_USER } from '../actions/ActionsTypes';
+import { 
+  GET_FOOD, 
+  GET_PAIS, 
+  SIGNUP_USER_EMAIL, 
+  GET_FILTRO, 
+  SIGNUP_USER_EMAIL_DB, 
+  GET_ALL_USERS, 
+  PUT_USER_BLOCK, 
+  SET_ADMIN_STATE,
+  SET_TYPE,
+  SET_COUNTRY,
+  } from '../actions/ActionsTypes';
 
 
 
-interface Plato {
+export interface Plato {
   id: number;
   nombre: string;
   origen: string;
@@ -17,9 +28,11 @@ interface Plato {
   imagen: string;
   descripcion: string;
   stock: string;
+  activo: boolean;
+  inventario: number;
 }
 
-interface Review {
+export interface Review {
   id: number;
   comentario: string;
   calificacion: number;
@@ -30,13 +43,28 @@ interface Review {
   updatedAt: string;
 }
 
+  interface user {
+    email: string, 
+    nombre: string,
+    apellido: string,
+    foto: string,
+    pais: string,
+    ciudad: string,
+    direccion: string,
+    admin: boolean,
+    habilitado: boolean
+  }
+
 
 export interface StoreState {
   platos: Plato[];
   filtros: Plato[];
   pais: string;
-  tipo: string
-  reviews: Review[]
+  tipo: string;
+  users: [];
+  searchEmail: string;
+  block: user[];
+  admin: boolean;
 }
 
 export interface Action {
@@ -49,7 +77,10 @@ const initialState: StoreState = {
   filtros: [],
   pais: 'Todos',
   tipo: 'Todosa',
-  reviews: []
+  users: [],
+  searchEmail: '',
+  block: [],
+  admin: false
 };
 
 const Reducer = (
@@ -126,14 +157,36 @@ const Reducer = (
         return {
           ...state,
         };
-      case GET_REVIEWS_USER:
+      case GET_ALL_USERS:
         return{
           ...state,
-          reviews: action.payload
+          users: action.payload,
         }
+      case PUT_USER_BLOCK:
+        return {
+          ...state,
+          block: [...state.block, action.payload],
+        };
+      
+        case SET_ADMIN_STATE:
+          return {
+            ...state,
+            admin: action.payload
+        };     
+        case SET_TYPE:
+          return {
+            ...state,
+            tipo: action.payload
+        };
+        case SET_COUNTRY:
+          return {
+            ...state,
+            pais: action.payload
+        };
     default:
       return state;
   }
 };
 
 export default Reducer;
+

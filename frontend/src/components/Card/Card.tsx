@@ -13,10 +13,12 @@ interface CardProps {
   carbohidratos: number;
   stock: string;
   tipo: string;
+  inventario: number;
 }
 
-const Card: React.FC<CardProps> = ({ name, img, weight, price, id, kilocalorias, carbohidratos, stock, tipo}) => {
+const Card: React.FC<CardProps> = ({ name, img, weight, price, id, kilocalorias, carbohidratos, tipo, inventario }) => {
   const [cant, setCant] = useState<number>(0);
+
 
   useEffect(() => {
     const existingCart = localStorage.getItem('cart');
@@ -41,7 +43,7 @@ const Card: React.FC<CardProps> = ({ name, img, weight, price, id, kilocalorias,
         cartItems[itemIndex].quantity += 1;
       } else {
         
-        cartItems.push({ id, name, img, weight, price, quantity: 1 });
+        cartItems.push({ id, name, img, weight, price, quantity: 1, inventario});
       }
       localStorage.setItem('cart', JSON.stringify(cartItems));
     } else {
@@ -51,6 +53,8 @@ const Card: React.FC<CardProps> = ({ name, img, weight, price, id, kilocalorias,
       );
     }
     setCant(prevCant => prevCant + 1);
+    const event = new Event('cartChange');
+    window.dispatchEvent(event);
   };
 
   const removeFromCart = () => {
@@ -68,6 +72,8 @@ const Card: React.FC<CardProps> = ({ name, img, weight, price, id, kilocalorias,
         setCant(prevCant => prevCant > 0 ? prevCant - 1 : 0);
       }
     }
+    const event = new Event('cartChange');
+    window.dispatchEvent(event);
   };
   
 
@@ -77,7 +83,7 @@ const Card: React.FC<CardProps> = ({ name, img, weight, price, id, kilocalorias,
       <NavLink to={`/detail/${id}`} className={Style.navLink}>
       <div className={Style.imgcontainer}>
       <img src={img} alt={name} className={Style.img}></img>
-      {stock !== 'Disponible' && <p className={Style.stock}>{stock}</p>}
+      {inventario === 0 && <p className={Style.stock}>Agotado</p>}
       <p className={Style.tipofoto}>{tipo}</p>
       </div>
       </NavLink>
@@ -88,13 +94,13 @@ const Card: React.FC<CardProps> = ({ name, img, weight, price, id, kilocalorias,
       <div className={Style.conteinerPriceBtn}>
         <p className={Style.price}>${price}</p>
         <div className={Style.conteinerBtn}>
-        {stock !== 'Agotado' ? (
+        {inventario !== 0 ? (
           <>
             {cant > 0 ? (
               <>
                 <button className={Style.btn} onClick={removeFromCart}>-</button>
                 <span className={Style.cant}>{cant}</span>
-                <button className={Style.btn} onClick={addToCart}>+</button>
+                <button className={Style.btn} onClick={addToCart} disabled={cant >= inventario}>+</button>
               </>
             ) : (
               <button className={Style.btnAdd} onClick={addToCart}>Añadir</button>

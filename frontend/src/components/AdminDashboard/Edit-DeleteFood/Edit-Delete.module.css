@@ -1,6 +1,10 @@
 
 .container{
-    margin: 120px 15px 0px 50px;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
   }
 
   .noexiste{
@@ -9,3 +13,30 @@
     margin-bottom: 600px;
     margin-top: 200px;
   }
+
+  .filter{
+    margin-bottom: -80px;
+  }
+
+
+  .cards{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  @media (max-width: 1800px) {
+    .cards {
+      grid-template-columns: repeat(2, 1fr); /* Cuando el ancho del viewport es 800px o menos, cambia a 2 columnas */
+    }
+  }
+  
+  @media (max-width: 1200px) {
+    .cards {
+      grid-template-columns: repeat(1, 1fr); /* Cuando el ancho del viewport es 600px o menos, cambia a 1 columna */
+    }
+  }
+  

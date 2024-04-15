@@ -2,7 +2,7 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import styles from './Reseñas.module.css'
 import React, { useEffect, useState } from "react";
-import { getAllReviews, getReviewForPlato, getUserById, postReview } from '../../redux/actions/Actions';
+import { getAllReviews,getUserById, postReview } from '../../redux/actions/Actions';
 import ReviewValidationSchema from './validationsReseñas';
 import { useSelector } from 'react-redux';
 import { StoreState } from '../../redux/reducer/Reducer';
@@ -42,7 +42,26 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
     const [position, setPosition] = useState(0);
     const [reseñasObtenidas, setReseñasObtenidas] = useState<boolean>(false)
     const [usersData, setUsersData] = useState<any[]>([]); // Estado para almacenar la información de los usuarios
-  
+    const [numColumns, setNumColumns] = useState(3); // Número predeterminado de columnas
+
+  useEffect(() => {
+    // Función para ajustar el número de columnas según el ancho de la pantalla
+    const handleResize = () => {
+      if (window.innerWidth <= 1300) {
+        setNumColumns(1);
+      } else if (window.innerWidth <= 1700) {
+        setNumColumns(2);
+      } else {
+        setNumColumns(3);
+      }
+    };
+
+    // Se ejecuta al cargar la página y cuando cambia el tamaño de la ventana
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize); // Limpia el evento al desmontar el componente
+  }, []);
+
   const foodState = useSelector((state: StoreState) => state.platos);
 
   
@@ -85,31 +104,22 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
 
     useEffect(() => {
       const fetchData = async () => {
-          try {
-              let dataReseña;
-              if (!isNaN(idPlato)) {
-                  const reseñasPlato = await getReviewForPlato(idPlato);
-                  if (reseñasPlato.length > 0) {
-                      dataReseña = reseñasPlato;
-                      setReseñas(dataReseña); 
-                      setReseñasObtenidas(true);
-                      return;
-                  }
-              }
-              
-              if (!reseñasObtenidas) {
-                  dataReseña = await getAllReviews();
-                  setReseñas(dataReseña);
-                  setReseñasObtenidas(true);
-              }
-          } catch (error) {
-              console.error('Error al obtener las reseñas:', error);
-          }
+        try {
+          const dataReseña = await getAllReviews();
+          setReseñas(dataReseña);
+          setReseñasObtenidas(true);
+        } catch (error) {
+          console.error('Error al obtener las reseñas:', error);
+        }
       };
-  
-      fetchData();
+    
+      if (!reseñasObtenidas) {
+        fetchData();
+      }
+    
       setNewReseña(false);
-  }, [idPlato, newReseña, reseñasObtenidas]); 
+    }, [newReseña, reseñasObtenidas]);
+    
   
 
     const handleEstrellaClick = (valor: number) => {
@@ -136,11 +146,14 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
     const filtrarReseñasPorPlato = () => {
       if (!isNaN(idPlato)) {
         const reseñasPlato = reseñas.filter(reseña => reseña.platoId === idPlato && reseña.habilitado);
+        reseñasPlato.filter(reseña => reseña.habilitado);
         if (reseñasPlato.length > 0) {
           return reseñasPlato;
+        } else {
+          return reseñas.filter(reseña => reseña.habilitado);
         }
       }
-      return reseñas.filter(reseña => reseña.habilitado); // Filtrar todas las reseñas habilitadas si no hay reseñas específicas del plato
+      return reseñas.filter(reseña => reseña.habilitado);
     }
 
     const reseñasFiltradas = filtrarReseñasPorPlato();
@@ -229,34 +242,37 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
                   <h1 className={styles.reseñastitulo}>Aquí algunas reseñas de nuestros clientes</h1>
                 </div>
                 <div className={styles.containerReseñasBtn}>
-                {reseñasFiltradas.length > 3 && (
-                <button onClick={handlePrev} className={styles.btnCarrousel}>
-                  &#10094;
-                </button>
-              )}
-              <div className={styles.cartasreseñas2}>
-                {reseñasFiltradas.length > 0 && Array.from({ length: Math.min(3, reseñasFiltradas.length) }).map((_, index) => {
-                  const currentIndex = (position + index) % reseñasFiltradas.length;
-                  const reseña = reseñasFiltradas[currentIndex];
-                  return (
-                    <div key={reseña.id} className={styles.reseña}>
-                      <p className={styles.textonombre}>
-                        {usersData.find(user => parseInt(user.id) === reseña.usuarioId)?.nombre} {usersData.find(user => parseInt(user.id) === reseña.usuarioId)?.apellido}
-                      </p>
-                      <p className={styles.textoreseñaestrella}>{generarEstrellas(reseña.calificacion)}</p>
-                      <div className={styles.containercomentarionombreplato}>
-                      <p className={styles.textoreseña}>{reseña.comentario}</p>
-                      <p className={styles.textonombreplato}>{platoForId(reseña.platoId)}</p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-              {reseñasFiltradas.length > 3 && (
-                <button onClick={handleNext} className={styles.btnCarrousel}>
-                  &#10095;
-                </button>
-              )}
+                {reseñasFiltradas.length > numColumns && (
+                  <button onClick={handlePrev} className={styles.btnCarrousel}>
+                    &#10094;
+                  </button>
+                )}
+                <div className={styles.cartasreseñas2} style={{ gridTemplateColumns: `repeat(${numColumns}, 1fr)` }}>
+                  {reseñasFiltradas.map((_, index) => {
+                    if (index < numColumns) {
+                      const currentIndex = (position + index) % reseñasFiltradas.length;
+                      const reseñaItem = reseñasFiltradas[currentIndex];
+                      return (
+                        <div key={reseñaItem.id} className={styles.reseña}>
+                          <p className={styles.textonombre}>
+                            {usersData.find(user => parseInt(user.id) === reseñaItem.usuarioId)?.nombre} {usersData.find(user => parseInt(user.id) === reseñaItem.usuarioId)?.apellido}
+                          </p>
+                          <p className={styles.textoreseñaestrella}>{generarEstrellas(reseñaItem.calificacion)}</p>
+                          <div className={styles.containercomentarionombreplato}>
+                            <p className={styles.textoreseña}>{reseñaItem.comentario}</p>
+                            <p className={styles.textonombreplato}>{platoForId(reseñaItem.platoId)}</p>
+                          </div>
+                        </div>
+                      );
+                    }
+                    return null;
+                  })}
+                </div>
+                {reseñasFiltradas.length > numColumns && (
+                  <button onClick={handleNext} className={styles.btnCarrousel}>
+                    &#10095;
+                  </button>
+                )}
                 </div>
               </div>
             )}

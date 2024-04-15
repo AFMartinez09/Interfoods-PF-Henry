@@ -1,19 +1,38 @@
 import { NavLink } from 'react-router-dom'
-import styles from './HomeAdmin.module.css'
+import StatusPayment from '../Graphics/StatusPayment/StatusPayment'
+import Stock from '../Graphics/Stock/AllStock'
+import Income from '../Graphics/Income/Weekly'
+import DataUsers from '../Graphics/DataUsers/DataUsers'
+import Styles from './HomeAdmin.module.css'
 
 const HomeAdmin = () => {
   return (
-    <div className={styles.container}>
-        <div className={styles.containerMenu}>
-          <h2 className={styles.title}>Admin dashboard</h2>
-          <NavLink to='/admindashboard' className={styles.options}>Inicio</NavLink>
-          <NavLink to='/admindashboard/statuspayment' className={styles.options}>estatus de pago</NavLink>
-          <NavLink to='/admindashboard/stock' className={styles.options}>Inventario</NavLink>
-          <NavLink to='/admindashboard/income' className={styles.options}>Ingresos</NavLink>
-          <NavLink to='/admindashboard/crearplato' className={styles.options}>Crear plato</NavLink>
-          <NavLink to='/admindashboard/editar-eliminar' className={styles.options}>Editar/Eliminar</NavLink>
-          <NavLink to='/' className={styles.close}>Cerrar sesión</NavLink>
-        </div>
+    <div className={Styles.plataform}>
+      <div className={Styles.first}>
+        <span className={Styles.income}>
+          <NavLink to='/admindashboard/income'>
+            <Income />
+          </NavLink>
+        </span>
+        <span className={Styles.stock}>
+          <NavLink to='/admindashboard/stock'>
+            <Stock />
+          </NavLink>
+        </span>
+      </div>
+      <div className={Styles.second}>
+        <span className={Styles.statusPayment}>
+          <NavLink to='/admindashboard/statuspayment'>
+            <StatusPayment />
+          </NavLink>
+        </span>
+        <hr></hr>
+        <span className={Styles.datausers}>
+          <NavLink to='/admindashboard/datausers'>
+            <DataUsers />
+          </NavLink>
+        </span>
+      </div>
     </div>
   )
 }
