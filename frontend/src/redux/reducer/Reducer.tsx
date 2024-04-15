@@ -80,7 +80,7 @@ const initialState: StoreState = {
   users: [],
   searchEmail: '',
   block: [],
-  admin: true
+  admin: false
 };
 
 const Reducer = (
