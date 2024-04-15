@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.activar = exports.deleteFood = exports.updateFood = exports.addFood = exports.getEntriesWithoutSensitiveInfo = exports.findById = exports.getEntries = void 0;
+exports.cambiarinventario = exports.activar = exports.deleteFood = exports.updateFood = exports.addFood = exports.getEntriesWithoutSensitiveInfo = exports.findById = exports.getEntries = void 0;
 const Plato_1 = require("../Plato"); // Asegúrate de que la ruta al modelo Plato sea correcta
 const getEntries = () => __awaiter(void 0, void 0, void 0, function* () {
     return yield Plato_1.Plato.findAll();
@@ -74,3 +74,14 @@ const activar = (id) => __awaiter(void 0, void 0, void 0, function* () {
     return { message: "Plato activado exitosamente" };
 });
 exports.activar = activar;
+const cambiarinventario = (id, quantity) => __awaiter(void 0, void 0, void 0, function* () {
+    const plato = yield Plato_1.Plato.findByPk(id);
+    if (!plato) {
+        throw new Error("Plato no encontradoaaaaaaaaaaaaaaaa");
+    }
+    let inventario = plato.inventario;
+    let final = inventario - quantity;
+    yield plato.update({ inventario: final });
+    return { message: "Inventario actualizado" };
+});
+exports.cambiarinventario = cambiarinventario;

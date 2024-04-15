@@ -12,10 +12,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.payCrypto = void 0;
 const payWithCrypto_1 = require("../controllers/payWithCrypto");
 const payCrypto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { nombre, descripcion, user_email, user_name } = req.body;
+    const { nombre, descripcion, precio, user_email, user_name } = req.body;
     try {
-        const response = yield (0, payWithCrypto_1.payWithCrypto)(nombre, descripcion, user_email, user_name);
-        res.status(200).send(response);
+        const response = yield (0, payWithCrypto_1.payWithCrypto)(nombre, descripcion, precio, user_email, user_name);
+        res.status(200).json({ response });
     }
     catch (error) {
         console.error(error);
