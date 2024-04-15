@@ -155,7 +155,7 @@ useEffect(() => {
       <div>
         <NavLink to="/" className={styles.parrafo}>
         <div className={styles.parrafo2}>
-            <img src='https://i.ibb.co/L1KZhXt/output-onlinepngtools.png' className={styles.interlogo}></img>
+            <img src='https://i.ibb.co/QHgqbVv/dmmngmoawnvsfaxcaz6d-transformed.png' className={styles.interlogo}></img>
             <p>INTERFOODS</p>
         </div>
         </NavLink>
