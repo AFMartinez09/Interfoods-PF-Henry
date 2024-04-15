@@ -75,8 +75,8 @@
 .whatsappContainer {
   cursor: pointer;
   position: fixed;
-  bottom: 20px; /* Ajusta la distancia desde la parte inferior */
-  right: 20px; /* Ajusta la distancia desde el borde derecho */
+  bottom: 12px; /* Ajusta la distancia desde la parte inferior */
+  right: 85px; /* Ajusta la distancia desde el borde derecho */
   z-index: 1000;
   display: flex;
   justify-content: center;
@@ -96,8 +96,8 @@
 .wsp__img {
   display: flex;
   border-radius: 100%;
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
 }
 
 .enlaceWsp {
