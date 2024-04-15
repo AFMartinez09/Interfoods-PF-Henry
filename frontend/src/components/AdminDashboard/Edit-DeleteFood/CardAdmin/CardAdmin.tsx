@@ -18,13 +18,12 @@ interface CardProps {
   id: number;
   kilocalorias: number;
   carbohidratos: number;
-  stock: string;
   tipo: string;
   activo: boolean;
   inventario: number;
 }
 
-const Card: React.FC<CardProps> = ({ name, img, weight, price, id, kilocalorias, carbohidratos, stock, tipo, activo, inventario}) => {
+const Card: React.FC<CardProps> = ({ name, img, weight, price, id, kilocalorias, carbohidratos, tipo, activo, inventario}) => {
   
   const dispatch = useDispatch();
 
@@ -98,7 +97,6 @@ const Card: React.FC<CardProps> = ({ name, img, weight, price, id, kilocalorias,
       )}
       <div className={Style.imgcontainer}>
         <img src={img} alt={name} className={Style.img}></img>
-        {stock !== "Disponible" && <p className={Style.stock}>{stock}</p>}
         <p className={Style.tipofoto}>{tipo}</p>
       </div>
       <div className={Style.conteinerName}>
