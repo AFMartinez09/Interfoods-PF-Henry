@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { StoreState } from "../../../redux/reducer/Reducer";
 import { useLocation } from "react-router-dom";
 import Card from "./CardAdmin/CardAdmin";
-import Style from "../../Cards/Cards.module.css";
 import SearchBar from "../../SearchBar/SearchBar";
 import Styled from "./Edit-Delete.module.css";
 import Error404 from "../../Error/error";
@@ -61,12 +60,12 @@ const EditDeleteFood: React.FC<CardsProps> = ({ numberOfCards }) => {
               </div>
             </div>
           ) : (
-            <div className={Style.cards}>
+            <div className={Styled.container}>
+             <div className={Styled.cards}>
               {limitedFoods.map((food) => (
                 <Card
                   activo={food.activo}
                   tipo={food.tipo}
-                  stock={food.stock}
                   key={food.id}
                   name={food.nombre}
                   img={food.imagen}
@@ -78,6 +77,7 @@ const EditDeleteFood: React.FC<CardsProps> = ({ numberOfCards }) => {
                   inventario={food.inventario}
                 />
               ))}
+             </div>
             </div>
           )}
         </div>
