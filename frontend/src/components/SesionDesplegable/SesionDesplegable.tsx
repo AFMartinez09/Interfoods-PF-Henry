@@ -45,7 +45,7 @@ const SesionDesplegable: React.FC<SesionDesplegableProps> = ({ toggleMenu }) => 
           <NavLink to={'/MiPerfil'} className={Style.btnPerfil} onClick={toggleMenu}><p className={Style.color2}>Mi perfil</p></NavLink> 
         </div>
         <div className={Style.item}>
-          <img src='  https://cdn-icons.flaticon.com/svg/3916/3916599.svg?token=exp=1713035828~hmac=fd8592c3d6684f194ae2c59cc9984d87' className={Style.sesionImg}></img>
+          <img src='https://media-public.canva.com/NhMJY/MAFabwNhMJY/1/t.png' className={Style.sesionImg}></img>
           <NavLink to={'/userReviews'} className={Style.btnPerfil} onClick={toggleMenu}><p className={Style.color2}>Mis reviews</p></NavLink> 
         </div>
         <hr />

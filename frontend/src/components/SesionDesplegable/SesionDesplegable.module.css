@@ -77,7 +77,8 @@
   box-shadow: 20px;
   font-size: x-large;
   text-shadow: 0px 0px 10px 10px rgb(253, 253, 253);
-  color: black
+  color: black;
+  transition: all 0.3s ease;
 }
 
 .color:hover{
@@ -89,7 +90,8 @@
   box-shadow: 20px;
   font-size: x-large;
   text-shadow: 0px 0px 10px 10px rgb(250, 247, 247);
-  color: black
+  color: black;
+  transition: all 0.3s ease;
 }
 
 .color2:hover{
