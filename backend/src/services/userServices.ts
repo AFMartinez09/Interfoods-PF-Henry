@@ -1,6 +1,5 @@
 import { Usuario } from '../models/Usuario'; // Asegúrate de que la ruta al modelo es correcta
 
-// Función para crear un nuevo usuario
 export const createUser = async (userData: {
   nombre: string;
   apellido: string;
@@ -13,6 +12,13 @@ export const createUser = async (userData: {
   habilitado: boolean;
 }) => {
   try {
+    // Verificar si ya existe un usuario con el mismo correo electrónico
+    const existingUser = await Usuario.findOne({ where: { email: userData.email } });
+    if (existingUser) {
+      throw new Error('Ya existe un usuario con el mismo correo electrónico');
+    }
+    
+    // Crear el nuevo usuario si no existe uno con el mismo correo electrónico
     const newUser = await Usuario.create(userData);
     return newUser;
   } catch (error) {

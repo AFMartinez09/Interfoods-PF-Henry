@@ -335,9 +335,9 @@ export const signUpNewUserDb =
         type: SIGNUP_USER_EMAIL_DB, // Reemplaza 'SIGNUP_USER_EMAIL_DB' con el tipo de acción correcto
       });
     } catch (error: any) {
-      console.error("Error al registrar nuevo usuario:", error);
-      window.alert("¡Error al registrar nuevo usuario!");
-      throw new Error(error);
+      // console.error("Error al registrar nuevo usuario:", error);
+      // window.alert("¡Error al registrar nuevo usuario!");
+      // throw new Error(error);
     }
   };
 
