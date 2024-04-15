@@ -6,6 +6,7 @@ import { createMeal, imageUpload } from '../../../redux/actions/Actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { StoreState } from '../../../redux/reducer/Reducer';
 import Error404 from '../../Error/error';
+import Swal from 'sweetalert2';
 
 interface PropsCreateMeal {
   nombre: string,
@@ -61,9 +62,21 @@ const CreateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
     try {
       // Envía la URL de la imagen al servidor junto con otros datos del formulario
       await submit({ ...values}, dispatch);
-      alert("Se creo con exito")
+      Swal.fire({
+        title: 'Plato Creado',
+        text: 'Tu plato ya fue creado',
+        icon: 'success',
+        confirmButtonText: 'Entendido'
+      })
       setChanges(true)
+      window.location.href = "/admindashboard/editar-eliminar";
     } catch (error) {
+      Swal.fire({
+        title: 'Error',
+        text: '¡Hubo un error al actualizar el plato!',
+        icon: 'error',
+        confirmButtonText: 'Entendido'
+      })
       console.error("Error al crear la cuenta:", error);
     }
   };
