@@ -2,11 +2,13 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import styles from './UpdateMeal.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { upgradeMeal, getFood } from '../../../redux/actions/Actions';
+import { upgradeMeal, getFood, imageUpload } from '../../../redux/actions/Actions';
 import { useParams } from 'react-router-dom';
 import { StoreState } from '../../../redux/reducer/Reducer';
 import Error404 from '../../Error/error';
 import Swal from 'sweetalert2';
+
+
 
 
 interface PropsCreateMeal {
@@ -20,7 +22,7 @@ interface PropsCreateMeal {
   peso: number;
   precio: number;
   tipo: string;
-  imagen: File | null;
+  imagen: string | null;
   descripcion: string;
   stock: string;
   ingrediente: string;
@@ -40,7 +42,7 @@ const initialValues: PropsCreateMeal = {
   tipo: '',
   imagen: null,
   descripcion: '',
-  stock: '',
+  stock: 'Disponible',
   ingrediente: '',
   inventario: 0,
 };
@@ -50,12 +52,19 @@ interface UpdateMealProps {
 
 const UpdateMeal: React.FC<UpdateMealProps> = () => {
   const [initialValuesData, setInitialValuesData] = useState<PropsCreateMeal>(initialValues);
+  const [profilePictureUrl, setProfilePictureUrl] = useState<File | undefined>(undefined);
   const [idComida, setIdComida] = useState<number>();
   const [loading, setLoading] = useState<boolean>(false)
   const foodState = useSelector((state: StoreState) => state.platos);
   const isAdmin = useSelector((state: StoreState) => state.admin)
   const dispatch = useDispatch();
   const { id } = useParams();
+
+
+  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = event.currentTarget.files?.[0];
+    await setProfilePictureUrl(selectedFile);
+  };
 
   useEffect(() => {
     if (id !== undefined) {
@@ -67,7 +76,6 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
     if (idComida !== undefined) {
       const selectedItem = foodState.find(item => item.id === idComida);
       if (selectedItem) {
-        console.log("Selected Item:", selectedItem);
         setInitialValuesData({
           id: selectedItem.id,
           nombre: selectedItem.nombre,
@@ -81,7 +89,7 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
           tipo: selectedItem.tipo,
           imagen: null,
           descripcion: selectedItem.descripcion,
-          stock: selectedItem.stock,
+          stock: 'Disponible',
           ingrediente: '',
           inventario: selectedItem.inventario,
         });
@@ -118,7 +126,8 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
         text: 'Se actualizo el plato correctamente',
         icon: 'success',
         confirmButtonText: 'Entendido'
-      }).then(() => {
+      })
+      .then(() => {
         window.location.href = "/admindashboard/editar-eliminar";
       })
     } catch (error) {
@@ -144,12 +153,17 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
     peso: number,
     precio: number,
     tipo: string,
-    imagen: File | null,
+    imagen: string | null,
     descripcion: string,
     stock: string,
     inventario: number,
     ) => {
-    try { 
+    try {
+      let urlImage: string | null = null;
+      if (profilePictureUrl !== undefined) {
+          urlImage = await imageUpload(profilePictureUrl);
+      }
+      imagen = urlImage
       await dispatch(upgradeMeal(
         id,
         nombre,
@@ -166,6 +180,8 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
         stock,
         inventario,
       ));
+
+      
       await dispatch(getFood())
     } catch (error) {
       console.error(error);
@@ -368,12 +384,13 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
               <input
                 className={styles.inputField}
                 type='file'
-                id='image'
-                name='image'
+                id='imagen'
+                name='imagen'
                 accept='image/png, image/jpeg, image/jpg'
-                onChange={(event) =>
-                  setFieldValue('image', event.currentTarget.files?.[0])
-                }
+                onChange={(event) => {
+                  setFieldValue('image', event.currentTarget.files?.[0]);
+                  handleFileChange(event);
+                }}
               />
               <p className={styles.error}>
                 <ErrorMessage name='image' />

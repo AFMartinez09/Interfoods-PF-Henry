@@ -234,7 +234,7 @@ export const upgradeMeal =
     peso: number,
     precio: number,
     tipo: string,
-    imagen: File | null,
+    imagen: string | null,
     descripcion: string,
     stock: string,
     inventario: number,
