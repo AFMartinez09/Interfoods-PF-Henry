@@ -20,6 +20,8 @@ import {
 } from '../actions/ActionsTypes';
 import { AnyAction, Dispatch } from 'redux';
 import {URL} from '../../App'
+import { getAuth, signOut } from "@firebase/auth";
+import { app } from "../../Auth/firebaseConfig";
 
 // ----------------------------------------------------------------------------
 
@@ -109,17 +111,23 @@ interface UserData {
   habilitado: boolean;
 }
 
+const auth = getAuth(app);
+
 export const getUser = async (email: string): Promise<UserData> => {
   try {
-    // Realizar la llamada a la API con Axios
-    console.log(email);
-
     const response = await axios.get<{ user: UserData }>(
       `${URL}/api/register/usuario/${email}`
     );
 
     // Obtener el usuario devuelto en la respuesta
     const userData = response.data.user;
+
+    // Verificar si el usuario está habilitado
+    if (!userData.habilitado) {
+      signOut(auth)
+      // Si el usuario no está habilitado, lanzar un error
+      throw new Error("El usuario no está habilitado para iniciar sesión");
+    }
 
     // Guardar el usuario en el localStorage
     localStorage.setItem("user", JSON.stringify(userData));

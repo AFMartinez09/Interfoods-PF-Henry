@@ -60,11 +60,7 @@ export const Login = () => {
 
         // Llamar a la función registerUser pasando el correo electrónico
         if (userEmail) {
-          console.log(userEmail);
-          
           await getUser(userEmail);
-    
-          
         }
 
         // Mostrar mensaje de éxito
