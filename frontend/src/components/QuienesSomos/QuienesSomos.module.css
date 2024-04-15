@@ -4,6 +4,7 @@
   text-align: center;
    font-family: Arial, sans-serif; 
    color:#2b2929; 
+   width: 100%;
 }
 
 .qs-section {
@@ -25,6 +26,7 @@
 .qs-textContainer {
   flex: 1;
   padding: 0 20px;
+  text-align: center;
 }
 
 .qs-image {

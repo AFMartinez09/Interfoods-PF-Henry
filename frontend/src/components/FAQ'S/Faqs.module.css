@@ -10,8 +10,9 @@
   font-size: 50px;
   margin-bottom: 20px;
   margin-top: 100px;
-  margin-left: 400px;
   justify-content: center;
+  width: 100%;
+  text-align: center;
 }
 
 .faqList {
@@ -32,8 +33,10 @@
 }
 
 .faqQuestion {
+  text-align: center;
   color: #343a40;
   font-size: 20px;
+  width: 100%;
 }
 
 .faqToggle {
@@ -60,10 +63,12 @@
 }
 
 .buttonOrange {
-background-color: #f87d18e1; 
+  margin-top: 20px;
+  background-color: #f87d18e1; 
   color: rgb(255, 255, 255);
   padding: 10px 10px;
   border-radius: 15px;
+  border: none;
   cursor: pointer;
 
 }
@@ -75,4 +80,15 @@ background-color: #f87d18e1;
 .buttonOrange > a {
   color: white;
   text-decoration: none; 
+}
+
+.faqAnswer{
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 60%;
+  margin-left: 20%;
+  margin-right: 20%;
+  text-align: center;
+  font-weight: 500;
+
 }

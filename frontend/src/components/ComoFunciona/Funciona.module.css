@@ -26,15 +26,15 @@
 }
 
 .imageWrapper {
-  max-width: 45%; 
-  margin-right: 20px; 
+  max-width: 50%; 
 }
 
 .textWrapper {
+  max-width: 50%;
   flex: 1; 
   text-align: left; 
   margin-top: 90px;
-  margin-left: 40px; 
+  text-align: center;
 }
 
 .imagesContainer img {
@@ -68,6 +68,7 @@
 }
 
 .buttonOrange {
+  margin-top: 40px;
   background-color: #f87d18e1; 
   color: rgb(0, 0, 0);
   padding: 10px 10px;
