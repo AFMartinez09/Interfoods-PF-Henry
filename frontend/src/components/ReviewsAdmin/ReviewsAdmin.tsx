@@ -86,9 +86,9 @@ const AllReviews = () => {
                 </div>
                 <button 
                   onClick={() => handleToggleReview(review.id)}
-                  className={`${styles.button} ${review.habilitado ? styles.deshabilitar : styles.habilitar}`}
+                  className={`${styles.button} ${review.habilitado ? styles.habilitar: styles.deshabilitar }`}
                 >
-                  {review.habilitado ? 'Deshabilitar' : 'Habilitar'}
+                  {review.habilitado ? 'Habilitar' : 'Deshabilitar'}
                 </button>
               </div>
             ))}

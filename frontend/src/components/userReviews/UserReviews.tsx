@@ -100,7 +100,7 @@ const UserReviews = () => {
                   </div>
                   <button 
                     onClick={() => handleToggleReview(review.id)}
-                    className={`${styles.button} ${review.habilitado ? styles.deshabilitar : styles.habilitar}`}
+                    className={`${styles.button} ${styles.deshabilitar}`}
                   >
                     Eliminar
                   </button>
