@@ -75,7 +75,7 @@ const AllReviews = () => {
           <h1 className={styles.titulo}>Comentarios</h1>
           <div className={styles.containerReseñas}>
             {reviews.map((review, index) => (
-              <div key={review.id} className={styles.reseña}>
+              <div key={review.id} className={`${review.habilitado ? styles.reseña :  styles.reseñaDeshabilitado}`}>
                 <p className={styles.textonombre}>
                   {users[index] && `${users[index].nombre} ${users[index].apellido}`}
                 </p>
@@ -86,9 +86,9 @@ const AllReviews = () => {
                 </div>
                 <button 
                   onClick={() => handleToggleReview(review.id)}
-                  className={`${styles.button} ${review.habilitado ? styles.habilitar: styles.deshabilitar }`}
+                  className={`${styles.button} ${review.habilitado ? styles.deshabilitar :  styles.habilitar}`}
                 >
-                  {review.habilitado ? 'Habilitar' : 'Deshabilitar'}
+                  {review.habilitado ? 'Deshabilitar' : 'Habilitar'}
                 </button>
               </div>
             ))}
