@@ -19,9 +19,11 @@ const NavBar: React.FC<NavBarProps> = ({ onItemClick, toggleMenu, showMenu, auth
   const adminMenuRef = useRef<HTMLDivElement>(null);
   const [userData, setUserData] = useState<any>(null);
   const [totalQuantity, setTotalQuantity] = useState<number>(0);
- 
+
   const dispatch = useDispatch();
-  
+
+
+
   useEffect(() => {
     const calcularTotalQuantity = () => {
       const cartItems = localStorage.getItem('cart');
@@ -35,9 +37,10 @@ const NavBar: React.FC<NavBarProps> = ({ onItemClick, toggleMenu, showMenu, auth
         return 0;
       }
     };
-
     const handleStorageChange = () => {
       const total = calcularTotalQuantity();
+      console.log('sumaaa');
+      
       setTotalQuantity(total);
     };
 
@@ -56,12 +59,40 @@ const NavBar: React.FC<NavBarProps> = ({ onItemClick, toggleMenu, showMenu, auth
       const userDataString = localStorage.getItem('user');
       if (userDataString) {
         const userData = JSON.parse(userDataString);
-        setUserData(userData);
+        setUserData(userData);  
       }
+    }; 
+  
+    // Función para recargar el componente con un retraso de 1 segundo
+    const reloadComponentWithDelay = () => {
+      setTimeout(() => {
+        getUserData(); // Vuelve a obtener los datos del usuario después de 1 segundo
+      }, 1000); // 1000 milisegundos = 1 segundo
     };
   
+    // Llama a la función para obtener los datos del usuario al montar el componente
     getUserData();
-  }, [userData]);
+  
+    // Agrega el event listener para el evento 'foto'
+    window.addEventListener('foto', reloadComponentWithDelay);
+  
+    // Retira el event listener cuando el componente se desmonta
+    return () => {
+      window.removeEventListener('foto', reloadComponentWithDelay);
+    };
+  }, []);
+
+
+  // useEffect(() => {
+  //   const reloadComponent = () => {
+  //     setReload(true); // Cambia el estado de reload para forzar la actualización
+  //     console.log(userData);
+  //     console.log(localStorage.getItem('user')); 
+  //   };
+  //   window.addEventListener('foto', reloadComponent);
+  // }, []);
+
+
   
   useEffect(() => {
     if (userData !== null && userData.admin !== undefined) {
@@ -71,6 +102,8 @@ const NavBar: React.FC<NavBarProps> = ({ onItemClick, toggleMenu, showMenu, auth
       isAdmin(dispatch, userData.admin);
     }
   }, [userData, dispatch]);
+
+ 
   
 
 useEffect(() => {

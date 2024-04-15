@@ -227,7 +227,8 @@ const MiPerfil = () => {
   const [editedData, setEditedData] = useState<any>({});
   const [profilePictureUrl, setProfilePictureUrl] = useState<File | undefined>(undefined);
   let [urleditando, seturleditando] = useState<string>("https://cdn.pixabay.com/photo/2017/11/10/05/24/add-2935429_640.png");
-
+  
+  
   const getUserData = () => {
     const userDataString = localStorage.getItem('user');
     if (userDataString) {
@@ -270,7 +271,7 @@ const MiPerfil = () => {
   };
 
   const saveChanges = async () => {
-    try {
+    try { 
       const newProfilePictureUrl = await uploadProfilePicture();
       await putUser(userData.email, {
         ...editedData,
@@ -296,6 +297,9 @@ const MiPerfil = () => {
       setUserData(updatedUserData);
       setIsEditing(false);
       setEditedData({});
+      const event = new Event('foto');
+      window.dispatchEvent(event);
+      
       Swal.fire({
         title: 'Cambios guardados',
         text: 'Se han guardado los cambios correctamente',
