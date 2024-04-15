@@ -24,7 +24,6 @@ ChartJS.register(Tooltip,
 const AllStock: React.FC = () => {
    
     const platos: Plato[] = useSelector((state: StoreState) => state.platos);
-    const totalStock = platos.reduce((total, plato) => total + plato.inventario, 0);
     const all = {
         labels: platos.map(plato => plato.nombre),
         datasets: [{
@@ -78,10 +77,7 @@ const AllStock: React.FC = () => {
             </div>
 
 
-            <div className={styles.stockTotal}>
-                <h2>Stock total de comida:</h2>
-                <p>{totalStock} unidades</p>
-            </div>
+         
         </div>
     );
 };
