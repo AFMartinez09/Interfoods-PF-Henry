@@ -1,5 +1,5 @@
-import { Line } from 'react-chartjs-2';
-import Style from '../Stock/Stock.module.css'
+import { Bar } from 'react-chartjs-2';
+import Style from '../Stock/Stock.module.css';
 import {
   Chart as ChartJS,
   LineElement,
@@ -8,8 +8,12 @@ import {
   LinearScale,
   Tooltip,
   Legend,
+  plugins,
 } from 'chart.js';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { allIncomes } from '../../../../redux/actions/Actions';
+import { StoreState } from '../../../../redux/reducer/Reducer';
 
 
 ChartJS.register(
@@ -19,36 +23,63 @@ ChartJS.register(
   LinearScale,
   Tooltip,
   Legend,
+  plugins,
 )
 
-const Income = () => {
-  const semanal = {
-    labels: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
+const Anual = () => {
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch(allIncomes())
+  }, [])
+  
+  const totalIncome = useSelector((state: StoreState) => state.income)
+
+  const data = {
+    labels: ['Abril', 'Mayo', 'Junio'],
     datasets: [{
-      label: 'Semanal',
-      data: [900, 700, 500, 800, 1000, 1100, 800 ],
-      borderColor: 'aqua',
+      label: 'Ingresos',
+      data: [totalIncome],
       tension: 0.4,
+      backgroundColor: 'rgba(75, 192, 192, 0.7)',
     }]
   }
 
   const options = {
-
+    scales: {
+      x: {
+        ticks: {
+          font: {
+            size: 18
+          }
+        }
+      },
+      y: {
+        ticks: {
+          font: {
+            size: 18
+          }
+        },
+        beginAtZero: true
+      }
+    },
+    plugins: {
+      datalabels: {
+        color: '#000',
+        font: {
+          weight: 'bold',
+          size: '20',
+        }
+      }
+    }
   }
 
   return (
     <div className={Style.container}>
-      <h1>Ingresos Semanales</h1>
-      <div className={Style.dropdown}>
-      <button className={Style.dropdownBtn}>Periodo</button>
-      <div className={Style.dropdownContent}>
-        <a className={Style.dropdownLink} href="/admindashboard/income/">Semanal</a>
-        <a className={Style.dropdownLink} href="/admindashboard/income/mensual">Mensual</a>
-      </div>
-    </div>
+      <h1>Ingresos Mensuales</h1>
       <div className={Style.bar}>
-        <Line 
-          data={semanal}
+        <Bar
+          data={data}
           options= {options}
         />
       </div>
@@ -56,4 +87,4 @@ const Income = () => {
   )
 }
 
-export default Income;
+export default Anual;

@@ -28,8 +28,7 @@ import Comprajoel from './components/Comprajoel/Comprajoel.tsx';
 import Soporte from './components/Soporte/Soporte.tsx';
 import UpdateMeal from './components/AdminDashboard/UpdateMeal/UpdateMeal.tsx';
 import StatusPayment from './components/AdminDashboard/Graphics/StatusPayment/StatusPayment.tsx';
-import Weekly from './components/AdminDashboard/Graphics/Income/Weekly.tsx';
-import Monthly from './components/AdminDashboard/Graphics/Income/Mothly.tsx';
+import Anual from './components/AdminDashboard/Graphics/Income/Mothly.tsx';
 import AllStock from './components/AdminDashboard/Graphics/Stock/AllStock.tsx';
 import Postres from './components/AdminDashboard/Graphics/Stock/Pricinpales.tsx';
 import Principales from './components/AdminDashboard/Graphics/Stock/Pricinpales.tsx'
@@ -124,8 +123,7 @@ const [showMenu, setShowMenu] = useState(false);
                   <Route path="/api/payments/success" element={<Comprajoel />} />
                   <Route path="/Contactos" element={<Soporte/>}/>
                   <Route path="/admindashboard/statuspayment" element={<StatusPayment />}/>
-                  <Route path="/admindashboard/income" element={<Weekly />}/>
-                  <Route path="/admindashboard/income/mensual" element={<Monthly />}/>
+                  <Route path="/admindashboard/income" element={<Anual />}/>
                   <Route path="/admindashboard/stock" element={<AllStock />}/>
                   <Route path="/admindashboard/stock/principales" element={<Principales />}/>
                   <Route path="/admindashboard/stock/postres" element={<Postres />}/>

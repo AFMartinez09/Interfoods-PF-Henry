@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import StatusPayment from '../Graphics/StatusPayment/StatusPayment'
 import Stock from '../Graphics/Stock/AllStock'
-import Income from '../Graphics/Income/Weekly'
+import Income from '../Graphics/Income/Mothly'
 import DataUsers from '../Graphics/DataUsers/DataUsers'
 import Styles from './HomeAdmin.module.css'
 
