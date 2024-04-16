@@ -103,6 +103,18 @@ const toggleMenuHandler = () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth > 1239) {
+                setMenuOpen(false);
+            }
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
 
     const toggleMenuAuth = () => {
         setShowMenuAuth(!showMenuAuth);
@@ -120,6 +132,8 @@ const toggleMenuHandler = () => {
         onItemClick(item);
         setMenuOpen(false);
     };
+
+
 
      return (
         <div className={styles.navContainer}>
