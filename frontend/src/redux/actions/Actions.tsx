@@ -22,6 +22,7 @@ import { AnyAction, Dispatch } from 'redux';
 import {URL} from '../../App'
 import { getAuth, signOut } from "@firebase/auth";
 import { app } from "../../Auth/firebaseConfig";
+import { Food } from "../../components/Cart/Cart";
 
 // ----------------------------------------------------------------------------
 
@@ -504,9 +505,15 @@ export const success = async (
   user_name: string,
   transaction_amount: string,
   date_created: string,
-  description: string
+  description: string,
+  foods: Food[]
 ) => {
   try {
+    if (foods.length === 0) {
+      console.log("El carrito está vacío. No se enviará la solicitud de éxito.");
+      return; // Salir de la función sin enviar la solicitud
+    }
+
     const response = await axios.post(`${URL}/api/payments/success`, {
       id,
       status,

@@ -25,19 +25,6 @@ const Comprajoel: React.FC = () => {
   const payment_id = searchParams.get("payment_id");
   const payment_type = searchParams.get("payment_type");
 
-  // id,
-  // date_created,
-  // status,
-  // payment_id,
-  // payment_type,
-  // transaction_amount,
-  // description,
-  // user_email,
-  // user_name,
-  // http://localhost:5173/api/payments/success?collection_id=1317846960&collection_status=approved&payment_id=1317846960&status=approved&external_reference=null&payment_type=account_money&merchant_order_id=17728078956&preference_id=1753454923-229149f2-2eac-48ac-ba2a-7cc2a302429f&site_id=MLA&processing_mode=aggregator&merchant_account_id=null
-
-
-
   useEffect(() => {
     const carritoGuardado = localStorage.getItem('cart');
     if (carritoGuardado) {
@@ -48,7 +35,7 @@ const Comprajoel: React.FC = () => {
 
   const getProductDescription = (): string => {
     const productDescriptions = foods.map((food) => {
-      return `${food.name} (Cantidad: ${food.quantity})`;
+      return `${food.name} (${food.quantity})`;
     });
 
     const allProductDescriptions = productDescriptions.join(', ');
@@ -95,7 +82,8 @@ const Comprajoel: React.FC = () => {
             userData.nombre,
             totalStr,
             fechaStr,
-            getProductDescription()
+            getProductDescription(),
+            foods
           );
           console.log(compraResponse);
         }
