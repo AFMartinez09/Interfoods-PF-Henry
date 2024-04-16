@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import styles from './Comprajoel.module.css';
 import { createCompra, success } from '../../redux/actions/Actions';
 import { useLocation } from "react-router-dom";
@@ -118,6 +118,10 @@ const Comprajoel: React.FC = () => {
     fetchData();
   }, [userData, foods]);
 
+  const navigate = useNavigate();
+  useEffect(() => {
+    setTimeout(() => navigate("/"), 3000);
+  });
   return (
     <div className={styles.errorContainer}>
       <img src='https://i.pinimg.com/originals/db/2f/f1/db2ff102f5f16ab41d3c4ee5f4d217c0.gif' alt="Error 404" className={styles.errorImage} />

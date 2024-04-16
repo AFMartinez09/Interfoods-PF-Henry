@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './error.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const Error404: React.FC = () => {
+  
+  const navigate = useNavigate();
+  useEffect(() => {
+    setTimeout(() => navigate("/"), 3000);
+  });
+
   return (
-       
     <div className={styles.errorContainer}>
       <h1 className={styles.errorTitle}>Error 404 - Página no encontrada</h1>
       <p className={styles.errorMessage}>Lo sentimos, la página que estás buscando no se encuentra en este sitio web.</p>
