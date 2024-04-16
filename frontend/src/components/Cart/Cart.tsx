@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Style from './Cart.module.css';
 import { useDispatch } from 'react-redux';
-import { setTransaccionId } from '../../redux/actions/Actions';
+import { createCompra, setTransaccionId } from '../../redux/actions/Actions';
 import axios from 'axios';
 import { URL } from '../../App';
 
@@ -111,6 +111,10 @@ const Cart: React.FC<CartProps> = ({ toggleMenu }) => {
       localStorage.removeItem('cart')
       const mercadoPagoURL = response.data;
       window.location.href = mercadoPagoURL;
+      const userId = userData?.id;
+      const compraResponse = await createCompra(foods.length, totalPrice, userId, foods);
+      console.log(compraResponse);
+      
     } catch (error) {
       console.error("Error al procesar la compra:", error);
     }

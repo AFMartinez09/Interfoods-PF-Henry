@@ -476,3 +476,33 @@ export const disableReview = async (id: number) => {
     console.error('Error al cambiar el estado del plato:', error);
   }
 }
+
+export const createCompra = async (totalProductos: number, totalGasto: number, usuarioId: number, detallesPlatos: any[]) => {
+  try {
+    const response = await axios.post(`${URL}/api/payments/compra/`, {
+      totalProductos,
+      totalGasto,
+      usuarioId,
+      detallesPlatos
+    });
+
+    // Si la respuesta fue exitosa, devolver los datos de la compra creada
+    return response.data;
+  } catch (error) {
+    // Manejar errores si la solicitud falla
+    console.error("Error al crear la compra:", error);
+    throw new Error("Error al crear la compra.");
+  }
+};
+
+export const success = async () => {
+  try {
+    const response = await axios.post(`${URL}/api/payments/success`);
+    // Si la respuesta fue exitosa, devolver los datos de la compra creada
+    return response.data;
+  } catch (error) {
+    // Manejar errores si la solicitud falla
+    console.error("Error al crear la compra:", error);
+    throw new Error("Error al crear la compra.");
+  }
+};
