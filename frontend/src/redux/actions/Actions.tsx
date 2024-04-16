@@ -17,6 +17,7 @@ import {
   SET_TYPE,
   SET_COUNTRY,
   GET_REVIEWS_USER,
+  GET_INCOMES,
 } from '../actions/ActionsTypes';
 import { AnyAction, Dispatch } from 'redux';
 import {URL} from '../../App'
@@ -531,3 +532,17 @@ export const success = async (
     throw new Error("Error al procesar la compra.");
   }
 };
+
+export const allIncomes = () => async( dispatch: Dispatch ) => {
+  try {
+    const response = await axios.get(`${URL}/api/payments/compras`)
+    const income = response.data.compras.totalGasto;
+    const totalIncome = income.reduce((acc:number, curr:number) =>  acc + curr, 0)
+    dispatch({
+      type: GET_INCOMES,
+      payload: totalIncome
+    })
+  } catch (error) {
+    console.error('Error al obtener los ingresos ', error)
+  }
+}

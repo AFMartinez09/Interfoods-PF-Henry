@@ -10,6 +10,7 @@ import {
   SET_ADMIN_STATE,
   SET_TYPE,
   SET_COUNTRY,
+  GET_INCOMES,
   } from '../actions/ActionsTypes';
 
 
@@ -65,6 +66,7 @@ export interface StoreState {
   searchEmail: string;
   block: user[];
   admin: boolean;
+  income: number,
 }
 
 export interface Action {
@@ -80,7 +82,8 @@ const initialState: StoreState = {
   users: [],
   searchEmail: '',
   block: [],
-  admin: false
+  admin: false,
+  income: 0,
 };
 
 const Reducer = (
@@ -183,6 +186,11 @@ const Reducer = (
             ...state,
             pais: action.payload
         };
+        case GET_INCOMES:
+          return {
+            ...state,
+            income: action.payload
+          }
     default:
       return state;
   }
