@@ -504,6 +504,7 @@ export const success = async (
   user_name: string,
   transaction_amount: string,
   date_created: string,
+  description: string
 ) => {
   try {
     const response = await axios.post(`${URL}/api/payments/success`, {
@@ -514,7 +515,8 @@ export const success = async (
       user_email,
       user_name,
       transaction_amount,
-      date_created
+      date_created,
+      description
     });
     return response.data;
   } catch (error) {

@@ -46,6 +46,16 @@ const Comprajoel: React.FC = () => {
     }
   }, []);
 
+  const getProductDescription = (): string => {
+    const productDescriptions = foods.map((food) => {
+      return `${food.name} (Cantidad: ${food.quantity})`;
+    });
+
+    const allProductDescriptions = productDescriptions.join(', ');
+
+    return allProductDescriptions;
+  };
+
   const calcularTotal = () => {
     const total = foods.reduce((total, food) => total + (food.price * food.quantity), 0);
     return total;
@@ -71,7 +81,8 @@ const Comprajoel: React.FC = () => {
           userData?.email,
           userData?.nombre,
           totalStr,
-          fechaStr);
+          fechaStr,
+          getProductDescription());
   
         if (status !== null && payment_id !== null && payment_type !== null && userData?.email && userData?.nombre && userData?.id) {
           // Llamar a la función success
@@ -83,7 +94,8 @@ const Comprajoel: React.FC = () => {
             userData.email,
             userData.nombre,
             totalStr,
-            fechaStr // Pasar la fecha como cadena de texto
+            fechaStr,
+            getProductDescription()
           );
           console.log(compraResponse);
         }

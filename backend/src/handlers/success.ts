@@ -19,7 +19,7 @@ export const success = async (req: Request, res: Response) => {
     
     if (status === "approved") {
       ventas += 1;
-      console.log(`El status del pago es: ${status}, ID: ${payment_id}, email: ${user_email}, nombre: ${user_name}, id: ${id}, total: ${transaction_amount}, fecha: ${date_created}`);
+      console.log(`El status del pago es: ${status}, ID: ${payment_id}, email: ${user_email}, nombre: ${user_name}, id: ${id}, total: ${transaction_amount}, fecha: ${date_created}, description: ${description}`);
       // Envía correo electrónico al comprador
       await transporter.sendMail({
         from: process.env.EMAIL_INTERFOOD,
