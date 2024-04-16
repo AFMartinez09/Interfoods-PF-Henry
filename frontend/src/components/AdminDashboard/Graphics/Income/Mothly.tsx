@@ -29,8 +29,12 @@ ChartJS.register(
 const Anual = () => {
   const dispatch = useDispatch();
   
-  useEffect(() => {
+  const incomes = (dispatch: any) => {
     dispatch(allIncomes())
+  }
+
+  useEffect(() => {
+    incomes(dispatch)
   }, [])
   
   const totalIncome = useSelector((state: StoreState) => state.income)
@@ -50,14 +54,14 @@ const Anual = () => {
       x: {
         ticks: {
           font: {
-            size: 18
+            size: 18 // Cambiar la cadena '18' a un número 18
           }
         }
       },
       y: {
         ticks: {
           font: {
-            size: 18
+            size: 18 // Cambiar la cadena '18' a un número 18
           }
         },
         beginAtZero: true
@@ -67,13 +71,14 @@ const Anual = () => {
       datalabels: {
         color: '#000',
         font: {
-          weight: 'bold',
-          size: '20',
+          weight: 'bold' as const, // Cambiar la cadena 'bold' a una cadena literal 'bold'
+          size: 20 // Cambiar la cadena '20' a un número 20
         }
       }
     }
   }
-
+  
+  
   return (
     <div className={Style.container}>
       <h1>Ingresos Mensuales</h1>

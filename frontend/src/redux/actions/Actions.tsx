@@ -533,16 +533,18 @@ export const success = async (
   }
 };
 
-export const allIncomes = () => async( dispatch: Dispatch ) => {
+export const allIncomes = () => async (dispatch: Dispatch) => {
   try {
-    const response = await axios.get(`${URL}/api/payments/compras`)
-    const income = response.data.compras.totalGasto;
-    const totalIncome = income.reduce((acc:number, curr:number) =>  acc + curr, 0)
+    const response = await axios.get(`${URL}/api/payments/compras`);
+    const income = response.data.compras;
+    
+    const totalIncome = income.reduce((acc: number, curr: any) => acc + curr.totalGasto, 0);
+    
     dispatch({
       type: GET_INCOMES,
       payload: totalIncome
-    })
+    });
   } catch (error) {
-    console.error('Error al obtener los ingresos ', error)
+    console.error('Error al obtener los ingresos ', error);
   }
-}
+};
