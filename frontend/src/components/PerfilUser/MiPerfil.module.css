@@ -107,3 +107,17 @@
 .editButtoncancelar:hover {
   transform: scale(1.1);
 }
+
+.delete {
+  background-color: rgb(191, 5, 5);
+  color: aliceblue;
+  border: none;
+  border-radius: 0.5rem;
+  width: 7rem;
+  height: 3rem;
+}
+
+.delete:hover {
+  background-color: rgb(219, 9, 9);
+  cursor: pointer;
+}
