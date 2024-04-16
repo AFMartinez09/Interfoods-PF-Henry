@@ -267,7 +267,7 @@
 
 .menuButton {
   display: none;
-  @media (max-width: 1200px) {
+  @media (max-width: 1239px) {
     display: block;
     position: absolute;
     left: 50%; 
@@ -275,7 +275,7 @@
    
   }
 }
-@media (max-width: 1200px) {
+@media (max-width: 1239px) {
   .navLinksContainer {
     display: none;
   }
