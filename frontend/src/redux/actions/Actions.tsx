@@ -495,13 +495,11 @@ export const createCompra = async (totalProductos: number, totalGasto: number, u
   }
 };
 
-export const success = async () => {
+export const success = async (status: string, payment_id: string, payment_type: string) => {
   try {
-    const response = await axios.post(`${URL}/api/payments/success`);
-    // Si la respuesta fue exitosa, devolver los datos de la compra creada
+    const response = await axios.post(`${URL}/api/payments/success`, { status, payment_id, payment_type });
     return response.data;
   } catch (error) {
-    // Manejar errores si la solicitud falla
     console.error("Error al crear la compra:", error);
     throw new Error("Error al crear la compra.");
   }
