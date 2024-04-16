@@ -57,10 +57,8 @@ function App() {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (usuario) => {
             if (usuario) {
-                console.log('se inicio sesion');
                 setUsuarioRegistrado(true);
             } else {
-                console.log('no se inicio sesion');
                 setUsuarioRegistrado(false);
             }
         });
