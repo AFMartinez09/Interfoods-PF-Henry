@@ -121,7 +121,7 @@ const [showMenu, setShowMenu] = useState(false);
                   <Route path="/admindashboard/editar-eliminar" element={<EditDeleteFood  setChanges={setChanges} />}/>
                   <Route path="/admindashboard/editar/:id" element={<UpdateMeal setChanges={setChanges} />}/>
                   <Route path="*" />
-                  <Route path="/api/payments/success" element={<Comprajoel/>}/>
+                  <Route path="/api/payments/success" element={<Comprajoel />} />
                   <Route path="/Contactos" element={<Soporte/>}/>
                   <Route path="/admindashboard/statuspayment" element={<StatusPayment />}/>
                   <Route path="/admindashboard/income" element={<Weekly />}/>

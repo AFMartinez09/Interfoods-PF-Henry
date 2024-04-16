@@ -495,12 +495,30 @@ export const createCompra = async (totalProductos: number, totalGasto: number, u
   }
 };
 
-export const success = async (status: string, payment_id: string, payment_type: string) => {
+export const success = async (
+  id: string,
+  status: string,
+  payment_id: string,
+  payment_type: string,
+  user_email: string,
+  user_name: string,
+  transaction_amount: string,
+  date_created: string,
+) => {
   try {
-    const response = await axios.post(`${URL}/api/payments/success`, { status, payment_id, payment_type });
+    const response = await axios.post(`${URL}/api/payments/success`, {
+      id,
+      status,
+      payment_id,
+      payment_type,
+      user_email,
+      user_name,
+      transaction_amount,
+      date_created
+    });
     return response.data;
   } catch (error) {
-    console.error("Error al crear la compra:", error);
-    throw new Error("Error al crear la compra.");
+    console.error("Error al procesar la compra:", error);
+    throw new Error("Error al procesar la compra.");
   }
 };

@@ -12,12 +12,14 @@ export const success = async (req: Request, res: Response) => {
     description,
     user_email,
     user_name,
-  } = req.query;
+  } = req.body;
   try {
     let ventas = 0;
+    console.log('entre a success');
+    
     if (status === "approved") {
       ventas += 1;
-      console.log(`El status del pago es: ${status}, ID: ${payment_id}`);
+      console.log(`El status del pago es: ${status}, ID: ${payment_id}, email: ${user_email}, nombre: ${user_name}, id: ${id}, total: ${transaction_amount}, fecha: ${date_created}`);
       // Envía correo electrónico al comprador
       await transporter.sendMail({
         from: process.env.EMAIL_INTERFOOD,

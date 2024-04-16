@@ -8,7 +8,7 @@ import { getAllCompras } from "../controllers/getCompras";
 const router = express.Router();
 
 router.post("/create-order", createOrder);
-router.get("/success", success);
+router.post("/success", success);
 router.post("/webhook", webhook);
 router.post('/compra', createCompra)
 router.get("/compras", getAllCompras);
