@@ -264,3 +264,63 @@
   filter:invert(10);
   padding-left: 20px;
 }
+
+.menuButton {
+  display: none;
+  @media (max-width: 1200px) {
+    display: block;
+    position: absolute;
+    left: 50%; 
+    transform: translateX(-50%);
+   
+  }
+}
+@media (max-width: 1200px) {
+  .navLinksContainer {
+    display: none;
+  }
+  
+  .menuButton {
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    left: 77%; 
+    margin-top: -7.1vh;
+  }
+
+
+  .open {
+    display: block;
+    position: absolute;
+    top: 81px;
+    left: 0;
+    background-color: #2F695C;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .navList {
+    flex-direction: column;
+    padding: 10px 0;
+    align-items: center;
+    
+  }
+
+  .navListItem {
+    margin: 10px 0;
+    
+  }
+
+  .adminSubMenu {
+    position: static;
+  }
+
+  .containerAdmin {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .containerAdminOpen .adminSubMenu {
+    display: block;
+  }
+}
