@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from './error.module.css';
-import { useNavigate } from 'react-router-dom';
+
 
 const Error404: React.FC = () => {
   
-  const navigate = useNavigate();
-  useEffect(() => {
-    setTimeout(() => navigate("/"), 3000);
-  });
+  // const navigate = useNavigate();
+  // useEffect(() => {
+  //   setTimeout(() => navigate("/"), 3000);
+  // });
 
   return (
     <div className={styles.errorContainer}>

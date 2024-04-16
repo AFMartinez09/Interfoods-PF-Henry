@@ -52,7 +52,7 @@ const NavBar: React.FC<NavBarProps> = ({ onItemClick, toggleMenu, showMenu, auth
     return () => {
       window.removeEventListener('cartChange', handleStorageChange);
     };
-  }, []);
+  }, [localStorage.getItem('cart')]);
 
   useEffect(() => {
     const getUserData = () => {
