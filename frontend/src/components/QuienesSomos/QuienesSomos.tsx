@@ -21,7 +21,7 @@ const QuienesSomos: React.FC<QuienesSomosProps> = () => {
     'https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=true&heroEntityKey=urn%3Ali%3Afsd_profile%3AACoAAEMm9ewBt49tbjf79_0cfGSipWxg8mppAuU&keywords=andres%20martinez&origin=RICH_QUERY_SUGGESTION&position=0&searchId=ef511386-9260-4908-bbd1-eabd935a3e8c&spellCorrectionEnabled=false',
     'https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=true&heroEntityKey=urn%3Ali%3Afsd_profile%3AACoAAEeL5MwBf--H8rCzzCYlrKoF5i56WRU7jtc&keywords=mirko%20miler&origin=RICH_QUERY_TYPEAHEAD_HISTORY&position=0&searchId=8da57c10-03b1-4bc2-b151-8231e11c94b3&sid=d9_&spellCorrectionEnabled=true',
     'https://www.linkedin.com/in/eric-joel-fern%C3%A1ndez-b1b5b0234/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-    'https://www.linkedin.com/in/aurelia-pilipiak/',
+    'https://www.linkedin.com/in/aurelio-cabello-medellin-2254a72a1/',
   ];
   const nombres : Array <string> = [
     'Gaston Vergagni',
