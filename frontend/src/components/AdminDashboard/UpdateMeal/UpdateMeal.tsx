@@ -10,7 +10,6 @@ import Swal from 'sweetalert2';
 
 
 
-
 interface PropsCreateMeal {
   id: number;
   nombre: string;
@@ -217,7 +216,7 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
                 name='nombre'
                 className={styles.inputField}
                 defaultValue='Valor predeterminado'
-                maxLength={25} 
+                maxLength={50} 
               />
               <p className={styles.error}>
                 <ErrorMessage name='nombre' />
@@ -226,12 +225,13 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
               <label htmlFor='origen' className={styles.label}>
                 País del plato*:
               </label>
-              <Field
-                placeholder='País del plato'
-                type='text'
-                name='origen'
-                className={styles.inputField}
-              />
+              <Field as="select" name="origen" className={styles.inputField}>
+           <option value="">Selecciona un país</option>
+           <option value="Argentina">Argentina</option>
+           <option value="Mexico">México</option>
+           <option value="Colombia">Colombia</option>
+           <option value="Ecuador">Ecuador</option>
+           </Field>
               <p className={styles.error}>
                 <ErrorMessage name='origen' />
               </p>
@@ -239,7 +239,7 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
             Inventario*:
           </label>
           <Field
-          maxLength={25} 
+          maxLength={50} 
             placeholder='Inventario'
             type='number'
             name='inventario'

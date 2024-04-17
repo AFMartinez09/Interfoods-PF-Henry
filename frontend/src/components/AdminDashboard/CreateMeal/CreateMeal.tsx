@@ -137,7 +137,7 @@ const CreateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
             <div className={styles.formContainerL}>
             <h1 className={styles.formPresentation}>Este es el formulario para la creación de platos!</h1>
               <label htmlFor='nombre' className={styles.label}>Nombre del plato*:</label>
-              <Field placeholder='Nombre del plato'  maxLength={25} type='text' name='nombre' className={styles.inputField} />
+              <Field placeholder='Nombre del plato'  maxLength={50} type='text' name='nombre' className={styles.inputField} />
               <p className={styles.error}><ErrorMessage name='nombre' /></p>
              <label htmlFor='origen' className={styles.label}>País del plato*:</label>
            <Field as="select" name="origen" className={styles.inputField}>
@@ -153,7 +153,7 @@ const CreateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
               <div>
                 <label htmlFor='ingredientes' className={styles.label}>Ingredientes*:</label>
                 <br />
-                <Field placeholder='ingredientes' name='ingrediente'  maxLength={25} className={styles.inputField} />
+                <Field placeholder='ingredientes' name='ingrediente'  maxLength={50} className={styles.inputField} />
                 <button
                   type='button'
 
