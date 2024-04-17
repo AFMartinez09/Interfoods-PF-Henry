@@ -69,7 +69,8 @@
 }
 
 .svg {
-  margin: 0 2%;
+  vertical-align: top; /* Alinea los íconos en la parte superior */
+  margin: 3.3% 2%;/* Espacio entre el ícono y el texto */
 }
 
 .whatsappContainer {
@@ -103,4 +104,10 @@
 .enlaceWsp {
   color: inherit;
   outline: 0;
+}
+
+.lisCon {
+  display: flex;
+  align-items: flex-start; /* Alinea los elementos en la parte superior */
+  margin-bottom: 10px; /* Espaciado entre elementos */
 }
