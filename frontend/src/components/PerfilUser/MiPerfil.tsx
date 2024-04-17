@@ -201,6 +201,7 @@ const MiPerfil = () => {
                 <input
                   type="text"
                   name="nombre"
+                  maxLength={25}
                   value={editedData.nombre !== undefined ? editedData.nombre : userData.nombre}
                   onChange={handleInputChange}
                 />
@@ -210,6 +211,7 @@ const MiPerfil = () => {
                 <input
                   type="text"
                   name="apellido"
+                  maxLength={25}
                   value={editedData.apellido !== undefined ? editedData.apellido : userData.apellido}
                   onChange={handleInputChange}
                 />
@@ -219,6 +221,7 @@ const MiPerfil = () => {
                 <input
                   type="text"
                   name="pais"
+                  maxLength={25}
                   value={editedData.pais !== undefined ? editedData.pais : userData.pais}
                   onChange={handleInputChange}
                 />
@@ -228,6 +231,7 @@ const MiPerfil = () => {
                 <input
                   type="text"
                   name="ciudad"
+                  maxLength={25}
                   value={editedData.ciudad !== undefined ? editedData.ciudad : userData.ciudad}
                   onChange={handleInputChange}
                 />
@@ -237,6 +241,7 @@ const MiPerfil = () => {
                 <input
                   type="text"
                   name="direccion"
+                  maxLength={25}
                   value={editedData.direccion !== undefined ? editedData.direccion : userData.direccion}
                   onChange={handleInputChange}
                 />

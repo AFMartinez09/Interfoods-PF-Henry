@@ -36,7 +36,6 @@ const toggleMenuHandler = () => {
 
 
     useEffect(() => {
-      
         const calcularTotalQuantity = () => {
             const cartItems = localStorage.getItem('cart');
             if (cartItems) {
@@ -63,7 +62,7 @@ const toggleMenuHandler = () => {
         return () => {
             window.removeEventListener('cartChange', handleStorageChange);
         };
-    }, [localStorage.getItem('cart')]);
+    }, [localStorage]);
 
     useEffect(() => {
         const getUserData = () => {

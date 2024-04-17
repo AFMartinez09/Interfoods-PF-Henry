@@ -124,7 +124,7 @@ const Cart: React.FC<CartProps> = ({ toggleMenu }) => {
           {!userData ? (
             <div className={Style.containerMsj}>
               <p className={Style.msj}>
-                Debes loguearte para realizar una compra
+                Debes iniciar sesion para realizar una compra
               </p>
             </div>
           ) : (

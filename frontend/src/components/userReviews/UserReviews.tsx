@@ -103,7 +103,7 @@ const UserReviews = () => {
                     onClick={() => handleToggleReview(review.id)}
                     className={`${styles.button} ${styles.deshabilitar}`}
                   >
-                    Eliminar
+                    Borrar comentario
                   </button>
                 </div>
               ))}

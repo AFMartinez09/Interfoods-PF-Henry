@@ -217,6 +217,7 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
                 name='nombre'
                 className={styles.inputField}
                 defaultValue='Valor predeterminado'
+                maxLength={25} 
               />
               <p className={styles.error}>
                 <ErrorMessage name='nombre' />
@@ -238,6 +239,7 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
             Inventario*:
           </label>
           <Field
+          maxLength={25} 
             placeholder='Inventario'
             type='number'
             name='inventario'
@@ -404,6 +406,7 @@ const UpdateMeal: React.FC<UpdateMealProps> = () => {
                 as='textarea'
                 name='descripcion'
                 className={styles.textArea}
+                maxLength={1000}  
               />
               <p className={styles.error}>
                 <ErrorMessage name='descripcion' />

@@ -108,16 +108,16 @@ const Comprajoel: React.FC = () => {
         if (userData && foods.length > 0) { // Verificar si userData está definido y si hay alimentos en el carrito
           const userId = userData.id;
           await createCompra(foods.length, calcularTotal(), userId, foods);
-          localStorage.removeItem('cart'); // Mover la eliminación del carrito aquí
         }
+        localStorage.removeItem('cart'); // Mover la eliminación del carrito aquí
       } catch (error) {
         console.error("Error al procesar la compra:", error);
       }
     };
   
     fetchData();
-  }, [userData, foods]);
-
+  }, []);
+  
   const navigate = useNavigate();
   useEffect(() => {
     setTimeout(() => navigate("/"), 3000);

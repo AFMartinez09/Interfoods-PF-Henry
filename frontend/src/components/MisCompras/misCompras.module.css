@@ -7,7 +7,6 @@
   align-items: center;
 }
 
-
 .comprasList {
   margin: 50px 0 100px; 
   display: grid;
@@ -51,6 +50,7 @@
 
 .platoImg {
   width: 100%;
+  height: 250px;
   border-radius: 10px;
   margin-bottom: 10px;
 }

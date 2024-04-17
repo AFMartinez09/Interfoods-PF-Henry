@@ -103,6 +103,7 @@ return (
               name="firstName"
               className={styles.field}
               placeholder="Nombre"
+              maxLength={25}
             />
             <br />
             <p className={styles.error}><ErrorMessage name="firstName" /></p>
@@ -115,6 +116,7 @@ return (
               name="lastName"
               className={styles.field}
               placeholder="Apellido"
+              maxLength={25}
             />
             <br />
             <p className={styles.error}><ErrorMessage name="lastName" /></p>
@@ -127,6 +129,7 @@ return (
               name="email"
               className={styles.field}
               placeholder="Email"
+              maxLength={40}
             />
             <br />
             <p className={styles.error}><ErrorMessage name="email" /></p>
@@ -139,6 +142,7 @@ return (
               name="password"
               className={styles.field}
               placeholder="Contraseña"
+              maxLength={16}
             />
             <br />
             <p className={styles.error}><ErrorMessage name="password" /></p>
@@ -151,6 +155,7 @@ return (
               name="confirmPassword"
               className={styles.field}
               placeholder="Confirma contraseña"
+              maxLength={16}
             />
             <br />
             <p className={styles.error}><ErrorMessage name="confirmPassword" /></p>
@@ -178,6 +183,7 @@ return (
               name="country"
               className={styles.field}
               placeholder="País"
+              maxLength={25}
             />
             <br />
             <p className={styles.error}><ErrorMessage name="country" /></p>
@@ -190,6 +196,7 @@ return (
               name="city"
               className={styles.field}
               placeholder="Ciudad"
+              maxLength={25}
             />
             <br />
             <p className={styles.error}><ErrorMessage name="city" /></p>
@@ -202,6 +209,7 @@ return (
               name="address"
               className={styles.field}
               placeholder="Direccion"
+              maxLength={25}
             />
             <br />
             <p className={styles.error}><ErrorMessage name="address" /></p>

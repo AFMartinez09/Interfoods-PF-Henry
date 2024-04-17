@@ -21,7 +21,9 @@
   float: right;
   transition: all 0.3s ease;
   height: fit-content;
-  transition: all 0.3s ease; 
+  transition: all 0.3s ease;
+  margin: 0 auto;
+  width: 70%;
 }
 
 .checkoutButtonDis:hover {
@@ -142,7 +144,9 @@
   float: right;
   transition: all 0.3s ease;
   height: fit-content;
-  transition: all 0.3s ease; 
+  transition: all 0.3s ease;
+  margin: 0 auto;
+  width: 70%;
 }
 
 .checkoutButton:hover {
