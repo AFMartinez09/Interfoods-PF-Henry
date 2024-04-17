@@ -48,6 +48,10 @@ const SesionDesplegable: React.FC<SesionDesplegableProps> = ({ toggleMenu }) => 
           <img src='https://media-public.canva.com/NhMJY/MAFabwNhMJY/1/t.png' className={Style.sesionImg}></img>
           <NavLink to={'/userReviews'} className={Style.btnPerfil} onClick={toggleMenu}><p className={Style.color2}>Mis reviews</p></NavLink> 
         </div>
+        <div className={Style.item}>
+          <img src='https://media-public.canva.com/tUBWE/MAFPo5tUBWE/1/tl.png' className={Style.sesionImg}></img>
+          <NavLink to={'/misCompras'} className={Style.btnPerfil} onClick={toggleMenu}><p className={Style.color2}>Mis compras</p></NavLink> 
+        </div>
         <hr />
         <div className={Style.item}>
           <img src='https://cdn.icon-icons.com/icons2/1769/PNG/512/4115235-exit-logout-sign-out_114030.png' className={Style.sesionImg}></img>

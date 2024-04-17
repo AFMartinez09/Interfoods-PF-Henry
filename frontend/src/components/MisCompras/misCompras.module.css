@@ -1,0 +1,99 @@
+.container {
+  padding-top: 55px;
+  background-color: #f4f4f4;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.comprasList {
+  margin: 50px 0 100px; 
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 50px 100px;
+}
+
+
+@media (max-width: 1500px) { /* Ajuste para pantallas más pequeñas */
+  .comprasList {
+    margin: 50px 0 100px; 
+    grid-template-columns: repeat(2, 1fr); /* Cambia a dos columnas en pantallas más pequeñas */
+    grid-gap: 50px 100px; /* Reducir el espacio entre las reseñas */
+  }
+}
+
+@media (max-width: 940px) { /* Ajuste para pantallas aún más pequeñas */
+  .comprasList {
+    grid-template-columns: repeat(1, 1fr); /* Cambia a una sola columna en pantallas muy pequeñas */
+    grid-gap: 50px; /* Reducir aún más el espacio entre las reseñas */
+    margin: 40px 0 100px; /* Ajustar el margen */
+  }
+}
+
+.compra {
+  width: 350px;
+  height: fit-content;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.425);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 2rem 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.compra:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.425);
+}
+
+.platoImg {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 940px) {
+  .compra {
+      width: 70%;
+      margin: 0 auto;
+  }
+}
+
+.title{
+  margin: 100px 0 0;
+  font-size: 2.5rem;
+  text-align: center;
+  color: #2b6055; 
+  font-family: Lobster, cursive;
+  font-weight: bold; 
+}
+
+.productoCompra{
+  border-top: solid rgb(86, 86, 86) 1px; 
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.dato{
+  font-size: 1.1rem;
+}
+
+.containerMsj{
+  height: 65vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mensaje{
+  margin: 40px 0 0;
+  font-size: 2rem;
+  text-align: center;
+  color: #2b6055; 
+  font-family: Lobster, cursive;
+  font-weight: bold; 
+}

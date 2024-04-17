@@ -548,3 +548,14 @@ export const allIncomes = () => async (dispatch: Dispatch) => {
     console.error('Error al obtener los ingresos ', error);
   }
 };
+
+export const getComprasUser = async (id: number) => {
+  try {
+    const response = await axios.get(`${URL}/api/payments/compra/${id}`); 
+    const compras = response.data; 
+
+    return compras;
+  } catch (error) {
+    console.error('Error al obtener las compras del usuario:', error);
+  }
+};
