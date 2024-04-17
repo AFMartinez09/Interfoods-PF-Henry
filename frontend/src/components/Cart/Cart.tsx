@@ -29,7 +29,7 @@ const Cart: React.FC<CartProps> = ({ toggleMenu }) => {
       const parsedCart = JSON.parse(carritoGuardado);
       setFoods(parsedCart);
     }
-  }, []);
+  }, [localStorage.getItem('cart')]);
   console.log(localStorage.getItem('cart'));
   
 
