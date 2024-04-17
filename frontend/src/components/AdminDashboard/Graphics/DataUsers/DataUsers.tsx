@@ -62,8 +62,9 @@ const getUsers = async(dispatch: any) => {
   };
   
   const getSearch = (email:string) => {
-    setSearch(email)
+    setSearch(email.toLowerCase()); // Convertir el correo electrónico a minúsculas antes de establecerlo en el estado
   }
+  
 
   return (
       <div className={styles.container}>
@@ -96,7 +97,7 @@ const getUsers = async(dispatch: any) => {
               <tr key={user.id}>
                 <td className={styles.field}>{user.nombre}</td>
                 <td className={styles.field}>{user.apellido}</td>
-                <td className={search && search === user.email ? styles.fieldSearch :  styles.field}>{user.email}</td>
+                <td className={search && user.email.toLowerCase().includes(search) ? styles.fieldSearch :  styles.field}>{user.email}</td>
                 <td className={styles.field}>{user.pais}</td>
                 <td className={styles.field}>{user.ciudad}</td>
                 <td className={styles.field}>{user.direccion}</td>
