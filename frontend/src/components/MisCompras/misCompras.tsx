@@ -38,10 +38,10 @@ const MisCompras = () => {
         </div>
       ) : (
         <>
-          {compras.length !== 0 && (
+          {compras && (
             <h1 className={styles.title}>Mis Compras</h1>
           )}
-          {compras.length === 0 ? (
+          {!compras  ? (
             <div className={styles.containerMsj}>
               <h1 className={styles.title}>Mis Compras</h1>
               <p className={styles.mensaje}>No tienes compras realizadas.</p>
