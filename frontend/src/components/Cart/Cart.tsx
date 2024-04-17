@@ -121,8 +121,15 @@ const Cart: React.FC<CartProps> = ({ toggleMenu }) => {
         <h2 className={Style.cartTitle}>Carrito</h2>
         <button className={Style.closeButton} onClick={toggleMenu}>X</button>
         <div className={Style.itemsContainer}>
-          {foods.map((food) => (
-            <div key={food.id} className={Style.cartItem}>
+          {!userData ? (
+            <div className={Style.containerMsj}>
+              <p className={Style.msj}>
+                Debes loguearte para realizar una compra
+              </p>
+            </div>
+          ) : (
+            foods.map((food) => (
+              <div key={food.id} className={Style.cartItem}>
                 <img src={food.img} alt={food.name} className={Style.itemImage} />
                 <div className={Style.infoprecio}>
                   <div className={Style.info}>
@@ -133,18 +140,20 @@ const Cart: React.FC<CartProps> = ({ toggleMenu }) => {
                       <p>P/u: ${food.price ? food.price.toFixed(2) : "N/A"}</p>
                     </div>
                     <div className={Style.botonprecio}>
-                       <button onClick={() => removeFromCart(food.id)} className={Style.btnCant}>-</button>
-                       <p className={Style.cant}>{food.quantity}</p>
-                       <button onClick={() => addToCart(food.id)} disabled={food.quantity >= food.inventario} className={Style.btnCant}>+</button>
+                      <button onClick={() => removeFromCart(food.id)} className={Style.btnCant}>-</button>
+                      <p className={Style.cant}>{food.quantity}</p>
+                      <button onClick={() => addToCart(food.id)} disabled={food.quantity >= food.inventario} className={Style.btnCant}>+</button>
                     </div>
                   </div>
                 </div>
-            </div>
-          ))}
+              </div>
+            ))
+          )}
         </div>
+  
         <div className={Style.totalContainer}>
           <p className={Style.totalAmount}>Total a pagar: ${calcularTotal().toFixed(2)}</p>
-          <button className={Style.checkoutButton} onClick={handleBuyClick}>Comprar</button>
+          <button className={userData ? Style.checkoutButton : Style.checkoutButtonDis} onClick={handleBuyClick} disabled={!userData}>Comprar</button>
         </div>
       </div>
     </div>

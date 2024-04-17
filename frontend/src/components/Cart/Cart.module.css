@@ -9,6 +9,44 @@
   background-color: rgba(0, 0, 0, 0.479);
 }
 
+.checkoutButtonDis {
+  background-color: #919191;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: 600;
+  float: right;
+  transition: all 0.3s ease;
+  height: fit-content;
+  transition: all 0.3s ease; 
+}
+
+.checkoutButtonDis:hover {
+  background-color: #666666;
+  border: none;
+  color: #212121;
+}
+
+.containerMsj{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.msj{
+  margin: 150px 0 0;
+  width: 80%;
+  font-size: 2rem;
+  text-align: center;
+  color: #2b6055; 
+  font-family: Lobster, cursive;
+  font-weight: bold; 
+}
+
 .cart {
   position: fixed;
   top: 0;
