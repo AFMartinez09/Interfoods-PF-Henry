@@ -115,6 +115,7 @@
   border-radius: 0.5rem;
   width: 7rem;
   height: 3rem;
+  float: right;
 }
 
 .delete:hover {
