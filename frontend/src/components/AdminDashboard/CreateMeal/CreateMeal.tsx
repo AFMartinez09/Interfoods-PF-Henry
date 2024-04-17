@@ -62,14 +62,15 @@ const CreateMeal: React.FC<UpdateMealProps> = ({ setChanges }) => {
     try {
       // Envía la URL de la imagen al servidor junto con otros datos del formulario
       await submit({ ...values}, dispatch);
+      setChanges(true)
       Swal.fire({
         title: 'Plato Creado',
         text: 'Tu plato ya fue creado',
         icon: 'success',
-        confirmButtonText: 'Entendido'
-      })
-      setChanges(true)
-      window.location.href = "/admindashboard/editar-eliminar";
+        confirmButtonText: 'Entendido',
+      }).then(() => {
+          window.location.href = "/admindashboard/editar-eliminar";
+      });
     } catch (error) {
       Swal.fire({
         title: 'Error',
