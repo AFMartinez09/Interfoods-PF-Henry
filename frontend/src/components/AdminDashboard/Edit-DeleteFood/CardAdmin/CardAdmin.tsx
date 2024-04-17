@@ -111,7 +111,7 @@ const Card: React.FC<CardProps> = ({ name, img, weight, price, id, kilocalorias,
         </div>
       </div>
       <div className={Style.conteinerPriceBtn}>
-        <p className={Style.price}>{price}$</p>
+        <p className={Style.price}>USD: ${price}</p>
          <div className={inventario === 0 ? styled.inventario : styled.inventario2}>
           <p className={styled.textoinventario}>Inventario: {inventario}</p>
          </div>
