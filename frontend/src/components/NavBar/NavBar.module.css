@@ -59,14 +59,20 @@
   width: fit-content;
   background-color: #2F695C;
   z-index: 999;
+  
 }
+
+
 
 .navLinkAdm {
   padding: 10px;
   color: #ffffff;
   text-align: center;
   text-decoration: none;
+
+
 }
+
 
 .navLinkAdm:hover{
   background-color: #21433b;
@@ -284,8 +290,9 @@
     display: block;
     cursor: pointer;
     position: absolute;
-    left: 77%; 
-    margin-top: -7.1vh;
+    left: 78%; 
+    margin-top: -6vh;
+    
   }
 
 
@@ -297,6 +304,7 @@
     background-color: #2F695C;
     width: 100%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
   }
 
   .navList {
@@ -313,11 +321,13 @@
 
   .adminSubMenu {
     position: static;
+    
   }
 
   .containerAdmin {
     display: flex;
     flex-direction: column;
+    
   }
 
   .containerAdminOpen .adminSubMenu {
