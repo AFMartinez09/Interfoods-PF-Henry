@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { imageUpload, signUpNewUser } from '../../redux/actions/Actions';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
+import Loading from './Spinner';
 
 interface FormValues {
   profilePictureName: string;
@@ -35,12 +36,15 @@ const initialValues: FormValues = {
 
 const UserForm: React.FC = () => {
   const [profilePictureUrl, setProfilePictureUrl] = useState<File | undefined>(undefined);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false); 
   const history = useNavigate();
   const dispatch = useDispatch();
   
   const handleSubmit = async (values: FormValues) => {
+    setIsSubmitting(true)
     try {
       await signUp(values, dispatch);
+      setIsSubmitting(false)
       history('/');
     } catch (error) {
       console.error("Error al crear la cuenta:", error);
@@ -203,9 +207,11 @@ return (
             <p className={styles.error}><ErrorMessage name="address" /></p>
           </div>
 
-          <button type="submit" className={styles.send} disabled={!isValid || !dirty}>REGISTRARME</button>
-        
+          <button type="submit" className={styles.send} disabled={!isValid || !dirty || isSubmitting}>
+            {isSubmitting ? <Loading /> : 'REGISTRARME'}
+          </button>
         </Form>
+        
       )}
     </Formik>
   </div>
