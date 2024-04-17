@@ -6,6 +6,7 @@ import { getAllReviews,getUserById, postReview } from '../../redux/actions/Actio
 import ReviewValidationSchema from './validationsReseñas';
 import { useSelector } from 'react-redux';
 import { StoreState } from '../../redux/reducer/Reducer';
+import Swal from 'sweetalert2';
 
 
 interface initialValuesInt {
@@ -125,16 +126,33 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
     const handleEstrellaClick = (valor: number) => {
         setEstrellasSeleccionadas(valor);
     };
+// Actualización del estado local de las reseñas después de agregar una nueva
+const handleSubmit = async (values: initialValuesInt) => {
+  try {
+    values.estrellas = estrellasSeleccionadas;
+    await postReview(values.review, values.estrellas, idPlato, userData.id);
+    setNewReseña(true);
+    
+    // Mostrar un mensaje de confirmación después de agregar una nueva reseña
+    Swal.fire({
+      title: 'Nueva reseña',
+      text: 'Gracias por tu comentario',
+      icon: 'success',
+      confirmButtonText: 'Entendido',
+    });
+    
+    // Vaciando los campos después de enviar el formulario
+    setEstrellasSeleccionadas(0);
+    values.review = '';
+    
+    // Actualizar el estado local de las reseñas después de agregar una nueva
+    const dataReseña = await getAllReviews();
+    setReseñas(dataReseña);
+  } catch (error) {
+    console.error('Error al agregar la reseña:', error);
+  }
+};
 
-    const handleSubmit = (values: initialValuesInt) => {
-      values.estrellas = estrellasSeleccionadas;
-      postReview(values.review, values.estrellas, idPlato, userData.id);
-      setNewReseña(true);
-      
-      // Vaciando los campos después de enviar el formulario
-      setEstrellasSeleccionadas(0);
-      values.review = '';
-    };
     
 
     const generarEstrellas = (calificacion: number): string => {
@@ -185,8 +203,7 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
       if (!usersData || usersData.length === 0) {
         fetchData();
       }
-    }, [reseñasFiltradas, usersData]); // Agrega usersData como dependencia
-    
+    }, [reseñasFiltradas, usersData]);
     
 
     return (
