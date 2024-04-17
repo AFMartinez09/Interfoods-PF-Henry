@@ -278,7 +278,9 @@
     position: absolute;
     left: 50%; 
     transform: translateX(-50%);
-   
+    background-color: transparent;
+    border: none;
+    
   }
 }
 @media (max-width: 1239px) {
