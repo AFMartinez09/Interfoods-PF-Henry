@@ -127,10 +127,15 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
     };
 
     const handleSubmit = (values: initialValuesInt) => {
-        values.estrellas = estrellasSeleccionadas;
-        postReview(values.review, values.estrellas, idPlato, userData.id);
-        setNewReseña(true)
+      values.estrellas = estrellasSeleccionadas;
+      postReview(values.review, values.estrellas, idPlato, userData.id);
+      setNewReseña(true);
+      
+      // Vaciando los campos después de enviar el formulario
+      setEstrellasSeleccionadas(0);
+      values.review = '';
     };
+    
 
     const generarEstrellas = (calificacion: number): string => {
         const estrellaLlena = '★';
@@ -194,7 +199,7 @@ const Reseñas: React.FC<reseñasProps> = ({idPlato}) =>{
                 validationSchema={ReviewValidationSchema} 
                 onSubmit={handleSubmit} 
               >
-                {({ values, handleChange }) => (
+                {({ values, handleChange  }) => (
                   <Form>
                     <div className={styles.estrellasContainer}>
                       {[1, 2, 3, 4, 5].map((valor) => (

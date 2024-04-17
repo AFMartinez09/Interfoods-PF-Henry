@@ -11,6 +11,7 @@ import { disableReview } from "../controllers/disableReview";
 import { getReviewForUser } from "../controllers/getReviewUser";
 import { activeFood } from "../controllers/activateFood";
 import {upinventario } from "../controllers/updateInventario";
+import { deleteReviewById } from "../controllers/deleteReviews";
 
 const router = express.Router();
 
@@ -27,6 +28,7 @@ router.post("/:platoId/reviews", addReviewToPlato)
 router.get('/:platoId/reviews', getReviewForPlato)
 router.get('/usuario/:usuarioId/reviews', getReviewForUser)
 router.get('/reviews', getAllReviews)
+router.delete("/reviewDelete/:id", deleteReviewById)
 
 router.put('/disableReview/:id', disableReview)
 
