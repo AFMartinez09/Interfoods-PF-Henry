@@ -15,13 +15,13 @@
 }
 
 .title {
-  border: 3px solid gray;
+  border: 3px solid #2f695c49;
   padding: 15px;
   background-color: #2f695c49;
 }
 
 .field{
-  border: 3px solid gray;
+  border: 3px solid #2f695c49;
   padding: 10px;
   max-width: 15vw;
   font-size: 1rem;
@@ -30,7 +30,7 @@
 .fieldSearch{
   background-color: #2f695c49;
   color: black;
-  border: 3px solid gray;
+  border: 3px solid #2f695c49;
   padding: 10px 0px 10px 20px;
   width: 5%;
   font-size: 1rem;
@@ -46,7 +46,7 @@
 
 
 .checkbox{
-  border: 3px solid gray;
+  border: 3px solid #2f695c49;
   padding: 10px 10px 10px 10px;
   justify-content: center;
   align-items: center;
