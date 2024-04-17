@@ -158,9 +158,50 @@ const toggleMenuHandler = () => {
                         )}
                     </div>
                 </button>
+                
               {menuOpen && (
     <div className={`${styles.navLinksContainer} ${styles.open}`}>
         <ul className={styles.navList}>
+             {userData && userData.admin && (
+                <div ref={adminMenuRef} className={showMenuAdmin ? `${styles.containerAdmins} ${styles.containerAdminOpens}` : styles.containerAdmin}>
+                    <button onClick={toggleMenuAdmin} className={styles.navLink}>
+                        ADMIN
+                    </button>
+                 {showMenuAdmin && (
+  
+                       <div className={styles.adminSubMenu}>
+                        <li>
+                <NavLink to="/admindashboard/crearplato" className={styles.navLinkAdm} onClick={() => handleItemClick('CREAR PLATO')}>
+                  Crear Plato
+                  
+                </NavLink>
+                
+                </li>
+                <br></br>
+                <li>
+                <NavLink to="/admindashboard/editar-eliminar" className={styles.navLinkAdm} onClick={() => handleItemClick('EDITAR/ELIMINAR')}>
+                  Editar/Eliminar
+                </NavLink>
+                </li>
+                <br></br>
+                 <li>
+                <NavLink to="/admindashboard/allReviews" className={styles.navLinkAdm} onClick={() => handleItemClick('EDITAR/ELIMINAR')}>
+                  Reviews
+                </NavLink>
+                </li>
+                 <br></br>
+                <li>
+                 <NavLink to="/admindashboard" className={styles.navLinkAdm} onClick={() => handleItemClick('EDITAR/ELIMINAR')}>
+                  Graphics
+                </NavLink>
+                </li>
+                
+              </div>
+                        
+                    )}
+                </div>
+            
+            )}
             <li className={styles.navListItem}>
                 <NavLink to="/NuestrosPlatos" className={styles.navLink} onClick={() => handleItemClick('MENU DE LA SEMANA')}>
                     NUESTROS PLATOS
@@ -181,32 +222,9 @@ const toggleMenuHandler = () => {
                     FAQ'S
                 </NavLink>
             </li> 
-        </ul>
-              {userData && userData.admin && (
-                <div ref={adminMenuRef} className={showMenuAdmin ? `${styles.containerAdmin} ${styles.containerAdminOpen}` : styles.containerAdmin}>
-                    <button onClick={toggleMenuAdmin} className={styles.navLink}>
-                        ADMIN
-                    </button>
-                    
-                    {showMenuAdmin && (
-                       <div className={styles.adminSubMenu}>
-                <NavLink to="/admindashboard/crearplato" className={styles.navLinkAdm} onClick={() => handleItemClick('CREAR PLATO')}>
-                  Crear Plato
-                </NavLink>
-                <NavLink to="/admindashboard/editar-eliminar" className={styles.navLinkAdm} onClick={() => handleItemClick('EDITAR/ELIMINAR')}>
-                  Editar/Eliminar
-                </NavLink>
-                <NavLink to="/admindashboard/allReviews" className={styles.navLinkAdm} onClick={() => handleItemClick('EDITAR/ELIMINAR')}>
-                  Reviews
-                </NavLink>
-                 <NavLink to="/admindashboard" className={styles.navLinkAdm} onClick={() => handleItemClick('EDITAR/ELIMINAR')}>
-                  Graphics
-                </NavLink>
-              </div>
-                        
-                    )}
-                </div>
-            )}
+        
+             
+            </ul>
     </div>   
         
 )}
