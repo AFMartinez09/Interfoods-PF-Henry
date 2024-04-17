@@ -24,6 +24,7 @@
 
 .navListItem {
   margin-right: 10px;
+  display: flex;
 }
 
 .navLink {
@@ -37,6 +38,9 @@
   font-family: "DM Serif Display", serif;
   position: relative;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .containerAdmin {
@@ -202,6 +206,7 @@
   display: flex;
   align-items: center;
   position: relative;
+  margin-left: 40px;
 }
 
 .numero{
