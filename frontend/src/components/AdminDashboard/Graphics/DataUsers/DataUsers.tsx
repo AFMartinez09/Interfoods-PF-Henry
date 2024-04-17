@@ -4,6 +4,8 @@ import { PutUserBlock, getAllUsers } from '../../../../redux/actions/Actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { StoreState } from '../../../../redux/reducer/Reducer';
 import SearchMail from './SearchMail';
+import { useNavigate } from 'react-router-dom';
+
 
 
 interface Users {
@@ -18,6 +20,7 @@ interface Users {
 }
 
 const DataUsers: React.FC = () => {
+  const isAdmin = useSelector((state: StoreState) => state.admin);
 
   const dispatch = useDispatch();
   const users: Users[] = useSelector((state: StoreState) => state.users)
@@ -34,6 +37,13 @@ const getUsers = async(dispatch: any) => {
   useEffect(() => {
     getUsers(dispatch)
   }, [dispatch])
+
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (isAdmin === false) {
+      navigate("/")
+    }
+  }, [])
 
   const handleBlockAccount = async (id: number) => {
     const user = users.find(user => user.id === id);

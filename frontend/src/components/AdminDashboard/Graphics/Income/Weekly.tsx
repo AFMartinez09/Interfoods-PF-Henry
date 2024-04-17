@@ -20,6 +20,7 @@ ChartJS.register(
 );
 
 const Income = () => {
+  
   const semanal = {
     labels: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
     datasets: [{
