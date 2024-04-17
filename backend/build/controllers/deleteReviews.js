@@ -9,21 +9,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createUser = void 0;
-const Usuario_1 = require("../models/Usuario"); // Asegúrate de que la ruta al modelo es correcta
-const createUser = (userData) => __awaiter(void 0, void 0, void 0, function* () {
+exports.deleteReviewById = void 0;
+const Review_1 = require("../models/Review");
+const deleteReviewById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
     try {
-        // Verificar si ya existe un usuario con el mismo correo electrónico
-        const existingUser = yield Usuario_1.Usuario.findOne({ where: { email: userData.email } });
-        if (existingUser) {
-            throw new Error('Ya existe un usuario con el mismo correo electrónico');
+        // Buscar la review por su ID
+        const reviewToDelete = yield Review_1.Review.findByPk(id);
+        // Verificar si la review existe
+        if (!reviewToDelete) {
+            return res.status(404).json({ message: 'La review no existe' });
         }
-        // Crear el nuevo usuario si no existe uno con el mismo correo electrónico
-        const newUser = yield Usuario_1.Usuario.create(userData);
-        return newUser;
+        // Eliminar la review
+        yield reviewToDelete.destroy();
+        return res.status(200).json({ message: 'Review eliminada correctamente' });
     }
     catch (error) {
-        throw new Error('Error al crear el usuario');
+        console.error('Error al eliminar la review:', error);
+        return res.status(500).json({ message: 'Error interno del servidor' });
     }
 });
-exports.createUser = createUser;
+exports.deleteReviewById = deleteReviewById;

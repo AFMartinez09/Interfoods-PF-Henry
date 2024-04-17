@@ -31,8 +31,8 @@ const pay = (idCompra, producto, precio, idUsuario, emailUser, nombreUser) => __
                 },
                 back_urls: {
                     // success: "https://interfoods.netlify.app/api/payments/success", //ruta de deploy
-                    success: "http://localhost:3000/api/payments/success", //ruta local
-                    // success: "http://localhost:5173/api/payments/success", //ruta local
+                    // success: "http://localhost:3000/api/payments/success", //ruta local
+                    success: "http://localhost:5173/api/payments/success", //ruta local
                     failure: "",
                     pending: "",
                 },

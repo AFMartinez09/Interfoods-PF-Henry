@@ -9,21 +9,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createUser = void 0;
-const Usuario_1 = require("../models/Usuario"); // Asegúrate de que la ruta al modelo es correcta
-const createUser = (userData) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getCompraByUserId = void 0;
+const Compra_1 = require("../models/Compra");
+const getCompraByUserId = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        // Verificar si ya existe un usuario con el mismo correo electrónico
-        const existingUser = yield Usuario_1.Usuario.findOne({ where: { email: userData.email } });
-        if (existingUser) {
-            throw new Error('Ya existe un usuario con el mismo correo electrónico');
+        const { usuarioId } = req.params;
+        if (!usuarioId) {
+            return res.status(400).send({ error: "Falta el ID del usuario" });
         }
-        // Crear el nuevo usuario si no existe uno con el mismo correo electrónico
-        const newUser = yield Usuario_1.Usuario.create(userData);
-        return newUser;
+        const purchases = yield Compra_1.Compra.findAll({ where: { usuarioId } });
+        if (!purchases || purchases.length === 0) {
+            return res.status(404).send({ message: "No se encontraron compras para el usuario con el ID proporcionado" });
+        }
+        return res.status(200).send(purchases);
     }
     catch (error) {
-        throw new Error('Error al crear el usuario');
+        console.error(error);
+        return res.status(500).send({ error: "Error al procesar la solicitud", detalle: error });
     }
 });
-exports.createUser = createUser;
+exports.getCompraByUserId = getCompraByUserId;

@@ -46,7 +46,7 @@ function insertarPlatos() {
                     descripcion: plato.descripcion,
                     stock: plato.stock,
                     activo: plato.activo,
-                    inventario: plato.inventario
+                    inventario: plato.inventario,
                 });
             }
             console.log("Todos los platos fueron insertados exitosamente.");

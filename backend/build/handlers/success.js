@@ -12,12 +12,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.success = void 0;
 const nodemailer_1 = require("../config/nodemailer");
 const success = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id, date_created, status, payment_id, payment_type, transaction_amount, description, user_email, user_name, } = req.query;
+    const { id, date_created, status, payment_id, payment_type, transaction_amount, description, user_email, user_name, } = req.body;
     try {
         let ventas = 0;
+        console.log('entre a success');
         if (status === "approved") {
             ventas += 1;
-            console.log(`El status del pago es: ${status}, ID: ${payment_id}`);
+            console.log(`El status del pago es: ${status}, ID: ${payment_id}, email: ${user_email}, nombre: ${user_name}, id: ${id}, total: ${transaction_amount}, fecha: ${date_created}, description: ${description}`);
             // Envía correo electrónico al comprador
             yield nodemailer_1.transporter.sendMail({
                 from: process.env.EMAIL_INTERFOOD,
