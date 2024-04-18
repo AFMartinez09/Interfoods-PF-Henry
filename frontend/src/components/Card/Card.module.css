@@ -138,6 +138,9 @@ a{
 
 
 .calorias{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: rgba(226, 226, 223, 0.842);
   border-radius: 1000px;
   text-align: center;
