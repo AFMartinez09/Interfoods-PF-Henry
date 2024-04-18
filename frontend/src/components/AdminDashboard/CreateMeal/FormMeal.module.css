@@ -65,7 +65,8 @@
   color: white;
   cursor: pointer;
   min-width: 100px;
-  margin-left: 32vh; 
+  margin: 0 auto;
+  display: flex;
 }
 
 .error {
