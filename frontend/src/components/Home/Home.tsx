@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <div className={Style.home}>
       <section className={Style.inicio}>
-        <div>
+        <div className={Style.texthome}>
           <h3 className={Style.title}>Come rico toda la semana</h3>
           <ul className={Style.lista}>
             <div className={Style.lisCon}>
