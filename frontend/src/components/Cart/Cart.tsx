@@ -108,9 +108,6 @@ const Cart: React.FC<CartProps> = ({ toggleMenu }) => {
       }
       const transactionId = response.data.transactionId;
       dispatch(setTransaccionId(transactionId));
-      localStorage.removeItem('cart')
-      const event = new Event('cartChange');
-      window.dispatchEvent(event);
       const mercadoPagoURL = response.data;
       window.location.href = mercadoPagoURL;
     } catch (error) {
