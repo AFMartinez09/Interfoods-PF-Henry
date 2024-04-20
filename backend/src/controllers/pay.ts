@@ -26,16 +26,17 @@ export const pay = async (
           nombreUser: nombreUser,
         },
         back_urls: {
-          success: "https://interfoods.netlify.app/api/payments/success", //ruta de deploy
+          // success: "https://interfoods.netlify.app/api/payments/success", //ruta de deploy
           // success: "http://localhost:3000/api/payments/success", //ruta local
-          // success: "http://localhost:5173/api/payments/success", //ruta local
+          success: "http://localhost:5173/api/payments/success", //ruta local
           failure: "",
           pending: "",
         },
         auto_return: "approved",
         binary_mode: true,
         notification_url:
-          "https://interfoods.netlify.app",
+          // "https://interfoods.netlify.app",
+          "https://localhost:5173"
           // "https://fc40-93-40-64-152.ngrok-free.app/api/payments/webhook", //Aca debemos agregar la ruta en la cual se ha hecho el deploy
       },
     });
