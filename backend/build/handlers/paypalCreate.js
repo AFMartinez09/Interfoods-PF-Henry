@@ -9,19 +9,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createOrder = void 0;
-const pay_1 = require("../controllers/pay");
-const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("creando orden con mercadopago");
-    const { idCompra, producto, precio, idUsuario, emailUser, nombreUser } = req.body;
+exports.createOrderPaypal = void 0;
+const paypalPay_1 = require("../controllers/paypalPay");
+const createOrderPaypal = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const response = yield (0, pay_1.pay)(idCompra, producto, precio, idUsuario, emailUser, nombreUser);
-        res.status(201).json(response);
-        console.log("orden de mercadopago creada con éxito");
+        const { product, price, description } = req.body;
+        console.log("Creando Orden de pago Paypal");
+        const response = yield (0, paypalPay_1.createOrder)(product, price, description);
+        res.status(200).json(response);
+        console.log("Orden de pago Paypal creada con éxito");
     }
     catch (error) {
-        console.error("Error al procesar el pago:", error);
-        res.status(500).send(error);
+        console.error("Error al crear la orden con Paypal:", error);
+        res.status(500).json({ error: "Failed to create order." });
     }
 });
-exports.createOrder = createOrder;
+exports.createOrderPaypal = createOrderPaypal;

@@ -21,6 +21,8 @@
     "@types/morgan": "^1.9.9",
     "@types/node-fetch": "^2.6.11",
     "@types/nodemailer": "^6.4.14",
+    "@types/paypal__checkout-server-sdk": "^1.0.8",
+    "@types/paypal-rest-sdk": "^1.7.9",
     "@types/pg": "^8.11.4",
     "@types/sequelize": "^4.28.20",
     "dotenv": "^16.4.5",
@@ -29,6 +31,7 @@
     "typescript": "5.4.2"
   },
   "dependencies": {
+    "@paypal/checkout-server-sdk": "^1.0.3",
     "axios": "^1.6.8",
     "cloudinary": "^2.0.3",
     "cors": "^2.8.5",
@@ -39,6 +42,7 @@
     "mercadopago": "^2.0.8",
     "morgan": "^1.10.0",
     "nodemailer": "^6.9.13",
+    "paypal-rest-sdk": "^1.8.1",
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.2",

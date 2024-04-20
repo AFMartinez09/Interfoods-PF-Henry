@@ -9,19 +9,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createOrder = void 0;
-const pay_1 = require("../controllers/pay");
-const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("creando orden con mercadopago");
-    const { idCompra, producto, precio, idUsuario, emailUser, nombreUser } = req.body;
+exports.paypal = void 0;
+const paypalPay_1 = require("../controllers/paypalPay");
+const paypal = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("creando orden de pago con PayPal");
+    const { producto, precio, description } = req.body;
     try {
-        const response = yield (0, pay_1.pay)(idCompra, producto, precio, idUsuario, emailUser, nombreUser);
-        res.status(201).json(response);
-        console.log("orden de mercadopago creada con éxito");
+        const response = yield (0, paypalPay_1.paypalPay)(producto, precio, description);
+        res.status(200).json(response);
+        console.log("orden paypal creada con éxito");
     }
     catch (error) {
         console.error("Error al procesar el pago:", error);
         res.status(500).send(error);
     }
 });
-exports.createOrder = createOrder;
+exports.paypal = paypal;
