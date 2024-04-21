@@ -206,7 +206,6 @@
   display: flex;
   align-items: center;
   position: relative;
-  margin-left: 40px;
 }
 
 .numero{
@@ -231,7 +230,6 @@
 .navbtn2{
   background-color: transparent;
   border: none;
-  margin-left: -38px;
 }
 
 
@@ -274,6 +272,12 @@
   cursor: pointer;
   filter:invert(10);
   padding-left: 20px;
+  transition: all 0.3s ease;
+}
+
+
+.navLogo2:hover{
+  filter:invert(0);
 }
 
 .menuButton {

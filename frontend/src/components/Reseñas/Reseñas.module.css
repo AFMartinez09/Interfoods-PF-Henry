@@ -24,7 +24,7 @@
 
 .reseña:hover {
     transform: scale(1.04);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.432);
 }
 
 .reseña {
@@ -32,7 +32,7 @@
     height: 420px; 
     background-color: white; 
     border-radius: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.548); 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     padding: 2rem 20px;
     display: flex;

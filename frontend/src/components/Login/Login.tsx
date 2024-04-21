@@ -51,39 +51,49 @@ export const Login = () => {
     e.preventDefault();
     const validateErrors = Validation(login);
     setErrors(validateErrors);
-  
+    console.log(errors);
+    
     if (Object.keys(validateErrors).length === 0) {
-      try {
-        // Iniciar sesión con Firebase
-        await signInWithEmailAndPassword(auth, login.email, login.password);
-        const userEmail = login.email;
+        try {
+            // Iniciar sesión con Firebase
+            await signInWithEmailAndPassword(auth, login.email, login.password);
+            const userEmail = login.email;
 
-        // Llamar a la función registerUser pasando el correo electrónico
-        if (userEmail) {
-          await getUser(userEmail);
+            // Llamar a la función getUser pasando el correo electrónico
+            if (userEmail) {
+                try {
+                    await getUser(userEmail);
+                    Swal.fire({
+                        title: 'Inicio de sesión exitoso',
+                        text: '¡Bienvenido de nuevo!',
+                        icon: 'success',
+                        confirmButtonText: 'Entendido'
+                    }).then(() => {
+                        window.location.href = "/";
+                    }); 
+                } catch (error) {
+                    Swal.fire({
+                        title: 'Cuenta Bloqueada',
+                        text: 'Tu cuenta ha sido bloqueada. Contacta al soporte para más información.',
+                        icon: 'error',
+                        confirmButtonText: 'Entendido'
+                    }).then(() => {
+                        window.location.href = "/";
+                    }); 
+                }
+            }
+        } catch (error) {
+            console.error("Error al iniciar sesión:", error);
+            // Mostrar mensaje de error
+            Swal.fire({
+                title: 'Error al iniciar sesión',
+                text: 'Hubo un problema al intentar iniciar sesión. Por favor, verifica tus credenciales e inténtalo de nuevo.',
+                icon: 'error',
+                confirmButtonText: 'Entendido'
+            });
         }
-
-        // Mostrar mensaje de éxito
-        Swal.fire({
-          title: 'Inicio de sesión exitoso',
-          text: '¡Bienvenido de nuevo!',
-          icon: 'success',
-          confirmButtonText: 'Entendido'
-        }).then(() => {
-          window.location.href = "/";
-        });
-      } catch (error) {
-        console.error("Error al iniciar sesión:", error);
-        // Mostrar mensaje de error
-        Swal.fire({
-          title: 'Error al iniciar sesión',
-          text: 'Hubo un problema al intentar iniciar sesión. Por favor, verifica tus credenciales e inténtalo de nuevo.',
-          icon: 'error',
-          confirmButtonText: 'Entendido'
-        });
-      }
     }
-  };
+};
  
   useEffect(() => {
     const auth = getAuth();

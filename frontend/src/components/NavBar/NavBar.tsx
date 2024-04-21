@@ -62,7 +62,7 @@ const toggleMenuHandler = () => {
         return () => {
             window.removeEventListener('cartChange', handleStorageChange);
         };
-    }, [localStorage]);
+    }, []);
 
     useEffect(() => {
         const getUserData = () => {
