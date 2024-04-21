@@ -215,18 +215,24 @@
 }
 
 .loginboton{
-  background-color: #fbfdfd;
+  background-color: #fcb564;
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 30%;
+  height: 80%;
   width: 50%;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 20px;
+  font-weight: 500;
   border: none;
   transition: all 0.3s ease;
   cursor: pointer;
-  text-decoration: underline;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  border-radius: 100px;
 }
 
 .loginboton:hover{
