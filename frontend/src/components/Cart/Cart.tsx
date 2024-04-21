@@ -5,6 +5,8 @@ import { setTransaccionId } from '../../redux/actions/Actions';
 import axios from 'axios';
 import { URL } from '../../App';
 
+
+
 export interface Food {
   name: string;
   img: string;
@@ -115,6 +117,11 @@ const Cart: React.FC<CartProps> = ({ toggleMenu }) => {
     }
   };
 
+  const login = () =>{
+    window.location.href = "/login"
+    toggleMenu()
+  }
+
   return (
     <div className={Style.pageCart} onClick={handleClickOutside}>
       <div className={Style.cart}>
@@ -126,6 +133,9 @@ const Cart: React.FC<CartProps> = ({ toggleMenu }) => {
               <p className={Style.msj}>
                 Debes iniciar sesion para realizar una compra
               </p>
+              <div className={Style.login}>
+                <button className={Style.loginboton} onClick={login}>ingresa aqui para inicar sesion o crear una cuenta!</button>
+              </div>
             </div>
           ) : (
             foods.map((food) => (
