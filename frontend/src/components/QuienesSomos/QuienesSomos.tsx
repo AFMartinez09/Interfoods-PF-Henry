@@ -1,36 +1,16 @@
 import React from 'react';
 import quienesSomosStyles from './QuienesSomos.module.css';
 import imagenCocina from '../../assets/img/_2b7b3cb0-fe4d-41bd-9640-0aeea3057fc2.jpg';
-import Carousel from '../Carrousel/Carrousel';
+
+import Nosotros from '../Nosotros/Nosotros';
 
 interface QuienesSomosProps {}
 
 const QuienesSomos: React.FC<QuienesSomosProps> = () => {
-  const images : Array <string>  = [
-    'https://avatars.githubusercontent.com/u/116928445?v=4',
-    'https://avatars.githubusercontent.com/u/102487252?v=4',
-    'https://avatars.githubusercontent.com/u/123500246?v=4',
-    'https://avatars.githubusercontent.com/u/134454433?v=4',
-    'https://avatars.githubusercontent.com/u/108027704?v=4',
-    'https://avatars.githubusercontent.com/u/122408865?v=4',
-  ];
+
   
-  const linked : Array <string> = [
-    'https://www.linkedin.com/in/gaston-vergagni-a87b3b29b/',
-    'https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=true&heroEntityKey=urn%3Ali%3Afsd_profile%3AACoAAD5qhAUB-NrzSn64rB10YoAoGxuBaBSx5B8&keywords=luis%20defago&origin=RICH_QUERY_SUGGESTION&position=0&searchId=77881187-8e2f-49f2-9aff-ef5b30202a38&sid=13G&spellCorrectionEnabled=false',
-    'https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=true&heroEntityKey=urn%3Ali%3Afsd_profile%3AACoAAEMm9ewBt49tbjf79_0cfGSipWxg8mppAuU&keywords=andres%20martinez&origin=RICH_QUERY_SUGGESTION&position=0&searchId=ef511386-9260-4908-bbd1-eabd935a3e8c&spellCorrectionEnabled=false',
-    'https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=true&heroEntityKey=urn%3Ali%3Afsd_profile%3AACoAAEeL5MwBf--H8rCzzCYlrKoF5i56WRU7jtc&keywords=mirko%20miler&origin=RICH_QUERY_TYPEAHEAD_HISTORY&position=0&searchId=8da57c10-03b1-4bc2-b151-8231e11c94b3&sid=d9_&spellCorrectionEnabled=true',
-    'https://www.linkedin.com/in/eric-joel-fern%C3%A1ndez-b1b5b0234/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-    'https://www.linkedin.com/in/aurelio-cabello-medellin-2254a72a1/',
-  ];
-  const nombres : Array <string> = [
-    'Gaston Vergagni',
-    'Luis Defago',
-    'Andrez Martinez',
-    'Mirko Miler',
-    'Joel Fernandez',
-    'Aurelio Cabello',
-  ];
+ 
+
   return (
     <div>
       <div className={quienesSomosStyles['qs-margin']}>
@@ -38,13 +18,13 @@ const QuienesSomos: React.FC<QuienesSomosProps> = () => {
         <br />
         <br />
         <div><h1>¿Quiénes somos?</h1></div>
-       <div><p>Te hablamos un poco de nosotros</p></div> 
-       <div>         
-         <Carousel images={images} nombres={nombres} linked={linked}/>
-       </div>
+        <div><p className={`${quienesSomosStyles['presento']}`}>Te presento al equipo</p></div> 
+        <div className={quienesSomosStyles['left2']}>
+          <Nosotros/>
+        </div>
       </div>
 
-      <div className={`${quienesSomosStyles['qs-section']}`}>
+      <div className={`${quienesSomosStyles['qs-section2']}`}>
         <div className={quienesSomosStyles['qs-textContainer']}>
           <h1>De dónde venimos</h1>
          <p>
