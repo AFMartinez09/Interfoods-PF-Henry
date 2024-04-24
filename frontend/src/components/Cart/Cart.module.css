@@ -51,6 +51,7 @@
 @media (max-width: 1239px) {
   .cart{
     width: 55%;
+    height: 93%;
   }
 }
 
@@ -90,11 +91,14 @@
 }
 
 .itemsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   max-height: calc(75%); 
   overflow-y: auto;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
-  min-height: 680px;
+  min-height: 60vh;
 }
 
 .cartItem {
