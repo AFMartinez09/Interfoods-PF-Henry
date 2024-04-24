@@ -37,6 +37,7 @@
     padding: 2rem 20px;
     display: flex;
     flex-direction: column;
+    word-wrap: break-word;
 }
 
 .containercomentarionombreplato {
@@ -198,4 +199,21 @@ p {
 .disabledButton:hover {
     background-color: #CCCCCC; /* Cambiar color de fondo en hover cuando está deshabilitado */
     color: #666666; /* Cambiar color del texto en hover cuando está deshabilitado */
+}
+
+
+@media (max-width: 830px) {
+    .btnCarrousel{
+        margin: 0;
+    }
+    .reseñastitulo{
+        font-size: 2rem;
+    }
+    .inputField{
+        width: 300px;
+    }
+    .reseña {
+        width: 230px;
+        min-height: 480px;
+    }
 }
