@@ -34,6 +34,7 @@
   padding: 2rem 20px;
   display: flex;
   flex-direction: column;
+  word-wrap: break-word;
 }
 
 .containercomentarionombreplato {
