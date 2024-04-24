@@ -148,16 +148,6 @@ const toggleMenuHandler = () => {
                     </div>
                 </NavLink>
                 
-                <button className={styles.menuButton} onClick={toggleMenuHandler}>
-                    <div className={styles.menuIcon}>
-                        {menuOpen ? (
-                            <img src="https://img.icons8.com/ios-glyphs/30/000000/delete-sign.png" alt="Cerrar menú"  className= {styles.imageHamburguer} />
-                        ) : (
-                            <img src="https://img.icons8.com/ios-glyphs/30/000000/menu.png" alt="Abrir menú" />
-                        )}
-                    </div>
-                </button>
-                
               {menuOpen && (
     <div className={`${styles.navLinksContainer} ${styles.open}`}>
         <ul className={styles.navList}>
@@ -275,9 +265,19 @@ const toggleMenuHandler = () => {
             )}
           </div>
         )}
-      </div>
-           
+      </div> 
             <div className={styles.carritonumero}>
+                <div className={styles.ConmenuButton}>
+                <button className={styles.menuButton} onClick={toggleMenuHandler}>
+                    <div className={styles.menuIcon}>
+                        {menuOpen ? (
+                            <img src="https://img.icons8.com/ios-glyphs/30/000000/delete-sign.png" alt="Cerrar menú"  className= {styles.imageHamburguer} />
+                        ) : (
+                            <img src="https://img.icons8.com/ios-glyphs/30/000000/menu.png" alt="Abrir menú" />
+                        )}
+                    </div>
+                </button>  
+                </div>
                 <button onClick={handleToggleMenu} className={styles.navbtn2}>
                     <p className={totalQuantity === 0 ? styles.numero2 : styles.numero}>{totalQuantity}</p>
                     <div className={styles.carritonumero}>
