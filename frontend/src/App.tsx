@@ -40,7 +40,7 @@ import MisCompras from './components/MisCompras/misCompras.tsx';
 
 
 // comentar y descomentar para deploy
-export const URL = "https://pf-henry-jmnh.onrender.com"
+export const URL = "https://pf-henryrendere.onrender.com"
 // export const URL = "http://localhost:3000"
 
 function App() {
